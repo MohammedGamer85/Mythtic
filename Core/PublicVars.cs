@@ -8,13 +8,17 @@ using System.Threading.Tasks;
 namespace mythos.Core
 {
     public class PublicVars
-    {
+    {   
+        /*!Information
+        imporotedmods are mods which have been added to the configs but not to the gamefiles,
+        InstalledMods are mods which have been added to the game files and the config files, 
+         */
+
         public string gameFiles; // if full game modifcations support is added
         public string modFiles; //for manuale mod importing
-        public string userDocFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\mythos\\"; //were to store configs
+        public string userDocFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Mythos\\"; //were to store configs
         public string userAppDataFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Minecraft Legends\\"; //were myth/gamemods are imported
-        public string[] importedMods = new string[64]; //for displaying the users current downloaded/imported mods
-        public string[] configFiles = new string[64]; //extended file path of all the config files added after userAppDataFiles
+        public string[] ImportedMods = new string[64]; //for displaying the users current downloaded/imported mods
 
     }
 }

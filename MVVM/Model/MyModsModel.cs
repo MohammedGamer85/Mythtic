@@ -14,7 +14,7 @@ namespace mythos.MVVM.Model
     {
         public string ImageSource { get; set; }
 
-        public string Auther { get; set; }
+        public string author { get; set; }
 
         public string Description { get; set; }
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace mythos.DataClasses
 {
-    public class UserAccuntData
+    public class UserAccountData
     {
-        public string accuntToken { get; set; }
+        public string AccountToken { get; set; }
 
         public string userName { get; set; }
 
