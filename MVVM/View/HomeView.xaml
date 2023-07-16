@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:mythos.MVVM.ViewModel"
              xmlns:local="clr-namespace:mythos.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
+    
+    <UserControl.DataContext>
+        <viewModel:HomeViewModel/>
+    </UserControl.DataContext>
+    
     <StackPanel>
         <TextBlock Text="Home Page"
                    Foreground="White"
@@ -87,12 +93,13 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <TextBlock x:Name="NumberOfMods" Text="My Mods"
+        <TextBlock x:Name="NumberOfMods" Text="{Binding NumberOfMods}"
                        Foreground="white"
                        FontSize="24"/>
         <ListView x:Name="ListContacts" 
                   Background="Transparent"
                   BorderThickness="0"
+                  ItemsSource="{Binding Mods}"
                   ItemContainerStyle="{StaticResource ModCard}" ScrollViewer.VerticalScrollBarVisibility="Hidden">
         </ListView>
     </StackPanel>

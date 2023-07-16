@@ -7,12 +7,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mythos.MVVM.ViewModel;
 
 namespace mythos.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject
-    {   
-
+    {
+        HomeViewModel homeViewModel = new();
         //! Views
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand DiscoverViewCommand { get; set; }
@@ -40,6 +41,7 @@ namespace mythos.MVVM.ViewModel
             HomeViewCommand = new RelayCommand(o => 
             {
                 CurrentView = HomeVM;
+                homeViewModel.UpdateMyModsList();
             });
 
             DiscoverViewCommand = new RelayCommand(o =>

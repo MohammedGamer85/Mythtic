@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace mythos.Core
 {
-    class ObservableObject : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

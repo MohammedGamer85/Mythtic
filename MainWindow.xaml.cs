@@ -1,5 +1,4 @@
 ﻿using mythos.Core;
-using mythos.DataClasses;
 using mythos.MVVM.Model;
 using mythos.MVVM.View;
 using System;
@@ -29,44 +28,14 @@ namespace mythos
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ImportData importData = new(); //todo replace1
+        private ImportData importData = new();
         private PublicVars vars = new();
         public MainWindow()
         {
             InitializeComponent();
-            CreateNecessaryFiles();
-            importData.ImportMods(); //todo be replace1
-            ImportUserAccountData();
             /*?
             Add the startup classes/funcations here idot. I know you will forget that and put them some were else.
             I am clear here only with the only exption being View funcations they stay inside there view files*/
-
-        }
-
-        void CreateNecessaryFiles()
-        {
-            if (!Directory.Exists(vars.userDocFiles))
-            {
-                Directory.CreateDirectory(vars.userDocFiles);
-            }
-        }
-
-        public void ImportUserAccountData()
-        {
-            string TEMPName = "asda";
-            int fontSize = 15; // The number of charcters after which all the letter will be removed and ... added insted
-            if (TEMPName.Length > 15) { TEMPName = (TEMPName.Remove(15) + "..." ); }
-            List<UserAccountData> contacts = new List<UserAccountData>()
-            {
-                new UserAccountData
-                {
-                    userName = TEMPName, //TODO Change all of these to accuale vars
-                    AccountToken = "non",
-                    imageSource = "https://cdn.discordapp.com/avatars/843270188686245888/f3c27f99128b8510f28e868e98b9c058",
-                    fontSize = fontSize,
-                }
-            };
-            ProfileDisplay.ItemsSource= contacts;
 
         }
     }

@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace mythos.MVVM.Model
 {
-    class MyModsModel
+    public class MyModsModel
     {
         public string ImageSource { get; set; }
 

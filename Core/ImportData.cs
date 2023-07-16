@@ -15,6 +15,7 @@ using System.Net.Http.Json;
 using System.Diagnostics;
 using System.Windows.Media;
 using System.Xml.Linq;
+using System.ComponentModel;
 
 namespace mythos.Core
 {
@@ -22,18 +23,65 @@ namespace mythos.Core
     public class ImportData
     {
         public Dictionary<int, Mod> modDiectionary = new();
+        public AppData AppData;
+
+        public ImportData() 
+        {
+            CreateNecessaryFiles();
+            ImportMods();
+            ImportAppData();
+
+
+        }
 
         static void CreateNecessaryFiles()
         {   
             PublicVars vars = new();
+            try
+            {
+                if (!Directory.Exists(vars.userDocFiles))
+                {
+                    Directory.CreateDirectory(vars.userDocFiles);
+                }
 
-            string appDataPath = vars.userDocFiles + "appData.json";
-            if (!File.Exists(appDataPath))
-                File.Create(appDataPath);
+                string appDataPath = vars.userDocFiles + "appData.json";
+                if (!File.Exists(appDataPath))
+                    File.Create(appDataPath);
 
-            string importedModsPath = vars.userDocFiles + "importedMods.json";
-            if (!File.Exists(importedModsPath))
-                File.Create(importedModsPath);
+                string importedModsPath = vars.userDocFiles + "\\importedMods.json";
+                if (!File.Exists(importedModsPath))
+                    File.Create(importedModsPath);
+
+            }catch { Trace.WriteLine("userDocFiles Directory not found"); }
+
+
+        }
+
+        public void ImportAppData()
+        {
+            PublicVars vars = new();
+
+            try
+            {
+                string appDataPath = vars.userDocFiles + "\\appData.json";
+
+                string jsonStringInput = File.ReadAllText(appDataPath);
+
+                AppData = JsonSerializer.Deserialize<AppData>(jsonStringInput);
+
+                AppData.PropertyChanged += AppData_PropertyChanged;
+            }catch (Exception) { Trace.WriteLine(vars.debugConsolePrefix + "Did not finsh importingMods"); }
+        }
+
+        private void AppData_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            PublicVars vars = new();
+
+            string appDataPath = vars.userDocFiles + "\\appData.json";
+
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string JsonStringOutpot = JsonSerializer.Serialize(AppData, options);
+            File.WriteAllText(appDataPath, JsonStringOutpot);
         }
 
         public void ImportMods()
@@ -43,77 +91,78 @@ namespace mythos.Core
 
             try
             {   
-                Trace.WriteLine(vars.debugConsolePrefix + "Started importingMods");
-
-                CreateNecessaryFiles();
-                string importedModsPath = vars.userDocFiles + "importedMods.json";
-
-                //Rootobject x = JsonSerializer.Deserialize<Rootobject>(File.ReadAllText(importedModsPath));
-                // Trace.WriteLine(vars.debugConsolePrefix + x.GetMod(0));
+                string importedModsPath = vars.userDocFiles + "\\importedMods.json";
 
                 string jsonStringInput = File.ReadAllText(importedModsPath);
+
                 modDiectionary = JsonSerializer.Deserialize<Dictionary<int, Mod>>(jsonStringInput);
-
-                modDiectionary.Add(
-                    1,
-                    new Mod
-                    {
-                        umid = 2,
-                        name = "modname",
-                        imageSource = "imageSource",
-                        author = "modauthor",
-                        description = "modDescription",
-                        subDescription = "modsubDescription",
-                        version = "modversion",
-                        releaseDate = "releaseData",
-                        isLoaded = null
-                    }
-                ); ; ;
-
-                Trace.TraceWarning(vars.debugConsolePrefix + Convert.ToString(modDiectionary));
 
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 String JsonStringOutpot = JsonSerializer.Serialize(modDiectionary, options);
                 File.WriteAllText(importedModsPath, JsonStringOutpot);
             }
-            catch (Exception) { Trace.WriteLine(vars.debugConsolePrefix + "did not finsh importingMods"); }
+            catch (Exception) { Trace.WriteLine(vars.debugConsolePrefix + "Did not finsh importingMods"); }
         }
+
+        public void AddMod(Mod mod)
+        {
+            modDiectionary.Add(
+                modDiectionary.Count + 1,
+                mod
+            );
+        }
+    }
+
+    public class AppData : ObservableObject
+    {
+        private string accountToken;
+        private string userName;
+        private string userImageSource;
+        private string userId;
+
+        public string AccountToken { get => accountToken; set { accountToken = value; OnPropertyChanged(); } }
+
+        public string UserName { get => userName; set { userName = value; OnPropertyChanged(); } }
+
+        public string UserImageSource { get => userImageSource; set { userImageSource = value; OnPropertyChanged(); } }
+
+        public string UserId { get => userId; set { userId = value; OnPropertyChanged(); } }
     }
 
     public class Mod
     {
-        public int umid { get; set; }
-        public string name { get; set; }
-        public string imageSource { get; set; }
-        public string author { get; set; }
-        public string description { get; set; }
-        public string subDescription { get; set; }
-        public string version { get; set; }
-        public string releaseDate { get; set; }
-        public bool? isLoaded { get; set; }
+        public int Umid { get; set; }
+        public string Name { get; set; }
+        public string ImageSource { get; set; }
+        public string Author { get; set; }
+        public string Description { get; set; }
+        public string SubDescription { get; set; }
+        public string Version { get; set; }
+        public string ReleaseDate { get; set; }
+        public bool? IsLoaded { get; set; }
 
         public string GetName()
-        { return name; } //TODO make all of the funcations like this
+        { return Name; } //TODO make all of the funcations like this
 
         public string GetImageSource()
-        { return imageSource; }
+        { return ImageSource; }
 
         public string GetAuthor()
-        { return author; }
+        { return Author; }
 
         public string GetDescription()
-        { return description; }
+        { return Description; }
 
         public string GetSubDescription()
-        { return subDescription; }
+        { return SubDescription; }
 
         public string GetVsersion()
-        { return version; }
+        { return Version; }
 
         public string GetReleaseDate()
-        { return releaseDate; }
+        { return ReleaseDate; }
 
         public bool? GetIsLoaded()
-        { return isLoaded; }
+        { return IsLoaded; }
     }
 }
