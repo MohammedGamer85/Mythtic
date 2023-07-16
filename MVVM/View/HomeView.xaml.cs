@@ -35,7 +35,7 @@ namespace mythos.MVVM.View
             {
                 new MyModsModel
                 {
-                    ImageSource = "https://th.bing.com/th/id/OIP.J8-fsFy6EHYDaooV0_VTgAHaHa?w=163&h=180&c=7&r=0&o=5&pid=1.7",
+                    ImageSource = "https://th.bing.com/th/umid/OIP.J8-fsFy6EHYDaooV0_VTgAHaHa?w=163&h=180&c=7&r=0&o=5&pid=1.7",
                     Description = "Description: This is the Description",
                     author = "By author",
                     IsLoaded = true,
@@ -62,7 +62,7 @@ namespace mythos.MVVM.View
                 },
                 new MyModsModel
                 {
-                    ImageSource = "https://th.bing.com/th/id/OIP.PnAy7sgKcjfVXXBH89AA2QEsDj?w=211&h=176&c=7&r=0&o=5&pid=1.7",
+                    ImageSource = "https://th.bing.com/th/umid/OIP.PnAy7sgKcjfVXXBH89AA2QEsDj?w=211&h=176&c=7&r=0&o=5&pid=1.7",
                     Description = "Description: Pvp by balnced and with more mobes and buildables to allow for more deverse stratiges",
                     author = "By EpicDensetsu",
                     IsLoaded = true,

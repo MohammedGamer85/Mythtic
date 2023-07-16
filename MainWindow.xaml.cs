@@ -29,13 +29,13 @@ namespace mythos
     /// </summary>
     public partial class MainWindow : Window
     {
-        ImportedMod jsonData = new(); //todo replace
-        PublicVars vars = new();
+        private ImportData importData = new(); //todo replace1
+        private PublicVars vars = new();
         public MainWindow()
         {
             InitializeComponent();
             CreateNecessaryFiles();
-            jsonData.Import(); //todo be replace
+            importData.ImportMods(); //todo be replace1
             ImportUserAccountData();
             /*?
             Add the startup classes/funcations here idot. I know you will forget that and put them some were else.
@@ -53,8 +53,6 @@ namespace mythos
 
         public void ImportUserAccountData()
         {
-            var testarray = "dfsdff";
-            MessageBox.Show(testarray);
             string TEMPName = "asda";
             int fontSize = 15; // The number of charcters after which all the letter will be removed and ... added insted
             if (TEMPName.Length > 15) { TEMPName = (TEMPName.Remove(15) + "..." ); }
