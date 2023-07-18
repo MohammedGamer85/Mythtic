@@ -4,6 +4,12 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="APIRequests\APIRequestsServices\**" />
+    <Compile Remove="APIRequests\APIRequestsServices\**" />
+    <EmbeddedResource Remove="APIRequests\APIRequestsServices\**" />
+    <None Remove="APIRequests\APIRequestsServices\**" />
+  </ItemGroup>
 
   
   <ItemGroup>
@@ -27,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="APIRequests\APIRequestsServices\" />
     <Folder Include="Features\ImportingMods\" />
     <Folder Include="Features\InstallingMods\" />
     <Folder Include="Features\ModManging\" />
