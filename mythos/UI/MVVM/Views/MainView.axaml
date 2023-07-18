@@ -3,39 +3,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:mythos.ViewModels"
-             mc:Ignorable="d"
-			 CornerRadius="25"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="mythos.Views.MainView"
-			 x:DataType="vm:MainViewModel"
-			 Background="Transparent"
-			 DataContext="vm:MainViewModel">
-
-		<UserControl.Background>
-			<LinearGradientBrush StartPoint="0,0" EndPoint="500,1000">
-				<GradientStop Color="#333333" Offset="0.0"/>
-				<GradientStop Color="#1a1a1a" Offset="1"/>
-			</LinearGradientBrush>
-		</UserControl.Background>
-
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="200"/>
-			<ColumnDefinition Width="800"/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="100"/>
-			<RowDefinition Height="800"/>
-			<RowDefinition Height="100"/>
-		</Grid.RowDefinitions>
+             x:DataType="vm:MainViewModel"
+			 Background="White">
+	<Design.DataContext>
+		<vm:MainViewModel/>
+	</Design.DataContext>
+	<StackPanel VerticalAlignment="Center">
 		<TextBlock Text="{Binding Greeting}"
 			   HorizontalAlignment="Center"
 			   VerticalAlignment="Center"
-			   Grid.Row="1" Grid.Column="1"/>
-		<StackPanel Grid.Row="1" Grid.Column="1">
-			<Button Command="{Binding MakeLoginRequest}"
-				Background="White">
-				lol
-			</Button>
-		</StackPanel>
-	</Grid>
+			   Foreground="Black"/>
+		<Button VerticalAlignment="Top" 
+				HorizontalAlignment="Center" 
+				Background="Black"
+				Command="{Binding LoginRequest}"/>
+	</StackPanel>
 </UserControl>

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -24,8 +27,16 @@ namespace mythos.APIRequests
 
             string responseContent = await httpResponse.Content.ReadAsStringAsync();
 
-            TReturn deserilizedContent = JsonSerializer.Deserialize<TReturn>(responseContent);
+            Trace.WriteLine(responseContent.Split("accessToken")[0]);
 
+            TReturn deserilizedContent = default;
+
+            try
+            {
+                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
+                deserilizedContent = JsonSerializer.Deserialize<TReturn>(responseContent, options);
+            }catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
+            
             return deserilizedContent;
 
             /*var httpReqest(HttpMethod.Post)*/

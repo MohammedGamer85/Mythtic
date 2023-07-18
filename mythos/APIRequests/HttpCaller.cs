@@ -25,21 +25,22 @@ namespace mythos.APIRequests
         {
             string url = "https://mythos-api.umbrielstudios.com/api/authenticate";
 
-            var loginRequest = new LoginReqest()
+            var loginRequest = new LoginRequest()
             {
-                email = "", //accunt and password
-                password = "" //accunt and password 
+                email = "", //email
+                password = "" //password 
             };
 
-            var result = await _httpClinetHelper.PostRequest<UserData, LoginReqest>(url, loginRequest);
+            var result = await _httpClinetHelper.PostRequest<UserData, LoginRequest>(url, loginRequest);
 
-            if (result.Success)
+            if (result.Success == true)
             {
                 UserData userData = result;
+                Trace.WriteLine("LoginRequest Success");
                 return true;
             }
             else
-            {
+            {   
                 Trace.WriteLine("loginRequst Falled");
                 return false;
             }
