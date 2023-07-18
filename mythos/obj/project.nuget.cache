@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4kGVj5ko7CsxNNChkkgE2a5WVQ/amwYL2YOkLSWkO0ixZORGisE2C6rlQ2zc1IfLPIwee6Ix3OUpNssjjk7IkQ==",
+  "dgSpecHash": "u2YdnpWA0kMoAwyyXGUASVjJ+tLtFx8abAGdQmYfhSrm1hBaXHlhqkeuoCRTX/Mt46ZxzMTdm3dCFqs673pbdg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythos\\mythos\\mythos.csproj",
+  "projectFilePath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moham\\.nuget\\packages\\avalonia\\11.0.0\\avalonia.11.0.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\avalonia.buildservices\\0.0.28\\avalonia.buildservices.0.0.28.nupkg.sha512",

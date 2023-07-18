@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5frW46jN+VT+EGScnwLREoRwRWUViMF2F1b3uIPEd3KU0BkEWby5qvkO3hDLMfkSbJJGEywXB4aPNKRbR0GNTA==",
+  "dgSpecHash": "Wf9//JOeUOz8mZPgPKlw/qLRqrSy83d0G9LkA8gRhdpMYz5sSkbvsAJOPjJ9DanluywpitZE+S1qch/uhWpvkQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythos\\mythos.Desktop\\mythos.Desktop.csproj",
+  "projectFilePath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moham\\.nuget\\packages\\avalonia\\11.0.0\\avalonia.11.0.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.0.2023020321\\avalonia.angle.windows.natives.2.1.0.2023020321.nupkg.sha512",

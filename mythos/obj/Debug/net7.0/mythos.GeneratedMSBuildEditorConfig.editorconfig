@@ -13,13 +13,13 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = mythos
-build_property.ProjectDir = C:\Users\moham\source\repos\Avlonia\mythos\mythos\
+build_property.ProjectDir = C:\Users\moham\source\repos\Avlonia\mythosApp\mythos\
 
-[C:/Users/moham/source/repos/Avlonia/mythos/mythos/App.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/moham/source/repos/Avlonia/mythos/mythos/UI/MVVM/Views/MainView.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos/UI/MVVM/Views/MainView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/moham/source/repos/Avlonia/mythos/mythos/UI/MVVM/Views/MainWindow.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos/UI/MVVM/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

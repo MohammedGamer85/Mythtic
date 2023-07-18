@@ -10,7 +10,7 @@
         Title="mythos"
 		WindowState="Minimized"
 		ExtendClientAreaToDecorationsHint="True" 
-		ExtendClientAreaChromeHints="NoChrome" 
+		ExtendClientAreaChromeHints="NoChrome"
 		ExtendClientAreaTitleBarHeightHint="-1">
-    <views:MainView/>
+	<views:MainView/>
 </Window>

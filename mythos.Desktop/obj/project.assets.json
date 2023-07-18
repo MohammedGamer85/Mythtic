@@ -6234,11 +6234,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythos\\mythos.Desktop\\mythos.Desktop.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
       "projectName": "mythos.Desktop",
-      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythos\\mythos.Desktop\\mythos.Desktop.csproj",
+      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythos\\mythos.Desktop\\obj\\",
+      "outputPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6260,8 +6260,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\moham\\source\\repos\\Avlonia\\mythos\\mythos\\mythos.csproj": {
-              "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythos\\mythos\\mythos.csproj"
+            "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj": {
+              "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj"
             }
           }
         }

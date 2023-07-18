@@ -7,44 +7,48 @@ using mythos;
 using ReactiveUI;
 using mythos.Services;
 
-namespace AvaloniaApplication1.Desktop;
+namespace mythos.Desktop;
 
 class Program
 {
     // Initialization code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
+
+    public static IServiceProvider? Service { get; set; }
     [STAThread]
     public static void Main(string[] args)
     {
-        Services = BuildLauncherServices();
-        var builder = BuildAvaloniaApp(args);
+        Service = BuildLauncherServices();
+        var app = BuildAvaloniaApp();
+        app.StartWithClassicDesktopLifetime(args);
+    }
 
-        builder.StartWithClassicDesktopLifetime(args);
-
+    private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
+    {
+        return AppBuilder.Configure(() => new App())
+            .UsePlatformDetect()
+            .LogToTrace()
+            .UseReactiveUI();
     }
 
     //=> BuildAvaloniaApp()
     //.StartWithClassicDesktopLifetime(args);
 
     // Avalonia configuration, don't remove; also used by visual designer.
-    public static AppBuilder BuildAvaloniaApp(string[] args)
-        => AppBuilder.Configure<App>()
+    public static AppBuilder BuildAvaloniaApp()
+    {
+        return BuildAvaloniaAppWithServices(BuildLauncherServices());
 
-            .UsePlatformDetect()
-            .WithInterFont()
-            .LogToTrace()
-            .UseReactiveUI();
+    }
 
-
-    public static ServiceProvider Services;
+    public static ServiceProvider? Services;
     public static ServiceProvider BuildLauncherServices()
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>();
 
         var services = builder.BuildServiceProvider();
-
         return services;
     }
 }
