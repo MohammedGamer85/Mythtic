@@ -3,8 +3,10 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using mythos.APIRequests;
+using mythos.Services;
 using mythos.ViewModels;
 using mythos.Views;
+using System.IO;
 
 namespace mythos;
 
@@ -21,7 +23,10 @@ public partial class App : Application
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
             .AddSingleton<HttpCaller>()
-            .AddSingleton<HttpClinetHelper>();
+            .AddSingleton<HttpClinetHelper>()
+            .AddSingleton<CreateFiles>()
+            .AddSingleton<SingleTimeStartUpFuncations>()
+            .AddSingleton<FillPaths>();
 
         var services = builder.BuildServiceProvider();
         return services;
@@ -33,7 +38,7 @@ public partial class App : Application
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainView()
             };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)

@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="Features\ImportingMods\" />
+    <Folder Include="Features\ImportingAccunt\" />
     <Folder Include="Features\InstallingMods\" />
     <Folder Include="Features\ModManging\" />
     <Folder Include="UI\MVVM\ViewModels\UserControl\" />
