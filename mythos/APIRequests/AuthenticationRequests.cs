@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace mythos.APIRequests
 {
-    public class HttpCaller
+    public class AuthenticationRequests
     {
-        private readonly HttpClinetHelper _httpClinetHelper;
+        private readonly HttpClientHelper _httpClientHelper;
 
-        public HttpCaller(HttpClinetHelper httpClinetHelper)
+        public AuthenticationRequests(HttpClientHelper httpClinetHelper)
         {
-            _httpClinetHelper = httpClinetHelper;
+            _httpClientHelper = httpClinetHelper;
         }
 
         public async Task <bool> LoginReqest()
@@ -31,7 +31,7 @@ namespace mythos.APIRequests
                 password = "" //password 
             };
 
-            var result = await _httpClinetHelper.PostRequest<UserData, LoginRequest>(url, loginRequest);
+            var result = await _httpClientHelper.PostRequest<UserData, LoginRequest>(url, loginRequest);
 
             if (result.Success == true)
             {

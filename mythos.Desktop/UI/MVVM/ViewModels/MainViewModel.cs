@@ -2,6 +2,7 @@
 using mythos.APIRequests;
 using ReactiveUI;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace mythos.ViewModels;
 
@@ -9,16 +10,15 @@ public class MainViewModel : ViewModelBase
 {
     public string Greeting => "Welcome to Avalonia!";
 
-    private readonly HttpCaller httpCaller = App.Services.GetRequiredService<HttpCaller>();
-
-    public MainViewModel()
+    private readonly AuthenticationRequests _authenticationRequests;
+    public MainViewModel(AuthenticationRequests httpCaller)
     {
-    
+        _authenticationRequests = httpCaller;
     }
 
-    public void LoginRequest()
+    public async Task LoginRequest()
     {
         Trace.WriteLine("i am making a request");
-        httpCaller.LoginReqest();
+        bool isAuthenticated = await _authenticationRequests.LoginReqest();
     }
 }
