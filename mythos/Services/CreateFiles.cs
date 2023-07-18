@@ -10,8 +10,8 @@ namespace mythos.Services
     {
         private readonly FillPaths fillPaths;
 
-        public CreateFiles() { 
-            
+        public CreateFiles() {
+
         }
     }
 }
