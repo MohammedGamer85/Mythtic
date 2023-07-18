@@ -6,6 +6,7 @@ using mythos.Views;
 using mythos;
 using ReactiveUI;
 using mythos.Services;
+using mythos.APIRequests;
 
 namespace mythos.Desktop;
 
@@ -26,14 +27,11 @@ public class Program
 
     private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
     {
-        return AppBuilder.Configure(() => new App())
+        return AppBuilder.Configure(() => new App(serviceProvider))
             .UsePlatformDetect()
             .LogToTrace()
             .UseReactiveUI();
     }
-
-    //=> BuildAvaloniaApp()
-    //.StartWithClassicDesktopLifetime(args);
 
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
@@ -42,11 +40,13 @@ public class Program
 
     }
 
-    public static ServiceProvider? Services;
     public static ServiceProvider BuildLauncherServices()
     {
         var builder = new ServiceCollection()
-            .AddSingleton<MainWindow>();
+            .AddSingleton<MainWindow>()
+            .AddSingleton<AuthenticationRequests>()
+            .AddSingleton<HttpClientHelper>();
+
 
         var services = builder.BuildServiceProvider();
         return services;

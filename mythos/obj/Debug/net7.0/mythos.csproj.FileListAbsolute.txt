@@ -52,3 +52,16 @@ C:\Users\moham\source\repos\Avlonia\mythosApp\mythos\obj\Debug\net7.0\refint\myt
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos\obj\Debug\net7.0\mythos.dll
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos\obj\Debug\net7.0\mythos.pdb
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos\obj\Debug\net7.0\ref\mythos.dll
+C:\mythosapp\mythos\bin\Debug\net7.0\mythos.deps.json
+C:\mythosapp\mythos\bin\Debug\net7.0\mythos.dll
+C:\mythosapp\mythos\bin\Debug\net7.0\mythos.pdb
+C:\mythosapp\mythos\obj\Debug\net7.0\mythos.csproj.AssemblyReference.cache
+C:\mythosapp\mythos\obj\Debug\net7.0\Avalonia\Resources.Inputs.cache
+C:\mythosapp\mythos\obj\Debug\net7.0\mythos.GeneratedMSBuildEditorConfig.editorconfig
+C:\mythosapp\mythos\obj\Debug\net7.0\mythos.AssemblyInfoInputs.cache
+C:\mythosapp\mythos\obj\Debug\net7.0\mythos.AssemblyInfo.cs
+C:\mythosapp\mythos\obj\Debug\net7.0\mythos.csproj.CoreCompileInputs.cache
+C:\mythosapp\mythos\obj\Debug\net7.0\refint\mythos.dll
+C:\mythosapp\mythos\obj\Debug\net7.0\mythos.dll
+C:\mythosapp\mythos\obj\Debug\net7.0\mythos.pdb
+C:\mythosapp\mythos\obj\Debug\net7.0\ref\mythos.dll

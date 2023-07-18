@@ -12,9 +12,12 @@ using System.Threading.Tasks;
 
 namespace mythos.APIRequests
 {
-    public class HttpClinetHelper : IDisposable
+    public class HttpClientHelper : IDisposable
     {
-        private static HttpClient _client = new();
+        private static HttpClient _client = new HttpClient()
+        {
+            Timeout = TimeSpan.FromSeconds(3)
+        };
         public async Task<TReturn> PostRequest<TReturn, TContent>(string url, TContent content)
         {   
             string serilizedContent = JsonSerializer.Serialize(content);

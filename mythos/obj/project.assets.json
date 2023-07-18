@@ -5186,23 +5186,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\moham\\.nuget\\packages\\": {},
+    "C:\\Users\\balth\\.nuget\\packages\\": {},
+    "C:\\Users\\balth\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
+      "projectUniqueName": "C:\\mythosapp\\mythos\\mythos.csproj",
       "projectName": "mythos",
-      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
-      "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\obj\\",
+      "projectPath": "C:\\mythosapp\\mythos\\mythos.csproj",
+      "packagesPath": "C:\\Users\\balth\\.nuget\\packages\\",
+      "outputPath": "C:\\mythosapp\\mythos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Users\\balth\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\balth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\balth\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5275,7 +5278,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
