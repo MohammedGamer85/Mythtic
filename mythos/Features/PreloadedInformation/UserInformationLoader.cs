@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace mythos.Features.ImportAccunt
+namespace mythos.Features.PreLoadedInformation
 {
     public class UserInformationLoader
     {
