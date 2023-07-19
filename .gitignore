@@ -136,3 +136,4 @@ packages/
 *.docstates
 *.log
 *.vspx
+/mythos.Desktop/obj/Debug/net7.0/mythos.Desktop.csproj.AssemblyReference.cache

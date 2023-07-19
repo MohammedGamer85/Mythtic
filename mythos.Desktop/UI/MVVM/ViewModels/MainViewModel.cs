@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using mythos.APIRequests;
 using mythos.Services;
 using ReactiveUI;
 using System.Diagnostics;
