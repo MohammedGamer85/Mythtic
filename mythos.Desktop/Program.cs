@@ -6,8 +6,8 @@ using mythos.Views;
 using mythos;
 using ReactiveUI;
 using mythos.Services;
-using mythos.APIRequests;
 using mythos.Features.ImportAccunt;
+using mythos.Data;
 
 namespace mythos.Desktop;
 
@@ -46,8 +46,12 @@ public class Program
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
             .AddSingleton<AuthenticationRequests>()
-            .AddSingleton<HttpClientHelper>();
-
+            .AddSingleton<HttpClientHelper>(x => new HttpClientHelper())
+            .AddSingleton<ImportAccuntInformation>(services =>
+            {
+                var authenticationRequests = services.GetRequiredService<AuthenticationRequests>();
+                return new ImportAccuntInformation(authenticationRequests);
+            });
 
         var services = builder.BuildServiceProvider();
         return services;

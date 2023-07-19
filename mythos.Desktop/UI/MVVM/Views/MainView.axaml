@@ -16,9 +16,5 @@
 			   HorizontalAlignment="Center"
 			   VerticalAlignment="Center"
 			   Foreground="Black"/>
-		<Button VerticalAlignment="Top" 
-				HorizontalAlignment="Center" 
-				Background="Black"
-				Command="{Binding LoginRequest}"/>
 	</StackPanel>
 </UserControl>

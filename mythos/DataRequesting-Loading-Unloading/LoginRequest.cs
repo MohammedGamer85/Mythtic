@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Collections;
 using System.Text.Json;
 
-namespace mythos.APIRequests
+namespace mythos.Data
 {
     public class LoginRequest
     {

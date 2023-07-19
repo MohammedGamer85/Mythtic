@@ -21,6 +21,12 @@ namespace mythos.Data
 
             string JsonString = File.ReadAllText(FilePaths.GetAppDocFolder + "jsonChecked.json");
 
+            if (JsonString is null or "")
+            {
+                Trace.Write("false, null");
+                return false;
+            }
+
             Dictionary<string, bool> deserilizedContent;
 
             try
@@ -30,7 +36,7 @@ namespace mythos.Data
             }
             catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
 
-            if (deserilizedContent[fileName])
+            if (deserilizedContent[fileName] == true)
             {
                 return true;
                 Trace.Write("true, "+JsonString);

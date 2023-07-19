@@ -13,7 +13,7 @@ namespace mythos.Data
 {
     public class JsonWriterHelper
     {   
-        public void ReadJsonFile<TContent>(string fileName, TContent content)
+        public void WriteJsonFile<TContent>(string fileName, TContent content)
         {
             Trace.Write("JsonWriterHelper Writing To: " + fileName + " Data: " + content);
 

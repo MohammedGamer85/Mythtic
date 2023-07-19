@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace mythos.APIRequests
+namespace mythos.Data
 {
     public class AuthenticationRequests
     {
@@ -21,7 +21,7 @@ namespace mythos.APIRequests
             _httpClientHelper = httpClinetHelper;
         }
 
-        public async Task <bool> LoginReqest()
+        public async Task<bool> LoginReqest()
         {
             string url = "https://mythos-api.umbrielstudios.com/api/authenticate";
 
@@ -40,11 +40,10 @@ namespace mythos.APIRequests
                 return true;
             }
             else
-            {   
+            {
                 Trace.WriteLine("loginRequst Falled");
                 return false;
             }
         }
     }
 }
-

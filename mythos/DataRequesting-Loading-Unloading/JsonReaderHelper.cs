@@ -13,7 +13,7 @@ namespace mythos.Data
 {
     public class JsonReaderHelper
     {   
-        public async Task<TReturn> ReadJsonFile<TReturn>(string fileName)
+        public TReturn ReadJsonFile<TReturn>(string fileName)
         {
             Trace.Write("JsonReaderHelper Reading: " + fileName + " Result: ");
 

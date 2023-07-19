@@ -137,3 +137,9 @@ packages/
 *.log
 *.vspx
 /mythos.Desktop/obj/Debug/net7.0/mythos.Desktop.csproj.AssemblyReference.cache
+/mythos.Desktop/bin/Debug/net7.0/mythos.Desktop.dll
+/mythos.Desktop/bin/Debug/net7.0/mythos.Desktop.pdb
+/mythos.Desktop/obj/Debug/net7.0/Avalonia/original.dll
+/mythos.Desktop/obj/Debug/net7.0/Avalonia/original.pdb
+/mythos.Desktop/obj/Debug/net7.0/mythos.Desktop.dll
+/mythos.Desktop/obj/Debug/net7.0/mythos.Desktop.pdb
