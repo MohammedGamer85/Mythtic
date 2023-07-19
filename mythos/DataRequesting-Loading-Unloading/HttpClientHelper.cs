@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using mythos.DataServices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,10 +17,10 @@ namespace mythos.APIRequests
     {
         private static HttpClient _client = new HttpClient()
         {
-            Timeout = TimeSpan.FromSeconds(3)
+            Timeout = TimeSpan.FromSeconds(5)
         };
         public async Task<TReturn> PostRequest<TReturn, TContent>(string url, TContent content)
-        {   
+        {
             string serilizedContent = JsonSerializer.Serialize(content);
 
             using var stringContent = new StringContent(serilizedContent, Encoding.UTF8,"application/json");
@@ -30,7 +31,12 @@ namespace mythos.APIRequests
 
             string responseContent = await httpResponse.Content.ReadAsStringAsync();
 
-            Trace.WriteLine(responseContent.Split("accessToken")[0]);
+            ///Debugging
+            if(url == "https://mythos-api.umbrielstudios.com/api/authenticate")
+                Trace.WriteLine("Making 'Userdata' request result: " + responseContent.Split("accessToken")[0]);
+            else
+                Trace.WriteLine("Making a request to '" + url +"' result: " + responseContent);
+            ///---------
 
             TReturn deserilizedContent = default;
 
@@ -41,8 +47,6 @@ namespace mythos.APIRequests
             }catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
             
             return deserilizedContent;
-
-            /*var httpReqest(HttpMethod.Post)*/
         }
 
         public void Dispose()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,14 @@ namespace mythos.Services
     public class CreateFiles
     {
         public CreateFiles() {
+            Trace.WriteLine("Creating nesseary files");
+            CheckAndCreateDirectory(FilePaths.GetAppDocFolder);
+            CheckAndCreateDirectory(FilePaths.GetMythsBPFolder);
+            CheckAndCreateDirectory(FilePaths.GetMythsRPFolder);
 
-            CheckAndCreateDirectory(FillPaths.GetAppDocFolder);
-            CheckAndCreateDirectory(FillPaths.GetMythsBPFolder);
-            CheckAndCreateDirectory(FillPaths.GetMythsRPFolder);
-
-            CheckAndCreateFile(FillPaths.GetAppDocFolder + "appData.json");
-            CheckAndCreateFile(FillPaths.GetAppDocFolder + "importedMods.json");
+            CheckAndCreateFile(FilePaths.GetAppDocFolder + "appData.json");
+            CheckAndCreateFile(FilePaths.GetAppDocFolder + "importedMods.json");
+            CheckAndCreateFile(FilePaths.GetAppDocFolder + "jsonChecked.json");
         }
 
         void CheckAndCreateDirectory(string directory){

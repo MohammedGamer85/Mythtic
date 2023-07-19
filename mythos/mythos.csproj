@@ -5,14 +5,10 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AvaloniaXaml Remove="APIRequests\APIRequestsServices\**" />
-    <AvaloniaXaml Remove="Features\**" />
-    <Compile Remove="APIRequests\APIRequestsServices\**" />
-    <Compile Remove="Features\**" />
-    <EmbeddedResource Remove="APIRequests\APIRequestsServices\**" />
-    <EmbeddedResource Remove="Features\**" />
-    <None Remove="APIRequests\APIRequestsServices\**" />
-    <None Remove="Features\**" />
+    <AvaloniaXaml Remove="DataRequesting-Loading-Unloading\APIRequestsServices\**" />
+    <Compile Remove="DataRequesting-Loading-Unloading\APIRequestsServices\**" />
+    <EmbeddedResource Remove="DataRequesting-Loading-Unloading\APIRequestsServices\**" />
+    <None Remove="DataRequesting-Loading-Unloading\APIRequestsServices\**" />
   </ItemGroup>
 
   <ItemGroup>

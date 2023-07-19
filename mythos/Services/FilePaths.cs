@@ -9,7 +9,7 @@ using Avalonia;
 
 namespace mythos.Services
 {
-    public static class FillPaths
+    public static class FilePaths
     {
         //!Make it OS dynamic if you ever do make cross platform
 

@@ -9,6 +9,20 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <AvaloniaXaml Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <AvaloniaXaml Remove="UI\MVVM\Views\UserControl\**" />
+    <AvaloniaXaml Remove="UI\UIServices\**" />
+    <Compile Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <Compile Remove="UI\MVVM\Views\UserControl\**" />
+    <Compile Remove="UI\UIServices\**" />
+    <EmbeddedResource Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <EmbeddedResource Remove="UI\MVVM\Views\UserControl\**" />
+    <EmbeddedResource Remove="UI\UIServices\**" />
+    <None Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <None Remove="UI\MVVM\Views\UserControl\**" />
+    <None Remove="UI\UIServices\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="UI\MVVM\Assets\avalonia-logo.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -21,12 +35,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\mythos\mythos.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UI\MVVM\ViewModels\UserControl\" />
-    <Folder Include="UI\MVVM\Views\UserControl\" />
-    <Folder Include="UI\UIServices\" />
   </ItemGroup>
 
   <ItemGroup>
