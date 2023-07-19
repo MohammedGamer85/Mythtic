@@ -5,5 +5,5 @@ namespace mythos.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {   
-    CreateFiles createFiles = new();
+
 }

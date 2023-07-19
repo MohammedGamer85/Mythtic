@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32.SafeHandles;
-using mythos.DataServices;
+using mythos.Models;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -16,33 +16,33 @@ namespace mythos.Data
     {
         private readonly HttpClientHelper _httpClientHelper;
 
-        public AuthenticationRequests(HttpClientHelper httpClinetHelper)
+        public AuthenticationRequests(HttpClientHelper httpClientHelper)
         {
-            _httpClientHelper = httpClinetHelper;
+            _httpClientHelper = httpClientHelper;
         }
 
-        public async Task<bool> LoginReqest()
+        public async Task<Account> LoginReqest(string email, string password)
         {
             string url = "https://mythos-api.umbrielstudios.com/api/authenticate";
 
             var loginRequest = new LoginRequest()
             {
-                email = "", //email
-                password = "" //password 
+                Email = email, 
+                Password = password, 
             };
 
-            var result = await _httpClientHelper.PostRequest<UserData, LoginRequest>(url, loginRequest);
+            var result = await _httpClientHelper.PostRequest<Account, LoginRequest>(url, loginRequest);
 
             if (result.Success == true)
             {
-                UserData userData = result;
+                Account userData = result;
                 Trace.WriteLine("LoginRequest Success");
-                return true;
+                return userData;
             }
             else
             {
                 Trace.WriteLine("loginRequst Falled");
-                return false;
+                return null;
             }
         }
     }

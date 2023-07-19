@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mythos.DataServices
+namespace mythos.Models
 {
-    public class UserData
+    public class Account 
     {
         public bool Success { get; set; }
         public Data Data { get; set; }

@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace mythos.Data
 {
-    public class JsonReaderHelper
+    public static class JsonReaderHelper
     {   
-        public TReturn ReadJsonFile<TReturn>(string fileName)
+        public static TReturn ReadJsonFile<TReturn>(string fileName)
         {
             Trace.Write("JsonReaderHelper Reading: " + fileName + " Result: ");
 

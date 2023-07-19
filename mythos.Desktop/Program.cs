@@ -8,6 +8,8 @@ using ReactiveUI;
 using mythos.Services;
 using mythos.Features.ImportAccunt;
 using mythos.Data;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace mythos.Desktop;
 
@@ -15,15 +17,39 @@ public class Program
 {
     // Initialization code. Don't use any Avalonia, third-party APIs or any
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
+    // Yet and stuff might break.
 
-    public static IServiceProvider? Service { get; set; }
+
+    // !To configure Dependency Injection
+    // froms App.cs :
+    // COpy      Resources[typeof(IServiceProvider)] = _serviceProvider;
+    // Copy       DataContext = this.CreateInstance<MainViewModel>(),
+
+
+    public static IServiceProvider? Services { get; set; }
+
     [STAThread]
     public static void Main(string[] args)
     {
-        Service = BuildLauncherServices();
+        // cannot access dependency injection here
+        Services = BuildLauncherServices();
+
+        FileCreator.InitializeFileDirectories();
+        ImportAccountInformation();
+
         var app = BuildAvaloniaApp();
+
+
+
+
         app.StartWithClassicDesktopLifetime(args);
+    }
+
+    public static void ImportAccountInformation()
+    {
+        // only call getservices when you are inside void main !
+        UserInformationLoader userInformationLoader = Services.GetRequiredService<UserInformationLoader>();
+        userInformationLoader.InitializeUserFromSavedUser();
     }
 
     private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)
@@ -35,25 +61,25 @@ public class Program
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.
+    // in english : stupid design that read this file and expects BuildAvaloniaApp so you cant build the
+    // app anywhere else but in program.cs Woo for OOP !
     public static AppBuilder BuildAvaloniaApp()
     {
-        return BuildAvaloniaAppWithServices(BuildLauncherServices());
-
+        return BuildAvaloniaAppWithServices(Services);
     }
 
+    // this works ! 
     public static ServiceProvider BuildLauncherServices()
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
             .AddSingleton<AuthenticationRequests>()
-            .AddSingleton<HttpClientHelper>(x => new HttpClientHelper())
-            .AddSingleton<ImportAccuntInformation>(services =>
-            {
-                var authenticationRequests = services.GetRequiredService<AuthenticationRequests>();
-                return new ImportAccuntInformation(authenticationRequests);
-            });
+            .AddSingleton<UserInformationLoader>()
+            .AddSingleton<HttpClientHelper>();
 
         var services = builder.BuildServiceProvider();
         return services;
     }
+
+
 }

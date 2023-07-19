@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace mythos.Services
 {
-    public class CreateFiles
+    public static class FileCreator
     {
-        public CreateFiles() {
+
+        public static void InitializeFileDirectories()
+        {
             Trace.WriteLine("Creating nesseary files");
             CheckAndCreateDirectory(FilePaths.GetAppDocFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsBPFolder);
@@ -21,12 +23,15 @@ namespace mythos.Services
             CheckAndCreateFile(FilePaths.GetAppDocFolder + "jsonChecked.json");
         }
 
-        void CheckAndCreateDirectory(string directory){
+        public static void CheckAndCreateDirectory(string directory)
+        {
             if (!Directory.Exists(directory))
+            {
                 Directory.CreateDirectory(directory);
+            }
         }
 
-        void CheckAndCreateFile(string directory)
+        public static void CheckAndCreateFile(string directory)
         {
             if (!File.Exists(directory))
                 File.Create(directory);

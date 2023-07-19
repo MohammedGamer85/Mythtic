@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using mythos.Features.ImportAccunt;
+using mythos.Models;
 using mythos.Services;
 using ReactiveUI;
 using System.Diagnostics;
@@ -12,6 +14,6 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel()
     {
-        
+        Trace.WriteLine(User.Name);
     }
 }
