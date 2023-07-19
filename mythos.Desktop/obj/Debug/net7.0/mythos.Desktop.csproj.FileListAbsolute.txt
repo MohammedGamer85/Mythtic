@@ -647,3 +647,8 @@ C:\mythosapp\mythos.Desktop\obj\Debug\net7.0\Avalonia\references
 C:\mythosapp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.dll
 C:\mythosapp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.pdb
 C:\mythosapp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.ref.dll
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\resources
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\references
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.dll
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.pdb
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.ref.dll

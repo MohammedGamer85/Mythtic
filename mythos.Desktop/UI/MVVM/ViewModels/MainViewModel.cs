@@ -11,6 +11,12 @@ public class MainViewModel : ViewModelBase
     public string Greeting => "Welcome to Avalonia!";
 
     private readonly AuthenticationRequests _authenticationRequests;
+
+    public MainViewModel()
+    {
+        
+    }
+
     public MainViewModel(AuthenticationRequests httpCaller)
     {
         _authenticationRequests = httpCaller;
