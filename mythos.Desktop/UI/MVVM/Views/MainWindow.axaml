@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:mythos.Views"
         mc:Ignorable="d"
         x:Class="mythos.Views.MainWindow"
-        Icon="/UI/MVVM/Assets/avalonia-logo.ico"
+        Icon="/UI/MVVM/Assets/MCLDiscordLogo.ico"
 		Background="Transparent"
 		MinHeight="500"
 		MinWidth="500"

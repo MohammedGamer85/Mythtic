@@ -32,6 +32,9 @@ namespace mythos.Features.ImportAccunt
                 ? JsonReaderHelper.ReadJsonFile<Account>(fileName)
                 : _authenticationRequests.LoginReqest("blablaemail", "blablapassword").Result;
 
+                if (importedAccount is null)
+                    return;
+
                 User.RoleNames = importedAccount.Data.Roles
                 .Select(x => x.Name).ToList();
                 User.Name = importedAccount.Data.Username;

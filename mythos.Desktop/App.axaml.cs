@@ -15,6 +15,7 @@ public partial class App : Application
 {
 
     private readonly IServiceProvider _serviceProvider;
+    public App() { }
     public App(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
