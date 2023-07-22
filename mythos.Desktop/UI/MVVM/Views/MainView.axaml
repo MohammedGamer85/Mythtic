@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:mythos.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1500"
+             mc:Ignorable="d" d:DesignWidth="1500" d:DesignHeight="1000"
              x:Class="mythos.Views.MainView"
              x:DataType="vm:MainViewModel"
 			 Background="Transparent">
@@ -12,7 +12,7 @@
 	</Design.DataContext>
 
 	<StackPanel Orientation="Horizontal">
-		<Grid ShowGridLines="False">
+		<Grid ShowGridLines="True">
 
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="310"/>
@@ -33,9 +33,17 @@
 					   Grid.Row="0"
 					   Grid.ColumnSpan="1"/>
 
+			<StackPanel Grid.Row="0" Grid.Column="1" 
+						Grid.ColumnSpan="1"
+						HorizontalAlignment="Stretch">
+				<ContentControl Content="{Binding TopBar}"
+								Grid.Row="0" Grid.Column="1" 
+								Grid.ColumnSpan="1"
+								HorizontalAlignment="Stretch"/>
+			</StackPanel>
+			
 			<StackPanel Grid.Row="1"
 						VerticalAlignment="Stretch">
-
 				<ContentControl Content="{Binding SideBar}"
 								Grid.RowSpan="1" Grid.Row="1"/>
 			</StackPanel>

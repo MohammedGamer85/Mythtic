@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="2000" d:DesignHeight="100"
+             xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+             x:Class="mythos.Desktop.UI.MVVM.Views.SearchBar"
+			 x:DataType="vm:SearchBarViewModel">
+	<UserControl.DataContext>
+		<vm:SearchBarViewModel/>
+	</UserControl.DataContext>
+
+	<UserControl.Styles>
+		<Style Selector="TextBox.C1">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<TextBox Watermark="FUCK"></TextBox>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+	</UserControl.Styles>
+	
+	<StackPanel Orientation="Horizontal">
+		<Canvas>
+				<Image Source="\UI\MVVM\Assets\SearchBar\btn_textinput_hover.png"
+					Height="100" HorizontalAlignment="Stretch" Stretch="Fill"/>
+		</Canvas>
+		<TextBox Watermark="Search Here"
+					 HorizontalAlignment="Stretch"
+					 Height="50"
+					 MaxWidth="1500"
+					 MinWidth="750"
+					 FontSize="30"
+					 Margin="25,0,0,0"
+					 VerticalAlignment="Center"
+					 BorderBrush="Transparent"
+					 BorderThickness="0"
+					 Background="Transparent"
+					 AcceptsTab="False"
+					 Grid.Column="1" Classes="TextBox.C1"/>
+		
+		<Image Source="\UI\MVVM\Assets\SearchBar\btn_textinput_hover56445.png"
+			   Height="100" Width="20" VerticalAlignment="Center" Stretch="Fill"
+			   Margin="0,0,0,0"/>
+	</StackPanel>
+
+</UserControl>

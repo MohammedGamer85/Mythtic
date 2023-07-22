@@ -18,12 +18,19 @@ namespace mythos.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
-    public string Greeting => "Welcome to Avalonia!";
     public ObservableObject ObservableObject;
 
     public MenuButtons MenuButtonsVM;
+    public SearchBar SearchBarVM;
 
     private object _sideBar;
+    private object _topBar;
+
+    public object TopBar
+    {
+        get { return _topBar; }
+        set { _topBar = value; OnPropertyChanged(); }
+    }
 
     public object SideBar
     {
@@ -35,10 +42,7 @@ public class MainViewModel : ObservableObject
     {
         MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;
+        SearchBarVM = new SearchBar();
+        TopBar = SearchBarVM;
     }
-
-    /*public void testing()
-    {
-        Trace.WriteLine(Convert.ToString(Window);
-    }*/
 }
