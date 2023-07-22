@@ -10,6 +10,7 @@ using mythos.Features.ImportAccunt;
 using mythos.Data;
 using System.Threading.Tasks;
 using System.Threading;
+using mythos.Desktop.UI.MVVM.Views;
 
 namespace mythos.Desktop;
 
@@ -38,9 +39,6 @@ public class Program
         ImportAccountInformation();
 
         var app = BuildAvaloniaApp();
-
-
-
 
         app.StartWithClassicDesktopLifetime(args);
     }
@@ -73,6 +71,7 @@ public class Program
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
+            .AddSingleton<MenuButtons>()
             .AddSingleton<AuthenticationRequests>()
             .AddSingleton<UserInformationLoader>()
             .AddSingleton<HttpClientHelper>();

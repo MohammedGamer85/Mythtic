@@ -23,11 +23,16 @@
     <None Remove="UI\UIServices\**" />
   </ItemGroup>
 
-	<ItemGroup>
-  <AvaloniaResource Include="UI\MVVM\Assets\MCLDiscordLogo.ico" />
-</ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="UI\MVVM\Assets\**"/>
+    </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<AvaloniaResource Include="UI\MVVM\Assets\Buttons\**"/>
+	</ItemGroup>
+
+
+	<ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
   </ItemGroup>
 
@@ -45,5 +50,8 @@
     <Compile Update="UI\MVVM\Views\MainWindow.axaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+	  <Compile Update="UI\MVVM\Views\MenuButtons.axaml.cs">
+		  <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
   </ItemGroup>
 </Project>

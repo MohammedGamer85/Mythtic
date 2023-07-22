@@ -1,0 +1,90 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="310" d:DesignHeight="600"
+             x:Class="mythos.Desktop.UI.MVVM.Views.MenuButtons"
+             x:DataType="vm:MenuButtonsViewModel">
+	<UserControl.DataContext>
+		<vm:MenuButtonsViewModel/>
+	</UserControl.DataContext>
+
+	<UserControl.Background>
+	<ImageBrush Source="\UI\MVVM\Assets\Background\infoPanel.png" AlignmentY="Top"/>
+	</UserControl.Background>
+
+	<UserControl.Styles>
+		<Style Selector="RadioButton.h1">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<TextBlock Text="{TemplateBinding Property=Content}"
+								   FontSize="30"
+								   Foreground="White"
+								   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+								   FontWeight="Bold"/>
+						
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_normal-0241d.png"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Height" Value="150"/>
+			<Setter Property="Width" Value="310"/>
+			<Setter Property="Margin" Value="0,2,0,0"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="RadioButton.h1:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_hover-917b5.png"/>
+			</Setter>
+		</Style>
+		<Style Selector="RadioButton.h1:checked /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_focus-1b73a.png"/>				
+			</Setter>
+		</Style>
+		<Style Selector="RadioButton.h1:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_press-b1d01.png"/>
+			</Setter>
+		</Style>
+	</UserControl.Styles>
+
+	<StackPanel Orientation="Vertical">
+
+		<StackPanel Orientation="Horizontal" 
+					Margin="0,5,15,7"
+					HorizontalAlignment="Center">
+			
+			<TextBlock Text="" Margin="0,-17,0,25"
+					   FontSize="45"
+					   Foreground="White"/>
+			<TextBlock Text="" Margin="0,-4.5,0,0"
+					   FontSize="30"
+					   Foreground="White"/>
+		</StackPanel>
+		
+		<StackPanel>
+			<RadioButton IsChecked="True" Classes="h1" Content="Home"/>
+
+			<RadioButton Classes="h1" Content="Discover"/>
+
+			<RadioButton Classes="h1" Content="Button"/>
+
+			<RadioButton Classes="h1" Content="Another Button"/>
+
+			<RadioButton Classes="h1" Content="Settings"/>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal">
+			<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png" 
+				   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+				   Width="310"/>
+		</StackPanel>
+	</StackPanel>
+</UserControl>

@@ -1,8 +1,10 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using AvaloniaApplication1.Desktop;
 using Microsoft.Extensions.DependencyInjection;
+using mythos.Desktop.UI.MVVM.Views;
 using mythos.Services;
 using mythos.ViewModels;
 using mythos.Views;

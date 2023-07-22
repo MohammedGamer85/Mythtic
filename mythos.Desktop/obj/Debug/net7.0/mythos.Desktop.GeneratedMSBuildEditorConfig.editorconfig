@@ -23,3 +23,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/MenuButtons.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

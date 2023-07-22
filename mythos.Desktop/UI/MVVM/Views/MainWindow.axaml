@@ -6,17 +6,23 @@
         xmlns:views="clr-namespace:mythos.Views"
         mc:Ignorable="d"
         x:Class="mythos.Views.MainWindow"
-        Icon="/UI/MVVM/Assets/MCLDiscordLogo.ico"
-		Background="Transparent"
+        Icon="\UI\MVVM\Assets\Icons\MCLDiscordLogo.ico"
+		Background="#33302A"
 		MinHeight="500"
 		MinWidth="500"
 		Height="1000"
 		Width="1000"
         Title="mythos"
-		WindowState="Minimized"
-		RequestedThemeVariant="Default"
-		ExtendClientAreaToDecorationsHint="True" 
-		ExtendClientAreaChromeHints="NoChrome"
-		ExtendClientAreaTitleBarHeightHint="-1">
+		WindowState="Normal"
+		RequestedThemeVariant="Default">
+
+	<!-- use this if you want to learn
+		 ExtendClientAreaToDecorationsHint="True" 
+		 ExtendClientAreaChromeHints="NoChrome"
+		 ExtendClientAreaTitleBarHeightHint="-1" -->	
+	
 	<views:MainView/>
+	<Design.DataContext>
+		<vm:MainViewModel/>
+	</Design.DataContext>
 </Window>
