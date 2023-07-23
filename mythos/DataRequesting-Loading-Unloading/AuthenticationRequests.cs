@@ -21,14 +21,14 @@ namespace mythos.Data
             _httpClientHelper = httpClientHelper;
         }
 
-        public async Task<Account> LoginReqest(string email, string password)
+        public async Task<Account> LoginRequest(string email, string password)
         {
             string url = "https://mythos-api.umbrielstudios.com/api/authenticate";
 
             var loginRequest = new LoginRequest()
             {
-                Email = email, 
-                Password = password, 
+                Email = "mohammed.346520@gmail.com", 
+                Password = "6bUBe6r5n:LfLUT", 
             };
 
             var result = await _httpClientHelper.PostRequest<Account, LoginRequest>(url, loginRequest);

@@ -20,7 +20,8 @@ namespace mythos.Data
         };
         public async Task<TReturn> PostRequest<TReturn, TContent>(string url, TContent content)
         {
-            string serilizedContent = JsonSerializer.Serialize(content);
+            var serilizationOptions = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, };
+            string serilizedContent = JsonSerializer.Serialize(content, serilizationOptions);
 
             using var stringContent = new StringContent(serilizedContent, Encoding.UTF8,"application/json");
 

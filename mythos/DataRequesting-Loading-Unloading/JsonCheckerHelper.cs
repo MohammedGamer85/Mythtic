@@ -17,7 +17,7 @@ namespace mythos.Data
     {   
         public static bool CheckJsonFileForData(string fileName)
         {
-            Trace.Write("JsonCheckerHelper Reading: " + fileName + " Result: ");
+            Trace.Write("JsonCheckerHelper Checking: " + fileName + " Result: ");
 
             string JsonString = File.ReadAllText(FilePaths.GetAppDocFolder + "jsonChecked.json");
 
@@ -43,8 +43,7 @@ namespace mythos.Data
                 Trace.WriteLine("All Results" + deserilizedContent);
             }
 
-            Trace.Write("false, " + JsonString);
-            Trace.WriteLine("All Results" + deserilizedContent);
+            Trace.Write("false, " + JsonString + "|");
 
             return false;
         }

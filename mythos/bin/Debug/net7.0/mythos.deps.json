@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "mythos/1.0.0": {
         "dependencies": {
+          "AsyncImageLoader.Avalonia": "3.0.0",
           "Avalonia": "11.0.0",
           "Avalonia.Diagnostics": "11.0.0",
           "Avalonia.Fonts.Inter": "11.0.0",
@@ -18,6 +19,17 @@
         },
         "runtime": {
           "mythos.dll": {}
+        }
+      },
+      "AsyncImageLoader.Avalonia/3.0.0": {
+        "dependencies": {
+          "Avalonia": "11.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AsyncImageLoader.Avalonia.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
         }
       },
       "Avalonia/11.0.0": {
@@ -1033,6 +1045,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AsyncImageLoader.Avalonia/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BO8ywYjG0vfv6V92ha4T1o0vGRPyQEKqfDMrq8dshNQTyv7E6Dk7EJrVVO8S0Bp6L1tJlOAeMTUh0P9aeoM22Q==",
+      "path": "asyncimageloader.avalonia/3.0.0",
+      "hashPath": "asyncimageloader.avalonia.3.0.0.nupkg.sha512"
     },
     "Avalonia/11.0.0": {
       "type": "package",

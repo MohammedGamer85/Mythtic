@@ -818,3 +818,4 @@ C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\my
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.csproj.CopyComplete
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.genruntimeconfig.cache
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\ref\mythos.Desktop.dll
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\AsyncImageLoader.Avalonia.dll

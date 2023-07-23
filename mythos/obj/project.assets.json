@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "AsyncImageLoader.Avalonia/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AsyncImageLoader.Avalonia.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/AsyncImageLoader.Avalonia.dll": {}
+        }
+      },
       "Avalonia/11.0.0": {
         "type": "package",
         "dependencies": {
@@ -1648,6 +1660,20 @@
     }
   },
   "libraries": {
+    "AsyncImageLoader.Avalonia/3.0.0": {
+      "sha512": "BO8ywYjG0vfv6V92ha4T1o0vGRPyQEKqfDMrq8dshNQTyv7E6Dk7EJrVVO8S0Bp6L1tJlOAeMTUh0P9aeoM22Q==",
+      "type": "package",
+      "path": "asyncimageloader.avalonia/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "asyncimageloader.avalonia.3.0.0.nupkg.sha512",
+        "asyncimageloader.avalonia.nuspec",
+        "lib/netstandard2.0/AsyncImageLoader.Avalonia.dll",
+        "lib/netstandard2.1/AsyncImageLoader.Avalonia.dll"
+      ]
+    },
     "Avalonia/11.0.0": {
       "sha512": "L2URRKcRyD/oySJE09pdDIkc9lUnZJH9KRtuZqZbgqeb5ALzZ8RYRPYg4/DQkreDYECdOarn5gzmUZcOz255iQ==",
       "type": "package",
@@ -5176,6 +5202,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "AsyncImageLoader.Avalonia >= 3.0.0",
       "Avalonia >= 11.0.0",
       "Avalonia.Diagnostics >= 11.0.0",
       "Avalonia.Fonts.Inter >= 11.0.0",
@@ -5211,7 +5238,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5230,6 +5256,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "AsyncImageLoader.Avalonia": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
           "Avalonia": {
             "target": "Package",
             "version": "[11.0.0, )"

@@ -1,12 +1,15 @@
-﻿using Microsoft.CodeAnalysis.Operations;
+﻿using Avalonia.Controls.Shapes;
+using Microsoft.CodeAnalysis.Operations;
 using mythos.Data;
 using mythos.Models;
+using mythos.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace mythos.Features.ImportAccunt
 {
@@ -30,7 +33,7 @@ namespace mythos.Features.ImportAccunt
             {
                 Account importedAccount = isAccountDataExists
                 ? JsonReaderHelper.ReadJsonFile<Account>(fileName)
-                : _authenticationRequests.LoginReqest("blablaemail", "blablapassword").Result;
+                : _authenticationRequests.LoginRequest("blablaemail", "blablapassword").Result;
 
                 if (importedAccount is null)
                     return;
@@ -38,6 +41,10 @@ namespace mythos.Features.ImportAccunt
                 User.RoleNames = importedAccount.Data.Roles
                 .Select(x => x.Name).ToList();
                 User.Name = importedAccount.Data.Username;
+                User.ImageSource = "https://mythos-static.umbrielstudios.com/users/" + User.Name + ".jpg";
+                User.ImagePath = FilePaths.GetMythosDownloads + User.Name + ".jpg";
+
+                Trace.WriteLine("Imported accunt information Result: " + User.Name+" , "+User.ImageSource+" , "+ User.ImagePath +" , " + User.RoleNames.ToString);
             }
             catch
             {

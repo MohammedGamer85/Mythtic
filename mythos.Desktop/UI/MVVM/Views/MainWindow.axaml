@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         x:Class="mythos.Views.MainWindow"
         Icon="\UI\MVVM\Assets\Icons\MCLDiscordLogo.ico"
-		Background="#33302A"
 		MinHeight="500"
 		MinWidth="500"
 		Height="1000"

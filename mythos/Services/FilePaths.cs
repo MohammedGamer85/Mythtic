@@ -18,6 +18,7 @@ namespace mythos.Services
         public static string GetAppDocFolder => GetDirectory(SpecialFolder.MyDocuments, "Mythos\\");
         public static string GetMythsBPFolder => GetDirectory(SpecialFolder.ApplicationData, MLISPC + "behavior_packs\\");
         public static string GetMythsRPFolder => GetDirectory(SpecialFolder.ApplicationData, MLISPC + "resource_packs\\");
+        public static string GetMythosDownloads => Path.Combine(GetAppDocFolder, "DownLoaded\\");
 
         private static string GetDirectory(SpecialFolder specialFolder, string subFolder) 
             => Path.Combine(Environment.GetFolderPath(specialFolder), subFolder);

@@ -69,18 +69,17 @@
 					   FontSize="30"
 					   Foreground="White"/>
 		</StackPanel>
-		
+
 		<StackPanel>
-			<RadioButton IsChecked="True" Classes="h1" Content="Home"/>
+				<RadioButton IsChecked="True" Classes="h1" Content="Home"/>
 
-			<RadioButton Classes="h1" Content="Discover"/>
+				<RadioButton Classes="h1" Content="Discover"/>
 
-			<RadioButton Classes="h1" Content="Button"/>
+				<RadioButton Classes="h1" Content="Button"/>
 
-			<RadioButton Classes="h1" Content="Another Button"/>
-
-			<RadioButton Classes="h1" Content="Settings"/>
+				<RadioButton Classes="h1" Content="Settings"/>
 		</StackPanel>
+		
 		<StackPanel Orientation="Horizontal">
 			<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png" 
 				   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"

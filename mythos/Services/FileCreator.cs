@@ -17,6 +17,7 @@ namespace mythos.Services
             CheckAndCreateDirectory(FilePaths.GetAppDocFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsBPFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsRPFolder);
+            CheckAndCreateDirectory(FilePaths.GetMythosDownloads);
 
             CheckAndCreateFile(FilePaths.GetAppDocFolder + "appData.json");
             CheckAndCreateFile(FilePaths.GetAppDocFolder + "importedMods.json");
