@@ -11,7 +11,7 @@
 	</UserControl.DataContext>
 
 	<UserControl.Background>
-	<ImageBrush Source="\UI\MVVM\Assets\Background\infoPanel.png" AlignmentY="Top"/>
+		<ImageBrush Source="\UI\MVVM\Assets\Background\infoPanel.png" AlignmentY="Top"/>
 	</UserControl.Background>
 
 	<UserControl.Styles>
@@ -71,13 +71,15 @@
 		</StackPanel>
 
 		<StackPanel>
-				<RadioButton IsChecked="True" Classes="h1" Content="Home"/>
+				<RadioButton IsChecked="True" Classes="h1" 
+							 Content="Home"
+							 Command="{Binding SetHomeView}"/>
 
-				<RadioButton Classes="h1" Content="Discover"/>
+				<RadioButton Classes="h1" Content="Discover"
+							 Command="{Binding SetDiscoverView}"/>
 
-				<RadioButton Classes="h1" Content="Button"/>
-
-				<RadioButton Classes="h1" Content="Settings"/>
+				<RadioButton Classes="h1" Content="Settings"
+							 Command="{Binding SetSettingsView}"/>
 		</StackPanel>
 		
 		<StackPanel Orientation="Horizontal">

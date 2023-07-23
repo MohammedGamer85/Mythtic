@@ -24,9 +24,6 @@ public class MainViewModel : ObservableObject
     public MenuButtons MenuButtonsVM;
     public SearchBar SearchBarVM;
     public ProfileDisplay ProfileDisplayVM;
-    public HomePage HomePageVM;
-    public DiscoverPage DiscvoerPageVM;
-    public SettingsPage SettingsPageVM;
 
     private object _sideBar;
     private object _topBar;
@@ -65,14 +62,7 @@ public class MainViewModel : ObservableObject
         TopBar = SearchBarVM;
         ProfileDisplayVM = new ProfileDisplay();
         CornerDisplay = ProfileDisplayVM;
-        HomePageVM = new HomePage();
-        DiscvoerPageVM = new DiscoverPage();
-        SettingsPageVM = new SettingsPage();
     }
-
-    public void SetHomeView() => CurrentView = HomePageVM;
-    public void SetDiscoverView() => CurrentView = DiscvoerPageVM;
-    public void SetSettingsView() => CurrentView = SettingsPageVM;
 }
 
     

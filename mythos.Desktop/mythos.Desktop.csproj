@@ -24,11 +24,11 @@
   </ItemGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="UI\MVVM\Assets\**"/>
+        <AvaloniaResource Include="UI\MVVM\Assets\**" />
     </ItemGroup>
 
 	<ItemGroup>
-		<AvaloniaResource Include="UI\MVVM\Assets\Buttons\**"/>
+		<AvaloniaResource Include="UI\MVVM\Assets\Buttons\**" />
 	</ItemGroup>
 
 

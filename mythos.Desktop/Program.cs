@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using mythos.Desktop.UI.MVVM.Views;
 using mythos.DataRequesting_Loading_Unloading;
+using mythos.ViewModels;
+using mythos.Desktop.UI.MVVM.ViewModels;
 
 namespace mythos.Desktop;
 
@@ -28,13 +30,13 @@ public class Program
     // Copy       DataContext = this.CreateInstance<MainViewModel>(),
 
 
-    public static IServiceProvider? Services { get; set; }
+    public static IServiceProvider? ServiceProcider { get; set; }
 
     [STAThread]
     public static void Main(string[] args)
     {
         // cannot access dependency injection here
-        Services = BuildLauncherServices();
+        ServiceProcider = BuildLauncherServices();
 
         FileCreator.InitializeFileDirectories();
         ImportAccountInformation();
@@ -47,7 +49,7 @@ public class Program
     public static void ImportAccountInformation()
     {
         // only call getservices when you are inside void main !
-        UserInformationLoader userInformationLoader = Services.GetRequiredService<UserInformationLoader>();
+        UserInformationLoader userInformationLoader = ServiceProcider.GetRequiredService<UserInformationLoader>();
         userInformationLoader.InitializeUserFromSavedUser();
     }
 
@@ -64,7 +66,7 @@ public class Program
     // app anywhere else but in program.cs Woo for OOP !
     public static AppBuilder BuildAvaloniaApp()
     {
-        return BuildAvaloniaAppWithServices(Services);
+        return BuildAvaloniaAppWithServices(ServiceProcider);
     }
 
     // this works ! 
@@ -72,6 +74,7 @@ public class Program
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
+            .AddSingleton<MainViewModel>()
             .AddSingleton<MenuButtons>()
             .AddSingleton<AuthenticationRequests>()
             .AddSingleton<UserInformationLoader>()

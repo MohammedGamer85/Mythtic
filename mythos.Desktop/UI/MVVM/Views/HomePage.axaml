@@ -11,5 +11,5 @@
 	<UserControl.DataContext>
 		<vm:HomePageViewModel/>
 	</UserControl.DataContext>
-	<TextBlock Text="HomePage"/>
+	<TextBlock Text="HomePage" FontSize="100"/>
 </UserControl>
