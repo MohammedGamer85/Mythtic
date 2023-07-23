@@ -5,6 +5,8 @@ using Avalonia.Diagnostics;
 using Avalonia.Platform;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
+using mythos.Desktop;
+using mythos.Desktop.UI.MVVM.ViewModels.ShitTest;
 using mythos.Desktop.UI.MVVM.Views;
 using mythos.Features.ImportAccunt;
 using mythos.Models;
@@ -28,7 +30,6 @@ public class MainViewModel : ObservableObject
     private object _sideBar;
     private object _topBar;
     private object _cornerDisplay;
-    private object _currentView;
 
     public object TopBar
     {
@@ -50,13 +51,19 @@ public class MainViewModel : ObservableObject
 
     public object CurrentView
     {
-        get { return _currentView; }
-        set { _currentView = value; OnPropertyChanged(); }
+        get { return MiddleMan.View; }
+        set { OnPropertyChanged(); }
     }
 
     public MainViewModel()
     {
-        MenuButtonsVM = new MenuButtons();
+        MiddleMan.OnPropertyChangeOfMiddleMan = () =>
+        {
+            MiddleMan.View = CurrentView;
+            OnPropertyChanged();
+        };
+
+            MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;
         SearchBarVM = new SearchBar();
         TopBar = SearchBarVM;
@@ -64,5 +71,3 @@ public class MainViewModel : ObservableObject
         CornerDisplay = ProfileDisplayVM;
     }
 }
-
-    

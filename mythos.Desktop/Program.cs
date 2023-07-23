@@ -30,13 +30,13 @@ public class Program
     // Copy       DataContext = this.CreateInstance<MainViewModel>(),
 
 
-    public static IServiceProvider? ServiceProcider { get; set; }
+    public static IServiceProvider? ServiceProvider { get; set; }
 
     [STAThread]
     public static void Main(string[] args)
     {
         // cannot access dependency injection here
-        ServiceProcider = BuildLauncherServices();
+        ServiceProvider = BuildLauncherServices();
 
         FileCreator.InitializeFileDirectories();
         ImportAccountInformation();
@@ -49,7 +49,7 @@ public class Program
     public static void ImportAccountInformation()
     {
         // only call getservices when you are inside void main !
-        UserInformationLoader userInformationLoader = ServiceProcider.GetRequiredService<UserInformationLoader>();
+        UserInformationLoader userInformationLoader = ServiceProvider.GetRequiredService<UserInformationLoader>();
         userInformationLoader.InitializeUserFromSavedUser();
     }
 
@@ -66,7 +66,7 @@ public class Program
     // app anywhere else but in program.cs Woo for OOP !
     public static AppBuilder BuildAvaloniaApp()
     {
-        return BuildAvaloniaAppWithServices(ServiceProcider);
+        return BuildAvaloniaAppWithServices(ServiceProvider);
     }
 
     // this works ! 

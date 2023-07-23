@@ -73,3 +73,16 @@ C:\Users\balth\OneDrive\Bureau\testoman\MythosApp\mythos\obj\Debug\net7.0\mythos
 C:\Users\balth\OneDrive\Bureau\testoman\MythosApp\mythos\obj\Debug\net7.0\refint\mythos.dll
 C:\Users\balth\OneDrive\Bureau\testoman\MythosApp\mythos\obj\Debug\net7.0\mythos.pdb
 C:\Users\balth\OneDrive\Bureau\testoman\MythosApp\mythos\obj\Debug\net7.0\ref\mythos.dll
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\bin\Debug\net7.0\mythos.deps.json
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\bin\Debug\net7.0\mythos.dll
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\bin\Debug\net7.0\mythos.pdb
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\mythos.csproj.AssemblyReference.cache
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\Avalonia\Resources.Inputs.cache
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\mythos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\mythos.AssemblyInfoInputs.cache
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\mythos.AssemblyInfo.cs
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\mythos.csproj.CoreCompileInputs.cache
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\mythos.dll
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\refint\mythos.dll
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\mythos.pdb
+C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos\obj\Debug\net7.0\ref\mythos.dll
