@@ -59,11 +59,12 @@ public class MainViewModel : ObservableObject
     {
         MiddleMan.OnPropertyChangeOfMiddleMan = () =>
         {
-            MiddleMan.View = CurrentView;
+            CurrentView = MiddleMan.View;
             OnPropertyChanged();
         };
 
-            MenuButtonsVM = new MenuButtons();
+
+        MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;
         SearchBarVM = new SearchBar();
         TopBar = SearchBarVM;
