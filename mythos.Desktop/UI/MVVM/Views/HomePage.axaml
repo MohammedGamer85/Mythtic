@@ -1,15 +1,191 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="mythos.Desktop.UI.MVVM.Views.HomePage"
-			 xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
-			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-			 x:DataType="vm:HomePageViewModel"
-			 Background="Transparent">
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+x:Class="mythos.Desktop.UI.MVVM.Views.HomePage"
+xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+x:DataType="vm:HomePageViewModel"
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
+Background="Transparent"
+VerticalAlignment="Stretch"
+HorizontalAlignment="Stretch"
+ClipToBounds="True">
+
 	<UserControl.DataContext>
 		<vm:HomePageViewModel/>
 	</UserControl.DataContext>
-	<TextBlock Text="HomePage" FontSize="100"/>
+
+	<UserControl.Styles>
+		<Style Selector="Button.h2">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<TextBlock Text="Disabled"
+								   FontSize="20"
+								   FontFamily="/UI/MVVM/Fonts/#Minecraft"
+								   FontWeight="Regular"
+								   Foreground="Black"
+								   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal (2).png"
+										Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="70"/>
+			<Setter Property="Width" Value="160"/>
+			<Setter Property="Margin" Value="0,0,0,0"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.h2:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_hover.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h2:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h2.IsUpdated /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_normal (2).png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h2.IsUpdated /template/ TextBlock">
+			<Setter Property="Text" Value="Enabled"/>
+		</Style>
+		<Style Selector="Button.h2.IsUpdated:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_hover.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h2.IsUpdated:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_normal.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+
+		<Style Selector="Button.c4">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<StackPanel
+						Margin="5,10,0,0"
+						Height="310"
+						Width="195">
+
+						<TextBlock
+						Text="{Binding Title}"
+						FontFamily="/UI/MVVM/Fonts/#Minecraft"
+						FontSize="{Binding FontSize}"
+						Foreground="Black"
+						Padding="0,20,0,0"
+						VerticalAlignment="Top"
+						HorizontalAlignment="Center"/>
+
+						<Canvas Margin="0,0,0,0"
+								HorizontalAlignment="Center"
+								Height="150"
+								Width="150">
+
+							<Image
+								Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
+								ZIndex="2"
+								HorizontalAlignment="Center"
+								Height="150"
+								Width="150"
+								Stretch="Fill"/>
+
+							<Image
+								asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
+								HorizontalAlignment="Center"
+								Height="150"
+								Width="150"
+								Stretch="Fill"/>
+						</Canvas>
+
+
+						<Button Classes="h2" IsVisible="False"
+								Classes.IsUpdated="{Binding IsLoaded}"
+								Classes.NotUpdated="{Binding IsLoaded}"
+								Command="{Binding EnableDisable}">
+						</Button>
+
+						<TextBox
+								BorderBrush="Transparent"
+								Background="Transparent"
+								FontSize="17"
+								Foreground="Black"
+								Padding="30,3,0,0"
+								HorizontalAlignment="Left"
+								Text="{Binding ShortendInformationPanel}"
+								TextWrapping="Wrap"/>
+
+						<StackPanel.Background>
+							<ImageBrush
+							Source="\UI\MVVM\Assets\Background\card_campaign_normal.png"
+							/>
+						</StackPanel.Background>
+					
+				</StackPanel>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		<Style Selector="Button.c4:pointerover /template/ StackPanel">
+			<Setter Property="Background">
+				<ImageBrush
+				Source="\UI\MVVM\Assets\Background\card_campaign_normal_highlighted.png"
+				/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.c4:pointerover /template/ Button">
+			<Setter Property="IsVisible" Value="True"/>
+		</Style>
+		<Style Selector="Button.c4:pointerover /template/ TextBox">
+			<Setter Property="IsVisible" Value="False"/>
+		</Style>
+
+	</UserControl.Styles>
+	<StackPanel
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Orientation="Vertical"
+			ClipToBounds="True">
+		<ScrollViewer VerticalScrollBarVisibility="Visible">
+			<ItemsRepeater
+			ItemsSource="{Binding Mods}"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Background="Transparent"
+			ClipToBounds="True"
+			MaxWidth="{Binding MaxWidth}">
+
+				<ItemsRepeater.Layout>
+					<WrapLayout Orientation="Horizontal"/>
+				</ItemsRepeater.Layout>
+
+				<ItemsRepeater.ItemTemplate>
+					<DataTemplate>
+
+						<Button Classes="c4"/>
+
+					</DataTemplate>
+				</ItemsRepeater.ItemTemplate>
+			
+			</ItemsRepeater>
+		</ScrollViewer>
+	</StackPanel>
 </UserControl>
+

@@ -13,31 +13,31 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = mythos.Desktop
-build_property.ProjectDir = C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos.Desktop\
+build_property.ProjectDir = C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/App.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/DiscoverPage.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/DiscoverPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/HomePage.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/HomePage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/MainView.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/MainView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/MainWindow.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/MenuButtons.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/MenuButtons.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/ProfileDisplay.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/ProfileDisplay.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/SearchBar.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/SearchBar.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/balth/OneDrive/Bureau/mthosTest/MythosApp/mythos.Desktop/UI/MVVM/Views/SettingsPage.axaml]
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/SettingsPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

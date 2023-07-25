@@ -22,10 +22,13 @@
     <None Remove="UI\MVVM\Views\UserControl\**" />
     <None Remove="UI\UIServices\**" />
   </ItemGroup>
-
+	
     <ItemGroup>
         <AvaloniaResource Include="UI\MVVM\Assets\**" />
     </ItemGroup>
+	<ItemGroup>
+		<AvaloniaResource Include="UI\MVVM\Fonts\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<AvaloniaResource Include="UI\MVVM\Assets\Buttons\**" />
@@ -53,5 +56,9 @@
 	  <Compile Update="UI\MVVM\Views\MenuButtons.axaml.cs">
 		  <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UI\MVVM\Fonts\" />
   </ItemGroup>
 </Project>

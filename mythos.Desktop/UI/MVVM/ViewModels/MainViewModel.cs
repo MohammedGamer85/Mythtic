@@ -11,6 +11,7 @@ using mythos.Desktop.UI.MVVM.Views;
 using mythos.Features.ImportAccunt;
 using mythos.Models;
 using mythos.Services;
+using mythos.Views;
 using ReactiveUI;
 using System;
 using System.Diagnostics;
@@ -57,12 +58,10 @@ public class MainViewModel : ObservableObject
 
     public MainViewModel()
     {
-        MiddleMan.OnPropertyChangeOfMiddleMan = () =>
+        MiddleMan.OnPropertyChangeOfCurrentView = () =>
         {
             CurrentView = MiddleMan.View;
-            OnPropertyChanged();
         };
-
 
         MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;

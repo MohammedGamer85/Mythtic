@@ -20,11 +20,10 @@
 				<ControlTemplate>
 					<Border>
 						<TextBlock Text="{TemplateBinding Property=Content}"
-								   FontSize="30"
 								   Foreground="White"
 								   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-								   FontWeight="Bold"/>
+								   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+                                   VerticalAlignment="Center"/>
 						
 						<Border.Background>
 							<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_normal-0241d.png"/>
@@ -62,23 +61,27 @@
 					Margin="0,5,15,7"
 					HorizontalAlignment="Center">
 			
-			<TextBlock Text="" Margin="0,-17,0,25"
-					   FontSize="45"
-					   Foreground="White"/>
+			<TextBlock
+					Text="" Margin="0,-17,0,25"
+					FontSize="45"
+					Foreground="White"/>
 			<TextBlock Text="" Margin="0,-4.5,0,0"
-					   FontSize="30"
-					   Foreground="White"/>
+					FontSize="30"
+					Foreground="White"/>
 		</StackPanel>
 
 		<StackPanel>
 				<RadioButton IsChecked="True" Classes="h1" 
 							 Content="Home"
+							 FontSize="40"
 							 Command="{Binding SetHomeView}"/>
 
 				<RadioButton Classes="h1" Content="Discover"
+							 FontSize="40"
 							 Command="{Binding SetDiscoverView}"/>
 
 				<RadioButton Classes="h1" Content="Settings"
+							 FontSize="40"
 							 Command="{Binding SetSettingsView}"/>
 		</StackPanel>
 		

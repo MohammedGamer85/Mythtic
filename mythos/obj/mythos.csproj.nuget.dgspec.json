@@ -1,25 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos\\mythos.csproj": {}
+    "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos\\mythos.csproj": {
+    "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos\\mythos.csproj",
+        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
         "projectName": "mythos",
-        "projectPath": "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos\\mythos.csproj",
-        "packagesPath": "C:\\Users\\balth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos\\obj\\",
+        "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
+        "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Users\\balth\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\balth\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Users\\balth\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+          "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -28,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,6 +49,10 @@
               "version": "[3.0.0, )"
             },
             "Avalonia": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Avalonia.Controls.ItemsRepeater": {
               "target": "Package",
               "version": "[11.0.0, )"
             },
@@ -96,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

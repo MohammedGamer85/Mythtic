@@ -148,6 +148,22 @@
           }
         }
       },
+      "Avalonia.Controls.ItemsRepeater/11.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Avalonia.Controls.ItemsRepeater.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Avalonia.Controls.ItemsRepeater.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Avalonia.Desktop/11.0.0": {
         "type": "package",
         "dependencies": {
@@ -2082,6 +2098,7 @@
         "dependencies": {
           "AsyncImageLoader.Avalonia": "3.0.0",
           "Avalonia": "11.0.0",
+          "Avalonia.Controls.ItemsRepeater": "11.0.0",
           "Avalonia.Diagnostics": "11.0.0",
           "Avalonia.Fonts.Inter": "11.0.0",
           "Avalonia.ReactiveUI": "11.0.0",
@@ -2369,6 +2386,22 @@
         "lib/net6.0/Avalonia.Controls.DataGrid.xml",
         "lib/netstandard2.0/Avalonia.Controls.DataGrid.dll",
         "lib/netstandard2.0/Avalonia.Controls.DataGrid.xml"
+      ]
+    },
+    "Avalonia.Controls.ItemsRepeater/11.0.0": {
+      "sha512": "5H1X+UUMUOrECli+BSrDCc38doYABRUy54mRCGeFBtGqGtnwz+Mx1aj7rDsXGzzItxS4QDSfQTQJsRVpRC9grA==",
+      "type": "package",
+      "path": "avalonia.controls.itemsrepeater/11.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.controls.itemsrepeater.11.0.0.nupkg.sha512",
+        "avalonia.controls.itemsrepeater.nuspec",
+        "lib/net6.0/Avalonia.Controls.ItemsRepeater.dll",
+        "lib/net6.0/Avalonia.Controls.ItemsRepeater.xml",
+        "lib/netstandard2.0/Avalonia.Controls.ItemsRepeater.dll",
+        "lib/netstandard2.0/Avalonia.Controls.ItemsRepeater.xml"
       ]
     },
     "Avalonia.Desktop/11.0.0": {
@@ -6255,26 +6288,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\balth\\.nuget\\packages\\": {},
-    "C:\\Users\\balth\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {},
+    "C:\\Users\\moham\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
       "projectName": "mythos.Desktop",
-      "projectPath": "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
-      "packagesPath": "C:\\Users\\balth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos.Desktop\\obj\\",
+      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
+      "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Users\\balth\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\balth\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Users\\balth\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+        "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6283,15 +6313,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos\\mythos.csproj": {
-              "projectPath": "C:\\Users\\balth\\OneDrive\\Bureau\\mthosTest\\MythosApp\\mythos\\mythos.csproj"
+            "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj": {
+              "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj"
             }
           }
         }
@@ -6327,7 +6356,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

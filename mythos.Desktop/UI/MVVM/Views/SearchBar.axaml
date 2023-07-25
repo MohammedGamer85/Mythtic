@@ -10,24 +10,28 @@
 		<vm:SearchBarViewModel/>
 	</UserControl.DataContext>
 	
-	<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+	<StackPanel
+		Orientation="Horizontal" 
+		HorizontalAlignment="Left">
+		
 		<Canvas>
 				<Image Source="\UI\MVVM\Assets\SearchBar\btn_textinput_hover.png"
 					Height="100" Stretch="Fill"/>
 		</Canvas>
 
 		<TextBox Watermark="Search Here"
-					 Height="50"
-					 MaxWidth="1500"
-					 MinWidth="750"
-					 FontSize="30"
-					 Margin="25,0,0,0"
-					 VerticalAlignment="Center"
-					 BorderBrush="Transparent"
-					 BorderThickness="0"
-					 Background="Transparent"
-					 AcceptsTab="False"
-					 Grid.Column="1" Classes="TextBox.C1"/>
+				 	FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+					Height="50"
+					Width="{Binding MaxWidth}"
+					MaxWidth="{Binding MaxWidth}"
+					FontSize="50"
+					Margin="15,0,0,5"
+					VerticalAlignment="Center"
+					BorderBrush="Transparent"
+					BorderThickness="0"
+					Background="Transparent"
+					AcceptsTab="False"
+					Grid.Column="1" Classes="TextBox.C1"/>
 				
 
 		<Image Source="\UI\MVVM\Assets\SearchBar\btn_textinput_hover56445.png"

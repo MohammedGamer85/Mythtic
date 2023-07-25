@@ -33,16 +33,7 @@ public class MenuButtonsViewModel : ObservableObject
         SettingsPageVM = new SettingsPage();
     }
 
-    public void SetHomeView()
-    {
-       
-    }
-    public void SetDiscoverView()
-    {
-        MiddleMan.View = DiscoverPageVM;
-    }
-    public void SetSettingsView()
-    {
-
-    }
+    public void SetHomeView() => MiddleMan.View = HomePageVM;
+    public void SetDiscoverView() => MiddleMan.View = DiscoverPageVM;
+    public void SetSettingsView() => MiddleMan.View = SettingsPageVM;
 }
