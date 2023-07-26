@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using mythos;
-using mythos.Desktop.UI.MVVM.ViewModels.ShitTest;
+using mythos.UI.Services;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -17,7 +17,7 @@ public partial class MainWindow : Window
 
     protected void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        // = e.NewSize.Height;
+        MiddleMan.WindowHeight = e.NewSize.Height;
         MiddleMan.WindowWight = e.NewSize.Width;
         // = e.PreviousSize.Height;
         // = e.PreviousSize.Width;

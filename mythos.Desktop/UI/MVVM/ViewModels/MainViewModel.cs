@@ -6,7 +6,7 @@ using Avalonia.Platform;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 using mythos.Desktop;
-using mythos.Desktop.UI.MVVM.ViewModels.ShitTest;
+using mythos.UI.Services;
 using mythos.Desktop.UI.MVVM.Views;
 using mythos.Features.ImportAccunt;
 using mythos.Models;

@@ -8,7 +8,7 @@
         x:Class="mythos.Views.MainWindow"
         Icon="\UI\MVVM\Assets\Icons\MCLDiscordLogo.ico"
 		MinHeight="500"
-		MinWidth="500"
+		MinWidth="750"
 		Height="750"
 		Width="1110"
         Title="mythos"

@@ -36,7 +36,7 @@
 
 
 	<ItemGroup>
-    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>

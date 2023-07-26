@@ -16,27 +16,29 @@ ClipToBounds="True">
 	<UserControl.DataContext>
 		<vm:HomePageViewModel/>
 	</UserControl.DataContext>
-	
+
 	<!-- Is used to display the mods the user has downloaded and running -->
-	
+
+	<!-- vv Buttons vv -->
+
 	<UserControl.Styles>
 		<Style Selector="Button.h2">
 			<Setter Property="Template">
 				<ControlTemplate>
-						<Border>
-							<TextBlock Text="Disabled"
-									   FontSize="20"
-									   FontFamily="/UI/MVVM/Fonts/#Minecraft"
-									   FontWeight="Regular"
-									   Foreground="Black"
-									   HorizontalAlignment="Center"
-									   VerticalAlignment="Center"/>
+					<Border>
+						<TextBlock Text="Disabled"
+								   FontSize="20"
+								   FontFamily="/UI/MVVM/Fonts/#Minecraft"
+								   FontWeight="Regular"
+								   Foreground="Black"
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center"/>
 
-							<Border.Background>
-								<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal (2).png"
-											Stretch="Uniform"/>
-							</Border.Background>
-						</Border>
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal (2).png"
+										Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
 				</ControlTemplate>
 			</Setter>
 			<Setter Property="Height" Value="70"/>
@@ -58,6 +60,7 @@ ClipToBounds="True">
 							Stretch="Uniform"/>
 			</Setter>
 		</Style>
+		<!-- Enabled Button varent-->
 		<Style Selector="Button.h2.IsUpdated /template/ Border">
 			<Setter Property="Background">
 				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_normal (2).png"
@@ -79,25 +82,27 @@ ClipToBounds="True">
 							Stretch="Uniform"/>
 			</Setter>
 		</Style>
-
+		<!-- vv Mod Cards vv -->
 		<Style Selector="Button.c4">
 			<Setter Property="Template">
 				<ControlTemplate>
-					<StackPanel
-						Margin="5,10,0,0"
+					<StackPanel Orientation="Vertical"
+						Margin="5,5,0,0"
 						Height="310"
 						Width="195">
 
 						<TextBlock
 						Text="{Binding Title}"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft"
-						FontSize="{Binding FontSize}"
+						FontSize="24"
+						Height="50"
 						Foreground="Black"
 						Padding="0,20,0,0"
 						VerticalAlignment="Top"
 						HorizontalAlignment="Center"/>
 
-						<Canvas Margin="0,0,0,0"
+						<Canvas	
+								VerticalAlignment="Bottom"
 								HorizontalAlignment="Center"
 								Height="150"
 								Width="150">
@@ -122,7 +127,9 @@ ClipToBounds="True">
 						<Button Classes="h2" IsVisible="False"
 								Classes.IsUpdated="{Binding IsLoaded}"
 								Classes.NotUpdated="{Binding IsLoaded}"
-								Command="{Binding TestFunction}"/>
+								Command="{Binding EnableDisableMod}"
+								VerticalAlignment="Bottom"
+								CommandParameter="{Binding Id}"/>
 
 						<TextBox
 								BorderBrush="Transparent"
@@ -130,17 +137,18 @@ ClipToBounds="True">
 								FontSize="17"
 								Foreground="Black"
 								Padding="30,3,0,0"
+								VerticalAlignment="Bottom"
 								HorizontalAlignment="Left"
 								Text="{Binding ShortendInformationPanel}"
 								TextWrapping="Wrap"/>
 
 						<StackPanel.Background>
 							<ImageBrush
-							Source="\UI\MVVM\Assets\Background\card_campaign_normal.png"
-							/>
+							Source="\UI\MVVM\Assets\Background\card_campaign_normal.png"/>
+
 						</StackPanel.Background>
-					
-				</StackPanel>
+
+					</StackPanel>
 				</ControlTemplate>
 			</Setter>
 		</Style>
@@ -164,7 +172,9 @@ ClipToBounds="True">
 			VerticalAlignment="Top"
 			Orientation="Vertical"
 			ClipToBounds="True">
-		<ScrollViewer VerticalScrollBarVisibility="Visible">
+
+		<ScrollViewer VerticalScrollBarVisibility="Visible"
+					Height="{Binding MaxHeight}">
 			<ItemsRepeater
 			ItemsSource="{Binding Mods}"
 			HorizontalAlignment="Left"
@@ -184,7 +194,7 @@ ClipToBounds="True">
 
 					</DataTemplate>
 				</ItemsRepeater.ItemTemplate>
-			
+
 			</ItemsRepeater>
 		</ScrollViewer>
 	</StackPanel>

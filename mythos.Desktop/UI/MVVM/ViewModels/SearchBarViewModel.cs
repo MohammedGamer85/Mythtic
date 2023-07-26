@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using mythos.Desktop.UI.MVVM.ViewModels.ShitTest;
+using mythos.UI.Services;
 using mythos.Services;
 using ReactiveUI;
 
@@ -18,7 +18,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         public SearchBarViewModel() {
 
             MaxWidth = 500;
-            MiddleMan.OnPropertyChangeOfWindowSize += (sender, e) =>
+            MiddleMan.OnPropertyChangeOfWindowWight += (sender, e) =>
             {
                 MaxWidth = MiddleMan.WindowWight - 350; //350 is the distance between the search bar and the left side of the window
             };

@@ -1,19 +1,8 @@
-﻿using Microsoft.VisualBasic;
-using mythos.Model;
+﻿using mythos.UI.Services;
 using mythos.Services;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace mythos.Models
 {
@@ -21,8 +10,9 @@ namespace mythos.Models
     {
         //! Privte
         private string? _name;
-
+        private bool? _isloaded;
         private Version? _version;
+
         //! Needed
         public int Id { get; set; }
 
@@ -36,20 +26,27 @@ namespace mythos.Models
 
         public string Author { get; set; } = string.Empty;
 
+        public string GameMode { get; set; } = string.Empty;
+
         public string Description { get; set; } = string.Empty;
 
+        //! Optional (Auto Imported if not done manully)
         public string SubDescription { get; set; } = string.Empty;
 
-        //! Optional (Auto if not imported)
-        public bool IsLoaded { get; set; } = false;
+        public bool? IsLoaded
+        {
+            get { return _isloaded; }
+            set { _isloaded = value; OnPropertyChanged(); }
+        }
 
         public DateTime LastUpdated { get; set; } = DateTime.Now;
 
         public Version Version
         {
             get { return _version; }
-            set { _version = value; SetValues(); }
+            set { _version = value; SetValues(); OnPropertyChanged(); }
         }
+
         //! Auto Added
         public string? Title { get; set; } = string.Empty;
 
@@ -57,37 +54,31 @@ namespace mythos.Models
 
         public string? ShortendInformationPanel { get; set; } = string.Empty;
 
-        public int? FontSize { get; set; }
+        //! Actions/Function
+        public EnableDisableMods EnableDisableMod { get; set; }
+
+        public ImportedModsItemModel()
+        {
+            EnableDisableMod = new EnableDisableMods();
+        }
 
         //! Var Funcations
         void SetValues()
-        {
+        {   
+            if(this.SubDescription == "")
+            {
+                this.SubDescription = Description;
+            }
             this.InformationPanel = "LastUpdated: " + this.LastUpdated + "Version: " + this.Version + "Auther: " + this.Author;
-            this.ShortendInformationPanel = this.Version + "\nBy " + this.Author;
+            this.ShortendInformationPanel = this.Version + "\nBy " + this.Author + "\n"+ this.GameMode;
         }
 
         void SetTitle()
         {
-            if (Name.Length > 16)
+            if (Name.Length > 10)
             {
-                Title = Name.Substring(0, 16) + "...";
-                FontSize = 18;
+                Title = Name.Substring(0, 10) + "...";
             }
-            else
-                this.Title = this.Name;
-
-            if (Name.Length > 12)
-                FontSize = 18;
-
-            if (Name.Length <= 12)
-                FontSize = 24;
-
-            if (Name.Length <= 8)
-                FontSize = 36;
-
-            SetValues();
         }
-
-        //! Actions/Function
     }
 }
