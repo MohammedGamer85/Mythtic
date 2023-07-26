@@ -11,7 +11,8 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace mythos.Data
-{
+{       //! Is Used to make Only Post Requests.
+        //todo: Should add other types of requests too.
     public class HttpClientHelper : IDisposable
     {
         private static HttpClient _client = new HttpClient()

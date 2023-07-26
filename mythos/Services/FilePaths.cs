@@ -8,7 +8,7 @@ using static System.Environment;
 using Avalonia;
 
 namespace mythos.Services
-{
+{   //! Stores all needed file paths
     public static class FilePaths
     {
         //!Make it OS dynamic if you ever do make cross platform

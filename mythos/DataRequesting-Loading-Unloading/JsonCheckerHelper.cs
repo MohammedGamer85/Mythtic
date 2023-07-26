@@ -12,7 +12,10 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace mythos.Data
-{
+{   //! is used to check if a json file contains valid information.
+    //todo: make it accully check if the infromatio is vaild.
+    //! the way it works right now is when another part of the code stores vaild data it sets data is vaild to true
+    //! but if that other part of the code missed something up the full app will just stop working.
     public class JsonCheckerHelper
     {   
         public static bool CheckJsonFileForData(string fileName)

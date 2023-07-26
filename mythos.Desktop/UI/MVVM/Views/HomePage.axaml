@@ -16,25 +16,27 @@ ClipToBounds="True">
 	<UserControl.DataContext>
 		<vm:HomePageViewModel/>
 	</UserControl.DataContext>
-
+	
+	<!-- Is used to display the mods the user has downloaded and running -->
+	
 	<UserControl.Styles>
 		<Style Selector="Button.h2">
 			<Setter Property="Template">
 				<ControlTemplate>
-					<Border>
-						<TextBlock Text="Disabled"
-								   FontSize="20"
-								   FontFamily="/UI/MVVM/Fonts/#Minecraft"
-								   FontWeight="Regular"
-								   Foreground="Black"
-								   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+						<Border>
+							<TextBlock Text="Disabled"
+									   FontSize="20"
+									   FontFamily="/UI/MVVM/Fonts/#Minecraft"
+									   FontWeight="Regular"
+									   Foreground="Black"
+									   HorizontalAlignment="Center"
+									   VerticalAlignment="Center"/>
 
-						<Border.Background>
-							<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal (2).png"
-										Stretch="Uniform"/>
-						</Border.Background>
-					</Border>
+							<Border.Background>
+								<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal (2).png"
+											Stretch="Uniform"/>
+							</Border.Background>
+						</Border>
 				</ControlTemplate>
 			</Setter>
 			<Setter Property="Height" Value="70"/>
@@ -120,8 +122,7 @@ ClipToBounds="True">
 						<Button Classes="h2" IsVisible="False"
 								Classes.IsUpdated="{Binding IsLoaded}"
 								Classes.NotUpdated="{Binding IsLoaded}"
-								Command="{Binding EnableDisable}">
-						</Button>
+								Command="{Binding TestFunction}"/>
 
 						<TextBox
 								BorderBrush="Transparent"

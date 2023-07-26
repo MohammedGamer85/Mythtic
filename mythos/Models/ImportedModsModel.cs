@@ -4,6 +4,7 @@ using mythos.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reflection;
@@ -16,7 +17,7 @@ using System.Xml.Linq;
 
 namespace mythos.Models
 {
-    public class ImportedModsModel : ObservableObject
+    public class ImportedModsItemModel : ObservableObject
     {
         //! Privte
         private string? _name;
@@ -40,7 +41,6 @@ namespace mythos.Models
         public string SubDescription { get; set; } = string.Empty;
 
         //! Optional (Auto if not imported)
-
         public bool IsLoaded { get; set; } = false;
 
         public DateTime LastUpdated { get; set; } = DateTime.Now;
@@ -50,7 +50,6 @@ namespace mythos.Models
             get { return _version; }
             set { _version = value; SetValues(); }
         }
-
         //! Auto Added
         public string? Title { get; set; } = string.Empty;
 
@@ -60,6 +59,7 @@ namespace mythos.Models
 
         public int? FontSize { get; set; }
 
+        //! Var Funcations
         void SetValues()
         {
             this.InformationPanel = "LastUpdated: " + this.LastUpdated + "Version: " + this.Version + "Auther: " + this.Author;
@@ -87,5 +87,7 @@ namespace mythos.Models
 
             SetValues();
         }
+
+        //! Actions/Function
     }
 }

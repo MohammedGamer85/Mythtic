@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 
 namespace mythos.Features.ImportAccunt
-{
+{   //! is ran on lunch and see if the user data has been retived before, if yes it will read it, if not it will requests it.
+    //todo: make it ask the user for accunt infromation if data has not been returved before.
     public class UserInformationLoader
     {
         private readonly AuthenticationRequests _authenticationRequests;

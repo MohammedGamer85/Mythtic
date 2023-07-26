@@ -20,6 +20,8 @@
 		 ExtendClientAreaChromeHints="NoChrome"
 		 ExtendClientAreaTitleBarHeightHint="-1" -->	
 	
+	<!-- Nothing is done here -->
+	
 	<views:MainView/>
 	<Design.DataContext>
 		<vm:MainViewModel/>

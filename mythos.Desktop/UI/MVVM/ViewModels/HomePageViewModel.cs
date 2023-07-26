@@ -6,9 +6,7 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
 using Avalonia.OpenGL;
-using DynamicData;
 using mythos.Desktop.UI.MVVM.ViewModels.ShitTest;
-using mythos.Model;
 using mythos.Models;
 using mythos.Services;
 using ReactiveUI;
@@ -17,9 +15,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 {
     public class HomePageViewModel : ObservableObject
     {
-        private ObservableCollection<ImportedModsModel> _mods = new();
+        private ObservableCollection<ImportedModsItemModel> _mods = new();
 
-        public ObservableCollection<ImportedModsModel> Mods
+        //! This part of the coding only jobe is to display the mods, all the mod related functions/actions are done in the ImportedModsItemModel.
+        public ObservableCollection<ImportedModsItemModel> Mods
         {
             get { return _mods; }
             set { _mods = value; OnPropertyChanged(); }
@@ -41,9 +40,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 MaxWidth = MiddleMan.WindowWight - 310;
             };
 
+            //todo: remove this later it is temprary//
             for (int i = 0; i < 10; i++)
             {
-                Mods.Add(new ImportedModsModel
+                Mods.Add(new ImportedModsItemModel
                 {   
                     Id = Mods.Count(),
                     Name = "MCL Mod",
@@ -53,7 +53,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                     LastUpdated = DateTime.Now,
                     Version = new Version(0,0,0,0),
                 });
-                Mods.Add(new ImportedModsModel
+                Mods.Add(new ImportedModsItemModel
                 {   
                     Id = Mods.Count(),
                     Name = "Mythos myth",
@@ -64,19 +64,6 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                     Version = new Version(5, 4, 2, 0),
                 });
             }
-        }
-        public void EnableDisable()
-        {
-            int id = 0;
-            if (Mods[id].IsLoaded)
-            {
-                Mods[id].IsLoaded = false;
-            }
-            else
-            {
-                Mods[id].IsLoaded = true;
-            }
-            Trace.WriteLine(id);
         }
     }
 }

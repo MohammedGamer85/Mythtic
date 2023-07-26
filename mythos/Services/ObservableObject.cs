@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace mythos.Services
-{
+{   //! This Class is a base class for other classes to very easly integrate OnpropertyChanged.
     public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

@@ -11,5 +11,8 @@
 	<UserControl.DataContext>
 		<vm:DiscoverPageViewModel/>
 	</UserControl.DataContext>
+	
+	<!-- NEED to be down later  -->
+	
 	<TextBlock Text="DiscoverPage"/>
 </UserControl>

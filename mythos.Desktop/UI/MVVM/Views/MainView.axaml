@@ -12,6 +12,8 @@
 		<vm:MainViewModel/>
 	</Design.DataContext>
 
+	<!-- THink of this as MainWindow just it is not-->
+	
 	<StackPanel Orientation="Horizontal" ClipToBounds="True">
 		<Grid ShowGridLines="False">
 

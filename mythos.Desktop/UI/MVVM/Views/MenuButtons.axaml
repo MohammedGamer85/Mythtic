@@ -9,7 +9,9 @@
 	<UserControl.DataContext>
 		<vm:MenuButtonsViewModel/>
 	</UserControl.DataContext>
-
+	
+	<!-- is used to display Page Buttons -->
+	
 	<UserControl.Background>
 		<ImageBrush Source="\UI\MVVM\Assets\Background\infoPanel.png" AlignmentY="Top"/>
 	</UserControl.Background>

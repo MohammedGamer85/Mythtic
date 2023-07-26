@@ -20,6 +20,7 @@ using System.Xml;
 
 namespace mythos.ViewModels;
 
+//! This class is bound to MainView as mainWindow is not used for anything at the moment;
 public class MainViewModel : ObservableObject
 {
     public ObservableObject ObservableObject;
@@ -56,6 +57,7 @@ public class MainViewModel : ObservableObject
         set { OnPropertyChanged(); }
     }
 
+    //! This constructer is responsible for deciding what is displayed were in the MainView.
     public MainViewModel()
     {
         MiddleMan.OnPropertyChangeOfCurrentView = () =>

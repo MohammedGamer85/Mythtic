@@ -12,8 +12,15 @@ using System.Threading.Tasks;
 
 namespace mythos.Data
 {
+
+    /*! 
+        This is Used to validate the data that is gotten by the user before making a request to the
+        Api to avoid the code that is dealing with the requests to crach or have errors.
+     */
+    
+
     public class AuthenticationRequests
-    {
+    {   
         private readonly HttpClientHelper _httpClientHelper;
 
         public AuthenticationRequests(HttpClientHelper httpClientHelper)
@@ -21,6 +28,7 @@ namespace mythos.Data
             _httpClientHelper = httpClientHelper;
         }
 
+        //! Deals With login requests.
         public async Task<Account> LoginRequest(string email, string password)
         {
             string url = "https://mythos-api.umbrielstudios.com/api/authenticate";

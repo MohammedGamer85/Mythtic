@@ -11,5 +11,8 @@
 	<UserControl.DataContext>
 		<vm:SettingsPageViewModel/>
 	</UserControl.DataContext>
+	
+		<!-- not needed is a place holder for now -->
+	
 	<TextBlock Text="SettingsPage"/>
 </UserControl>

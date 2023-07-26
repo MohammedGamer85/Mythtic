@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace mythos.DataRequesting_Loading_Unloading
-{
+{   //! Is Used to Download Mods from the api
+    //todo: Need to add it to AuthenticationRequests to make sure it can't be used in unintended ways.
+    //todo: I copyed this from some were on the internit so need to add the ability for it to deal with bad requests.
     public static class FileDownloader
     {
         public static async Task DownloadFile(string url, string filePath, string fileName)

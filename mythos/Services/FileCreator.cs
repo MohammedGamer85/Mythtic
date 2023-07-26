@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace mythos.Services
-{
+{   //! Creates all the files that are needed for the app to run.
     public static class FileCreator
     {
 

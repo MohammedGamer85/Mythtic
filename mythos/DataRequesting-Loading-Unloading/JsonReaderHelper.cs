@@ -10,7 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace mythos.Data
-{
+{   //! takes in a genaric and returns the data from a json file in the genaric type inputed.
     public static class JsonReaderHelper
     {   
         public static TReturn ReadJsonFile<TReturn>(string fileName)

@@ -5,10 +5,11 @@ using mythos.Services;
 using ReactiveUI;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
-{
+{   //! This displays the search bar.
 	public class SearchBarViewModel : ObservableObject
-	{
-        private double _maxWidth;
+	{   
+        //this is used to dynamicly change the size of the search bar to the size of the window
+        private double _maxWidth;  
         public double MaxWidth
         {
             get { return _maxWidth; }
@@ -19,7 +20,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             MaxWidth = 500;
             MiddleMan.OnPropertyChangeOfWindowSize += (sender, e) =>
             {
-                MaxWidth = MiddleMan.WindowWight - 350;
+                MaxWidth = MiddleMan.WindowWight - 350; //350 is the distance between the search bar and the left side of the window
             };
         }
 	}

@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace mythos.Model
-{
+{   //! Stores all the mods in teh DiscoverMod page while the app is running.
+    //? Does Not Work at the moment.
     public static class DiscoverModsModel
     {
         public static string Name { get; set; } = string.Empty;

@@ -12,10 +12,10 @@ using System.Collections;
 using System.Text.Json;
 
 namespace mythos.Models
-{
+{   //!Stores the users email and passwrod when inputed
+    //todo: make it so it disposed as soon as the data is no longer eneded
     public class LoginRequest
     {
-        // lowercase for json
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
 

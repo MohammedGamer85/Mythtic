@@ -10,7 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace mythos.Data
-{
+{ //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetAppDocFolder.
     public class JsonWriterHelper
     {   
         public void WriteJsonFile<TContent>(string fileName, TContent content)

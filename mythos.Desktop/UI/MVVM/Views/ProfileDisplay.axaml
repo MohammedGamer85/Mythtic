@@ -13,6 +13,8 @@
 		<vm:ProfileDisplayViewModel/>
 	</UserControl.DataContext>
 
+	<!-- Is used to display the profile button -->
+	
 	<Border VerticalAlignment="Stretch">
 		<Border.Background>
 			<ImageBrush Source="\UI\MVVM\Assets\Profile\marketplace_reward_frame.png" Stretch="Fill"/>
