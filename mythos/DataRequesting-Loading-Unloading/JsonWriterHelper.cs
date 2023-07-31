@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace mythos.Data
 { //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetAppDocFolder.
-    public class JsonWriterHelper
+    public static class JsonWriterHelper
     {   
-        public void WriteJsonFile<TContent>(string fileName, TContent content)
+        public static void WriteJsonFile<TContent>(string fileName, TContent content)
         {
-            Trace.Write("JsonWriterHelper Writing To: " + fileName + " Data: " + content);
+            Trace.WriteLine("JsonWriterHelper Writing To: " + fileName + " Data: " + content.ToString + "\n");
 
             try
             {

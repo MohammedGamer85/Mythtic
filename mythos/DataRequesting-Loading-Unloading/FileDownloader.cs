@@ -33,7 +33,7 @@ namespace mythos.DataRequesting_Loading_Unloading
                     }
                 }
 
-                Trace.WriteLine("Download complete!");
+                Trace.WriteLine("Download complete!" + "\n");
             }
             catch (Exception ex)
             {

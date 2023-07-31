@@ -10,6 +10,7 @@ using mythos.UI.Services;
 using mythos.Models;
 using mythos.Services;
 using ReactiveUI;
+using mythos.Desktop.UI.MVVM.Views;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -23,46 +24,19 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             set { OnPropertyChanged(); }
         }
 
-        private double _maxWidth;
-        private double _maxHeight;
-
-        public double MaxWidth
-        {
-            get { return _maxWidth; }
-            set { _maxWidth = value; OnPropertyChanged(); }
-        }
-
-        public double MaxHeight
-        {
-            get { return _maxHeight; }
-            set { _maxHeight = value; OnPropertyChanged(); }
-        }
-
-        public EnableDisableMods relayCommand { get; set; }
-
         public HomePageViewModel()
         {
-            relayCommand = new EnableDisableMods();
-
-            //! Is used to change how many are displayed per row.
-            MaxWidth = 1000;
-            MiddleMan.OnPropertyChangeOfWindowWight += (sender, e) =>
-            {
-                MaxWidth = MiddleMan.WindowWight - 310;
-            };
-
-            //! Is used to change how many are displayed per Colaum.
-            MaxHeight = 1000;
-            MiddleMan.OnPropertyChangeOfWindowWight += (sender, e) =>
-            {
-                MaxHeight = MiddleMan.WindowWight - 100;
-            };
 
             //! Is done like this to allow multiple parts of the code to change
             //! the value ofImportedmods.
             MiddleMan.OnPropertyChangeOfImportedMods = () =>
             {
                 Mods = MiddleMan.ImportedMods;
+            };
+
+            MiddleMan.OnPropertyChangeOfModPage = () =>
+            {
+                MiddleMan.View = new ModPage(MiddleMan.ModPage, true);
             };
 
             //todo: remove this later it is temprary//
@@ -73,6 +47,8 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                     Id = Mods.Count(),
                     Name = "MCL Mod123456",
                     ImageSource = "https://t3.ftcdn.net/jpg/02/59/91/26/240_F_259912646_1kZxA3V9GiQu79hcJsGGJXHpP4EOn4mf.jpg",
+                    Description = "This is a test myth!",
+                    SubDescription = "b]This is a test myth[/b]\r\nThis myth is just a test and does not do anything. If you've come across this page, [i]you have come across invalid data[/i]\r\nThanks for stopping by!",
                     IsLoaded = true,
                     Author = "Mohammed",
                     GameMode = "PVE",
@@ -84,6 +60,8 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                     Id = Mods.Count(),
                     Name = "Myth MOD XD",
                     ImageSource = "https://t4.ftcdn.net/jpg/04/04/15/09/240_F_404150916_fMJoiUcjr5itUd5WPS8bjDABOEXDWr12.jpg",
+                    Description = "This is a test myth!",
+                    SubDescription = "b]This is a test myth[/b]\r\nThis myth is just a test and does not do anything. If you've come across this page, [i]you have come across invalid data[/i]\r\nThanks for stopping by!",
                     IsLoaded = false,
                     Author = "Shadow",
                     GameMode = "PVP",

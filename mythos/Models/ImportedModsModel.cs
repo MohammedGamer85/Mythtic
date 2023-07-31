@@ -1,8 +1,7 @@
 ﻿using mythos.UI.Services;
 using mythos.Services;
 using System;
-using System.Diagnostics;
-using System.Xml.Schema;
+using System.Runtime.InteropServices;
 
 namespace mythos.Models
 {
@@ -33,11 +32,23 @@ namespace mythos.Models
         //! Optional (Auto Imported if not done manully)
         public string SubDescription { get; set; } = string.Empty;
 
+
+        public static Action OnPropertyChangeOfIsLoaded;
+        
         public bool? IsLoaded
         {
             get { return _isloaded; }
-            set { _isloaded = value; OnPropertyChanged(); }
+            set
+            {
+                _isloaded = value; OnPropertyChanged();
+                if (OnPropertyChangeOfIsLoaded != null)
+                {
+
+                    ImportedModsItemModel.OnPropertyChangeOfIsLoaded.Invoke();
+                }
+            }
         }
+
 
         public DateTime LastUpdated { get; set; } = DateTime.Now;
 
@@ -55,22 +66,24 @@ namespace mythos.Models
         public string? ShortendInformationPanel { get; set; } = string.Empty;
 
         //! Actions/Function
-        public EnableDisableMods EnableDisableMod { get; set; }
+        public EnableDisableMods EnableDisableModCommand { get; set; }
+        public ModView ModPageCommand { get; set; }
 
         public ImportedModsItemModel()
         {
-            EnableDisableMod = new EnableDisableMods();
+            EnableDisableModCommand = new EnableDisableMods();
+            ModPageCommand = new ModView();
         }
 
         //! Var Funcations
         void SetValues()
-        {   
-            if(this.SubDescription == "")
+        {
+            if (this.SubDescription == "")
             {
                 this.SubDescription = Description;
             }
-            this.InformationPanel = "LastUpdated: " + this.LastUpdated + "Version: " + this.Version + "Auther: " + this.Author;
-            this.ShortendInformationPanel = this.Version + "\nBy " + this.Author + "\n"+ this.GameMode;
+            this.InformationPanel = "LastUpdated: " + this.LastUpdated + "\nVersion: " + this.Version + "  GameMode: " + this.GameMode;
+            this.ShortendInformationPanel = this.Version + "\nBy " + this.Author + "\n" + this.GameMode;
         }
 
         void SetTitle()

@@ -36,7 +36,7 @@ namespace mythos.Data
             if(url == "https://mythos-api.umbrielstudios.com/api/authenticate")
                 Trace.WriteLine("Making 'Userdata' request result: " + responseContent.Split("accessToken")[0]);
             else
-                Trace.WriteLine("Making a request to '" + url +"' result: " + responseContent);
+                Trace.WriteLine("Making a request to '" + url +"' result: " + responseContent + "\n");
             ///---------
 
             TReturn deserilizedContent = default;

@@ -24,6 +24,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/HomePage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/LoginView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/MainView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
@@ -31,6 +34,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/MenuButtons.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/ModPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/ProfileDisplay.axaml]

@@ -21,11 +21,11 @@ namespace mythos.Data
 
     public class AuthenticationRequests
     {   
-        private readonly HttpClientHelper _httpClientHelper;
+        private readonly HttpClientHelper _httpClientHelper = new HttpClientHelper();
 
-        public AuthenticationRequests(HttpClientHelper httpClientHelper)
+        public AuthenticationRequests()
         {
-            _httpClientHelper = httpClientHelper;
+
         }
 
         //! Deals With login requests.
@@ -35,8 +35,8 @@ namespace mythos.Data
 
             var loginRequest = new LoginRequest()
             {
-                Email = "mohammed.346520@gmail.com", 
-                Password = "6bUBe6r5n:LfLUT", 
+                Email = email, 
+                Password = password, 
             };
 
             var result = await _httpClientHelper.PostRequest<Account, LoginRequest>(url, loginRequest);

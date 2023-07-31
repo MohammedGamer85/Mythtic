@@ -26,9 +26,9 @@ namespace mythos.Data
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
                 deserilizedContent = JsonSerializer.Deserialize<TReturn>(JsonString, options);
             }
-            catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
+            catch (Exception ex) { Trace.WriteLine(ex + "\n"); }
 
-            Trace.Write(deserilizedContent);
+            Trace.Write(deserilizedContent + "\n");
 
             return deserilizedContent;
         }

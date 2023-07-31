@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace mythos.UI.Services;
+
 public static class MiddleMan
 {   //! Is used to comuncate vars between classes without refrencing them
     private static object _currentView;
@@ -24,39 +25,41 @@ public static class MiddleMan
     }
     public static Action OnPropertyChangeOfCurrentView;
 
-    //! allows xaml elents to access it and change there size dynamicly
-    private static double _windowWight;
-    public static double WindowWight
+
+    private static object _currentContent;
+    public static object Content
     {
         get
         {
-            return _windowWight;
+            return _currentContent;
         }
         set
         {
-            _windowWight = value;
-            MiddleMan.OnPropertyChangeOfWindowWight?.Invoke(null, new EventArgs());
+            _currentContent = value;
+            MiddleMan.OnPropertyChangeOfCurrentContent.Invoke();
         }
     }
 
-    public static event EventHandler OnPropertyChangeOfWindowWight;
+    public static Action OnPropertyChangeOfCurrentContent;
 
-    //! allows xaml elents to access it and change there size dynamicly
-    private static double _windowHeight;
-    public static double WindowHeight
+    private static int _modPage;
+    public static int ModPage
     {
         get
         {
-            return _windowHeight;
+            return _modPage;
         }
         set
         {
-            _windowHeight = value;
-            MiddleMan.OnPropertyChangeOfWindowHeight?.Invoke(null, new EventArgs());
+            _modPage = value;
+            MiddleMan.OnPropertyChangeOfModPage.Invoke();
         }
     }
 
-    public static event EventHandler OnPropertyChangeOfWindowHeight;
+    public static Action OnPropertyChangeOfModPage;
+
+    //! Single vars.
+    //? MOHAMMED LISTEN DO NOT. I WAS CLEAR NO
 
     private static ObservableCollection<ImportedModsItemModel> _importedMods = new();
 

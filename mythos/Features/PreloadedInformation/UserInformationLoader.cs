@@ -1,56 +1,77 @@
-﻿using Avalonia.Controls.Shapes;
+﻿using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
+using Avalonia.Metadata;
 using Microsoft.CodeAnalysis.Operations;
 using mythos.Data;
 using mythos.Models;
 using mythos.Services;
+using mythos.UI.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
-namespace mythos.Features.ImportAccunt
+namespace mythos.Features.Importaccount
 {   //! is ran on lunch and see if the user data has been retived before, if yes it will read it, if not it will requests it.
-    //todo: make it ask the user for accunt infromation if data has not been returved before.
+    //todo: make it ask the user for account infromation if data has not been returved before.
     public class UserInformationLoader
     {
-        private readonly AuthenticationRequests _authenticationRequests;
+        private readonly AuthenticationRequests _authenticationRequests = new();
         private readonly static string fileName = "appData.json";
+        Account importedAccount = null;
 
-        public UserInformationLoader(AuthenticationRequests httpCaller)
+        public async Task<bool> InitializeUserFromAPI(string email, string password)
         {
-            _authenticationRequests = httpCaller;
+            Trace.WriteLine("Importing account infromation");
+            importedAccount = await _authenticationRequests.LoginRequest(email, password);
+            
+            if (importedAccount == null)
+                return false;
+            
+            InitializeUser();
+            return true;
         }
 
-        public void InitializeUserFromSavedUser()
+        public async Task<bool> InitializeUserFromSavedUser()
         {
-            Trace.WriteLine("Importing accunt infromation");
+            Trace.WriteLine("Importing account infromation");
             bool isAccountDataExists = JsonCheckerHelper.CheckJsonFileForData(fileName);
 
             // get userInfoFrom json
-            try
+
+            //get json infromation;
+            //! To Mohammed do things like this and learn.
+            if (isAccountDataExists)
             {
-                Account importedAccount = isAccountDataExists
-                ? JsonReaderHelper.ReadJsonFile<Account>(fileName)
-                : _authenticationRequests.LoginRequest("blablaemail", "blablapassword").Result;
-
-                if (importedAccount is null)
-                    return;
-
-                User.RoleNames = importedAccount.Data.Roles
-                .Select(x => x.Name).ToList();
-                User.Name = importedAccount.Data.Username;
-                User.ImageSource = "https://mythos-static.umbrielstudios.com/users/" + User.Name + ".jpg";
-                User.ImagePath = FilePaths.GetMythosDownloads + User.Name + ".jpg";
-
-                Trace.WriteLine("Imported accunt information Result: " + User.Name+" , "+User.ImageSource+" , "+ User.ImagePath +" , " + User.RoleNames.ToString);
+                importedAccount = JsonReaderHelper.ReadJsonFile<Account>(fileName);
+                InitializeUser();
+                return true;
             }
-            catch
+            else
             {
-
+                return false;
             }
+            return false;
+        }
+
+        public void InitializeUser()
+        {
+            User.id = importedAccount.Data.Id;
+            User.RoleNames = importedAccount.Data.Roles
+            .Select(x => x.Name).ToList();
+            User.Name = importedAccount.Data.Username;
+            User.ImageSource = "https://mythos-static.umbrielstudios.com/users/" + User.Name + ".jpg";
+
+            //Writes it to json in for next time.
+
+            JsonWriterHelper.WriteJsonFile<Account>(fileName, importedAccount);
+
+            JsonCheckHelper.JsonCheckJsonFile(fileName);
+
+            Trace.WriteLine("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString + User.id + "\n");
         }
     }
 }

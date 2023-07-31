@@ -1,9 +1,13 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using mythos;
+using mythos.Desktop.UI.MVVM.Views;
+using mythos.Services;
 using mythos.UI.Services;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace mythos.Views;
 
@@ -12,14 +16,5 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        this.SizeChanged += OnWindowSizeChanged;
-    }
-
-    protected void OnWindowSizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        MiddleMan.WindowHeight = e.NewSize.Height;
-        MiddleMan.WindowWight = e.NewSize.Width;
-        // = e.PreviousSize.Height;
-        // = e.PreviousSize.Width;
     }
 }

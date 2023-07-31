@@ -20,33 +20,33 @@ namespace mythos.Data
     {   
         public static bool CheckJsonFileForData(string fileName)
         {
-            Trace.Write("JsonCheckerHelper Checking: " + fileName + " Result: ");
+            Trace.Write("JsonCheckerHelper Checking: " + fileName + "\n");
 
-            string JsonString = File.ReadAllText(FilePaths.GetAppDocFolder + "jsonChecked.json");
+            var deserializedContent = JsonReaderHelper.ReadJsonFile<Dictionary<string, bool>>("jsonChecked.json");
 
-            if (JsonString is null or "")
+            if (deserializedContent is null)
             {
-                Trace.Write("false, null");
                 return false;
             }
 
-            Dictionary<string, bool> deserilizedContent;
+            string readableJson = deserializedContent.ToString();
 
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
-                deserilizedContent = JsonSerializer.Deserialize<Dictionary<string, bool>>(JsonString, options);
-            }
-            catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
-
-            if (deserilizedContent[fileName] == true)
+                if (deserializedContent[fileName] == true)
+                {
+                    Trace.Write("true, " + readableJson);
+                    Trace.WriteLine("All Results" + readableJson);
+                    return true;
+                }
+            }catch (Exception ex)
             {
-                return true;
-                Trace.Write("true, "+JsonString);
-                Trace.WriteLine("All Results" + deserilizedContent);
+                Trace.WriteLine(ex);
+                return false;
             }
+            
 
-            Trace.Write("false, " + JsonString + "|");
+            Trace.Write(" Result: " + "false, " + readableJson + "|" + "\n");
 
             return false;
         }

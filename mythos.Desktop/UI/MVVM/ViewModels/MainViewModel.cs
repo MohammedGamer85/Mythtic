@@ -8,7 +8,7 @@ using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 using mythos.Desktop;
 using mythos.UI.Services;
 using mythos.Desktop.UI.MVVM.Views;
-using mythos.Features.ImportAccunt;
+using mythos.Features.Importaccount;
 using mythos.Models;
 using mythos.Services;
 using mythos.Views;
@@ -17,6 +17,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Xml;
+using System.ComponentModel;
 
 namespace mythos.ViewModels;
 
@@ -24,6 +25,9 @@ namespace mythos.ViewModels;
 public class MainViewModel : ObservableObject
 {
     public ObservableObject ObservableObject;
+
+    //MainView _mainView = new();
+    //LoginView _loginView = new();
 
     public MenuButtons MenuButtonsVM;
     public SearchBar SearchBarVM;
@@ -57,6 +61,13 @@ public class MainViewModel : ObservableObject
         set { OnPropertyChanged(); }
     }
 
+    private object _content;
+    public object Content
+    {
+        get { return _content; }
+        set { _content = value; OnPropertyChanged(); }
+    }
+    
     //! This constructer is responsible for deciding what is displayed were in the MainView.
     public MainViewModel()
     {
@@ -65,11 +76,35 @@ public class MainViewModel : ObservableObject
             CurrentView = MiddleMan.View;
         };
 
+        //! Is done to switch between loginView and MainView
+        
+        MiddleMan.OnPropertyChangeOfCurrentContent = () =>
+        {
+            Content = MiddleMan.Content;
+        };
+        CheckForAreadyExistingAccountInfo();
+            
+
         MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;
         SearchBarVM = new SearchBar();
         TopBar = SearchBarVM;
         ProfileDisplayVM = new ProfileDisplay();
         CornerDisplay = ProfileDisplayVM;
+    }
+
+    UserInformationLoader userInformationLoader = new();
+
+    async Task CheckForAreadyExistingAccountInfo()
+    {
+        if (await userInformationLoader.InitializeUserFromSavedUser())
+        {
+            Trace.WriteLine("Login Infromation Aready Autherizied");
+            MiddleMan.Content = new MainView();
+        }
+        else
+        {
+            Content = new LoginView();
+        }
     }
 }

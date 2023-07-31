@@ -6,7 +6,7 @@ using mythos.Views;
 using mythos;
 using ReactiveUI;
 using mythos.Services;
-using mythos.Features.ImportAccunt;
+using mythos.Features.Importaccount;
 using mythos.Data;
 using System.Threading.Tasks;
 using System.Threading;
@@ -14,6 +14,7 @@ using mythos.Desktop.UI.MVVM.Views;
 using mythos.DataRequesting_Loading_Unloading;
 using mythos.ViewModels;
 using mythos.Desktop.UI.MVVM.ViewModels;
+using mythos.Models;
 
 namespace mythos.Desktop;
 
@@ -34,7 +35,7 @@ public class Program
 
     [STAThread]
     public static void Main(string[] args)
-    {
+   {
         // cannot access dependency injection here
         ServiceProvider = BuildLauncherServices();
 
@@ -48,9 +49,8 @@ public class Program
 
     public static void ImportAccountInformation()
     {
-        // only call getservices when you are inside void main !
-        UserInformationLoader userInformationLoader = ServiceProvider.GetRequiredService<UserInformationLoader>();
-        userInformationLoader.InitializeUserFromSavedUser();
+        //! only call getservices when you are inside void main
+        //? NOT USED ANY MORE.
     }
 
     private static AppBuilder BuildAvaloniaAppWithServices(IServiceProvider serviceProvider)

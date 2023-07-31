@@ -9,9 +9,9 @@
 	<UserControl.DataContext>
 		<vm:MenuButtonsViewModel/>
 	</UserControl.DataContext>
-	
+
 	<!-- is used to display Page Buttons -->
-	
+
 	<UserControl.Background>
 		<ImageBrush Source="\UI\MVVM\Assets\Background\infoPanel.png" AlignmentY="Top"/>
 	</UserControl.Background>
@@ -26,7 +26,7 @@
 								   HorizontalAlignment="Center"
 								   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
                                    VerticalAlignment="Center"/>
-						
+
 						<Border.Background>
 							<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_normal-0241d.png"/>
 						</Border.Background>
@@ -47,7 +47,7 @@
 		</Style>
 		<Style Selector="RadioButton.h1:checked /template/ Border">
 			<Setter Property="Background">
-				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_focus-1b73a.png"/>				
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_focus-1b73a.png"/>
 			</Setter>
 		</Style>
 		<Style Selector="RadioButton.h1:pressed /template/ Border">
@@ -57,40 +57,42 @@
 		</Style>
 	</UserControl.Styles>
 
-	<StackPanel Orientation="Vertical">
+	<Grid VerticalAlignment="Stretch">
 
-		<StackPanel Orientation="Horizontal" 
-					Margin="0,5,15,7"
-					HorizontalAlignment="Center">
-			
-			<TextBlock
-					Text="" Margin="0,-17,0,25"
-					FontSize="45"
-					Foreground="White"/>
-			<TextBlock Text="" Margin="0,-4.5,0,0"
-					FontSize="30"
-					Foreground="White"/>
-		</StackPanel>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="310"/>
+		</Grid.ColumnDefinitions>
 
-		<StackPanel>
-				<RadioButton IsChecked="True" Classes="h1" 
-							 Content="Home"
-							 FontSize="40"
-							 Command="{Binding SetHomeView}"/>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel 
+			Margin="0,70,0,0"
+			Width="300" HorizontalAlignment="Center" Orientation="Vertical"
+			Height="{Binding Path=$parent.Height}"
+			Grid.Column="0" Grid.Row="0">
+				<RadioButton IsChecked="True" Classes="h1"
+								Content="Home"
+								FontSize="40"
+								Command="{Binding SetHomeView}"/>
 
 				<RadioButton Classes="h1" Content="Discover"
-							 FontSize="40"
-							 Command="{Binding SetDiscoverView}"/>
+								FontSize="40"
+								Command="{Binding SetDiscoverView}"/>
 
 				<RadioButton Classes="h1" Content="Settings"
-							 FontSize="40"
-							 Command="{Binding SetSettingsView}"/>
+								FontSize="40"
+								Command="{Binding SetSettingsView}"/>
+
+				<TextBlock Text="This App is Not affiliated with Minecraft, Mojang, or Microsoft. Minecraft is a trademark of Mojang Synergies AB. Microsoft is a trademark of Microsoft Corporation."
+							MaxWidth="280" HorizontalAlignment="Center"
+							Foreground="#646260"
+							TextWrapping="WrapWithOverflow"/>
+
+				<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png"
+						VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 		</StackPanel>
-		
-		<StackPanel Orientation="Horizontal">
-			<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png" 
-				   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-				   Width="310"/>
-		</StackPanel>
-	</StackPanel>
+
+	</Grid>
 </UserControl>

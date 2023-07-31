@@ -21,8 +21,8 @@
 		 ExtendClientAreaTitleBarHeightHint="-1" -->	
 	
 	<!-- Nothing is done here -->
+	<ContentControl Content="{Binding Content}"/>
 	
-	<views:MainView/>
 	<Design.DataContext>
 		<vm:MainViewModel/>
 	</Design.DataContext>

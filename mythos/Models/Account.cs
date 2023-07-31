@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace mythos.Models
-{   //Stores all accunt information while the app is running to be used later.
+{   //Stores all account information while the app is running to be used later.
     public class Account 
     {
         public bool Success { get; set; }

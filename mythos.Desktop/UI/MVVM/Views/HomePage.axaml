@@ -2,7 +2,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="620"
 x:Class="mythos.Desktop.UI.MVVM.Views.HomePage"
 xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
@@ -127,7 +127,7 @@ ClipToBounds="True">
 						<Button Classes="h2" IsVisible="False"
 								Classes.IsUpdated="{Binding IsLoaded}"
 								Classes.NotUpdated="{Binding IsLoaded}"
-								Command="{Binding EnableDisableMod}"
+								Command="{Binding EnableDisableModCommand}"
 								VerticalAlignment="Bottom"
 								CommandParameter="{Binding Id}"/>
 
@@ -167,21 +167,30 @@ ClipToBounds="True">
 		</Style>
 
 	</UserControl.Styles>
-	<StackPanel
-			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
-			Orientation="Vertical"
-			ClipToBounds="True">
+	
+	<Grid HorizontalAlignment="Left"
+		VerticalAlignment="Stretch"
+		ClipToBounds="True">
 
-		<ScrollViewer VerticalScrollBarVisibility="Visible"
-					Height="{Binding MaxHeight}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<ScrollViewer
+				VerticalScrollBarVisibility="Visible"
+				Height="{Binding Path=$parent.Height}"
+				Grid.Column="0" Grid.Row="0"
+				VerticalAlignment="Bottom">
+			
 			<ItemsRepeater
-			ItemsSource="{Binding Mods}"
-			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
-			Background="Transparent"
-			ClipToBounds="True"
-			MaxWidth="{Binding MaxWidth}">
+				ItemsSource="{Binding Mods}"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				Background="Transparent">
 
 				<ItemsRepeater.Layout>
 					<WrapLayout Orientation="Horizontal"/>
@@ -190,13 +199,14 @@ ClipToBounds="True">
 				<ItemsRepeater.ItemTemplate>
 					<DataTemplate>
 
-						<Button Classes="c4"/>
+						<Button Classes="c4" Command="{Binding ModPageCommand}"
+								CommandParameter="{Binding Id}"/>
 
 					</DataTemplate>
 				</ItemsRepeater.ItemTemplate>
 
 			</ItemsRepeater>
 		</ScrollViewer>
-	</StackPanel>
+	</Grid>
 </UserControl>
 
