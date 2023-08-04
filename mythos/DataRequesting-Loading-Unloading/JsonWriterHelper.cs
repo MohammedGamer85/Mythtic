@@ -19,7 +19,7 @@ namespace mythos.Data
 
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
+                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true,};
                 var serializedContent = JsonSerializer.Serialize<TContent>(content, options);
                 File.WriteAllText(FilePaths.GetAppDocFolder + fileName, serializedContent);
             }

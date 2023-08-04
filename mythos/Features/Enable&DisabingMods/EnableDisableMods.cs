@@ -6,8 +6,10 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using mythos.Data;
+using mythos.UI.Services;
 
-namespace mythos.UI.Services;
+namespace mythos.Features.EnableDisabingMods;
 
 public class EnableDisableMods : ICommand
 {
@@ -35,4 +37,16 @@ public class EnableDisableMods : ICommand
         }
         // Add your code that will be executed when the command is invoked
     }
+    /*
+     static void Enable(int id)
+        {
+            path = System.IO.Path.Combine(FilePaths.GetMythosDownloads + MiddleMan.ImportedMods[0].Uuid);
+            
+        }
+
+        static void Disable(int id)
+        {
+            path = System.IO.Path.Combine(FilePaths.GetMythosDownloads + MiddleMan.ImportedMods[0].Uuid);
+        }
+     */
 }

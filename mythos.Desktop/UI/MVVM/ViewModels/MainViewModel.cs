@@ -82,8 +82,10 @@ public class MainViewModel : ObservableObject
         {
             Content = MiddleMan.Content;
         };
+        //! Ether DebugMode or normal Mode aka CheckForAreadyExistingAccuntInfo
+        //DebugMode();
         CheckForAreadyExistingAccountInfo();
-            
+
 
         MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;
@@ -106,5 +108,12 @@ public class MainViewModel : ObservableObject
         {
             Content = new LoginView();
         }
+    }
+
+    async Task DebugMode()
+    {
+        await userInformationLoader.InitializeUserFromSavedUser();
+        Trace.WriteLine("Activating Debug Mode");
+        MiddleMan.Content = new DebugView();
     }
 }

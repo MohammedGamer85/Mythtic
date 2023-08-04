@@ -6,16 +6,18 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using mythos.UI.Services;
 
-namespace mythos.UI.Services;
+namespace mythos.Services;
 
-public class ModView : ICommand
+public class SwitchToModView : ICommand
 {
     public event EventHandler CanExecuteChanged;
+    private bool Installed;
 
-    public ModView()
+    public SwitchToModView(bool Installed)
     {
-    
+        this.Installed = Installed;
     }
 
     public bool CanExecute(object parameter)
@@ -26,7 +28,14 @@ public class ModView : ICommand
 
     public void Execute(object parameter)
     {
-        MiddleMan.ModPage = Convert.ToInt32(parameter);
+        if (Installed)
+        {
+            MiddleMan.ImportedModPage = Convert.ToInt32(parameter);
+        }
+        else
+        {
+            MiddleMan.DiscoverModPage = Convert.ToInt32(parameter);
+        }
         // Add your code that will be executed when the command is invoked
     }
 }

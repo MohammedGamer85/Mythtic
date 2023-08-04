@@ -1,11 +1,10 @@
-﻿using mythos.UI.Services;
-using mythos.Services;
+﻿using mythos.Services;
 using System;
 using System.Runtime.InteropServices;
 
 namespace mythos.Models
 {
-    public class ImportedModsItemModel : ObservableObject
+    public class DiscoverModsItemModel : ObservableObject
     {
         //! Privte
         private string? _name;
@@ -63,16 +62,12 @@ namespace mythos.Models
 
         public string? InformationPanel { get; set; } = string.Empty;
 
-        public string? ShortendInformationPanel { get; set; } = string.Empty;
-
         //! Actions/Function
-        public EnableDisableMods EnableDisableModCommand { get; set; }
-        public ModView ModPageCommand { get; set; }
+        public SwitchToModView ModPageCommand { get; set; }
 
-        public ImportedModsItemModel()
+        public DiscoverModsItemModel()
         {
-            EnableDisableModCommand = new EnableDisableMods();
-            ModPageCommand = new ModView();
+            ModPageCommand = new SwitchToModView(false);
         }
 
         //! Var Funcations
@@ -82,8 +77,7 @@ namespace mythos.Models
             {
                 this.SubDescription = Description;
             }
-            this.InformationPanel = "LastUpdated: " + this.LastUpdated + "\nVersion: " + this.Version + "  GameMode: " + this.GameMode;
-            this.ShortendInformationPanel = this.Version + "\nBy " + this.Author + "\n" + this.GameMode;
+            this.InformationPanel = "LastUpdated: " + this.LastUpdated + "\nVersion: " + this.Version + "  GameMode: " + this.GameMode + " By: " +this.Author + "\n";
         }
 
         void SetTitle()

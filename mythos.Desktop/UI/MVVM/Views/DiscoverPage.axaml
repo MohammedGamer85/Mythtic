@@ -12,7 +12,147 @@
 		<vm:DiscoverPageViewModel/>
 	</UserControl.DataContext>
 	
-	<!-- NEED to be down later  -->
-	
-	<TextBlock Text="DiscoverPage"/>
+	<!-- Is used to used to display mods for the user to discover and download-->
+
+	<!-- vv Buttons vv -->
+
+	<UserControl.Styles>
+
+		<!-- vv Mod Cards vv -->
+		<Style Selector="Button.c4">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<StackPanel Orientation="Horizontal"
+						Margin="0,5,0,0"
+						Width="{Binding Path=$parent.Width}"
+						Height="225"
+						Background="#2a2a2a">
+
+						<Canvas	
+								Margin="40,17,0,15"
+								VerticalAlignment="Top"
+								HorizontalAlignment="Left"
+								Height="175"
+								Width="175">
+
+							<Image
+								Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
+								ZIndex="2"
+								HorizontalAlignment="Center"
+								Height="175"
+								Width="175"
+								Stretch="Fill"/>
+
+							<Image
+								asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
+								HorizontalAlignment="Center"
+								Height="175"
+								Width="175"
+								Stretch="Fill"/>
+						</Canvas>
+						
+						<StackPanel Orientation="Vertical">
+
+							<TextBlock
+								Text="{Binding Name}"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+								FontSize="30"
+								Margin="10,17,10,10"
+								Foreground="Black"
+								Padding="0,0,0,0"
+								VerticalAlignment="Top"
+								TextWrapping="Wrap"
+								HorizontalAlignment="Left"/>
+
+							<StackPanel>
+								<Label Content="Description:"
+									Margin="10,0,0,0"
+									Foreground="Black"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
+
+								<TextBlock
+										Background="Transparent"
+										FontSize="14"
+										FontFamily="/UI/MVVM/Fonts/#Minecraft"
+										FontWeight="Regular"
+										Foreground="Black"
+										VerticalAlignment="Top"
+										Margin="10,0,0,0"
+										HorizontalAlignment="Left"
+										Text="{Binding Description}"
+										TextWrapping="Wrap"/>
+							</StackPanel>
+
+							<TextBlock
+									Background="Transparent"
+									FontSize="15"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft"
+									FontWeight="Bold"
+									Foreground="Black"
+									Margin="10,0,0,0"
+									VerticalAlignment="Bottom"
+									HorizontalAlignment="Left"
+									Text="{Binding InformationPanel}"
+									TextWrapping="Wrap"/>
+						</StackPanel>
+
+
+						<Image Width="10000"/>
+
+						<StackPanel.Background>
+							<ImageBrush
+							Source="\UI\MVVM\Assets\DiscoverModCard\card_joingame_large.png"
+							Stretch="Fill"/>
+
+						</StackPanel.Background>
+
+					</StackPanel>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+
+	</UserControl.Styles>
+
+	<Grid HorizontalAlignment="Left"
+		VerticalAlignment="Stretch"
+		ClipToBounds="True">
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<ScrollViewer
+				VerticalScrollBarVisibility="Visible"
+				Height="{Binding Path=$parent.Height}"
+				Width="{Binding Path=$parent.Width}"
+				Grid.Column="0" Grid.Row="0"
+				VerticalAlignment="Bottom">
+
+			<ItemsRepeater
+				ItemsSource="{Binding Mods}"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				Background="Transparent">
+
+				<ItemsRepeater.Layout>
+					<StackLayout Orientation="Vertical" />
+				</ItemsRepeater.Layout>
+
+				<ItemsRepeater.ItemTemplate>
+					<DataTemplate>
+
+						<Button Classes="c4" Command="{Binding ModPageCommand}"
+								CommandParameter="{Binding Id}"
+								Width="{Binding Path=$parent.Width}"/>
+
+					</DataTemplate>
+				</ItemsRepeater.ItemTemplate>
+
+			</ItemsRepeater>
+		</ScrollViewer>
+	</Grid>
 </UserControl>

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//! THIS IS USED TO TRANSFER INFROMATION BETWEEN THE WORK LAYER AND THE UI LAYER.
+
 namespace mythos.UI.Services;
 
 public static class MiddleMan
@@ -42,21 +44,37 @@ public static class MiddleMan
 
     public static Action OnPropertyChangeOfCurrentContent;
 
-    private static int _modPage;
-    public static int ModPage
+    private static int _impotredModPage;
+    public static int ImportedModPage
     {
         get
         {
-            return _modPage;
+            return _impotredModPage;
         }
         set
         {
-            _modPage = value;
-            MiddleMan.OnPropertyChangeOfModPage.Invoke();
+            _impotredModPage = value;
+            MiddleMan.OnPropertyChangeOfImportedModsModPage.Invoke();
         }
     }
 
-    public static Action OnPropertyChangeOfModPage;
+    public static Action OnPropertyChangeOfImportedModsModPage;
+
+    private static int _discoverModPage;
+    public static int DiscoverModPage
+    {
+        get
+        {
+            return _discoverModPage;
+        }
+        set
+        {
+            _discoverModPage = value;
+            MiddleMan.OnPropertyChangeOfDiscoverModsModPage.Invoke();
+        }
+    }
+
+    public static Action OnPropertyChangeOfDiscoverModsModPage;
 
     //! Single vars.
     //? MOHAMMED LISTEN DO NOT. I WAS CLEAR NO
@@ -79,4 +97,23 @@ public static class MiddleMan
     }
 
     public static Action OnPropertyChangeOfImportedMods;
+
+    private static ObservableCollection<DiscoverModsItemModel> _discoverMods = new();
+
+    //! Is done like this to allow multiple parts of the code to change
+    //! the value ofImportedmods.
+    public static ObservableCollection<DiscoverModsItemModel> DiscoverMods
+    {
+        get
+        {
+            return _discoverMods;
+        }
+        set
+        {
+            _discoverMods = value;
+            MiddleMan.OnPropertyChangeOfDiscoverMods.Invoke();
+        }
+    }
+
+    public static Action OnPropertyChangeOfDiscoverMods;
 }

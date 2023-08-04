@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
+using mythos.Features.EnableDisabingMods;
 using mythos.Models;
 using mythos.Services;
 using mythos.UI.Services;
@@ -9,7 +10,7 @@ using ReactiveUI;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
-	public class ModPageViewModel : ObservableObject
+    public class ModPageViewModel : ObservableObject
     {
 		public ImportedModsItemModel ModInfo;
 		private string _name;

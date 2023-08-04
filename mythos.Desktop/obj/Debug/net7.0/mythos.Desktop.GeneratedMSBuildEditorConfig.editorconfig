@@ -18,6 +18,9 @@ build_property.ProjectDir = C:\Users\moham\source\repos\Avlonia\mythosApp\mythos
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/DebugView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/DiscoverPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

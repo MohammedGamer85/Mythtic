@@ -11,6 +11,9 @@ using mythos.Models;
 using mythos.Services;
 using ReactiveUI;
 using mythos.Desktop.UI.MVVM.Views;
+using mythos.Data;
+using mythos.Features.PreloadedInformation;
+using DynamicData;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -24,27 +27,30 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             set { OnPropertyChanged(); }
         }
 
-        public HomePageViewModel()
-        {
-
-            //! Is done like this to allow multiple parts of the code to change
-            //! the value ofImportedmods.
+    public HomePageViewModel()
+        {   
+            /*! Is done like this to allow multiple parts of the code to change
+                the value ofImportedmods. */
             MiddleMan.OnPropertyChangeOfImportedMods = () =>
             {
                 Mods = MiddleMan.ImportedMods;
+                JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
             };
 
-            MiddleMan.OnPropertyChangeOfModPage = () =>
+            //get the info from json file.
+            new ImportedModsInfrommationLoader();
+
+            MiddleMan.OnPropertyChangeOfImportedModsModPage = () =>
             {
-                MiddleMan.View = new ModPage(MiddleMan.ModPage, true);
+                MiddleMan.View = new ModPage(MiddleMan.ImportedModPage, true);
             };
 
-            //todo: remove this later it is temprary//
             for (int i = 0; i < 10; i++)
             {
                 MiddleMan.ImportedMods.Add(new ImportedModsItemModel
                 {
                     Id = Mods.Count(),
+                    WebId = Mods.Count(),
                     Name = "MCL Mod123456",
                     ImageSource = "https://t3.ftcdn.net/jpg/02/59/91/26/240_F_259912646_1kZxA3V9GiQu79hcJsGGJXHpP4EOn4mf.jpg",
                     Description = "This is a test myth!",
@@ -58,6 +64,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 MiddleMan.ImportedMods.Add(new ImportedModsItemModel
                 {
                     Id = Mods.Count(),
+                    WebId = Mods.Count(),
                     Name = "Myth MOD XD",
                     ImageSource = "https://t4.ftcdn.net/jpg/04/04/15/09/240_F_404150916_fMJoiUcjr5itUd5WPS8bjDABOEXDWr12.jpg",
                     Description = "This is a test myth!",
@@ -69,6 +76,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                     Version = new Version(5, 4, 2, 0),
                 });
             }
+
         }
     }
 }
