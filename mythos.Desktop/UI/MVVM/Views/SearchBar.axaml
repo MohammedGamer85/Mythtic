@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="100"
+             xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+             x:Class="mythos.Desktop.UI.MVVM.Views.SearchBar"
+			 x:DataType="vm:SearchBarViewModel">
+	<UserControl.DataContext>
+		<vm:SearchBarViewModel/>
+	</UserControl.DataContext>
+	
+	<!-- is used to display the search bar -->
+	
+	<Grid HorizontalAlignment="Stretch"
+		  ShowGridLines="false">
+	
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		
+		<Grid.RowDefinitions>
+			<RowDefinition MaxHeight="50"/>
+		</Grid.RowDefinitions>
+
+			<Canvas Grid.Column="0" Grid.Row="0">
+				<Image Source="\UI\MVVM\Assets\SearchBar\btn_textinput_hover.png"
+					Height="100" Stretch="Fill"/>
+			</Canvas>
+
+			<TextBox Watermark="Search Here"
+					 Grid.Column="0" Grid.Row="0"
+					 FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+						MaxWidth="{Binding Path=$parent.Bounds.Width}"
+						Height="50"
+						FontSize="50"
+						Margin="15,21.5,0,5"
+						VerticalAlignment="Top"
+						BorderBrush="Transparent"
+						BorderThickness="0"
+						Background="Transparent"
+						AcceptsTab="False"
+						Classes="TextBox.C1"/>
+
+
+			<Image Grid.Column="1" Grid.Row="0"
+					Source="\UI\MVVM\Assets\SearchBar\btn_textinput_hover56445.png"
+				   Height="100" Width="20" VerticalAlignment="Top" Stretch="Fill"/>
+	</Grid>
+
+</UserControl>

@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="310" d:DesignHeight="600"
+             x:Class="mythos.Desktop.UI.MVVM.Views.MenuButtons"
+             x:DataType="vm:MenuButtonsViewModel">
+	<UserControl.DataContext>
+		<vm:MenuButtonsViewModel/>
+	</UserControl.DataContext>
+
+	<!-- is used to display Page Buttons -->
+
+	<UserControl.Background>
+		<ImageBrush Source="\UI\MVVM\Assets\Background\infoPanel.png" AlignmentY="Top"/>
+	</UserControl.Background>
+
+	<UserControl.Styles>
+		<Style Selector="RadioButton.h1">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<TextBlock Text="{TemplateBinding Property=Content}"
+								   Foreground="White"
+								   HorizontalAlignment="Center"
+								   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+                                   VerticalAlignment="Center"/>
+
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_normal-0241d.png"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Height" Value="150"/>
+			<Setter Property="Width" Value="310"/>
+			<Setter Property="Margin" Value="0,2,0,0"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="RadioButton.h1:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_hover-917b5.png"/>
+			</Setter>
+		</Style>
+		<Style Selector="RadioButton.h1:checked /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_focus-1b73a.png"/>
+			</Setter>
+		</Style>
+		<Style Selector="RadioButton.h1:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\button_primary_press-b1d01.png"/>
+			</Setter>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid VerticalAlignment="Stretch">
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="310"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel 
+			Margin="0,70,0,0"
+			Width="300" HorizontalAlignment="Center" Orientation="Vertical"
+			Height="{Binding Path=$parent.Height}"
+			Grid.Column="0" Grid.Row="0">
+				<RadioButton IsChecked="True" Classes="h1"
+								Content="Home"
+								FontSize="40"
+								Command="{Binding SetHomeView}"/>
+
+				<RadioButton Classes="h1" Content="Discover"
+								FontSize="40"
+								Command="{Binding SetDiscoverView}"/>
+
+				<RadioButton Classes="h1" Content="Settings"
+								FontSize="40"
+								Command="{Binding SetSettingsView}"/>
+
+				<TextBlock Text="This App is Not affiliated with Minecraft, Mojang, or Microsoft. Minecraft is a trademark of Mojang Synergies AB. Microsoft is a trademark of Microsoft Corporation."
+							MaxWidth="280" HorizontalAlignment="Center"
+							Foreground="#646260"
+							TextWrapping="WrapWithOverflow"/>
+
+				<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png"
+						VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+		</StackPanel>
+
+	</Grid>
+</UserControl>

@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:mythos.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1110" d:DesignHeight="750"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+			 x:Class="mythos.Views.MainView"
+             x:DataType="vm:MainViewModel"
+			 Background="#33302A">
+	<Design.DataContext>
+		<vm:MainViewModel/>
+	</Design.DataContext>
+
+	<!-- THink of this as MainWindow just it is not-->
+	
+		<Grid ShowGridLines="false">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="310"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="100"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="100"/>
+			</Grid.RowDefinitions>
+
+			<Image Source="/UI/MVVM/Assets/Icons/default_mainmenu_banner_focus.png"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					Width="400"
+					Height="100"
+					Grid.Column="0"
+					Grid.Row="0"
+					Grid.ColumnSpan="1"/>
+
+				<ContentControl HorizontalAlignment="Stretch"
+								Content="{Binding TopBar}"
+								Grid.Column="1"
+								Grid.ColumnSpan="1"/>
+			
+			<StackPanel Grid.Row="1"
+						VerticalAlignment="Stretch">
+				<ContentControl Content="{Binding SideBar}"
+								Grid.RowSpan="1" Grid.Row="1"/>
+			</StackPanel>
+
+			<ContentControl Content="{Binding CurrentView}"
+							Grid.Column="1" Grid.Row="1"
+							Grid.RowSpan="2"
+							VerticalAlignment="Stretch"
+							HorizontalAlignment="Stretch"/>
+			
+			<StackPanel Grid.Row="2" Grid.Column="0"
+						VerticalAlignment="Top"
+						HorizontalAlignment="Right"
+						ClipToBounds="True">
+				<ContentControl Content="{Binding CornerDisplay}"
+								Grid.RowSpan="2" Grid.Row="2"
+								VerticalAlignment="Top"
+								HorizontalAlignment="Left"/>
+			</StackPanel>
+
+		</Grid>
+</UserControl>

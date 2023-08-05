@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		x:Class="mythos.Desktop.UI.MVVM.Views.LoginView"
+		xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+		x:DataType="vm:LoginViewModel"
+		Background="#33302A">
+	<UserControl.DataContext>
+		<vm:LoginViewModel/>
+	</UserControl.DataContext>
+
+	<UserControl.Background>
+		<ImageBrush Source="\UI\MVVM\Assets\Background\image.png" Stretch="UniformToFill"/>
+	</UserControl.Background>
+
+	<Grid>
+		<TextBlock Text="Login Form" FontSize="60" FontWeight="Bold" Margin="0,10,0,0"
+				   FontFamily="/UI/MVVM/Fonts/#Minecraft"
+					VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+					Background="Black" Opacity="0.5">
+			<TextBox Text="{Binding Email}" Width="250"
+					 FontFamily="/UI/MVVM/Fonts/#Minecraft"
+					 FontSize="24" Margin="1"
+					 Watermark="Email"/>
+
+			<TextBox Text="{Binding Password}" PasswordChar="*" Watermark="Password"
+					 FontSize="24" Margin="1,7.5,1,1" Width="250"
+					 FontFamily="/UI/MVVM/Fonts/#Minecraft"/>
+		</StackPanel>
+
+		<Button Content="Submit" Command="{Binding LoginButton_Click}"
+				FontFamily="/UI/MVVM/Fonts/#Minecraft"
+				FontSize="50" Foreground="Cyan" 
+				Background="Transparent" Margin="0,0,0,10"
+				VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+	</Grid>
+
+</UserControl>
+

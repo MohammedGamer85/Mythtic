@@ -1,0 +1,323 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+			 x:DataType="vm:ModPageViewModel"
+			 x:Class="mythos.Desktop.UI.MVVM.Views.ModPage"
+			 Background="#33302A">
+
+	<UserControl.Styles>
+		<Style Selector="Button.h2">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<TextBlock Text="Disabled"
+								   FontSize="20"
+								   FontFamily="/UI/MVVM/Fonts/#Minecraft"
+								   FontWeight="Regular"
+								   Foreground="Black"
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center"/>
+
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal (2).png"
+										Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="75"/>
+			<Setter Property="Width" Value="175"/>
+			<Setter Property="Margin" Value="0,-10,0,6"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.h2:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_hover.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h2:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<!-- Enabled Button varent-->
+		<Style Selector="Button.h2.IsUpdated /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_normal (2).png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h2.IsUpdated /template/ TextBlock">
+			<Setter Property="Text" Value="Enabled"/>
+		</Style>
+		<Style Selector="Button.h2.IsUpdated:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_hover.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h2.IsUpdated:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_normal.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<!-- SmallButton -->
+		<Style Selector="Button.h3">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<TextBlock Text="⭮"
+								   FontSize="34"
+								   FontWeight="Bold"
+								   Foreground="White"
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center"/>
+
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\left_chat_button_neutral.png"
+										Stretch="Fill"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="52"/>
+			<Setter Property="Width" Value="60"/>
+			<Setter Property="Margin" Value="0,0,0,20"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.h3:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\left_chat_button_hover.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h3:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\left_chat_button_press.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+		
+		<!-- Right Smaill Button -->
+		<Style Selector="Button.h4">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+							<TextBlock Text="↑"
+								Margin="-5,-2.5,0,0"
+							   FontSize="40"
+							   FontWeight="Bold"
+							   Foreground="White"
+							   HorizontalAlignment="Center"
+							   VerticalAlignment="Center"/>
+						
+						
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\right_chat_button_neutral.png"
+										Stretch="Fill"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="52"/>
+			<Setter Property="Width" Value="60"/>
+			<Setter Property="Margin" Value="0,0,0,20"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.h4:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\right_chat_button_hover.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h4:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\right_chat_button_press.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+		
+		<!-- DownLoad Button -->
+		<Style Selector="Button.h5">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<TextBlock Text="Download Myth "
+							Margin="0,0,0,0"
+						   FontSize="24"
+						   FontWeight="Bold"
+						   Foreground="White"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"/>
+
+
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\button_primary.png"
+										Stretch="Fill"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="Width" Value="300"/>
+			<Setter Property="Margin" Value="10,0,0,20"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.h5:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\Button_Primary_Centre_Hover.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h5:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\button_primary_Pressed.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+
+
+		<!-- RadioButton -->
+		
+		<Style Selector="RadioButton.h6">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<StackPanel Orientation="Horizontal">
+
+						<Button Classes="h5"/>
+
+					</StackPanel>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		
+		<!-- DownLoaded -->
+		
+		<Style Selector="RadioButton.h6.IsUpdated">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<StackPanel Orientation="Horizontal">
+
+						<Button
+						Margin="5,-10,0,7" Classes="h2"
+						Command="{Binding EnableDisableModsCommand}"
+						CommandParameter="{Binding Id}"
+						Classes.IsUpdated="{Binding IsLoaded}"
+						Classes.NotUpdated="{Binding IsLoaded}"
+						VerticalAlignment="Top"/>
+
+						<Button Classes="h3"/>
+						<Button Classes="h4"/>
+
+					</StackPanel>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		
+		
+	</UserControl.Styles>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="504"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<ScrollViewer VerticalScrollBarVisibility="Visible">
+			<Grid Grid.Row="0" Grid.Column="0">
+				<Canvas>
+					<Image Source="\UI\MVVM\Assets\ModCard\card_joingame_large.png"
+						   Height="504" Width="{Binding Path=$parent.Bounds.Width}" Stretch="Fill"/>
+				</Canvas>
+
+				<Canvas
+					VerticalAlignment="Top"
+					Margin="25,25,0,0"
+					HorizontalAlignment="Left"
+					Height="150"
+					Width="150">
+
+					<Image
+						Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
+						ZIndex="3"
+						HorizontalAlignment="Center"
+						Height="150"
+						Width="150"
+						Stretch="Fill"/>
+
+					<Image
+						asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
+						HorizontalAlignment="Center"
+						ZIndex="2"
+						Height="150"
+						Width="150"
+						Stretch="Fill"/>
+				</Canvas>
+				
+				<Label FontSize="48" Content="{Binding Name}"
+						Foreground="Black"
+						Margin="175,30,0,0"
+						FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+						VerticalAlignment="Top" HorizontalAlignment="Left"/>
+				<Label FontSize="34" Content="{Binding Author}"
+						Foreground="Black"
+						Margin="180,75,0,0"
+						FontFamily="/UI/MVVM/Fonts/#Minecraft"
+						FontWeight="Regular"
+						VerticalAlignment="Top" HorizontalAlignment="Left"/>
+				
+				<StackPanel Width="{Binding Path=$parent.Bounds.Width}"
+							Margin="25,185,0,0"
+							VerticalAlignment="Top" HorizontalAlignment="Left">
+					<TextBlock Text="Description:"
+							Padding="0,0,0,0"
+							Margin="0,0,0,0"
+							Foreground="Black"
+							FontSize="18"
+							FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+							VerticalAlignment="Center" HorizontalAlignment="Left"/>
+					<TextBlock Text="{Binding SubDescription}"
+								Padding="0,0,0,0"
+								TextWrapping="WrapWithOverflow"
+								Margin="0,5,0,0"
+								Foreground="Black"
+								FontSize="18"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft"
+								VerticalAlignment="Center" HorizontalAlignment="Left"/>
+				</StackPanel>
+				
+				<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
+							Margin="25,0,0,50" Orientation="Horizontal">
+					<TextBlock Text="{Binding InformationPanel}"
+								Foreground="Black"
+								FontSize="24"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
+
+					<RadioButton Classes="h6"
+						Classes.IsUpdated="{Binding Installed}"/>
+					
+					
+				</StackPanel>
+
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+</UserControl>
