@@ -12,8 +12,15 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 {
     public class ModPageViewModel : ObservableObject
     {
-		public ImportedModsItemModel ModInfo;
-		private string _name;
+		public DiscoverModsItemModel DiscoverModInfo;
+		public ImportedModsItemModel ImportedModInfo;
+        private int _id;
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; OnPropertyChanged(); }
+        }
+        private string _name;
 		public string Name
         {
 			get { return _name; }
@@ -76,11 +83,20 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
             this.Installed = Installed;
 
-            ModInfo = MiddleMan.ImportedMods[id];
-            OnLoaded();
+            if (Installed)
+            {
+                ImportedModInfo = MiddleMan.ImportedMods[id];
+                OnLoadedImportedMod();
+            }
+            else
+            {
+                DiscoverModInfo = MiddleMan.DiscoverMods[id];
+                OnLoadedDiscoverMod();
+            }
+
             ImportedModsItemModel.OnPropertyChangeOfIsLoaded = () =>
             {
-                IsLoaded = ModInfo.IsLoaded;
+                this.IsLoaded = ImportedModInfo.IsLoaded;
             };
         }
 
@@ -89,16 +105,29 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         }
 
-		void OnLoaded()
-		{
-			Name = ModInfo.Name;
-            ImageSource = ModInfo.ImageSource;
-            Author = "By " + ModInfo.Author;
+        void OnLoadedDiscoverMod()
+        {
+            Id = DiscoverModInfo.WebId;
+            Name = DiscoverModInfo.Name;
+            ImageSource = DiscoverModInfo.ImageSource;
+            Author = "By " + DiscoverModInfo.Author;
             Title = Name + " | " + Author;
-            Description =  ModInfo.Description;
-            SubDescription = ModInfo.SubDescription;
-            IsLoaded = ModInfo.IsLoaded;
-            InformationPanel = ModInfo.InformationPanel;
+            Description = DiscoverModInfo.Description;
+            SubDescription = DiscoverModInfo.SubDescription;
+            InformationPanel = DiscoverModInfo.InformationPanel;
+        }
+
+        void OnLoadedImportedMod()
+		{
+            Id = ImportedModInfo.Id;
+            Name = ImportedModInfo.Name;
+            ImageSource = ImportedModInfo.ImageSource;
+            Author = "By " + ImportedModInfo.Author;
+            Title = Name + " | " + Author;
+            Description =  ImportedModInfo.Description;
+            SubDescription = ImportedModInfo.SubDescription;
+            IsLoaded = ImportedModInfo.IsLoaded;
+            InformationPanel = ImportedModInfo.InformationPanel;
         }
 	}
 }

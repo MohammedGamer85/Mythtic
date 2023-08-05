@@ -12,7 +12,7 @@ namespace mythos.Models
         private Version? _version;
 
         //! Needed
-        public int Id { get; set; }
+        public int WebId { get; set; }
 
         public string Name
         {

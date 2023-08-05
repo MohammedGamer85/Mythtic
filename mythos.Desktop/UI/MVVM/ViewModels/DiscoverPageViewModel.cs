@@ -38,7 +38,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
             MiddleMan.OnPropertyChangeOfDiscoverModsModPage = () =>
             {
-                MiddleMan.View = new ModPage(MiddleMan.ImportedModPage, false);
+                MiddleMan.View = new ModPage(MiddleMan.DiscoverModPage, false);
             };
 
             //todo: remove this later it is temprary//
@@ -46,7 +46,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             {
                 MiddleMan.DiscoverMods.Add(new DiscoverModsItemModel
                 {
-                    Id = Mods.Count(),
+                    WebId = Mods.Count(),
                     Name = "MCL Mod123456",
                     ImageSource = "https://t3.ftcdn.net/jpg/02/59/91/26/240_F_259912646_1kZxA3V9GiQu79hcJsGGJXHpP4EOn4mf.jpg",
                     Description = "This is a test myth!",
@@ -59,7 +59,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 });
                 MiddleMan.DiscoverMods.Add(new DiscoverModsItemModel
                 {
-                    Id = Mods.Count(),
+                    WebId = Mods.Count(),
                     Name = "Myth MOD XD",
                     ImageSource = "https://t4.ftcdn.net/jpg/04/04/15/09/240_F_404150916_fMJoiUcjr5itUd5WPS8bjDABOEXDWr12.jpg",
                     Description = "This is a test myth!",

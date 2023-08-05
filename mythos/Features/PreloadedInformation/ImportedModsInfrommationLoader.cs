@@ -16,10 +16,12 @@ namespace mythos.Features.PreloadedInformation
     public class ImportedModsInfrommationLoader
     {   
         public ImportedModsInfrommationLoader() {
+
             MiddleMan.ImportedMods = JsonReaderHelper.ReadJsonFile<ObservableCollection<ImportedModsItemModel>>("importedMods.json");
             Trace.TraceInformation("\nLoaded imported mods");
             foreach (var item in  MiddleMan.ImportedMods)
             {
+                Trace.TraceInformation($"WebId           {item.Id}");
                 Trace.TraceInformation($"WebId        {item.WebId}");
                 Trace.TraceInformation($"Uuid         {item.Uuid}");
                 Trace.TraceInformation($"Name         {item.Name}");

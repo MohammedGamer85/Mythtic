@@ -146,7 +146,7 @@
 					<DataTemplate>
 
 						<Button Classes="c4" Command="{Binding ModPageCommand}"
-								CommandParameter="{Binding Id}"
+								CommandParameter="{Binding WebId}"
 								Width="{Binding Path=$parent.Width}"/>
 
 					</DataTemplate>
