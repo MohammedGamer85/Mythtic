@@ -13,6 +13,7 @@ using mythos.Data;
 using mythos.Services;
 using mythos.UI.Services;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Numerics;
 
 namespace mythos.Features.EnableDisabingMods;
 
@@ -20,6 +21,7 @@ public class EnableDisableMods : ICommand
 {
     public event EventHandler CanExecuteChanged;
     private string _path;
+    private Dictionary<string, string> fileNames;
 
     public bool CanExecute(object parameter)
     {
@@ -28,34 +30,35 @@ public class EnableDisableMods : ICommand
     }
 
     public void Execute(object parameter)
-    { 
-        _path = Path.Combine(FilePaths.GetMythosDownloads, MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid);
-        if (MiddleMan.ImportedMods[Convert.ToInt32(parameter)].IsLoaded == true)
-        {
-            MiddleMan.ImportedMods[Convert.ToInt32(parameter)].IsLoaded = false;
-            Trace.WriteLine($"Disabling {MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid}");
-            Disable();
-        }
-        else
-        {
-            MiddleMan.ImportedMods[Convert.ToInt32(parameter)].IsLoaded = true;
-            Trace.WriteLine($"Enabling {MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid}");
-            Enable();
-        }
-        JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
+    {
         // Add your code that will be executed when the command is invoked
+
+        int id = Convert.ToInt32(parameter);
+
+        _path = Path.Combine(FilePaths.GetMythosDownloads, MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid);
+
+        fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "MythInfo.json"));
+
+        if (MiddleMan.ImportedMods[id].IsLoaded == true)
+            Disable(id);
+        else
+            Enable(id);
+
+        JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
     }
 
-    private void Enable()
+    private void Enable(int id)
     {
-        Dictionary<string, string> fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "MythInfo.json"));
+        Trace.WriteLine($"Enabling {MiddleMan.ImportedMods[id].Uuid}");
+        MiddleMan.ImportedMods[id].IsLoaded = true;
         DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
         DirectoryUtilities.Copy(Path.Combine(_path, fileNames["RP"]), Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
     }
 
-    private void Disable()
+    private void Disable(int id)
     {
-        Dictionary<string, string> fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "MythInfo.json"));
+        Trace.WriteLine($"Disabling {MiddleMan.ImportedMods[id].Uuid}");
+        MiddleMan.ImportedMods[id].IsLoaded = false;
         Directory.Delete(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
         Directory.Delete(Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
     }
