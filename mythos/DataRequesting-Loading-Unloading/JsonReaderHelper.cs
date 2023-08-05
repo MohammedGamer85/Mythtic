@@ -14,23 +14,26 @@ using System.Threading.Tasks;
 namespace mythos.Data
 {   //! takes in a genaric and returns the data from a json file in the genaric type inputed.
     public static class JsonReaderHelper
-    {   
-        public static TReturn ReadJsonFile<TReturn>(string fileName)
+    {
+        public static TReturn ReadJsonFile<TReturn>(string file, bool isRootPath = false)
         {
-            Trace.Write("JsonReaderHelper Reading: " + fileName + " Result: ");
-
-            string JsonString = File.ReadAllText(FilePaths.GetAppDocFolder + fileName);
-
             TReturn deserilizedContent = default;
 
             try
             {
+                Trace.Write("JsonReaderHelper Reading: " + file + " Result: ");
+
+                string jsonString = (isRootPath)
+                ? File.ReadAllText(file)
+                : File.ReadAllText(Path.Combine(FilePaths.GetAppDocFolder,  file));
+
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
-                deserilizedContent = JsonSerializer.Deserialize<TReturn>(JsonString, options);
+                deserilizedContent = JsonSerializer.Deserialize<TReturn>(jsonString, options);
+
+                Trace.Write(deserilizedContent + "\n");
             }
             catch (Exception ex) { Trace.WriteLine(ex + "\n"); }
 
-            Trace.Write(deserilizedContent + "\n");
             return deserilizedContent;
         }
     }

@@ -4,9 +4,9 @@ using System.IO;
 
 namespace mythos.Services
 {
-    public class CopyDirectory
+    public static class DirectoryUtilities
     {   
-        public CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        public static void Copy(string sourceDir, string destinationDir, bool recursive)
         {
             // Get information about the source directory
             var dir = new DirectoryInfo(sourceDir);
@@ -34,7 +34,7 @@ namespace mythos.Services
                 foreach (DirectoryInfo subDir in dirs)
                 {
                     string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
-                    new CopyDirectory(subDir.FullName, newDestinationDir, true);
+                    Copy(subDir.FullName, newDestinationDir, true);
                 }
             }
 
