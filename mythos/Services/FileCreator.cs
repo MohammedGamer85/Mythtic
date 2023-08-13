@@ -24,7 +24,7 @@ namespace mythos.Services
             CheckAndCreateFile(FilePaths.GetAppDocFolder + "jsonChecked.json");
         }
 
-        public static void CheckAndCreateDirectory(string directory)
+        private static void CheckAndCreateDirectory(string directory)
         {
             if (!Directory.Exists(directory))
             {
@@ -32,7 +32,7 @@ namespace mythos.Services
             }
         }
 
-        public static void CheckAndCreateFile(string directory)
+        private static void CheckAndCreateFile(string directory)
         {
             if (!File.Exists(directory))
                 File.Create(directory);

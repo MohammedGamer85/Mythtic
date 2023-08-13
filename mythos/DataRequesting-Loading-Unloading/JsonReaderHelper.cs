@@ -18,7 +18,6 @@ namespace mythos.Data
         public static TReturn ReadJsonFile<TReturn>(string file, bool isRootPath = false)
         {
             TReturn deserilizedContent = default;
-
             try
             {
                 Trace.Write("JsonReaderHelper Reading: " + file + " Result: ");

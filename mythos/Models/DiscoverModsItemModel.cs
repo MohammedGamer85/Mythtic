@@ -31,24 +31,6 @@ namespace mythos.Models
         //! Optional (Auto Imported if not done manully)
         public string SubDescription { get; set; } = string.Empty;
 
-
-        public static Action OnPropertyChangeOfIsLoaded;
-        
-        public bool? IsLoaded
-        {
-            get { return _isloaded; }
-            set
-            {
-                _isloaded = value; OnPropertyChanged();
-                if (OnPropertyChangeOfIsLoaded != null)
-                {
-
-                    ImportedModsItemModel.OnPropertyChangeOfIsLoaded.Invoke();
-                }
-            }
-        }
-
-
         public DateTime LastUpdated { get; set; } = DateTime.Now;
 
         public Version Version

@@ -22,26 +22,21 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 {
 	public class LoginViewModel : ReactiveObject
 	{
+        private string _email;
+        private string _password;
+
         UserInformationLoader userInformationLoader = new();
 
-        private string _email;
         public string Email
         {
             get => _email;
             set => _email = value;
         }
-        private string _password;
         public string Password
         {
             get => _password;
             set => _password = value;
         }
-
-        public LoginViewModel()
-        {
-        }
-
-        
 
         //! Performs your login logic here, such as checking credentials, authentication, etc.
         public async Task LoginButton_Click()

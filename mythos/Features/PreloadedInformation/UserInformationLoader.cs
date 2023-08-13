@@ -38,7 +38,7 @@ namespace mythos.Features.Importaccount
         public async Task<bool> InitializeUserFromSavedUser()
         {
             Trace.WriteLine("Importing account infromation");
-            bool isAccountDataExists = JsonCheckerHelper.CheckJsonFileForData(fileName);
+            bool isAccountDataExists = JsonCheckHelper.CheckJsonFileForData(fileName);
 
             // get userInfoFrom json
 
@@ -54,7 +54,6 @@ namespace mythos.Features.Importaccount
             {
                 return false;
             }
-            return false;
         }
 
         public void InitializeUser()
@@ -69,7 +68,7 @@ namespace mythos.Features.Importaccount
 
             JsonWriterHelper.WriteJsonFile<Account>(fileName, importedAccount);
 
-            JsonCheckHelper.JsonCheckJsonFile(fileName);
+            JsonCheckHelper.JsonCheckFileForData(fileName);
 
             Trace.WriteLine("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString + User.id + "\n");
         }

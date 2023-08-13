@@ -179,6 +179,30 @@ ClipToBounds="True">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
+
+		<StackPanel 
+			VerticalAlignment="Top"
+			HorizontalAlignment="Left"
+			Margin="5,2.5,0,0">
+		
+			<Button 
+				FontSize="15"
+				FontFamily="/UI/MVVM/Fonts/#Minecraft"
+				FontWeight="Bold"
+				BorderBrush="White"
+				BorderThickness="2"
+				Command="{Binding importMod}"
+				Background="#555147"
+				Foreground="#A9A8A3">
+
+				<TextBlock
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Text="Import Myth"
+					Margin="0,4,0,0"/>
+				
+			</Button>
+		</StackPanel>
 		
 		<ScrollViewer
 				VerticalScrollBarVisibility="Visible"

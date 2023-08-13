@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\VT323-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MCLDiscordLogo.png" />
+    <Resource Include="Images\MythosLogo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="MVVM\Model\ModCardModel (2).cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataClasses\" />
+  </ItemGroup>
+</Project>

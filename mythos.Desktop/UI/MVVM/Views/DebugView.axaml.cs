@@ -9,8 +9,5 @@ namespace mythos.Desktop.UI.MVVM.Views
         {
             InitializeComponent();
         }
-
-        
-
     }
 }

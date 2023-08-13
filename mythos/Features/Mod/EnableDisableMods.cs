@@ -15,7 +15,7 @@ using mythos.UI.Services;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Numerics;
 
-namespace mythos.Features.EnableDisabingMods;
+namespace mythos.Features.Mod;
 
 public class EnableDisableMods : ICommand
 {

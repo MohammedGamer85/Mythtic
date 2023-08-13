@@ -15,10 +15,9 @@ namespace mythos.Data
     {   
         public static void WriteJsonFile<TContent>(string fileName, TContent content)
         {
-            Trace.WriteLine("JsonWriterHelper Writing To: " + fileName + " Data: " + content.ToString + "\n");
-
             try
             {
+                Trace.WriteLine("JsonWriterHelper Writing To: " + fileName + " Data: " + content.ToString + "\n");
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true,};
                 var serializedContent = JsonSerializer.Serialize<TContent>(content, options);
                 File.WriteAllText(FilePaths.GetAppDocFolder + fileName, serializedContent);

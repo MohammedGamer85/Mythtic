@@ -20,16 +20,13 @@ namespace mythos.Desktop.UI.MVVM.ViewModels;
 
 public class MenuButtonsViewModel : ObservableObject
 {   //There objects are linked to there related pages.
-    public HomePage HomePageVM;
-    public DiscoverPage DiscoverPageVM;
-    public SettingsPage SettingsPageVM;
+    public HomePage HomePageVM = new HomePage();
+    public DiscoverPage DiscoverPageVM = new DiscoverPage();
+    public SettingsPage SettingsPageVM = new SettingsPage();
 
     public MenuButtonsViewModel()
     {   
-        HomePageVM = new HomePage();
         MiddleMan.View = HomePageVM;
-        DiscoverPageVM = new DiscoverPage();
-        SettingsPageVM = new SettingsPage();
     }
     //Eatch funcation is linked to it's respictive button in the MenuButtons.axml file.
     public void SetHomeView() => MiddleMan.View = HomePageVM;

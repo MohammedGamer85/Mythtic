@@ -19,6 +19,7 @@ namespace mythos.Data
         {
             Timeout = TimeSpan.FromSeconds(5)
         };
+
         public async Task<TReturn> PostRequest<TReturn, TContent>(string url, TContent content)
         {
             var serilizationOptions = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, };

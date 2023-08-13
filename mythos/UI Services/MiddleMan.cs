@@ -12,109 +12,86 @@ using System.Threading.Tasks;
 namespace mythos.UI.Services;
 
 public static class MiddleMan
-{   //! Is used to comuncate vars between classes without refrencing them
+{   // Is used to comuncate vars between classes without refrencing them
+
+    //! Private
     private static object _currentView;
+    private static object _currentContent;
+    private static int _impotredModPage;
+    private static int _discoverModPage;
+    private static ObservableCollection<ImportedModsItemModel> _importedMods = new();
+    private static ObservableCollection<DiscoverModsItemModel> _discoverMods = new();
+
+    public static Action? OnPropertyChangeOfCurrentView;
+    public static Action? OnPropertyChangeOfCurrentContent;
+    public static Action? OnPropertyChangeOfImportedModsModPage;
+    public static Action? OnPropertyChangeOfDiscoverModsModPage;
+    public static Action? OnPropertyChangeOfImportedMods;
+    public static Action? OnPropertyChangeOfDiscoverMods;
+
     public static object View
     {
-        get
-        {
-            return _currentView;
-        }
+        get => _currentView;
         set
         {
             _currentView = value;
-            MiddleMan.OnPropertyChangeOfCurrentView.Invoke();
+            if (OnPropertyChangeOfCurrentView != null)
+                OnPropertyChangeOfCurrentView.Invoke();
         }
     }
-    public static Action OnPropertyChangeOfCurrentView;
 
-
-    private static object _currentContent;
     public static object Content
     {
-        get
-        {
-            return _currentContent;
-        }
+        get => _currentContent;
         set
         {
             _currentContent = value;
-            MiddleMan.OnPropertyChangeOfCurrentContent.Invoke();
+            OnPropertyChangeOfCurrentContent.Invoke();
         }
     }
 
-    public static Action OnPropertyChangeOfCurrentContent;
-
-    private static int _impotredModPage;
     public static int ImportedModPage
     {
-        get
-        {
-            return _impotredModPage;
-        }
+        get => _impotredModPage;
         set
         {
             _impotredModPage = value;
-            MiddleMan.OnPropertyChangeOfImportedModsModPage.Invoke();
+            OnPropertyChangeOfImportedModsModPage.Invoke();
         }
     }
 
-    public static Action OnPropertyChangeOfImportedModsModPage;
-
-    private static int _discoverModPage;
     public static int DiscoverModPage
     {
-        get
-        {
-            return _discoverModPage;
-        }
+        get => _discoverModPage;
         set
         {
             _discoverModPage = value;
-            MiddleMan.OnPropertyChangeOfDiscoverModsModPage.Invoke();
+            OnPropertyChangeOfDiscoverModsModPage.Invoke();
         }
     }
-
-    public static Action OnPropertyChangeOfDiscoverModsModPage;
-
-    //! Single vars.
-    //? MOHAMMED LISTEN DO NOT. I WAS CLEAR NO
-
-    private static ObservableCollection<ImportedModsItemModel> _importedMods = new();
 
     //! Is done like this to allow multiple parts of the code to change
     //! the value ofImportedmods.
     public static ObservableCollection<ImportedModsItemModel> ImportedMods
     {
-        get
-        {
-            return _importedMods;
-        }
+        get => _importedMods;
         set
         {
             _importedMods = value;
-            MiddleMan.OnPropertyChangeOfImportedMods.Invoke();
+            if (OnPropertyChangeOfImportedMods != null)
+                OnPropertyChangeOfImportedMods.Invoke();
         }
     }
-
-    public static Action OnPropertyChangeOfImportedMods;
-
-    private static ObservableCollection<DiscoverModsItemModel> _discoverMods = new();
 
     //! Is done like this to allow multiple parts of the code to change
     //! the value ofImportedmods.
     public static ObservableCollection<DiscoverModsItemModel> DiscoverMods
     {
-        get
-        {
-            return _discoverMods;
-        }
+        get => _discoverMods;
         set
         {
             _discoverMods = value;
-            MiddleMan.OnPropertyChangeOfDiscoverMods.Invoke();
+            OnPropertyChangeOfDiscoverMods.Invoke();
         }
     }
-
-    public static Action OnPropertyChangeOfDiscoverMods;
 }

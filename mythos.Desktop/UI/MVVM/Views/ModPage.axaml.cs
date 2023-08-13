@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using mythos.Desktop.UI.MVVM.ViewModels;
 using System.Diagnostics;
-using Tmds.DBus.Protocol;
 
 namespace mythos.Desktop.UI.MVVM.Views
 {

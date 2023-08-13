@@ -14,6 +14,10 @@ using mythos.Desktop.UI.MVVM.Views;
 using mythos.Data;
 using mythos.Features.PreloadedInformation;
 using DynamicData;
+using mythos.Features.ImportMod;
+using mythos.Views;
+using Avalonia.Dialogs;
+using Avalonia.Dialogs.Internal;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -29,6 +33,9 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public HomePageViewModel()
         {
+            //get the info from json file.
+            new ImportedModsInfrommationLoader();
+
             /*! Is done like this to allow multiple parts of the code to change
                 the value ofImportedmods. */
             MiddleMan.OnPropertyChangeOfImportedMods = () =>
@@ -36,13 +43,15 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 Mods = MiddleMan.ImportedMods;
             };
 
-            //get the info from json file.
-            new ImportedModsInfrommationLoader();
-
             MiddleMan.OnPropertyChangeOfImportedModsModPage = () =>
             {
                 MiddleMan.View = new ModPage(MiddleMan.ImportedModPage, true);
             };
+        }
+
+        public void importMod()
+        {
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using mythos.Services;
 using System;
 using System.Runtime.InteropServices;
-using mythos.Features.EnableDisabingMods;
+using mythos.Features.Mod;
 
 namespace mythos.Models
 {
@@ -11,6 +11,10 @@ namespace mythos.Models
         private string? _name;
         private bool? _isloaded;
         private Version? _version;
+
+        //! Actions/Function
+        private EnableDisableMods EnableDisableModCommand { get; set; }
+        private SwitchToModView ModPageCommand { get; set; }
 
         //! Needed
         public int Id { get; set; }
@@ -65,10 +69,6 @@ namespace mythos.Models
         public string? InformationPanel { get; set; } = string.Empty;
 
         public string? ShortendInformationPanel { get; set; } = string.Empty;
-
-        //! Actions/Function
-        private EnableDisableMods EnableDisableModCommand { get; set; }
-        private SwitchToModView ModPageCommand { get; set; }
 
         public ImportedModsItemModel()
         {

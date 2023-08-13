@@ -36,7 +36,7 @@ public class MainViewModel : ObservableObject
     private object _sideBar;
     private object _topBar;
     private object _cornerDisplay;
-
+    
     public object TopBar
     {
         get { return _topBar; }
@@ -71,6 +71,13 @@ public class MainViewModel : ObservableObject
     //! This constructer is responsible for deciding what is displayed were in the MainView.
     public MainViewModel()
     {
+        MenuButtonsVM = new MenuButtons();
+        SideBar = MenuButtonsVM;
+        SearchBarVM = new SearchBar();
+        TopBar = SearchBarVM;
+        ProfileDisplayVM = new ProfileDisplay();
+        CornerDisplay = ProfileDisplayVM;
+
         MiddleMan.OnPropertyChangeOfCurrentView = () =>
         {
             CurrentView = MiddleMan.View;
@@ -86,13 +93,6 @@ public class MainViewModel : ObservableObject
         //DebugMode();
         CheckForAreadyExistingAccountInfo();
 
-
-        MenuButtonsVM = new MenuButtons();
-        SideBar = MenuButtonsVM;
-        SearchBarVM = new SearchBar();
-        TopBar = SearchBarVM;
-        ProfileDisplayVM = new ProfileDisplay();
-        CornerDisplay = ProfileDisplayVM;
     }
 
     UserInformationLoader userInformationLoader = new();
@@ -105,9 +105,7 @@ public class MainViewModel : ObservableObject
             MiddleMan.Content = new MainView();
         }
         else
-        {
             Content = new LoginView();
-        }
     }
 
     async Task DebugMode()
