@@ -205,10 +205,11 @@ ClipToBounds="True">
 		</StackPanel>
 		
 		<ScrollViewer
+				Margin="0,45,0,0"
 				VerticalScrollBarVisibility="Visible"
 				Height="{Binding Path=$parent.Height}"
 				Grid.Column="0" Grid.Row="0"
-				VerticalAlignment="Bottom">
+				VerticalAlignment="Top">
 			
 			<ItemsRepeater
 				ItemsSource="{Binding Mods}"

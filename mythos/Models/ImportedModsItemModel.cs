@@ -18,7 +18,7 @@ namespace mythos.Models
 
         //! Needed
         public int Id { get; set; }
-        public int WebId { get; set; }
+        public int? WebId { get; set; }
         public string Uuid { get; set; }
         
         public string Name
@@ -63,7 +63,10 @@ namespace mythos.Models
             set { _version = value; SetValues(); OnPropertyChanged(); }
         }
 
+        public bool IsDevMod { get; set; } = false;
+
         //! Auto Added
+
         public string? Title { get; set; } = string.Empty;
 
         public string? InformationPanel { get; set; } = string.Empty;

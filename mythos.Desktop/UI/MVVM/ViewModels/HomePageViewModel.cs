@@ -18,6 +18,8 @@ using mythos.Features.ImportMod;
 using mythos.Views;
 using Avalonia.Dialogs;
 using Avalonia.Dialogs.Internal;
+using Avalonia.Platform.Storage;
+using System.Threading.Tasks;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -51,7 +53,8 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public void importMod()
         {
-
+            var i = new ImportMod();
+            i.ImportAsync();
         }
     }
 }

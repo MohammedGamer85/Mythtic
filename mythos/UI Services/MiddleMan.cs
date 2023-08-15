@@ -94,4 +94,7 @@ public static class MiddleMan
             OnPropertyChangeOfDiscoverMods.Invoke();
         }
     }
+
+    public static bool UserDataStatus = false;
+
 }

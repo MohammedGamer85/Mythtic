@@ -12,15 +12,18 @@ using System.Threading.Tasks;
 namespace mythos.Data
 { //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetAppDocFolder.
     public static class JsonWriterHelper
-    {   
-        public static void WriteJsonFile<TContent>(string fileName, TContent content)
+    {
+        public static void WriteJsonFile<TContent>(string file, TContent content, bool IsRootPath = false)
         {
             try
             {
-                Trace.WriteLine("JsonWriterHelper Writing To: " + fileName + " Data: " + content.ToString + "\n");
-                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true,};
+                Trace.WriteLine("JsonWriterHelper Writing To: " + file + " Data: " + content.ToString + "\n");
+                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true, };
                 var serializedContent = JsonSerializer.Serialize<TContent>(content, options);
-                File.WriteAllText(FilePaths.GetAppDocFolder + fileName, serializedContent);
+                if (IsRootPath)
+                    File.WriteAllText(file, serializedContent);
+                else
+                    File.WriteAllText(Path.Combine(FilePaths.GetAppDocFolder, file), serializedContent);
             }
             catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
         }

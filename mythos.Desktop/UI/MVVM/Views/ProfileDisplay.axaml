@@ -9,9 +9,6 @@
 			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 			 x:DataType="vm:ProfileDisplayViewModel"
 			 Background="Transparent">
-	<UserControl.DataContext>
-		<vm:ProfileDisplayViewModel/>
-	</UserControl.DataContext>
 
 	<!-- Is used to display the profile button -->
 	

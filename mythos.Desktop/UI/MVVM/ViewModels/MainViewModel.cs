@@ -36,7 +36,9 @@ public class MainViewModel : ObservableObject
     private object _sideBar;
     private object _topBar;
     private object _cornerDisplay;
-    
+
+    UserInformationLoader userInformationLoader = new();
+
     public object TopBar
     {
         get { return _topBar; }
@@ -75,7 +77,7 @@ public class MainViewModel : ObservableObject
         SideBar = MenuButtonsVM;
         SearchBarVM = new SearchBar();
         TopBar = SearchBarVM;
-        ProfileDisplayVM = new ProfileDisplay();
+        ProfileDisplayVM = new ProfileDisplay(userInformationLoader);
         CornerDisplay = ProfileDisplayVM;
 
         MiddleMan.OnPropertyChangeOfCurrentView = () =>
@@ -95,17 +97,23 @@ public class MainViewModel : ObservableObject
 
     }
 
-    UserInformationLoader userInformationLoader = new();
-
     async Task CheckForAreadyExistingAccountInfo()
-    {
-        if (await userInformationLoader.InitializeUserFromSavedUser())
+    {   
+        if(MiddleMan.UserDataStatus == false)
+        {
+            if (await userInformationLoader.InitializeUserFromSavedUser())
+            {
+                Trace.WriteLine("Login Infromation Aready Autherizied");
+                MiddleMan.Content = new MainView();
+            }
+            else
+                Content = new LoginView();
+        }
+        else
         {
             Trace.WriteLine("Login Infromation Aready Autherizied");
             MiddleMan.Content = new MainView();
         }
-        else
-            Content = new LoginView();
     }
 
     async Task DebugMode()

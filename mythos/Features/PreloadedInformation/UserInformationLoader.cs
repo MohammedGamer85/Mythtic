@@ -47,7 +47,7 @@ namespace mythos.Features.Importaccount
             if (isAccountDataExists)
             {
                 importedAccount = JsonReaderHelper.ReadJsonFile<Account>(fileName);
-                InitializeUser();
+                await InitializeUser();
                 return true;
             }
             else
@@ -56,7 +56,7 @@ namespace mythos.Features.Importaccount
             }
         }
 
-        public void InitializeUser()
+        public async Task InitializeUser()
         {
             User.id = importedAccount.Data.Id;
             User.RoleNames = importedAccount.Data.Roles
@@ -71,6 +71,7 @@ namespace mythos.Features.Importaccount
             JsonCheckHelper.JsonCheckFileForData(fileName);
 
             Trace.WriteLine("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString + User.id + "\n");
+            MiddleMan.UserDataStatus = true;
         }
     }
 }

@@ -3,6 +3,7 @@ using Avalonia.Input;
 using mythos.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,24 @@ public static class User
 
     //!Private
     private static string _name;
+    private static string _imagePath;
 
     public static int? id { get; set; }
-    
+
     public static string? Name
     {
-        get { return _name;  }
+        get { return _name; }
         set { _name = value; setValue(); }
     }
 
+    public static string? ImageSource
+    {
+        get => _imagePath; 
+        set { _imagePath = value; }
+    }
+
     public static List<string> RoleNames { get; set; } = new List<string>();
-    public static string? ImageSource { get; set; } = string.Empty;
+
     public static string AccessToken { get; set; } = string.Empty;
 
     //! Auto set
