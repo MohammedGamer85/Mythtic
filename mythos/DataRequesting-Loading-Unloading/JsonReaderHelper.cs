@@ -24,7 +24,7 @@ namespace mythos.Data
 
                 string jsonString = (isRootPath)
                 ? File.ReadAllText(file)
-                : File.ReadAllText(Path.Combine(FilePaths.GetAppDocFolder,  file));
+                : File.ReadAllText(Path.Combine(FilePaths.GetMythosDocFolder,  file));
 
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
                 deserilizedContent = JsonSerializer.Deserialize<TReturn>(jsonString, options);

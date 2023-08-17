@@ -14,14 +14,16 @@ namespace mythos.Services
         public static void InitializeFileDirectories()
         {
             Trace.WriteLine("Creating nesseary files");
-            CheckAndCreateDirectory(FilePaths.GetAppDocFolder);
+            CheckAndCreateDirectory(FilePaths.GetMythosDocFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsBPFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsRPFolder);
-            CheckAndCreateDirectory(FilePaths.GetMythosDownloads);
+            CheckAndCreateDirectory(FilePaths.GetMythosDownloadsFolder);
+            CheckAndCreateDirectory(FilePaths.GetMythosTempFolder);
+            CheckAndCreateDirectory(FilePaths.GetMythosExportFolder);
 
-            CheckAndCreateFile(FilePaths.GetAppDocFolder + "appData.json");
-            CheckAndCreateFile(FilePaths.GetAppDocFolder + "importedMods.json");
-            CheckAndCreateFile(FilePaths.GetAppDocFolder + "jsonChecked.json");
+            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "appData.json");
+            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "importedMods.json");
+            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "jsonChecked.json");
         }
 
         private static void CheckAndCreateDirectory(string directory)

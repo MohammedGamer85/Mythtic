@@ -20,6 +20,26 @@ namespace mythos.Data
             Timeout = TimeSpan.FromSeconds(5)
         };
 
+        public async Task<TReturn> GetRequest<TReturn>(string url)
+        {
+            using var httpResponse = await _client.GetAsync(url);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+            string responseContent = await httpResponse.Content.ReadAsStringAsync();
+
+            TReturn deserilizedContent = default;
+
+            try
+            {
+                var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
+                deserilizedContent = JsonSerializer.Deserialize<TReturn>(responseContent, options);
+            }
+            catch (Exception ex) { Console.WriteLine(ex); throw ex; }
+
+            return deserilizedContent;
+        }
+
         public async Task<TReturn> PostRequest<TReturn, TContent>(string url, TContent content)
         {
             var serilizationOptions = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, };

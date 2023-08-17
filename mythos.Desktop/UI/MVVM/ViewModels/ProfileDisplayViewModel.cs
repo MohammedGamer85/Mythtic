@@ -1,19 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Avalonia.Automation.Peers;
-using Avalonia.Controls;
-using Avalonia.Media.Imaging;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using mythos.DataRequesting_Loading_Unloading;
 using mythos.Features.Importaccount;
 using mythos.Models;
 using mythos.Services;
-using ReactiveUI;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {   //! This displayes the user's profile pic and username.
@@ -51,7 +40,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public async Task DownloadImage()
         {
-            await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetMythosDownloads, User.Name + ".jpg");
+            await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetMythosDownloadsFolder, User.Name + ".jpg");
         }
     }
 }

@@ -1,0 +1,144 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+		xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+		x:DataType="vm:ExportModWindowViewModel"
+        x:Class="mythos.Desktop.UI.MVVM.Views.ExportModWindow"
+		Background="#836953"
+		MaxHeight="600"
+		MaxWidth="400"
+		MinHeight="600"
+		MinWidth="400"
+		WindowState="Normal"
+		IsEnabled="True"
+		IsVisible="True"
+        Title="ExportModWindow">
+
+	<Window.Styles>
+		<Style Selector="Button.m1">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<TextBlock Text="Exporting App Version"
+								   FontSize="25"
+								   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+								   FontWeight="Bold"
+								   Foreground="#fafafa"
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center"/>
+
+						<Border.Background>
+							<!-- <ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\btn_delete_small_normal (2).png"
+										Stretch="Uniform"/> -->
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="30"/>
+			<Setter Property="Width" Value="300"/>
+			<Setter Property="Margin" Value="0,10,0,10"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<!-- Enabled Button varent-->
+		<Style Selector="Button.m1.IsUpdated /template/ Border">
+			<Setter Property="Background">
+				<!-- <ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy (2)\btn_delete_small_normal (2).png"
+							Stretch="Uniform"/> -->
+			</Setter>
+		</Style>
+		<Style Selector="Button.m1.IsUpdated /template/ TextBlock">
+			<Setter Property="Text" Value="Exporting GameVersion"/>
+		</Style>
+	</Window.Styles>
+	
+	<Grid
+		HorizontalAlignment="Left"
+		VerticalAlignment="Stretch"
+		ClipToBounds="True">
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Border
+			Margin="5"
+			BorderBrush="#1a1a1a"
+			BorderThickness="15">
+			<StackPanel
+				VerticalAlignment="Top"
+				HorizontalAlignment="Left"
+				Margin="5,2.5,0,0">
+
+				<Button Classes="m1"
+						IsVisible="True"
+						Classes.IsUpdated="{Binding ExportedVersion}"
+						Classes.NotUpdated="{Binding ExportedVersion}"
+						Command="{Binding SwitchExportMode}"
+						VerticalAlignment="Bottom"/>
+
+				<ScrollViewer
+							Margin="0,0,0,0"
+							VerticalScrollBarVisibility="Visible"
+							Height="{Binding Path=$parent.Height}"
+							Grid.Column="0" Grid.Row="0"
+							VerticalAlignment="Top">
+
+					<ItemsRepeater
+						ItemsSource="{Binding Mods}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Top">
+						<ItemsRepeater.Layout>
+							<StackLayout Orientation="Vertical"/>
+						</ItemsRepeater.Layout>
+
+						<ItemsRepeater.ItemTemplate>
+							<DataTemplate>
+
+								<Border Background="#ba8759"
+										Margin="0,0,0,5"
+										BorderBrush="Black"
+										Width="300"
+										BorderThickness="3"
+										HorizontalAlignment="Center">
+									<Button Command="{Binding ExportModCommand}"
+											CommandParameter="{Binding Id}"
+											HorizontalAlignment="Center"
+											Width="295">
+										<StackPanel Orientation="Horizontal"
+													HorizontalAlignment="Center">
+											<TextBlock Text="{Binding Title}"
+													   FontSize="35"
+													   HorizontalAlignment="Center"
+													   FontFamily="/UI/MVVM/Fonts/#Minecraft"/>
+											
+											<TextBlock Text=" "
+													   FontSize="35"
+													   HorizontalAlignment="Center"
+													   FontFamily="/UI/MVVM/Fonts/#Minecraft"/>
+
+											<TextBlock Text="{Binding Id}"
+													   FontSize="35"
+													   HorizontalAlignment="Center"
+													   FontFamily="/UI/MVVM/Fonts/#Minecraft"/>
+										</StackPanel>
+
+									</Button>
+								</Border>
+							</DataTemplate>
+						</ItemsRepeater.ItemTemplate>
+					</ItemsRepeater>
+				</ScrollViewer>
+			</StackPanel>
+		</Border>
+	</Grid>
+</Window>

@@ -1,7 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Avalonia.Controls;
+using mythos.Data;
+using mythos.DataRequesting_Loading_Unloading;
 using mythos.Features.Mod;
 using mythos.Models;
 using mythos.Services;
@@ -23,8 +29,8 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         private string _informationPanel;
         private bool _installed;
 
-        public DiscoverModsItemModel DiscoverModInfo;
-		public ImportedModsItemModel ImportedModInfo;
+        public DisocverModItemInfoModel DiscoverModInfo = new();
+        public ImportedModsItemModel ImportedModInfo;
 
         public EnableDisableMods EnableDisableModsCommand { get; set; }
 
@@ -33,11 +39,11 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             get { return _id; }
             set { _id = value; OnPropertyChanged(); }
         }
-		public string Name
+        public string Name
         {
-			get { return _name; }
-			set { _name = value; OnPropertyChanged(); }
-		}
+            get { return _name; }
+            set { _name = value; OnPropertyChanged(); }
+        }
         public string ImageSource
         {
             get { return _imageSource; }
@@ -79,21 +85,13 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             set { _installed = value; OnPropertyChanged(); }
         }
 
-        public ModPageViewModel(int id, bool Installed) {
+        public ModPageViewModel(int id, bool Installed)
+        {
             EnableDisableModsCommand = new EnableDisableMods();
 
             this.Installed = Installed;
 
-            if (Installed)
-            {
-                ImportedModInfo = MiddleMan.ImportedMods[id];
-                OnLoadedImportedMod();
-            }
-            else
-            {
-                DiscoverModInfo = MiddleMan.DiscoverMods[id];
-                OnLoadedDiscoverMod();
-            }
+            getModInfo(id);
 
             ImportedModsItemModel.OnPropertyChangeOfIsLoaded = () =>
             {
@@ -101,29 +99,62 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             };
         }
 
+        async Task getModInfo(int id)
+        {
+            if (Installed)
+            {
+                ImportedModInfo = MiddleMan.ImportedMods[id];
+                OnLoadedImportedMod();
+            }
+            else
+            {
+                AuthenticationRequests authenticationRequests = new();
+                DiscoverModInfo = await authenticationRequests.DiscoverModDetials(id);
+                OnLoadedDiscoverMod();
+            }
+        }
+
+        public async Task DownloadMod()
+        {
+            await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myth/" + DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].File_hash + ".zip",
+                FilePaths.GetMythosTempFolder, "Mod.zip");
+            await AddMod.Add(new ImportedModsItemModel
+            {
+                WebId = DiscoverModInfo.Id,
+                ImageSource = DiscoverModInfo.DefaultImage,
+                Author = DiscoverModInfo.Category.Name,
+                Description = DiscoverModInfo.ShortDescription,
+                SubDescription = DiscoverModInfo.LongDescription,
+                GameMode = DiscoverModInfo.GameMode,
+                Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
+                LastUpdated = DateTime.Now,
+                IsDevMod = false,
+            }, Path.Combine(FilePaths.GetMythosTempFolder, "Mod"), true); 
+        }
+
         void OnLoadedDiscoverMod()
         {
-            Id = DiscoverModInfo.WebId;
+            Id = DiscoverModInfo.Id;
             Name = DiscoverModInfo.Name;
-            ImageSource = DiscoverModInfo.ImageSource;
-            Author = "By " + DiscoverModInfo.Author;
+            ImageSource = DiscoverModInfo.DefaultImage;
+            Author = "By " + DiscoverModInfo.Creator.Username;
             Title = Name + " | " + Author;
-            Description = DiscoverModInfo.Description;
-            SubDescription = DiscoverModInfo.SubDescription;
+            Description = DiscoverModInfo.ShortDescription;
+            SubDescription = DiscoverModInfo.LongDescription;
             InformationPanel = DiscoverModInfo.InformationPanel;
         }
 
         void OnLoadedImportedMod()
-		{
+        {
             Id = ImportedModInfo.Id;
             Name = ImportedModInfo.Name;
             ImageSource = ImportedModInfo.ImageSource;
             Author = "By " + ImportedModInfo.Author;
             Title = Name + " | " + Author;
-            Description =  ImportedModInfo.Description;
+            Description = ImportedModInfo.Description;
             SubDescription = ImportedModInfo.SubDescription;
             IsLoaded = ImportedModInfo.IsLoaded;
             InformationPanel = ImportedModInfo.InformationPanel;
         }
-	}
+    }
 }

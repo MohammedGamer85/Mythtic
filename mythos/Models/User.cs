@@ -1,12 +1,7 @@
-﻿using Avalonia.Controls.Shapes;
-using Avalonia.Input;
-using mythos.Services;
-using System;
+﻿using mythos.Services;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace mythos.Models;
 
@@ -42,6 +37,6 @@ public static class User
 
     static void setValue()
     {
-        ImagePath = FilePaths.GetMythosDownloads + (User.Name + ".jpg");
+        ImagePath = Path.Combine(FilePaths.GetMythosDownloadsFolder, (User.Name + ".jpg"));
     }
 }

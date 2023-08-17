@@ -16,13 +16,14 @@ namespace mythos.Services
 
         static string MLISPC = "Minecraft Legends\\internalStorage\\premium_cache\\";
 
-        public static string GetAppDocFolder => GetDirectory(SpecialFolder.MyDocuments, "Mythos\\");
-        public static string GetMythsBPFolder => GetDirectory(SpecialFolder.ApplicationData, (MLISPC + "behavior_packs\\"));
-        public static string GetMythsRPFolder => GetDirectory(SpecialFolder.ApplicationData, (MLISPC + "resource_packs\\"));
-        public static string GetMythosDownloads => Path.Combine(GetAppDocFolder, "DownLoaded\\");
-        public static string GetMythosTemp => Path.Combine(GetAppDocFolder, "Temp\\");
+        public static string GetMythosDocFolder => GetDirectory(SpecialFolder.MyDocuments, "Mythos");
+        public static string GetMythsBPFolder => GetDirectory(SpecialFolder.ApplicationData, Path.Combine(MLISPC, "behavior_packs"));
+        public static string GetMythsRPFolder => GetDirectory(SpecialFolder.ApplicationData, Path.Combine(MLISPC, "resource_packs"));
+        public static string GetMythosDownloadsFolder => Path.Combine(GetMythosDocFolder, "DownLoaded");
+        public static string GetMythosTempFolder => Path.Combine(GetMythosDocFolder, "Temp");
+        public static string GetMythosExportFolder => Path.Combine(GetMythosDocFolder, "Export");
 
-        private static string GetDirectory(SpecialFolder specialFolder, string subFolder) 
+        private static string GetDirectory(SpecialFolder specialFolder, string subFolder)
             => Path.Combine(GetFolderPath(specialFolder), subFolder);
     }
 }

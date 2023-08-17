@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using System.Diagnostics;
@@ -12,7 +10,6 @@ using mythos.Services;
 using mythos.Data;
 using mythos.UI.Services;
 using mythos.Models;
-using System.IO;
 
 
 namespace mythos.Features.ImportMod
@@ -25,7 +22,7 @@ namespace mythos.Features.ImportMod
 
             string _fileName;
             string _FilePath;
-            string _ExtractedFolderPath;
+            string _extractedFolderPath;
             string _mythFolderPath;
 
             try
@@ -41,7 +38,7 @@ namespace mythos.Features.ImportMod
                 {
                     _fileName = _file[0].Name;
                     _FilePath = Convert.ToString(_file[0].Path).Replace("file:///", "");
-                    _ExtractedFolderPath = Path.Combine(FilePaths.GetMythosTemp, _fileName);
+                    _extractedFolderPath = Path.Combine(FilePaths.GetMythosTempFolder, _fileName);
                 }
                 else
                     return false;
@@ -49,9 +46,9 @@ namespace mythos.Features.ImportMod
                 Trace.WriteLine($"File _fileName: {_fileName}");
                 Trace.WriteLine($"File _FilePath: {_FilePath}");
 
-                ZipFile.ExtractToDirectory(_FilePath, _ExtractedFolderPath, true);
+                ZipFile.ExtractToDirectory(_FilePath, _extractedFolderPath, true);
 
-                Dictionary<string, string> _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_ExtractedFolderPath, "modInfo.json"), true);
+                Dictionary<string, string> _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
 
                 //Adds the mod to the imported mod list (observableObject)
                 MiddleMan.ImportedMods.Add(new ImportedModsItemModel
@@ -62,7 +59,7 @@ namespace mythos.Features.ImportMod
                     Name = _modInfo["name"],
                     ImageSource = _modInfo["imageSource"],
                     Author = _modInfo["author"],
-                    GameMode = _modInfo["gameMode"],
+                    GameMode = _modInfo["GameMode"],
                     Description = _modInfo["description"],
                     SubDescription = _modInfo["subDescription"],
                     IsLoaded = false,
@@ -71,13 +68,13 @@ namespace mythos.Features.ImportMod
                     IsDevMod = true
                 });
 
-                _mythFolderPath = Path.Combine(FilePaths.GetMythosDownloads, _modInfo["uuid"]);
+                _mythFolderPath = Path.Combine(FilePaths.GetMythosDownloadsFolder, _modInfo["uuid"]);
 
                 MovePack("BP");
                 MovePack("RP");
 
                 if (!Directory.Exists(_mythFolderPath))
-                    File.Create(Path.Combine(_mythFolderPath, "modInfo.json"));
+                    File.Create(Path.Combine(_mythFolderPath, "modInfo.json")).Close();
 
                 Dictionary<string, string> _packs = new();
                 _packs.Add("BP", "BP-" + _modInfo["uuid"]);
@@ -94,13 +91,15 @@ namespace mythos.Features.ImportMod
                         Directory.Delete(Path.Combine(_mythFolderPath, (pack + "-" + _modInfo["uuid"])));
 
                     //copys the file
-                    DirectoryUtilities.Copy(Path.Combine(_ExtractedFolderPath, _modInfo[pack]), Path.Combine(_mythFolderPath, _modInfo[pack]), true);
+                    DirectoryUtilities.Copy(Path.Combine(_extractedFolderPath, _modInfo[pack]), Path.Combine(_mythFolderPath, _modInfo[pack]), true);
 
                     //Renames the files to the currect _fileName, even if they aready have it
                     Directory.Move(Path.Combine(_mythFolderPath, _modInfo[pack]), Path.Combine(_mythFolderPath, (pack + "-" + _modInfo["uuid"])));
                 }
 
                 JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
+
+                Directory.Delete(_extractedFolderPath, true);
 
                 return true;
             }

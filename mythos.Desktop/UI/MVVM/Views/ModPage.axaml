@@ -199,7 +199,8 @@
 				<ControlTemplate>
 					<StackPanel Orientation="Horizontal">
 
-						<Button Classes="h5"/>
+						<Button Classes="h5"
+								Command="{Binding DownloadMod}"/>
 
 					</StackPanel>
 				</ControlTemplate>

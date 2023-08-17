@@ -38,7 +38,7 @@
 	<ItemGroup>
     <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.0.1" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.1" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.1" /> 
   </ItemGroup>
 
   <ItemGroup>

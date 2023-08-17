@@ -56,5 +56,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             var i = new ImportMod();
             i.ImportAsync();
         }
+
+        public void exportMod()
+        {
+            new ExportModWindow();
+        }
     }
 }

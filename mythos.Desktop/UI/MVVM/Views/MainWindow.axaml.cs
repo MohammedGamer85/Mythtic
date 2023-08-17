@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using mythos;
+using mythos.Desktop;
 using mythos.Desktop.UI.MVVM.Views;
 using mythos.Services;
 using mythos.UI.Services;

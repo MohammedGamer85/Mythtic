@@ -181,6 +181,7 @@ ClipToBounds="True">
 		</Grid.RowDefinitions>
 
 		<StackPanel 
+			Orientation="Horizontal"
 			VerticalAlignment="Top"
 			HorizontalAlignment="Left"
 			Margin="5,2.5,0,0">
@@ -202,6 +203,26 @@ ClipToBounds="True">
 					Margin="0,4,0,0"/>
 				
 			</Button>
+
+			<Button
+				Margin="10,0,0,0"
+				FontSize="15"
+				FontFamily="/UI/MVVM/Fonts/#Minecraft"
+				FontWeight="Bold"
+				BorderBrush="White"
+				BorderThickness="2"
+				Command="{Binding exportMod}"
+				Background="#555147"
+				Foreground="#A9A8A3">
+
+				<TextBlock
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Text="export Myth"
+					Margin="0,4,0,0"/>
+
+			</Button>
+			
 		</StackPanel>
 		
 		<ScrollViewer
@@ -229,7 +250,6 @@ ClipToBounds="True">
 
 					</DataTemplate>
 				</ItemsRepeater.ItemTemplate>
-
 			</ItemsRepeater>
 		</ScrollViewer>
 	</Grid>

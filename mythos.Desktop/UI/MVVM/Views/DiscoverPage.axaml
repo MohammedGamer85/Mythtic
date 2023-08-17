@@ -31,9 +31,7 @@
 						<Canvas	
 								Margin="40,17,0,15"
 								VerticalAlignment="Top"
-								HorizontalAlignment="Left"
-								Height="175"
-								Width="175">
+								HorizontalAlignment="Left">
 
 							<Image
 								Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
@@ -44,20 +42,23 @@
 								Stretch="Fill"/>
 
 							<Image
-								asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
+								asyncImageLoader:ImageLoader.Source="{Binding DefaultImage}"
 								HorizontalAlignment="Center"
 								Height="175"
 								Width="175"
 								Stretch="Fill"/>
 						</Canvas>
-						
-						<StackPanel Orientation="Vertical">
+
+						<StackPanel
+								Orientation="Vertical"
+								ClipToBounds="False"
+								Width="{Binding Path=$parent.Bounds.Width}">
 
 							<TextBlock
 								Text="{Binding Name}"
 								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 								FontSize="30"
-								Margin="10,17,10,10"
+								Margin="180,17,10,10"
 								Foreground="Black"
 								Padding="0,0,0,0"
 								VerticalAlignment="Top"
@@ -66,9 +67,10 @@
 
 							<StackPanel>
 								<Label Content="Description:"
-									Margin="10,0,0,0"
+									Margin="180,0,0,0"
 									Foreground="Black"
-									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
+									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+									Width="{Binding Path=$parent.Bounds.Width}"/>
 
 								<TextBlock
 										Background="Transparent"
@@ -77,10 +79,11 @@
 										FontWeight="Regular"
 										Foreground="Black"
 										VerticalAlignment="Top"
-										Margin="10,0,0,0"
+										Margin="180,0,0,0"
 										HorizontalAlignment="Left"
 										Text="{Binding Description}"
-										TextWrapping="Wrap"/>
+										TextWrapping="WrapWithOverflow"
+										ClipToBounds="False"/>
 							</StackPanel>
 
 							<TextBlock
@@ -89,15 +92,12 @@
 									FontFamily="/UI/MVVM/Fonts/#Minecraft"
 									FontWeight="Bold"
 									Foreground="Black"
-									Margin="10,0,0,0"
+									Margin="180,0,0,0"
 									VerticalAlignment="Bottom"
 									HorizontalAlignment="Left"
 									Text="{Binding InformationPanel}"
-									TextWrapping="Wrap"/>
+									TextWrapping="WrapWithOverflow"/>
 						</StackPanel>
-
-
-						<Image Width="10000"/>
 
 						<StackPanel.Background>
 							<ImageBrush
@@ -130,7 +130,7 @@
 				Height="{Binding Path=$parent.Height}"
 				Width="{Binding Path=$parent.Width}"
 				Grid.Column="0" Grid.Row="0"
-				VerticalAlignment="Bottom">
+				VerticalAlignment="Top">
 
 			<ItemsRepeater
 				ItemsSource="{Binding Mods}"
@@ -146,8 +146,8 @@
 					<DataTemplate>
 
 						<Button Classes="c4" Command="{Binding ModPageCommand}"
-								CommandParameter="{Binding WebId}"
-								Width="{Binding Path=$parent.Width}"/>
+								CommandParameter="{Binding Id}"
+								Width="{Binding Path=$parent.Bounds.Width}"/>
 
 					</DataTemplate>
 				</ItemsRepeater.ItemTemplate>

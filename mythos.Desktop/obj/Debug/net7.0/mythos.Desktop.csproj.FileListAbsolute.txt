@@ -819,6 +819,13 @@ C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos.Desktop\obj\Debug\net7
 C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.csproj.CopyComplete
 C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.genruntimeconfig.cache
 C:\Users\balth\OneDrive\Bureau\mthosTest\MythosApp\mythos.Desktop\obj\Debug\net7.0\ref\mythos.Desktop.dll
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.csproj.AssemblyReference.cache
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\Resources.Inputs.cache
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\resources
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.AssemblyInfoInputs.cache
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.AssemblyInfo.cs
+C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.csproj.CoreCompileInputs.cache
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\mythos.Desktop.exe
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\mythos.Desktop.deps.json
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\mythos.Desktop.runtimeconfig.json
@@ -970,13 +977,6 @@ C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\ru
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\mythos.dll
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\bin\Debug\net7.0\mythos.pdb
-C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.csproj.AssemblyReference.cache
-C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\Resources.Inputs.cache
-C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\resources
-C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.AssemblyInfoInputs.cache
-C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.AssemblyInfo.cs
-C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\mythos.Desktop.csproj.CoreCompileInputs.cache
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\references
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.dll
 C:\Users\moham\source\repos\Avlonia\mythosApp\mythos.Desktop\obj\Debug\net7.0\Avalonia\original.pdb

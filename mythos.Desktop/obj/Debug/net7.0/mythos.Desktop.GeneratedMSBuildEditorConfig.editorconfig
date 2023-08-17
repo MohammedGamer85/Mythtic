@@ -24,6 +24,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/DiscoverPage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/ExportModWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/moham/source/repos/Avlonia/mythosApp/mythos.Desktop/UI/MVVM/Views/HomePage.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

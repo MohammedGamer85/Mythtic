@@ -35,7 +35,7 @@ public class Program
 
     [STAThread]
     public static void Main(string[] args)
-   {
+    {
         // cannot access dependency injection here
         ServiceProvider = BuildLauncherServices();
 
@@ -45,6 +45,7 @@ public class Program
         var app = BuildAvaloniaApp();
 
         app.StartWithClassicDesktopLifetime(args);
+
     }
 
     public static void ImportAccountInformation()
@@ -74,7 +75,7 @@ public class Program
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
-            .AddSingleton<MainViewModel>()
+            .AddSingleton<ExportModWindow>()
             .AddSingleton<MenuButtons>()
             .AddSingleton<AuthenticationRequests>()
             .AddSingleton<UserInformationLoader>()
@@ -83,6 +84,4 @@ public class Program
         var services = builder.BuildServiceProvider();
         return services;
     }
-
-
 }

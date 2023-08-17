@@ -13,21 +13,25 @@ using ReactiveUI;
 using mythos.Desktop.UI.MVVM.Views;
 using DynamicData;
 using mythos.Data;
+using System.Threading.Tasks;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
 	public class DiscoverPageViewModel : ObservableObject
     {
-		//! This part of the coding only jobe is to display the mods,
+        //! This part of the coding only jobe is to display the mods,
         //! all the mod related functions/actions are done in the ImportedModsItemModel.
-        public ObservableCollection<DiscoverModsItemModel> Mods
+        ObservableCollection<ListOfDiscoverModsModel> _mods;
+        public ObservableCollection<ListOfDiscoverModsModel> Mods
         {
-            get { return MiddleMan.DiscoverMods; }
-            set { OnPropertyChanged(); }
+            get => _mods;
+            set { _mods = value; OnPropertyChanged(); }
         }
 
         public DiscoverPageViewModel()
         {
+            getModlist();
+
             //! Is done like this to allow multiple parts of the code to change
             //! the value ofImportedmods.
             MiddleMan.OnPropertyChangeOfDiscoverMods = () =>
@@ -39,6 +43,12 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             {
                 MiddleMan.View = new ModPage(MiddleMan.DiscoverModPage, false);
             };
+        }
+
+        async Task getModlist()
+        {
+            AuthenticationRequests authenticationRequests = new();
+            Mods = await authenticationRequests.DiscoverModList();
         }
     }
 }

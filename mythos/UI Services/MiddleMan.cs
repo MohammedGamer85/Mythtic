@@ -20,7 +20,10 @@ public static class MiddleMan
     private static int _impotredModPage;
     private static int _discoverModPage;
     private static ObservableCollection<ImportedModsItemModel> _importedMods = new();
-    private static ObservableCollection<DiscoverModsItemModel> _discoverMods = new();
+    private static ObservableCollection<ListOfDiscoverModsModel> _discoverMods = new();
+
+    public static bool UserDataStatus = false;
+    private static bool _exportedVersion = false;
 
     public static Action? OnPropertyChangeOfCurrentView;
     public static Action? OnPropertyChangeOfCurrentContent;
@@ -85,7 +88,7 @@ public static class MiddleMan
 
     //! Is done like this to allow multiple parts of the code to change
     //! the value ofImportedmods.
-    public static ObservableCollection<DiscoverModsItemModel> DiscoverMods
+    public static ObservableCollection<ListOfDiscoverModsModel> DiscoverMods
     {
         get => _discoverMods;
         set
@@ -95,6 +98,12 @@ public static class MiddleMan
         }
     }
 
-    public static bool UserDataStatus = false;
-
+    public static bool ExportedVersion
+    {
+        get => _exportedVersion;
+        set
+        {
+            _exportedVersion = value;
+        }
+    }
 }

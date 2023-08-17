@@ -10,7 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace mythos.Data
-{ //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetAppDocFolder.
+{ //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetMythosDocFolder.
     public static class JsonWriterHelper
     {
         public static void WriteJsonFile<TContent>(string file, TContent content, bool IsRootPath = false)
@@ -23,7 +23,7 @@ namespace mythos.Data
                 if (IsRootPath)
                     File.WriteAllText(file, serializedContent);
                 else
-                    File.WriteAllText(Path.Combine(FilePaths.GetAppDocFolder, file), serializedContent);
+                    File.WriteAllText(Path.Combine(FilePaths.GetMythosDocFolder, file), serializedContent);
             }
             catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
         }

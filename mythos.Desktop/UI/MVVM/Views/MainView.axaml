@@ -14,7 +14,7 @@
 
 	<!-- THink of this as MainWindow just it is not-->
 	
-		<Grid ShowGridLines="false">
+		<Grid ShowGridLines="False">
 
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="310"/>

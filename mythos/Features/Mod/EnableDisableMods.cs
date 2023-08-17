@@ -5,15 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.IO;
 using System.Reflection.Metadata;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using mythos.Data;
 using mythos.Services;
 using mythos.UI.Services;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Numerics;
 
 namespace mythos.Features.Mod;
 
@@ -35,7 +30,7 @@ public class EnableDisableMods : ICommand
 
         int id = Convert.ToInt32(parameter);
 
-        _path = Path.Combine(FilePaths.GetMythosDownloads, MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid);
+        _path = Path.Combine(FilePaths.GetMythosDownloadsFolder, MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid);
 
         fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "MythInfo.json"));
 

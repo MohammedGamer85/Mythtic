@@ -2,6 +2,7 @@
 using System;
 using System.Runtime.InteropServices;
 using mythos.Features.Mod;
+using mythos.Features.ImportMod;
 
 namespace mythos.Models
 {
@@ -15,12 +16,15 @@ namespace mythos.Models
         //! Actions/Function
         private EnableDisableMods EnableDisableModCommand { get; set; }
         private SwitchToModView ModPageCommand { get; set; }
+        private ExportMod ExportModCommand { get; set; }
+
+        public static Action OnPropertyChangeOfIsLoaded;
 
         //! Needed
         public int Id { get; set; }
         public int? WebId { get; set; }
         public string Uuid { get; set; }
-        
+
         public string Name
         {
             get { return _name; }
@@ -38,9 +42,6 @@ namespace mythos.Models
         //! Optional (Auto Imported if not done manully)
         public string SubDescription { get; set; } = string.Empty;
 
-
-        public static Action OnPropertyChangeOfIsLoaded;
-        
         public bool? IsLoaded
         {
             get { return _isloaded; }
@@ -60,7 +61,10 @@ namespace mythos.Models
         public Version Version
         {
             get { return _version; }
-            set { _version = value; SetValues(); OnPropertyChanged(); }
+            set
+            {
+                _version = value; SetValues(); OnPropertyChanged();
+            }
         }
 
         public bool IsDevMod { get; set; } = false;
@@ -77,6 +81,7 @@ namespace mythos.Models
         {
             EnableDisableModCommand = new EnableDisableMods();
             ModPageCommand = new SwitchToModView(true);
+            ExportModCommand = new ExportMod();
         }
 
         //! Var Funcations
@@ -96,6 +101,8 @@ namespace mythos.Models
             {
                 Title = Name.Substring(0, 10) + "...";
             }
+            else
+                Title = Name;
         }
     }
 }
