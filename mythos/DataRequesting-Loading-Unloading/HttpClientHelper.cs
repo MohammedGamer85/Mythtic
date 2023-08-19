@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using mythos.Services;
 
 namespace mythos.Data
 {       //! Is Used to make Only Post Requests.
@@ -47,6 +48,8 @@ namespace mythos.Data
 
             using var stringContent = new StringContent(serilizedContent, Encoding.UTF8,"application/json");
 
+            _client.DefaultRequestHeaders.Add("X-Api-Key", "cVYPxR1wkzbOeHaxDGZL20QcWf7iL4LVktB6PDXBPu5wmdPFpjAx4vjHNqBjUoTSmF6u9EFonY2HNTE4CGpxZSDuDpoOcnrPSHcwdclDrFiKqtPJrIinWLcoe2b3GWqz")
+
             using var httpResponse = await _client.PostAsync(url, stringContent);
             
             httpResponse.EnsureSuccessStatusCode();
@@ -55,9 +58,9 @@ namespace mythos.Data
 
             ///Debugging
             if(url == "https://mythos-api.umbrielstudios.com/api/authenticate")
-                Trace.WriteLine("Making 'Userdata' request result: " + responseContent.Split("accessToken")[0]);
+                Logger.Log("Making 'Userdata' request result: " + responseContent.Split("accessToken")[0]);
             else
-                Trace.WriteLine("Making a request to '" + url +"' result: " + responseContent + "\n");
+                Logger.Log("Making a request to '" + url +"' result: " + responseContent + "\n");
             ///---------
 
             TReturn deserilizedContent = default;
@@ -66,7 +69,7 @@ namespace mythos.Data
             {
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
                 deserilizedContent = JsonSerializer.Deserialize<TReturn>(responseContent, options);
-            }catch (Exception ex) { Trace.WriteLine(ex); throw ex; }
+            }catch (Exception ex) { Logger.Log(ex.ToString()); throw ex; }
             
             return deserilizedContent;
         }

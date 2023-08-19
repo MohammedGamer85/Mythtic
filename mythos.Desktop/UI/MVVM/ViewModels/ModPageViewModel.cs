@@ -121,10 +121,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             await AddMod.Add(new ImportedModsItemModel
             {
                 WebId = DiscoverModInfo.Id,
-                ImageSource = DiscoverModInfo.DefaultImage,
-                Author = DiscoverModInfo.Category.Name,
-                Description = DiscoverModInfo.ShortDescription,
-                SubDescription = DiscoverModInfo.LongDescription,
+                DefaultImage = DiscoverModInfo.DefaultImage,
+                Creator = DiscoverModInfo.Category.Name,
+                ShotDescription = DiscoverModInfo.ShortDescription,
+                LongDescription = DiscoverModInfo.LongDescription,
                 GameMode = DiscoverModInfo.GameMode,
                 Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
                 LastUpdated = DateTime.Now,
@@ -148,11 +148,11 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         {
             Id = ImportedModInfo.Id;
             Name = ImportedModInfo.Name;
-            ImageSource = ImportedModInfo.ImageSource;
-            Author = "By " + ImportedModInfo.Author;
+            ImageSource = ImportedModInfo.DefaultImage;
+            Author = "By " + ImportedModInfo.Creator;
             Title = Name + " | " + Author;
-            Description = ImportedModInfo.Description;
-            SubDescription = ImportedModInfo.SubDescription;
+            Description = ImportedModInfo.ShotDescription;
+            SubDescription = ImportedModInfo.LongDescription;
             IsLoaded = ImportedModInfo.IsLoaded;
             InformationPanel = ImportedModInfo.InformationPanel;
         }

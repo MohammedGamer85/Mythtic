@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using mythos.Services;
 
 namespace mythos.Features.Importaccount
 {   //! is ran on lunch and see if the user data has been retived before, if yes it will read it, if not it will requests it.
@@ -17,7 +18,7 @@ namespace mythos.Features.Importaccount
 
         public async Task<bool> InitializeUserFromAPI(string email, string password)
         {
-            Trace.WriteLine("Importing account infromation");
+            Logger.Log("Importing account infromation");
             importedAccount = await _authenticationRequests.LoginRequest(email, password);
             
             if (importedAccount == null)
@@ -29,7 +30,7 @@ namespace mythos.Features.Importaccount
 
         public async Task<bool> InitializeUserFromSavedUser()
         {
-            Trace.WriteLine("Importing account infromation");
+            Logger.Log("Importing account infromation");
             bool isAccountDataExists = JsonCheckHelper.CheckJsonFileForData(fileName);
 
             // get userInfoFrom json
@@ -62,7 +63,7 @@ namespace mythos.Features.Importaccount
 
             JsonCheckHelper.JsonCheckFileForData(fileName);
 
-            Trace.WriteLine("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString + User.id + "\n");
+            Logger.Log("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString + User.id + "\n");
             MiddleMan.UserDataStatus = true;
         }
     }

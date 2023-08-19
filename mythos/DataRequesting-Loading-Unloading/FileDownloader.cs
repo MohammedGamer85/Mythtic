@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using mythos.Services;
 
 namespace mythos.DataRequesting_Loading_Unloading
 {   //! Is Used to Download Mods from the api
@@ -33,11 +35,11 @@ namespace mythos.DataRequesting_Loading_Unloading
                     }
                 }
 
-                Trace.WriteLine("Download complete!" + "\n");
+                Logger.Log("Download complete!" + "\n");
             }
             catch (Exception ex)
             {
-                Trace.WriteLine($"An error occurred: {ex.Message}");
+                Logger.Log($"An error occurred: {ex.Message}");
             }
         }
     }

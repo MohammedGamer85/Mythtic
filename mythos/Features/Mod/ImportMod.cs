@@ -10,7 +10,7 @@ using mythos.Services;
 using mythos.Data;
 using mythos.UI.Services;
 using mythos.Models;
-
+using mythos.Features.Mod;
 
 namespace mythos.Features.ImportMod
 {
@@ -18,7 +18,7 @@ namespace mythos.Features.ImportMod
     {
         public async Task<bool> ImportAsync()
         {
-            Trace.WriteLine("importing Mod");
+            Logger.Log("importing Mod");
 
             string _fileName;
             string _FilePath;
@@ -43,69 +43,41 @@ namespace mythos.Features.ImportMod
                 else
                     return false;
 
-                Trace.WriteLine($"File _fileName: {_fileName}");
-                Trace.WriteLine($"File _FilePath: {_FilePath}");
+                Logger.Log($"File _fileName: {_fileName}");
+                Logger.Log($"File _FilePath: {_FilePath}");
 
                 ZipFile.ExtractToDirectory(_FilePath, _extractedFolderPath, true);
 
-                Dictionary<string, string> _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
+                Dictionary<string, object> _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
 
-                //Adds the mod to the imported mod list (observableObject)
-                MiddleMan.ImportedMods.Add(new ImportedModsItemModel
+                await AddMod.Add(new ImportedModsItemModel
                 {
                     Id = MiddleMan.ImportedMods.Count,
                     WebId = null,
-                    Uuid = _modInfo["uuid"],
-                    Name = _modInfo["name"],
-                    ImageSource = _modInfo["imageSource"],
-                    Author = _modInfo["author"],
-                    GameMode = _modInfo["GameMode"],
-                    Description = _modInfo["description"],
-                    SubDescription = _modInfo["subDescription"],
+                    Uuid = _modInfo["uuid"].ToString(),
+                    Name = (_modInfo["name"] != null) ? _modInfo["name"].ToString() : "Imported Mod",
+                    DefaultImage = (_modInfo["defaultImage"] != null) ? _modInfo["defaultImage"].ToString() : "https://mythos.umbrielstudios.com/favicon.ico",
+                    Images = new string[0],
+                    Creator = (_modInfo["creator"] != null) ? _modInfo["creator"].ToString() : "Dev",
+                    GameMode = (_modInfo["gameMode"] != null) ? _modInfo["gameMode"].ToString() : "Unkown",
+                    ShotDescription = (_modInfo["shotDescription"] != null) ? _modInfo["shotDescription"].ToString() : "There is no Description",
+                    LongDescription = (_modInfo["longDescription"] != null) ? _modInfo["longDescription"].ToString() : "There is no Information",
+                    YoutubeLink = (_modInfo["youtubeLink"] != null) ? _modInfo["youtubeLink"].ToString() : "Unkown",
+                    DiscordLink = (_modInfo["discordLink"] != null) ? _modInfo["discordLink"].ToString() : "Unkown",
+                    TwitterLink = (_modInfo["twitterLink"] != null) ? _modInfo["twitterLink"].ToString() : "Unkown",
+                    GithubLink = (_modInfo["githubLink"] != null) ? _modInfo["githubLink"].ToString() : "Unkown",
                     IsLoaded = false,
-                    LastUpdated = Convert.ToDateTime(_modInfo["lastUpdated"]),
-                    Version = new Version(_modInfo["version"]),
+                    LastUpdated = (_modInfo["lastUpdated"] != null) ? Convert.ToDateTime(_modInfo["lastUpdated"]) : DateTime.Now,
+                    Version = (_modInfo["version"] != null) ? new Version(_modInfo["version"].ToString()) : new Version("0.0.0.0"),
+                    Category = (Category)((_modInfo["category"] != null) ? _modInfo["category"] : new Category { Id = 0, Name = "Uncategorized" }),
                     IsDevMod = true
-                });
-
-                _mythFolderPath = Path.Combine(FilePaths.GetMythosDownloadsFolder, _modInfo["uuid"]);
-
-                MovePack("BP");
-                MovePack("RP");
-
-                if (!Directory.Exists(_mythFolderPath))
-                    File.Create(Path.Combine(_mythFolderPath, "modInfo.json")).Close();
-
-                Dictionary<string, string> _packs = new();
-                _packs.Add("BP", "BP-" + _modInfo["uuid"]);
-                _packs.Add("RP", "RP-" + _modInfo["uuid"]);
-
-                JsonWriterHelper.WriteJsonFile(Path.Combine(_mythFolderPath, "modInfo.json"), _packs, true);
-
-                void MovePack(string pack)
-                {
-                    //!Move the RP and BP to the right directorys
-
-                    //Deletes the aready existing pack
-                    if (Directory.Exists(Path.Combine(_mythFolderPath, (pack + "-" + _modInfo["uuid"]))))
-                        Directory.Delete(Path.Combine(_mythFolderPath, (pack + "-" + _modInfo["uuid"])));
-
-                    //copys the file
-                    DirectoryUtilities.Copy(Path.Combine(_extractedFolderPath, _modInfo[pack]), Path.Combine(_mythFolderPath, _modInfo[pack]), true);
-
-                    //Renames the files to the currect _fileName, even if they aready have it
-                    Directory.Move(Path.Combine(_mythFolderPath, _modInfo[pack]), Path.Combine(_mythFolderPath, (pack + "-" + _modInfo["uuid"])));
-                }
-
-                JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
-
-                Directory.Delete(_extractedFolderPath, true);
+                }, _extractedFolderPath, false);
 
                 return true;
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(ex);
+                Logger.Log(ex.ToString());
                 return false;
             }
         }

@@ -44,7 +44,7 @@ public class EnableDisableMods : ICommand
 
     private void Enable(int id)
     {
-        Trace.WriteLine($"Enabling {MiddleMan.ImportedMods[id].Uuid}");
+        Logger.Log($"Enabling {MiddleMan.ImportedMods[id].Uuid}");
         MiddleMan.ImportedMods[id].IsLoaded = true;
         DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
         DirectoryUtilities.Copy(Path.Combine(_path, fileNames["RP"]), Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
@@ -52,7 +52,7 @@ public class EnableDisableMods : ICommand
 
     private void Disable(int id)
     {
-        Trace.WriteLine($"Disabling {MiddleMan.ImportedMods[id].Uuid}");
+        Logger.Log($"Disabling {MiddleMan.ImportedMods[id].Uuid}");
         MiddleMan.ImportedMods[id].IsLoaded = false;
         Directory.Delete(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
         Directory.Delete(Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);

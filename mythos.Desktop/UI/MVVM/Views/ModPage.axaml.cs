@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using mythos.Desktop.UI.MVVM.ViewModels;
 using System.Diagnostics;
+using mythos.Services;
 
 namespace mythos.Desktop.UI.MVVM.Views
 {
@@ -13,7 +14,7 @@ namespace mythos.Desktop.UI.MVVM.Views
         }
         public ModPage()
         {
-            Trace.TraceError("ERROR: MODPAGE NULLABLE CONTRUCTOR");
+            Logger.Log("ERROR: MODPAGE NULLABLE CONTRUCTOR");
         }
     }
 }

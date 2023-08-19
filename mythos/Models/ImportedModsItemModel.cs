@@ -20,28 +20,29 @@ namespace mythos.Models
 
         public static Action OnPropertyChangeOfIsLoaded;
 
-        //! Needed
         public int Id { get; set; }
         public int? WebId { get; set; }
-        public string Uuid { get; set; }
 
+        public string Uuid { get; set; }
         public string Name
         {
             get { return _name; }
             set { _name = value; SetTitle(); }
         }
-
-        public string ImageSource { get; set; } = string.Empty;
-
-        public string Author { get; set; } = string.Empty;
-
+        public string? Title { get; set; } = string.Empty;
+        public string DefaultImage { get; set; } = string.Empty;
+        public string[]? Images { get; set; }
+        public string Creator { get; set; } = string.Empty;
         public string GameMode { get; set; } = string.Empty;
-
-        public string Description { get; set; } = string.Empty;
-
-        //! Optional (Auto Imported if not done manully)
-        public string SubDescription { get; set; } = string.Empty;
-
+        public string ShotDescription { get; set; } = string.Empty;
+        public string LongDescription { get; set; } = string.Empty; 
+        public string? YoutubeLink { get; set; }
+        public string? DiscordLink { get; set; }
+        public string? TwitterLink { get; set; }
+        public string? GithubLink { get; set; }
+        public string? InformationPanel { get; set; } = string.Empty;
+        public string? ShortendInformationPanel { get; set; } = string.Empty;
+        public bool IsDevMod { get; set; } = false;
         public bool? IsLoaded
         {
             get { return _isloaded; }
@@ -54,10 +55,8 @@ namespace mythos.Models
                 }
             }
         }
-
-
         public DateTime LastUpdated { get; set; } = DateTime.Now;
-
+        public Category? Category { get; set; }
         public Version Version
         {
             get { return _version; }
@@ -66,17 +65,7 @@ namespace mythos.Models
                 _version = value; SetValues(); OnPropertyChanged();
             }
         }
-
-        public bool IsDevMod { get; set; } = false;
-
-        //! Auto Added
-
-        public string? Title { get; set; } = string.Empty;
-
-        public string? InformationPanel { get; set; } = string.Empty;
-
-        public string? ShortendInformationPanel { get; set; } = string.Empty;
-
+        
         public ImportedModsItemModel()
         {
             EnableDisableModCommand = new EnableDisableMods();
@@ -87,12 +76,12 @@ namespace mythos.Models
         //! Var Funcations
         void SetValues()
         {
-            if (this.SubDescription == "")
+            if (this.LongDescription == "")
             {
-                this.SubDescription = Description;
+                this.LongDescription = ShotDescription;
             }
             this.InformationPanel = "LastUpdated: " + this.LastUpdated + "\nVersion: " + this.Version + "  GameMode: " + this.GameMode;
-            this.ShortendInformationPanel = this.Version + "\nBy " + this.Author + "\n" + this.GameMode;
+            this.ShortendInformationPanel = this.Version + "\nBy " + this.Creator + "\n" + this.GameMode;
         }
 
         void SetTitle()

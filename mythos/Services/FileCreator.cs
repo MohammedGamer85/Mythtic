@@ -13,13 +13,14 @@ namespace mythos.Services
 
         public static void InitializeFileDirectories()
         {
-            Trace.WriteLine("Creating nesseary files");
+            Logger.Log("Creating nesseary files");
             CheckAndCreateDirectory(FilePaths.GetMythosDocFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsBPFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsRPFolder);
             CheckAndCreateDirectory(FilePaths.GetMythosDownloadsFolder);
             CheckAndCreateDirectory(FilePaths.GetMythosTempFolder);
             CheckAndCreateDirectory(FilePaths.GetMythosExportFolder);
+            CheckAndCreateDirectory(FilePaths.GetMythosLogsFolder);
 
             CheckAndCreateFile(FilePaths.GetMythosDocFolder + "appData.json");
             CheckAndCreateFile(FilePaths.GetMythosDocFolder + "importedMods.json");

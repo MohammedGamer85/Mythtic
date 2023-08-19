@@ -59,7 +59,14 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public void exportMod()
         {
-            new ExportModWindow();
+            if (MiddleMan.ImportedMods != null)
+            {
+                new ExportModWindow();
+            }
+            else
+            {
+                new MessageWindow("You currently do not have any mods to export");
+            }
         }
     }
 }

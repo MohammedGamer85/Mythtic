@@ -41,7 +41,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         //! Performs your login logic here, such as checking credentials, authentication, etc.
         public async Task LoginButton_Click()
         {
-            Trace.WriteLine("Autherizing Entered Login Infromation");
+            Logger.Log("Autherizing Entered Login Infromation");
             if (await userInformationLoader.InitializeUserFromAPI(Email, Password))
             {
                 MiddleMan.Content = new MainView();

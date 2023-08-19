@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Xml;
 using System.ComponentModel;
+using mythos.Services;
 
 namespace mythos.ViewModels;
 
@@ -103,7 +104,7 @@ public class MainViewModel : ObservableObject
         {
             if (await userInformationLoader.InitializeUserFromSavedUser())
             {
-                Trace.WriteLine("Login Infromation Aready Autherizied");
+                Logger.Log("Login Infromation Aready Autherizied");
                 MiddleMan.Content = new MainView();
             }
             else
@@ -111,7 +112,7 @@ public class MainViewModel : ObservableObject
         }
         else
         {
-            Trace.WriteLine("Login Infromation Aready Autherizied");
+            Logger.Log("Login Infromation Aready Autherizied");
             MiddleMan.Content = new MainView();
         }
     }
@@ -119,7 +120,7 @@ public class MainViewModel : ObservableObject
     async Task DebugMode()
     {
         await userInformationLoader.InitializeUserFromSavedUser();
-        Trace.WriteLine("Activating Debug Mode");
+        Logger.Log("Activating Debug Mode");
         MiddleMan.Content = new DebugView();
     }
 }

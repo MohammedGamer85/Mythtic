@@ -31,7 +31,7 @@ namespace mythos.Data
 
                 Trace.Write(deserilizedContent + "\n");
             }
-            catch (Exception ex) { Trace.WriteLine(ex + "\n"); }
+            catch (Exception ex) { Logger.Log(ex + "\n"); }
 
             return deserilizedContent;
         }

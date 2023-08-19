@@ -14,6 +14,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using mythos.Services;
 
 namespace mythos.Data
 {
@@ -42,7 +43,7 @@ namespace mythos.Data
                 {
                     x.Name ??= "Unknown";
                     x.GameMode ??= "None";
-                    x.Description ??= "There is no Description";
+                    x.Description ??= "There is no ShotDescription";
                     x.Category ??= "Uncategorized";
                     x.DefaultImage ??= "https://mythos.umbrielstudios.com/favicon.ico";
                     x.LatestVersion ??= "0,0,0";
@@ -72,7 +73,7 @@ namespace mythos.Data
                 var x = result.Data;
                 x.Name ??= "Unknown";
                 x.GameMode ??= "None";
-                x.LongDescription ??= "There is no Description";
+                x.LongDescription ??= "There is no ShotDescription";
                 x.DefaultImage ??= "https://mythos.umbrielstudios.com/favicon.ico";
                 if (x.ReleaseDate == null)
                 {
@@ -101,12 +102,12 @@ namespace mythos.Data
             if (result.Success == true)
             {
                 Account userData = result;
-                Trace.WriteLine("LoginRequest Success");
+                Logger.Log("LoginRequest Success");
                 return userData;
             }
             else
             {
-                Trace.WriteLine("loginRequst Falled");
+                Logger.Log("loginRequst Falled");
                 return null;
             }
         }

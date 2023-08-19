@@ -143,3 +143,5 @@ packages/
 /mythos.Desktop/obj/Debug/net7.0/Avalonia/original.pdb
 /mythos.Desktop/obj/Debug/net7.0/mythos.Desktop.dll
 /mythos.Desktop/obj/Debug/net7.0/mythos.Desktop.pdb
+*.rar
+/mythos/obj/Debug/net7.0/mythos.assets.cache

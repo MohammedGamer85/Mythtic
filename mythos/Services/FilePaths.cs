@@ -22,6 +22,7 @@ namespace mythos.Services
         public static string GetMythosDownloadsFolder => Path.Combine(GetMythosDocFolder, "DownLoaded");
         public static string GetMythosTempFolder => Path.Combine(GetMythosDocFolder, "Temp");
         public static string GetMythosExportFolder => Path.Combine(GetMythosDocFolder, "Export");
+        public static string GetMythosLogsFolder => Path.Combine(GetMythosDocFolder, "Logs");
 
         private static string GetDirectory(SpecialFolder specialFolder, string subFolder)
             => Path.Combine(GetFolderPath(specialFolder), subFolder);

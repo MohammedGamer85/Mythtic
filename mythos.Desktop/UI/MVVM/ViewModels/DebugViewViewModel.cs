@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using mythos.Data;
 using mythos.Features.PreloadedInformation;
 using ReactiveUI;
+using mythos.Services;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -18,7 +19,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public void DebugCommand()
         {
-            Trace.WriteLine("Debug Command running");
+            Logger.Log("Debug Command running");
         }
     }
 }

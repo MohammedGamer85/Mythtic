@@ -38,7 +38,7 @@ namespace mythos.Services
                 }
             }
 
-            Trace.WriteLine($"Copyed {sourceDir} To {destinationDir} Copy subDir is {recursive}.");
+            Logger.Log($"Copyed {sourceDir} To {destinationDir} Copy subDir is {recursive}.");
         }
     }
 }

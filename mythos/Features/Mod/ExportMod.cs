@@ -33,7 +33,7 @@ namespace mythos.Features.ImportMod
 
         public async Task<bool> ExportAsync(int modId, bool gameVersion)
         {
-            Trace.WriteLine($"Exporting mod gameVersion [{gameVersion}]");
+            Logger.Log($"Exporting mod gameVersion [{gameVersion}]");
 
             ImportedModsItemModel Mod = MiddleMan.ImportedMods[modId];
 
@@ -54,7 +54,7 @@ namespace mythos.Features.ImportMod
                     ? Path.Combine(_exprotFolder[0].Path.ToString().Replace("file:///", ""), Mod.Name + ".mclMod")
                     : Path.Combine(FilePaths.GetMythosExportFolder, Mod.Name + ".mclMod");
 
-                Trace.WriteLine($"Exported file location [{_compressedFilePath}]");
+                Logger.Log($"Exported file location [{_compressedFilePath}]");
 
                 Directory.CreateDirectory(_tempFolderPath);
 
@@ -77,13 +77,13 @@ namespace mythos.Features.ImportMod
 
                 _modInfo["uuid"] = Mod.Uuid.ToString();
                 _modInfo["name"] = Mod.Name.ToString();
-                _modInfo["imageSource"] = (Mod.ImageSource != null)
-                    ? Mod.ImageSource.ToString()
+                _modInfo["imageSource"] = (Mod.DefaultImage != null)
+                    ? Mod.DefaultImage.ToString()
                     : "https://mythos.umbrielstudios.com/favicon.ico";
-                _modInfo["author"] = Mod.Author.ToString();
+                _modInfo["author"] = Mod.Creator.ToString();
                 _modInfo["GameMode"] = Mod.GameMode.ToString();
-                _modInfo["description"] = Mod.Description.ToString();
-                _modInfo["subDescription"] = Mod.SubDescription.ToString();
+                _modInfo["description"] = Mod.ShotDescription.ToString();
+                _modInfo["subDescription"] = Mod.LongDescription.ToString();
                 _modInfo["lastUpdated"] = Mod.LastUpdated.ToString();
                 _modInfo["version"] = Mod.Version.ToString();
 
@@ -97,7 +97,7 @@ namespace mythos.Features.ImportMod
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(ex);
+                Logger.Log(ex.ToString());
                 return false;
             }
         }

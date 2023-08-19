@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using mythos.Services;
 
 namespace mythos.Data
 {   //! is used to check if a json file contains valid information.
@@ -38,13 +39,13 @@ namespace mythos.Data
                 if (deserializedContent[fileName] == true)
                 {
                     Trace.Write("true, " + readableJson);
-                    Trace.WriteLine("All Results" + readableJson);
+                    Logger.Log("All Results" + readableJson);
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(ex);
+                Logger.Log(ex.ToString());
             }
             Trace.Write(" Result: " + "false, " + readableJson + "|" + "\n");
             return false;
@@ -64,7 +65,7 @@ namespace mythos.Data
 
             JsonWriterHelper.WriteJsonFile<Dictionary<string, bool>>("jsonChecked.json", deserializedContent);
 
-            Trace.WriteLine("JsonCheckHelper Checked : " + fileName + "\n");
+            Logger.Log("JsonCheckHelper Checked : " + fileName + "\n");
         }
     }
 }

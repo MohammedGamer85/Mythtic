@@ -19,20 +19,20 @@ namespace mythos.Features.PreloadedInformation
         {
 
             MiddleMan.ImportedMods = JsonReaderHelper.ReadJsonFile<ObservableCollection<ImportedModsItemModel>>("importedMods.json", false);
-            Trace.WriteLine("\nLoaded imported mods");
+            Logger.Log("\nLoaded imported mods");
             if (MiddleMan.ImportedMods != null)
                 foreach (var item in MiddleMan.ImportedMods)
                 {
-                    Trace.TraceInformation($"WebId           {item.Id}");
-                    Trace.TraceInformation($"WebId        {item.WebId}");
-                    Trace.TraceInformation($"Uuid         {item.Uuid}");
-                    Trace.TraceInformation($"Name         {item.Name}");
-                    Trace.TraceInformation($"Author       {item.Author}");
-                    Trace.TraceInformation($"LastUpdated  {item.LastUpdated}");
-                    Trace.TraceInformation($"Isloaded     {item.IsLoaded}");
-                    Trace.TraceInformation($"Version      {item.Version}");
-                    Trace.TraceInformation($"Description  {item.Description}");
-                    Trace.TraceInformation($"Dev  {item.IsDevMod}\n");
+                    Logger.Log($"WebId           {item.Id}");
+                    Logger.Log($"WebId        {item.WebId}");
+                    Logger.Log($"Uuid         {item.Uuid}");
+                    Logger.Log($"Name         {item.Name}");
+                    Logger.Log($"Creator       {item.Creator}");
+                    Logger.Log($"LastUpdated  {item.LastUpdated}");
+                    Logger.Log($"Isloaded     {item.IsLoaded}");
+                    Logger.Log($"Version      {item.Version}");
+                    Logger.Log($"ShotDescription  {item.ShotDescription}");
+                    Logger.Log($"Dev  {item.IsDevMod}\n");
                 }
         }
     }
