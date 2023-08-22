@@ -45,7 +45,6 @@ public class Program
         var app = BuildAvaloniaApp();
 
         app.StartWithClassicDesktopLifetime(args);
-
     }
 
     public static void ImportAccountInformation()
@@ -75,12 +74,7 @@ public class Program
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
-            .AddSingleton<MessageWindow>()
-            .AddSingleton<ExportModWindow>()
-            .AddSingleton<MenuButtons>()
-            .AddSingleton<AuthenticationRequests>()
-            .AddSingleton<UserInformationLoader>()
-            .AddSingleton<HttpClientHelper>();
+            .AddSingleton<ProfileDisplay>();
 
         var services = builder.BuildServiceProvider();
         return services;

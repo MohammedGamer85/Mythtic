@@ -37,6 +37,6 @@ public static class User
 
     static void setValue()
     {
-        ImagePath = Path.Combine(FilePaths.GetMythosDownloadsFolder, (User.Name + ".jpg"));
+        ImagePath = Path.Combine(FilePaths.GetMythosDownloadsFolder, (User.Name + ".png"));
     }
 }

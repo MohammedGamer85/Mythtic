@@ -23,10 +23,6 @@
     <None Remove="UI\MVVM\Views\UserControl\**" />
     <None Remove="UI\UIServices\**" />
   </ItemGroup>
-	
-    <ItemGroup>
-        <AvaloniaResource Include="UI\MVVM\Assets\**" />
-    </ItemGroup>
 
 	<ItemGroup>
     <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.0.1" />

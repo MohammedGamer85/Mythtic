@@ -10,9 +10,6 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <AvaloniaXaml Remove="UI\MVVM\ViewModels\UserControl\**" />
-    <AvaloniaXaml Remove="UI\MVVM\Views\UserControl\**" />
-    <AvaloniaXaml Remove="UI\UIServices\**" />
     <Compile Remove="UI\MVVM\ViewModels\UserControl\**" />
     <Compile Remove="UI\MVVM\Views\UserControl\**" />
     <Compile Remove="UI\UIServices\**" />
@@ -26,7 +23,8 @@
 	
     <ItemGroup>
         <AvaloniaResource Include="UI\MVVM\Assets\**" />
-    </ItemGroup>
+		<AvaloniaResource Include="UI\MVVM\Fonts\**" />
+	</ItemGroup>
 
 	<ItemGroup>
     <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.0.1" />

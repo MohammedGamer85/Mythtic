@@ -30,7 +30,7 @@ namespace mythos.Data
 
                 if (deserializedContent is null)
                 {
-                    throw null;
+                    return false;
                 }
 
                 readableJson = deserializedContent.ToString();

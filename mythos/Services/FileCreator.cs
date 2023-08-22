@@ -13,7 +13,6 @@ namespace mythos.Services
 
         public static void InitializeFileDirectories()
         {
-            Logger.Log("Creating nesseary files");
             CheckAndCreateDirectory(FilePaths.GetMythosDocFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsBPFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsRPFolder);
@@ -22,9 +21,11 @@ namespace mythos.Services
             CheckAndCreateDirectory(FilePaths.GetMythosExportFolder);
             CheckAndCreateDirectory(FilePaths.GetMythosLogsFolder);
 
-            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "accuntInfo.json");
-            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "importedMods.json");
-            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "jsonChecked.json");
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "accuntInfo.json"));
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "importedMods.json"));
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "jsonChecked.json"));
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "settings.json"));
+            Logger.Log("Created nesseary files");
         }
 
         private static void CheckAndCreateDirectory(string directory)

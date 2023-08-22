@@ -47,7 +47,8 @@
 							FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 							Text="Profile"/>
 
-					<TextBlock FontSize="15"
+					<TextBlock 
+							FontSize="15"
 							Margin="5,0,0,0"
 							HorizontalAlignment="Left"
 							VerticalAlignment="Top"
