@@ -94,8 +94,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             getModInfo(id);
 
             ImportedModsItemModel.OnPropertyChangeOfIsLoaded = () =>
-            {
-                this.IsLoaded = ImportedModInfo.IsLoaded;
+            {   
+                this.IsLoaded = (Installed == true) 
+                ? ImportedModInfo.IsLoaded 
+                : false;
             };
         }
 
@@ -116,13 +118,14 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public async Task DownloadMod()
         {
-            await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myth/" + DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].File_hash + ".zip",
-                FilePaths.GetMythosTempFolder, "Mod.zip");
+            await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myths/" + DiscoverModInfo.Versions[0].File_hash + ".zip",
+                FilePaths.GetMythosTempFolder, "\\Mod.zip");
             await AddMod.Add(new ImportedModsItemModel
             {
                 WebId = DiscoverModInfo.Id,
+                Name = DiscoverModInfo.Name,
                 DefaultImage = DiscoverModInfo.DefaultImage,
-                Creator = DiscoverModInfo.Category.Name,
+                Creator = DiscoverModInfo.Creator.Username,
                 ShotDescription = DiscoverModInfo.ShortDescription,
                 LongDescription = DiscoverModInfo.LongDescription,
                 GameMode = DiscoverModInfo.GameMode,

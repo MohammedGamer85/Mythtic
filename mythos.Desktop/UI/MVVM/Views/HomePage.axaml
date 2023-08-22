@@ -116,7 +116,7 @@ ClipToBounds="True">
 								Stretch="Fill"/>
 
 							<Image
-								asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
+								asyncImageLoader:ImageLoader.Source="{Binding DefaultImage}"
 								HorizontalAlignment="Center"
 								Height="150"
 								Width="150"

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Diagnostics;
 
 namespace mythos.Services;
 
@@ -18,7 +18,7 @@ public static class Logger
     {
         if (logFile == null)
         {
-            logFile = Path.Combine(FilePaths.GetMythosLogsFolder, DateTime.Now.ToString().Replace("/", "-").Replace(":", ";"));
+            logFile = Path.Combine(FilePaths.GetMythosLogsFolder, DateTime.Now.ToString().Replace("/", "-").Replace(":", ";")+".txt");
         }
 
         text = text + Line + "\n";
@@ -28,6 +28,7 @@ public static class Logger
             try
             {
                 File.WriteAllText(logFile, text);
+                Trace.WriteLine(Line);
                 break;
             }
             catch { }

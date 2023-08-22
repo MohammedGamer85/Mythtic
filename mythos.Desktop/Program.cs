@@ -75,6 +75,7 @@ public class Program
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
+            .AddSingleton<MessageWindow>()
             .AddSingleton<ExportModWindow>()
             .AddSingleton<MenuButtons>()
             .AddSingleton<AuthenticationRequests>()

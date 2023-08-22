@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using mythos.DataRequesting_Loading_Unloading;
 using mythos.Features.Importaccount;
 using mythos.Models;
+using System.IO;
 using mythos.Services;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
@@ -25,7 +26,6 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public ProfileDisplayViewModel(UserInformationLoader userInformationLoader)
         {
-            DownloadImage();
             NON(userInformationLoader);
             Name = User.Name;
             ImageData = User.ImagePath;
@@ -36,11 +36,12 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         public async Task NON(UserInformationLoader userInformationLoader)
         {
             await userInformationLoader.InitializeUserFromSavedUser();
+            DownloadImage();
         }
 
         public async Task DownloadImage()
         {
-            await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetMythosDownloadsFolder, User.Name + ".jpg");
+            await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetMythosDownloadsFolder, User.Name + ".png");
         }
     }
 }

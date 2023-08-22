@@ -8,6 +8,7 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+	
   <ItemGroup>
     <AvaloniaXaml Remove="UI\MVVM\ViewModels\UserControl\**" />
     <AvaloniaXaml Remove="UI\MVVM\Views\UserControl\**" />
@@ -26,14 +27,6 @@
     <ItemGroup>
         <AvaloniaResource Include="UI\MVVM\Assets\**" />
     </ItemGroup>
-	<ItemGroup>
-		<AvaloniaResource Include="UI\MVVM\Fonts\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<AvaloniaResource Include="UI\MVVM\Assets\Buttons\**" />
-	</ItemGroup>
-
 
 	<ItemGroup>
     <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.0.1" />

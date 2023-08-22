@@ -23,10 +23,10 @@ namespace mythos.Data
 
         public async Task<TReturn> GetRequest<TReturn>(string url)
         {
-            using var httpResponse = await _client.GetAsync(url);
-
+            var httpResponse = await _client.GetAsync(url);
+            
             httpResponse.EnsureSuccessStatusCode();
-
+            
             string responseContent = await httpResponse.Content.ReadAsStringAsync();
 
             TReturn deserilizedContent = default;
@@ -48,7 +48,7 @@ namespace mythos.Data
 
             using var stringContent = new StringContent(serilizedContent, Encoding.UTF8,"application/json");
 
-            _client.DefaultRequestHeaders.Add("X-Api-Key", "cVYPxR1wkzbOeHaxDGZL20QcWf7iL4LVktB6PDXBPu5wmdPFpjAx4vjHNqBjUoTSmF6u9EFonY2HNTE4CGpxZSDuDpoOcnrPSHcwdclDrFiKqtPJrIinWLcoe2b3GWqz")
+            _client.DefaultRequestHeaders.Add("X-Api-Key", "cVYPxR1wkzbOeHaxDGZL20QcWf7iL4LVktB6PDXBPu5wmdPFpjAx4vjHNqBjUoTSmF6u9EFonY2HNTE4CGpxZSDuDpoOcnrPSHcwdclDrFiKqtPJrIinWLcoe2b3GWqz");
 
             using var httpResponse = await _client.PostAsync(url, stringContent);
             

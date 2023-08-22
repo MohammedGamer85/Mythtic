@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
+    One for Windows with net7.0-windows TFM, one for MacOS with net7.0-macos and one with net7.0 TFM for Linux.-->
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <AvaloniaXaml Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <AvaloniaXaml Remove="UI\MVVM\Views\UserControl\**" />
+    <AvaloniaXaml Remove="UI\UIServices\**" />
+    <Compile Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <Compile Remove="UI\MVVM\Views\UserControl\**" />
+    <Compile Remove="UI\UIServices\**" />
+    <EmbeddedResource Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <EmbeddedResource Remove="UI\MVVM\Views\UserControl\**" />
+    <EmbeddedResource Remove="UI\UIServices\**" />
+    <None Remove="UI\MVVM\ViewModels\UserControl\**" />
+    <None Remove="UI\MVVM\Views\UserControl\**" />
+    <None Remove="UI\UIServices\**" />
+  </ItemGroup>
+	
+    <ItemGroup>
+        <AvaloniaResource Include="UI\MVVM\Assets\**" />
+    </ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.0.1" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.1" /> 
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\mythos\mythos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="App.axaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="UI\MVVM\Views\MainWindow.axaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

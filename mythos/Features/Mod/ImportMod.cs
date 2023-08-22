@@ -48,7 +48,16 @@ namespace mythos.Features.ImportMod
 
                 ZipFile.ExtractToDirectory(_FilePath, _extractedFolderPath, true);
 
-                Dictionary<string, object> _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
+                Dictionary<string, object> _modInfo;
+
+                try
+                {
+                    _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "manifest.json"), true);
+                }
+                catch
+                {
+                    _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
+                }
 
                 await AddMod.Add(new ImportedModsItemModel
                 {

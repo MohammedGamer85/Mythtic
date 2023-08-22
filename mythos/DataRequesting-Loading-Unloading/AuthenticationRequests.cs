@@ -73,7 +73,8 @@ namespace mythos.Data
                 var x = result.Data;
                 x.Name ??= "Unknown";
                 x.GameMode ??= "None";
-                x.LongDescription ??= "There is no ShotDescription";
+                x.ShortDescription ??= "There is no ShotDescription";
+                x.LongDescription ??= "There is no LongDescription";
                 x.DefaultImage ??= "https://mythos.umbrielstudios.com/favicon.ico";
                 if (x.ReleaseDate == null)
                 {

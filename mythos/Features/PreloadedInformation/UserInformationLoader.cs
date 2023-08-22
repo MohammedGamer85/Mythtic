@@ -13,7 +13,7 @@ namespace mythos.Features.Importaccount
     public class UserInformationLoader
     {
         private readonly AuthenticationRequests _authenticationRequests = new();
-        private readonly static string fileName = "appData.json";
+        private readonly static string fileName = "accuntInfo.json";
         Account importedAccount = null;
 
         public async Task<bool> InitializeUserFromAPI(string email, string password)

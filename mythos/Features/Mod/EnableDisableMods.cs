@@ -32,7 +32,7 @@ public class EnableDisableMods : ICommand
 
         _path = Path.Combine(FilePaths.GetMythosDownloadsFolder, MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid);
 
-        fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "MythInfo.json"));
+        fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "modInfo.json"));
 
         if (MiddleMan.ImportedMods[id].IsLoaded == true)
             Disable(id);
@@ -46,7 +46,11 @@ public class EnableDisableMods : ICommand
     {
         Logger.Log($"Enabling {MiddleMan.ImportedMods[id].Uuid}");
         MiddleMan.ImportedMods[id].IsLoaded = true;
-        DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
+        try
+        {
+            DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
+        }
+        catch { }
         DirectoryUtilities.Copy(Path.Combine(_path, fileNames["RP"]), Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
     }
 
@@ -54,7 +58,11 @@ public class EnableDisableMods : ICommand
     {
         Logger.Log($"Disabling {MiddleMan.ImportedMods[id].Uuid}");
         MiddleMan.ImportedMods[id].IsLoaded = false;
-        Directory.Delete(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
+        try
+        {
+            Directory.Delete(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
+        }
+        catch { }
         Directory.Delete(Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
     }
 }

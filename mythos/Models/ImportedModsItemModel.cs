@@ -30,12 +30,12 @@ namespace mythos.Models
             set { _name = value; SetTitle(); }
         }
         public string? Title { get; set; } = string.Empty;
-        public string DefaultImage { get; set; } = string.Empty;
+        public string? DefaultImage { get; set; } = string.Empty;
         public string[]? Images { get; set; }
-        public string Creator { get; set; } = string.Empty;
-        public string GameMode { get; set; } = string.Empty;
-        public string ShotDescription { get; set; } = string.Empty;
-        public string LongDescription { get; set; } = string.Empty; 
+        public string? Creator { get; set; } = string.Empty;
+        public string? GameMode { get; set; } = string.Empty;
+        public string? ShotDescription { get; set; } = string.Empty;
+        public string? LongDescription { get; set; } = string.Empty; 
         public string? YoutubeLink { get; set; }
         public string? DiscordLink { get; set; }
         public string? TwitterLink { get; set; }
@@ -55,9 +55,9 @@ namespace mythos.Models
                 }
             }
         }
-        public DateTime LastUpdated { get; set; } = DateTime.Now;
+        public DateTime? LastUpdated { get; set; } = DateTime.Now;
         public Category? Category { get; set; }
-        public Version Version
+        public Version? Version
         {
             get { return _version; }
             set

@@ -1,10 +1,11 @@
-﻿using Microsoft.CodeAnalysis.Diagnostics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using mythos.Services;
@@ -15,25 +16,25 @@ namespace mythos.DataRequesting_Loading_Unloading
     //todo: I copyed this from some were on the internit so need to add the ability for it to deal with bad requests.
     public static class FileDownloader
     {
-        public static async Task DownloadFile(string url, string filePath, string fileName)
+        public static async Task DownloadFile(string url, string folderPath, string fileName)
         {
             try
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    using (HttpResponseMessage response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead))
-                    {
-                        response.EnsureSuccessStatusCode();
+                HttpClient client = new HttpClient();
 
-                        using (Stream contentStream = await response.Content.ReadAsStreamAsync())
-                        {
-                            using (FileStream fileStream = File.Create(filePath+fileName))
-                            {
-                                await contentStream.CopyToAsync(fileStream);
-                            }
-                        }
-                    }
-                }
+                HttpResponseMessage response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+                    
+                response.EnsureSuccessStatusCode();
+
+                Stream contentStream = await response.Content.ReadAsStreamAsync();
+                        
+                FileStream fileStream = File.Create(Path.Combine(folderPath + fileName));
+
+                await contentStream.CopyToAsync(fileStream);
+
+                fileStream.Close();
+
+                contentStream.Close();
 
                 Logger.Log("Download complete!" + "\n");
             }

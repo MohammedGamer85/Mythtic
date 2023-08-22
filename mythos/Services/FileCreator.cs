@@ -22,7 +22,7 @@ namespace mythos.Services
             CheckAndCreateDirectory(FilePaths.GetMythosExportFolder);
             CheckAndCreateDirectory(FilePaths.GetMythosLogsFolder);
 
-            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "appData.json");
+            CheckAndCreateFile(FilePaths.GetMythosDocFolder + "accuntInfo.json");
             CheckAndCreateFile(FilePaths.GetMythosDocFolder + "importedMods.json");
             CheckAndCreateFile(FilePaths.GetMythosDocFolder + "jsonChecked.json");
         }
