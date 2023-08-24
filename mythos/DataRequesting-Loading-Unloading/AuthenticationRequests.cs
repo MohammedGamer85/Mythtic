@@ -15,6 +15,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using mythos.Services;
+using mythos.Features.PreloadedInformation;
 
 namespace mythos.Data
 {
@@ -88,7 +89,7 @@ namespace mythos.Data
         }
 
         //! Deals With login requests.
-        public async Task<Account> LoginRequest(string email, string password)
+        internal async Task<Account> LoginRequest(string email, string password)
         {
             string url = "https://mythos-api.umbrielstudios.com/api/authenticate";
 

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using mythos.Services;
 
-namespace mythos.Features.Importaccount
+namespace mythos.Features.PreloadedInformation
 {   //! is ran on lunch and see if the user data has been retived before, if yes it will read it, if not it will requests it.
     //todo: make it ask the user for account infromation if data has not been returved before.
     public class UserInformationLoader
@@ -67,4 +67,25 @@ namespace mythos.Features.Importaccount
             MiddleMan.UserDataStatus = true;
         }
     }
+
+    internal class Account
+    {
+        public bool Success { get; set; }
+        public Data Data { get; set; }
+    }
+
+    class Data
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public Roles[] Roles { get; set; }
+        public string AccessToken { get; set; }
+    }
+
+    class Roles
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
 }

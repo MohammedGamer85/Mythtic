@@ -4,7 +4,7 @@ using Avalonia.Controls.Documents;
 using Avalonia.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using mythos.Desktop.UI.MVVM.Views;
-using mythos.Features.Importaccount;
+using mythos.Features.PreloadedInformation;
 using mythos.Models;
 using mythos.Services;
 using mythos.ViewModels;

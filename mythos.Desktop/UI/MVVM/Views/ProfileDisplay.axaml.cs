@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using mythos.Services;
 using mythos.Desktop.UI.MVVM.ViewModels;
-using mythos.Features.Importaccount;
+using mythos.Features.PreloadedInformation;
 using System;
 
 namespace mythos.Desktop.UI.MVVM.Views
@@ -16,8 +16,8 @@ namespace mythos.Desktop.UI.MVVM.Views
         }
         public ProfileDisplay()
         {
-            Logger.Log("ProfileDisplay Wrong Constructor");
-            throw new InvalidCastException("Wrong Constructor ProfileDisplay");
+            Logger.Log("Wrong ProfileDisplay Constructor");
+            throw new InvalidCastException("Wrong ProfileDisplay Constructor [userInformationLoader Not given]");
         }
     }
 }

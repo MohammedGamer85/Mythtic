@@ -15,7 +15,7 @@ using Tmds.DBus.Protocol;
 using mythos.Desktop.UI.MVVM.Views;
 using mythos.Views;
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Features.Importaccount;
+using mythos.Features.PreloadedInformation;
 using System.Threading.Tasks;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
