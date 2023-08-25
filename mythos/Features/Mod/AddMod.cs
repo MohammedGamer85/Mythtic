@@ -20,11 +20,11 @@ namespace mythos.Features.Mod
             {
                 if (isZiped)
                 {
-                    ZipFile.ExtractToDirectory(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"), _folderPath, true);
+                    ZipFile.ExtractToDirectory(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"), _folderPath, false /* No overridding files */);
                 }
 
-                if(modInfo.Uuid == null)
-                {   
+                if (modInfo.Uuid == null)
+                {
                     var modInfoJson = JsonReaderHelper.ReadJsonFile<Rootobject>(Path.Combine(_folderPath, "RP", "manifest.json"), true);
                     modInfo.Uuid = modInfoJson.header.uuid;
                 }
@@ -84,8 +84,14 @@ namespace mythos.Features.Mod
                 JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
 
                 Directory.Delete(_folderPath, true);
+                File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
             }
-            catch { Directory.Delete(_folderPath, true); }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.ToString());
+                Directory.Delete(_folderPath, true);
+                File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
+            }
         }
     }
 

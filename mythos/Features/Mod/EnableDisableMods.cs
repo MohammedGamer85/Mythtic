@@ -49,9 +49,9 @@ public class EnableDisableMods : ICommand
         try
         {
             DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
+            DirectoryUtilities.Copy(Path.Combine(_path, fileNames["RP"]), Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
         }
         catch { }
-        DirectoryUtilities.Copy(Path.Combine(_path, fileNames["RP"]), Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
     }
 
     private void Disable(int id)
@@ -61,8 +61,8 @@ public class EnableDisableMods : ICommand
         try
         {
             Directory.Delete(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
+            Directory.Delete(Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
         }
         catch { }
-        Directory.Delete(Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
     }
 }

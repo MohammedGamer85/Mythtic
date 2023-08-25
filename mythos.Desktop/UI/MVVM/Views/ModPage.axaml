@@ -108,7 +108,44 @@
 							Stretch="Fill"/>
 			</Setter>
 		</Style>
-		
+		<!-- middle Smaill Button -->
+		<Style Selector="Button.h7">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<Image Source="\UI\MVVM\Assets\Icons\folder.png"
+								Height="40" Width="40"
+								Margin="0,0,0,5"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"/>
+
+
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_neutral.png"
+										Stretch="Fill"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="52"/>
+			<Setter Property="Width" Value="60"/>
+			<Setter Property="Margin" Value="0,0,0,20"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.h7:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_hover.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h7:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_press.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
 		<!-- Right Smaill Button -->
 		<Style Selector="Button.h4">
 			<Setter Property="Template">
@@ -223,6 +260,8 @@
 						VerticalAlignment="Top"/>
 
 						<Button Classes="h3"/>
+						<Button Classes="h7"
+								Command="{Binding OpenModDirectory}"/>
 						<Button Classes="h4"/>
 
 					</StackPanel>

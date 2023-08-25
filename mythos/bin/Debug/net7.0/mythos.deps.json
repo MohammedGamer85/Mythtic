@@ -8,186 +8,187 @@
     ".NETCoreApp,Version=v7.0": {
       "mythos/1.0.0": {
         "dependencies": {
-          "AsyncImageLoader.Avalonia": "3.0.0",
-          "Avalonia": "11.0.1",
-          "Avalonia.Controls.ColorPicker": "11.0.1",
-          "Avalonia.Controls.DataGrid": "11.0.1",
-          "Avalonia.Controls.ItemsRepeater": "11.0.1",
-          "Avalonia.Diagnostics": "11.0.1",
-          "Avalonia.Fonts.Inter": "11.0.1",
-          "Avalonia.ReactiveUI": "11.0.1",
-          "Avalonia.Themes.Fluent": "11.0.1",
+          "AsyncImageLoader.Avalonia": "3.2.0",
+          "Avalonia": "11.0.4",
+          "Avalonia.Controls.ColorPicker": "11.0.4",
+          "Avalonia.Controls.DataGrid": "11.0.4",
+          "Avalonia.Controls.ItemsRepeater": "11.0.4",
+          "Avalonia.Diagnostics": "11.0.4",
+          "Avalonia.Fonts.Inter": "11.0.4",
+          "Avalonia.ReactiveUI": "11.0.4",
+          "Avalonia.Themes.Fluent": "11.0.4",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Extensions.Hosting": "7.0.1"
+          "Microsoft.Extensions.Hosting": "7.0.1",
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "mythos.dll": {}
         }
       },
-      "AsyncImageLoader.Avalonia/3.0.0": {
+      "AsyncImageLoader.Avalonia/3.2.0": {
         "dependencies": {
-          "Avalonia": "11.0.1"
+          "Avalonia": "11.0.4"
         },
         "runtime": {
           "lib/netstandard2.1/AsyncImageLoader.Avalonia.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.0.0"
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
           }
         }
       },
-      "Avalonia/11.0.1": {
+      "Avalonia/11.0.4": {
         "dependencies": {
-          "Avalonia.BuildServices": "0.0.28",
-          "Avalonia.Remote.Protocol": "11.0.1",
+          "Avalonia.BuildServices": "0.0.29",
+          "Avalonia.Remote.Protocol": "11.0.4",
           "MicroCom.Runtime": "0.11.0",
           "System.ComponentModel.Annotations": "4.5.0"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Base.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.Controls.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.DesignerSupport.dll": {
             "assemblyVersion": "0.7.0.0",
             "fileVersion": "0.7.0.0"
           },
           "lib/net6.0/Avalonia.Dialogs.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.Markup.Xaml.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.Markup.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.Metal.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.MicroCom.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.OpenGL.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           },
           "lib/net6.0/Avalonia.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.BuildServices/0.0.28": {},
-      "Avalonia.Controls.ColorPicker/11.0.1": {
+      "Avalonia.BuildServices/0.0.29": {},
+      "Avalonia.Controls.ColorPicker/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1",
-          "Avalonia.Remote.Protocol": "11.0.1"
+          "Avalonia": "11.0.4",
+          "Avalonia.Remote.Protocol": "11.0.4"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Controls.ColorPicker.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.Controls.DataGrid/11.0.1": {
+      "Avalonia.Controls.DataGrid/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1",
-          "Avalonia.Remote.Protocol": "11.0.1"
+          "Avalonia": "11.0.4",
+          "Avalonia.Remote.Protocol": "11.0.4"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Controls.DataGrid.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.Controls.ItemsRepeater/11.0.1": {
+      "Avalonia.Controls.ItemsRepeater/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1"
+          "Avalonia": "11.0.4"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Controls.ItemsRepeater.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.Diagnostics/11.0.1": {
+      "Avalonia.Diagnostics/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1",
-          "Avalonia.Controls.ColorPicker": "11.0.1",
-          "Avalonia.Controls.DataGrid": "11.0.1",
-          "Avalonia.Themes.Simple": "11.0.1",
+          "Avalonia": "11.0.4",
+          "Avalonia.Controls.ColorPicker": "11.0.4",
+          "Avalonia.Controls.DataGrid": "11.0.4",
+          "Avalonia.Themes.Simple": "11.0.4",
           "Microsoft.CodeAnalysis.CSharp.Scripting": "3.8.0",
           "Microsoft.CodeAnalysis.Common": "3.8.0"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Diagnostics.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.Fonts.Inter/11.0.1": {
+      "Avalonia.Fonts.Inter/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1"
+          "Avalonia": "11.0.4"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Fonts.Inter.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.ReactiveUI/11.0.1": {
+      "Avalonia.ReactiveUI/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1",
+          "Avalonia": "11.0.4",
           "ReactiveUI": "18.3.1",
           "System.Reactive": "5.0.0"
         },
         "runtime": {
           "lib/net6.0/Avalonia.ReactiveUI.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.Remote.Protocol/11.0.1": {
+      "Avalonia.Remote.Protocol/11.0.4": {
         "runtime": {
           "lib/net6.0/Avalonia.Remote.Protocol.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.Themes.Fluent/11.0.1": {
+      "Avalonia.Themes.Fluent/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1"
+          "Avalonia": "11.0.4"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Themes.Fluent.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
-      "Avalonia.Themes.Simple/11.0.1": {
+      "Avalonia.Themes.Simple/11.0.4": {
         "dependencies": {
-          "Avalonia": "11.0.1"
+          "Avalonia": "11.0.4"
         },
         "runtime": {
           "lib/net6.0/Avalonia.Themes.Simple.dll": {
-            "assemblyVersion": "11.0.1.0",
-            "fileVersion": "11.0.1.0"
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
@@ -783,6 +784,14 @@
       },
       "Microsoft.NETCore.Platforms/2.1.2": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
       "ReactiveUI/18.3.1": {
         "dependencies": {
           "DynamicData": "7.9.5",
@@ -1060,89 +1069,89 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AsyncImageLoader.Avalonia/3.0.0": {
+    "AsyncImageLoader.Avalonia/3.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BO8ywYjG0vfv6V92ha4T1o0vGRPyQEKqfDMrq8dshNQTyv7E6Dk7EJrVVO8S0Bp6L1tJlOAeMTUh0P9aeoM22Q==",
-      "path": "asyncimageloader.avalonia/3.0.0",
-      "hashPath": "asyncimageloader.avalonia.3.0.0.nupkg.sha512"
+      "sha512": "sha512-g491s3DkCHzA4rAOhuczIM25fP3DBkfLHW9OpXJUBbPqB9Yl8UhczFA+s7wg3yrAckGXld2LyenFYDJqEzm3RQ==",
+      "path": "asyncimageloader.avalonia/3.2.0",
+      "hashPath": "asyncimageloader.avalonia.3.2.0.nupkg.sha512"
     },
-    "Avalonia/11.0.1": {
+    "Avalonia/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-AZj++jzKsBp02THeGZkKUEdrcNkhAO25osH3+TjacBLgz9cJ1j2yj0zAa6/+0/uRjcyX857DJyPl5wZN79LW8Q==",
-      "path": "avalonia/11.0.1",
-      "hashPath": "avalonia.11.0.1.nupkg.sha512"
+      "sha512": "sha512-OZIUjmQcZHHH21DldSMbqf2J1fKKC+V5gn0Lz2VdWI9LDHgVseEFx9TM9TzF5D6pH6qnkCFgAGABD6/Kaa0vSg==",
+      "path": "avalonia/11.0.4",
+      "hashPath": "avalonia.11.0.4.nupkg.sha512"
     },
-    "Avalonia.BuildServices/0.0.28": {
+    "Avalonia.BuildServices/0.0.29": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MSM0H8d8PlsPOj490DrmM4qOWAWJsweUQznZPqJ92Rdy2Rp8LfQ7JUFF0b3zceO3LXpGKKi+GSUk1GNsjjkfFQ==",
-      "path": "avalonia.buildservices/0.0.28",
-      "hashPath": "avalonia.buildservices.0.0.28.nupkg.sha512"
+      "sha512": "sha512-U4eJLQdoDNHXtEba7MZUCwrBErBTxFp6sUewXBOdAhU0Kwzwaa/EKFcYm8kpcysjzKtfB4S0S9n0uxKZFz/ikw==",
+      "path": "avalonia.buildservices/0.0.29",
+      "hashPath": "avalonia.buildservices.0.0.29.nupkg.sha512"
     },
-    "Avalonia.Controls.ColorPicker/11.0.1": {
+    "Avalonia.Controls.ColorPicker/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6vAmC/m/u8WUm2DF6zxUeAALkh5kEUwth+H58eXtSnCYaLJdItLWypufOgryijr2Qn9G7tRhiApU9OJEGLdTEw==",
-      "path": "avalonia.controls.colorpicker/11.0.1",
-      "hashPath": "avalonia.controls.colorpicker.11.0.1.nupkg.sha512"
+      "sha512": "sha512-8Hp/oOBZmq3fBQLpN2JZRZsv7eoZjeGml1y6evM3UUWNBIByb2bLJ2Lt2p9JGR4mwm7hO2nBMfJH4UdG23Q0Cg==",
+      "path": "avalonia.controls.colorpicker/11.0.4",
+      "hashPath": "avalonia.controls.colorpicker.11.0.4.nupkg.sha512"
     },
-    "Avalonia.Controls.DataGrid/11.0.1": {
+    "Avalonia.Controls.DataGrid/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-aLvNhplbH1wFp+hTaNTd7WUR8K1UCgdMITOoXpYKVGGLd3dYpyKDnQkV/QTJ5RBAmwpDhpLa/gC1A4jDci26Rw==",
-      "path": "avalonia.controls.datagrid/11.0.1",
-      "hashPath": "avalonia.controls.datagrid.11.0.1.nupkg.sha512"
+      "sha512": "sha512-5EZye7jX0rTxXtP6r6jp392eTDz3iiKxQ8sJavh6NWL31LVdT63lvDy0M32rxPJFce+NNpw2TMKXxM1jdUJj7A==",
+      "path": "avalonia.controls.datagrid/11.0.4",
+      "hashPath": "avalonia.controls.datagrid.11.0.4.nupkg.sha512"
     },
-    "Avalonia.Controls.ItemsRepeater/11.0.1": {
+    "Avalonia.Controls.ItemsRepeater/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-T0+VwXAgOQwD1Q2QIta5tQFrLCOt8rtWJLALP89zjRO7EtxNBLWr12FZ0U+hZT+OZTl7ZETzWsPNXv5/dTiPuA==",
-      "path": "avalonia.controls.itemsrepeater/11.0.1",
-      "hashPath": "avalonia.controls.itemsrepeater.11.0.1.nupkg.sha512"
+      "sha512": "sha512-wpohui8M3BHskyfZuyF1GorDyL4K/ShWBRvi1V2iH7Vj/YqgWTqGtxi8YEmlbOm9SG+hw8bblGAjmk0WvB4o2w==",
+      "path": "avalonia.controls.itemsrepeater/11.0.4",
+      "hashPath": "avalonia.controls.itemsrepeater.11.0.4.nupkg.sha512"
     },
-    "Avalonia.Diagnostics/11.0.1": {
+    "Avalonia.Diagnostics/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-b0FCfKvnbTBhn+xovIQ9TlPYTaewjhOmI/Q7Wl7BCg7M96NDUWUgkXv8Q6pIfnTFCXaZNf7HoCj2DAinTj+6CA==",
-      "path": "avalonia.diagnostics/11.0.1",
-      "hashPath": "avalonia.diagnostics.11.0.1.nupkg.sha512"
+      "sha512": "sha512-4jZWRMyLkaP1YeiudvhFaJxpV4kz/Gkm82+nhDyuXzPjej3zIPrd64ws3pM0+FRFYROyFe4xJ6GH1TCL6eLO7w==",
+      "path": "avalonia.diagnostics/11.0.4",
+      "hashPath": "avalonia.diagnostics.11.0.4.nupkg.sha512"
     },
-    "Avalonia.Fonts.Inter/11.0.1": {
+    "Avalonia.Fonts.Inter/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OfY+iQmkiYqbTitYsVz4GZ5bzHF6dxHIbPZsz3rWO4N2+z0J0DwmAZMyM0DIkET7Oi/QDPA9RrZL6+zXUzPgXQ==",
-      "path": "avalonia.fonts.inter/11.0.1",
-      "hashPath": "avalonia.fonts.inter.11.0.1.nupkg.sha512"
+      "sha512": "sha512-YKQN1pGdCUatsOLS4CMJLd+8Oy+4UFNJoxYlqCYb/ZRzGs1dypZ8OgJrr1t5IBJeL4uJSDohYc0Xc/4Y5CKxiw==",
+      "path": "avalonia.fonts.inter/11.0.4",
+      "hashPath": "avalonia.fonts.inter.11.0.4.nupkg.sha512"
     },
-    "Avalonia.ReactiveUI/11.0.1": {
+    "Avalonia.ReactiveUI/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-A/k0RIEE8uNrA8O+ckPUbA+D6M9HPOTWliiXuac32wHl7DWpsaUjBa4cOSrp8N1PsXnkK3epAJQzzsgVW7epTQ==",
-      "path": "avalonia.reactiveui/11.0.1",
-      "hashPath": "avalonia.reactiveui.11.0.1.nupkg.sha512"
+      "sha512": "sha512-MTkwwObbwKjACrmNoMWmJ0DPJozAOrGoLF+tsYowdP8E2pGpMnidCwie0lODvbSsPaxBo+PnIVLkg8g4Hx6tgw==",
+      "path": "avalonia.reactiveui/11.0.4",
+      "hashPath": "avalonia.reactiveui.11.0.4.nupkg.sha512"
     },
-    "Avalonia.Remote.Protocol/11.0.1": {
+    "Avalonia.Remote.Protocol/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-d240v19iP5wcUfyEbsnA26ZQUymv1m+YKeNHmS3gl7EI6+o3ZQmfxDfMigyLV+LerUt/uDw9iDlO13ohO/j7QA==",
-      "path": "avalonia.remote.protocol/11.0.1",
-      "hashPath": "avalonia.remote.protocol.11.0.1.nupkg.sha512"
+      "sha512": "sha512-vX5xNf3Dlshdgis72RSOjJr0PqtLZbVwj09Nix8QcbsE6QdEyayhI8glhPK3F4E52hWAVQJ+71ubFxMpvpkmXQ==",
+      "path": "avalonia.remote.protocol/11.0.4",
+      "hashPath": "avalonia.remote.protocol.11.0.4.nupkg.sha512"
     },
-    "Avalonia.Themes.Fluent/11.0.1": {
+    "Avalonia.Themes.Fluent/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FiFEcVrAfZnmabNSekwon/kX4KnNqsVK7xk8XtnrevQNdDHYt1YljH+sV61LtRzu8N4N2yrd7eQfQNtI+QPONg==",
-      "path": "avalonia.themes.fluent/11.0.1",
-      "hashPath": "avalonia.themes.fluent.11.0.1.nupkg.sha512"
+      "sha512": "sha512-NT86WVUU3w1a62IobzANH3AJmHwyUu+UNUGhjeWVyDqLsXAtU9y/Tw/MAOy9Vz9q+U3IYlfe7Uii1tetmGdfwA==",
+      "path": "avalonia.themes.fluent/11.0.4",
+      "hashPath": "avalonia.themes.fluent.11.0.4.nupkg.sha512"
     },
-    "Avalonia.Themes.Simple/11.0.1": {
+    "Avalonia.Themes.Simple/11.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fiHywqm7KnaZxcDjrDXO5uLJAMDnHpO09GjkPaPcsWfBH+GFE3CpUvuDZFMVyTP/IBmT3cbJT8x7Y/et0L5MQw==",
-      "path": "avalonia.themes.simple/11.0.1",
-      "hashPath": "avalonia.themes.simple.11.0.1.nupkg.sha512"
+      "sha512": "sha512-IOtDpCq5ZSRV3tkioHazvuBOVVzgFENSEbRsZk0wVBWLQS0OU6O88t7KsagjhL74KwODa63O7ZTZaclGh24OmQ==",
+      "path": "avalonia.themes.simple/11.0.4",
+      "hashPath": "avalonia.themes.simple.11.0.4.nupkg.sha512"
     },
     "DynamicData/7.9.5": {
       "type": "package",
@@ -1388,6 +1397,13 @@
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
     "ReactiveUI/18.3.1": {
       "type": "package",

@@ -18,8 +18,8 @@ namespace mythos.Models
         public string LatestVersion { get; set; }
         public string InformationPanel { get; set; }
 
-        public DateTime ReleaseDate { get; set; }
-        public Creator Creator { get; set; }
+        public string ReleaseDate { get; set; }
+        public CreatorItemModel Creator { get; set; }
 
         private SwitchToModView ModPageCommand { get; set; }
 

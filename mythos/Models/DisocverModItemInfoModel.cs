@@ -31,7 +31,7 @@ namespace mythos.Models
 
         public DateTime? ReleaseDate { get; set; } = DateTime.Now;
         public Category? Category { get; set; }
-        public Creator Creator { get; set; }
+        public CreatorItemModel Creator { get; set; }
 
         public string? InformationPanel { get; set; } = string.Empty;
 
@@ -52,8 +52,8 @@ namespace mythos.Models
     {
         public int Id { get; set; }
         public string Version { get; set; }
-        public string File_hash { get; set; }
-        public DateTime Upload_date { get; set; }
+        public string FileHash { get; set; }
+        public DateTime UploadDate { get; set; }
     }
 
     public class Category

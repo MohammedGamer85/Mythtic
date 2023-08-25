@@ -31,6 +31,7 @@ namespace mythos.Features.PreloadedInformation
                     Logger.Log($"LastUpdated  {item.LastUpdated}");
                     Logger.Log($"Isloaded     {item.IsLoaded}");
                     Logger.Log($"Version      {item.Version}");
+                    Logger.Log($"LongDescription  {item.LongDescription}");
                     Logger.Log($"ShotDescription  {item.ShotDescription}");
                     Logger.Log($"Dev  {item.IsDevMod}\n");
                 }

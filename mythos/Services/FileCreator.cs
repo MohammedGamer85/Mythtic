@@ -24,7 +24,7 @@ namespace mythos.Services
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "accuntInfo.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "importedMods.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "jsonChecked.json"));
-            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "settings.json"));
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "Settings.json"));
             Logger.Log("Created nesseary files");
         }
 

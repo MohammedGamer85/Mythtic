@@ -50,7 +50,7 @@ namespace mythos.Data
                     x.LatestVersion ??= "0,0,0";
                     if (x.ReleaseDate == null)
                     {
-                        x.ReleaseDate = DateTime.Now;
+                        x.ReleaseDate = DateTime.Now.ToString();
                     }
                     x.InformationPanel = "LatestVersion: " + x.ReleaseDate + "\nVersion: " + x.LatestVersion + "  GameMode: " + x.GameMode;
                     formatedResult.Add(x);

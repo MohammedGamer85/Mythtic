@@ -50,15 +50,19 @@
           "dependencies": {
             "Avalonia.Controls.ColorPicker": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Avalonia.Controls.DataGrid": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -123,35 +127,39 @@
           "dependencies": {
             "AsyncImageLoader.Avalonia": {
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[3.2.0, )"
             },
             "Avalonia": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Avalonia.Controls.ColorPicker": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Avalonia.Controls.DataGrid": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Avalonia.Controls.ItemsRepeater": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
+            },
+            "Avalonia.Diagnostics": {
+              "target": "Package",
+              "version": "[11.0.4, )"
             },
             "Avalonia.Fonts.Inter": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Avalonia.ReactiveUI": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
-              "version": "[11.0.1, )"
+              "version": "[11.0.4, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
@@ -160,6 +168,10 @@
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [

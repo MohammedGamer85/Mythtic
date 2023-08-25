@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -118,7 +119,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public async Task DownloadMod()
         {
-            await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myths/" + DiscoverModInfo.Versions[0].File_hash + ".zip",
+            await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myths/" + DiscoverModInfo.Versions[0].FileHash + ".zip",
                 FilePaths.GetMythosTempFolder, "\\Mod.zip");
             await AddMod.Add(new ImportedModsItemModel
             {
@@ -132,7 +133,12 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
                 LastUpdated = DateTime.Now,
                 IsDevMod = false,
-            }, Path.Combine(FilePaths.GetMythosTempFolder, "Mod"), true); 
+            }, Path.Combine(FilePaths.GetMythosTempFolder, "ModFolder"), true); 
+        }
+
+        public void OpenModDirectory()
+        {
+            Process.Start("explorer.exe", Path.Combine(FilePaths.GetMythosDownloadsFolder, ImportedModInfo.Uuid));
         }
 
         void OnLoadedDiscoverMod()

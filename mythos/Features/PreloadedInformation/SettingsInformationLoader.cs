@@ -1,6 +1,8 @@
 ﻿using mythos.Data;
+using mythos.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -8,17 +10,19 @@ using System.Threading.Tasks;
 
 namespace mythos.Features.PreloadedInformation
 {
-    public class SettingsInformation
+    public static class SettingsInformation
     {
-        async Task<settings> load()
+        public static async Task<Settings> Load()
         {
-            return JsonReaderHelper.ReadJsonFile<settings>("settings.json");
+            string filePath = Path.Combine(FilePaths.GetMythosDocFolder, "Settings.json");
+            if (!File.Exists(filePath))
+                File.Create(filePath);
+            return JsonReaderHelper.ReadJsonFile<Settings>(filePath, true);
         }
     }
 
-    public class settings
-    {
+    public class Settings
+    {   
         public bool FullScreenOnStartUP { get; set; }
     }
-
 }
