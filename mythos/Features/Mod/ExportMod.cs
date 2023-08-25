@@ -22,7 +22,7 @@ namespace mythos.Features.ImportMod
 
         public bool CanExecute(object? parameter)
         {
-                return true;
+            return true;
         }
 
         public void Execute(object? parameter)
@@ -62,12 +62,14 @@ namespace mythos.Features.ImportMod
 
                 if (gameVersion)
                 {
-                    DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsBPFolder, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
+                    if (Directory.Exists(Path.Combine(FilePaths.GetMythsBPFolder, _packs["BP"])))
+                        DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsBPFolder, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
                     DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsRPFolder, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
                 }
                 else
                 {
-                    DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
+                    if (Directory.Exists(Path.Combine(_mythFolderPath, _packs["BP"])))
+                        DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
                     DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
                 }
 

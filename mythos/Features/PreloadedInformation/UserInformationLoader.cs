@@ -63,7 +63,7 @@ namespace mythos.Features.PreloadedInformation
 
             JsonCheckHelper.JsonCheckFileForData(fileName);
 
-            Logger.Log("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString + User.id + "\n");
+            Logger.Log("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString() +","+ User.id.ToString() + "\n");
             MiddleMan.UserDataStatus = true;
         }
     }

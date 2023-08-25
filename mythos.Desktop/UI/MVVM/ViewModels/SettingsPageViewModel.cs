@@ -2,6 +2,7 @@ using mythos.Desktop.UI.MVVM.Views;
 using mythos.Features.PreloadedInformation;
 using ReactiveUI;
 using System;
+using System.Diagnostics.Contracts;
 using Tmds.DBus.Protocol;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
@@ -33,6 +34,9 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         public void FullScreenOnStartUp()
         {
             new MessageWindow("The app will open in Full Screen Next time you open it");
+            settings.FullScreenOnStartUP = (settings.FullScreenOnStartUP == true)
+            ? false
+            : true;
         }
     }
 }

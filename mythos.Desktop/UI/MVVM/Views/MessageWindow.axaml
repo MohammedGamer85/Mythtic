@@ -7,7 +7,7 @@
 		Height="150"		
 		IsEnabled="True"
 		IsVisible="True"
-		Background="White"
+		Background="#33302A"
         x:Class="mythos.Desktop.UI.MVVM.Views.MessageWindow"
         Title="MessageWindow">
 
@@ -15,13 +15,17 @@
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center">
 		
-		<TextBlock Text="Message:"
-				   Foreground="#1a1a1a"
+		<TextBlock Text="Message: "
+				   FontSize="20"
+				   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+				   Foreground="White"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"/>
 
 		<TextBlock Text="{Binding Text}"
-				   Foreground="#1a1a1a"
+				   Foreground="White"
+				   FontFamily="/UI/MVVM/Fonts/#Minecraft"
+				   FontWeight="Bold"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"/>
 		

@@ -72,11 +72,12 @@
 
 		<Border
 			Margin="5"
+			Width="390"
 			BorderBrush="#1a1a1a"
 			BorderThickness="15">
 			<StackPanel
 				VerticalAlignment="Top"
-				HorizontalAlignment="Left"
+				HorizontalAlignment="Center"
 				Margin="5,2.5,0,0">
 
 				<Button Classes="m1"
@@ -121,7 +122,7 @@
 													   HorizontalAlignment="Center"
 													   FontFamily="/UI/MVVM/Fonts/#Minecraft"/>
 											
-											<TextBlock Text=" "
+											<TextBlock Text=""
 													   FontSize="35"
 													   HorizontalAlignment="Center"
 													   FontFamily="/UI/MVVM/Fonts/#Minecraft"/>

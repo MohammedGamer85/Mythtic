@@ -50,13 +50,13 @@ namespace mythos.Features.ImportMod
 
                 Dictionary<string, object> _modInfo;
 
-                try
-                {
+                if (File.Exists(Path.Combine(_extractedFolderPath, "manifest.json")))
                     _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "manifest.json"), true);
-                }
-                catch
-                {
+                else if (File.Exists(Path.Combine(_extractedFolderPath, "modInfo.json")))
                     _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
+                else
+                {
+                    return false;
                 }
 
                 await AddMod.Add(new ImportedModsItemModel

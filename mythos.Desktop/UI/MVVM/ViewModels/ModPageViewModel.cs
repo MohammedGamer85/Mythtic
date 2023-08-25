@@ -123,12 +123,18 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 FilePaths.GetMythosTempFolder, "\\Mod.zip");
             await AddMod.Add(new ImportedModsItemModel
             {
-                WebId = DiscoverModInfo.Id,
+                WebId = DiscoverModInfo.Id ,
                 Name = DiscoverModInfo.Name,
                 DefaultImage = DiscoverModInfo.DefaultImage,
+                Images = DiscoverModInfo.Images,
                 Creator = DiscoverModInfo.Creator.Username,
                 ShotDescription = DiscoverModInfo.ShortDescription,
                 LongDescription = DiscoverModInfo.LongDescription,
+                Category = DiscoverModInfo.Category,
+                DiscordLink = DiscoverModInfo.DiscordLink,
+                GithubLink = DiscoverModInfo.GithubLink,
+                TwitterLink = DiscoverModInfo.TwitterLink,
+                YoutubeLink = DiscoverModInfo.YoutubeLink,
                 GameMode = DiscoverModInfo.GameMode,
                 Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
                 LastUpdated = DateTime.Now,

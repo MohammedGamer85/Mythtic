@@ -142,10 +142,9 @@
 					VerticalAlignment="Center"
 					FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
 			</Border>
-
-			<ScrollViewer Margin="27,120,0,0" Width="{Binding Path=$parent.Width}">
-
-				<!--<StackPanel Orientation="Vertical" Width="{Binding Path=$parent.Bounds.Width}">
+			
+			<!--<ScrollViewer Margin="27,120,0,0" Width="{Binding Path=$parent.Width}">
+				<StackPanel Orientation="Vertical" Width="{Binding Path=$parent.Bounds.Width}">
 					<CheckBox Classes="A1"
 						   Content="Full Screen On Start Up"
 						   Classes.Updated="{Binding _FullScreenOnStartUp}"
@@ -157,10 +156,9 @@
 						   Content="Change Mod list to herzontal"/>
 					<CheckBox Classes="A1"
 						   Content="Mute Sounds"/>
-				</StackPanel>-->
-				
-
-			</ScrollViewer>
+				</StackPanel>
+			</ScrollViewer>-->
+			
 		</Grid>
 	</Grid>
 </UserControl>
