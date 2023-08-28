@@ -3,32 +3,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-		Width="400"
-		Height="150"		
+		Width="500"
+		Height="200"		
 		IsEnabled="True"
 		IsVisible="True"
 		Background="#33302A"
+		
         x:Class="mythos.Desktop.UI.MVVM.Views.MessageWindow"
         Title="MessageWindow">
 
-	<StackPanel Orientation="Horizontal"
+	<ScrollViewer>
+		<StackPanel Orientation="Vertical"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center">
-		
-		<TextBlock Text="Message: "
-				   FontSize="20"
-				   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
-				   Foreground="White"
-				   HorizontalAlignment="Center"
-				   VerticalAlignment="Center"/>
 
-		<TextBlock Text="{Binding Text}"
-				   Foreground="White"
-				   FontFamily="/UI/MVVM/Fonts/#Minecraft"
-				   FontWeight="Bold"
-				   HorizontalAlignment="Center"
-				   VerticalAlignment="Center"/>
-		
-	</StackPanel>
+			<TextBlock Text="Message"
+					   FontSize="30"
+					   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+					   Foreground="White"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"/>
 
+			<TextBlock Text="{Binding Text}"
+					   Width="{Binding Path=$parent.Width}"
+					   Foreground="White"
+					   FontFamily="/UI/MVVM/Fonts/#Minecraft"
+					   FontWeight="Bold"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   TextWrapping="WrapWithOverflow"/>
+			
+			<Button Content="  OK"
+					FontSize="20"
+					Foreground="White"
+					Width="100"
+					Height="40"
+					BorderBrush="Black"
+					BorderThickness="3"
+					HorizontalAlignment="Center"
+					Command="{Binding OkButton}"/>
+			
+		</StackPanel>
+	</ScrollViewer>
+	
 </Window>

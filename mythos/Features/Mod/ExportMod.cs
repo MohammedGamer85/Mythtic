@@ -18,8 +18,6 @@ namespace mythos.Features.ImportMod
     {
         public event EventHandler? CanExecuteChanged;
 
-        bool exportedVersion;
-
         public bool CanExecute(object? parameter)
         {
             return true;
@@ -27,8 +25,7 @@ namespace mythos.Features.ImportMod
 
         public void Execute(object? parameter)
         {
-            exportedVersion = MiddleMan.ExportedVersion;
-            ExportAsync(Convert.ToInt32(parameter), exportedVersion);
+            ExportAsync(Convert.ToInt32(parameter), MiddleMan.ModExporteVersion);
         }
 
         public async Task<bool> ExportAsync(int modId, bool gameVersion)
@@ -51,8 +48,8 @@ namespace mythos.Features.ImportMod
                 });
 
                 string _compressedFilePath = (_exprotFolder[0].Path != null)
-                    ? Path.Combine(_exprotFolder[0].Path.ToString().Replace("file:///", ""), Mod.Name + ".mclMod")
-                    : Path.Combine(FilePaths.GetMythosExportFolder, Mod.Name + ".mclMod");
+                    ? Path.Combine(_exprotFolder[0].Path.ToString().Replace("file:///", ""), Mod.Name + ".mclmod")
+                    : Path.Combine(FilePaths.GetMythosExportFolder, Mod.Name + ".mclmod");
 
                 Logger.Log($"Exported file location [{_compressedFilePath}]");
 
@@ -62,14 +59,21 @@ namespace mythos.Features.ImportMod
 
                 if (gameVersion)
                 {
+                    if (Mod.IsLoaded == false)
+                        return false;
+
                     if (Directory.Exists(Path.Combine(FilePaths.GetMythsBPFolder, _packs["BP"])))
                         DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsBPFolder, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
+                    if (!Directory.Exists(Path.Combine(FilePaths.GetMythsRPFolder, _packs["RP"])))
+                        return false;
                     DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsRPFolder, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
                 }
                 else
                 {
                     if (Directory.Exists(Path.Combine(_mythFolderPath, _packs["BP"])))
                         DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
+                    if (!Directory.Exists(Path.Combine(_mythFolderPath, _packs["RP"])))
+                        return false;
                     DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
                 }
 
@@ -95,10 +99,14 @@ namespace mythos.Features.ImportMod
 
                 Directory.Delete(_tempFolderPath, true);
 
+                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Successfully exported {Mod.Name} to {_compressedFilePath}");
+
                 return true;
             }
             catch (Exception ex)
             {
+                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed to export {Mod.Name}, Exception is {ex}");
+
                 Logger.Log(ex.ToString());
                 return false;
             }

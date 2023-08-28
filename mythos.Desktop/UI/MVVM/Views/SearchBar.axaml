@@ -21,7 +21,7 @@
 		</Grid.ColumnDefinitions>
 		
 		<Grid.RowDefinitions>
-			<RowDefinition MaxHeight="50"/>
+			<RowDefinition MaxHeight="60"/>
 		</Grid.RowDefinitions>
 
 			<Canvas Grid.Column="0" Grid.Row="0">
@@ -29,11 +29,11 @@
 					Height="100" Stretch="Fill"/>
 			</Canvas>
 
-			<TextBox Watermark="Search Here"
+			<TextBox Watermark="Search Here (Does not work Currently)"
 					 Grid.Column="0" Grid.Row="0"
 					 FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 						MaxWidth="{Binding Path=$parent.Bounds.Width}"
-						Height="50"
+						Height="55"
 						FontSize="50"
 						Margin="15,21.5,0,5"
 						VerticalAlignment="Top"

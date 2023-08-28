@@ -7,7 +7,7 @@ using mythos.Services;
 using ReactiveUI;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
-{   //! This displayes the user's profile pic and username.
+{   //! _Window displayes the user's profile pic and username.
     //todo: Need to make it so if clicked the page is switched to the ProfilePage.
     public class ProfileDisplayViewModel : ReactiveObject
     {

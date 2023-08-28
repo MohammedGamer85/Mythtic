@@ -101,7 +101,7 @@ ClipToBounds="True">
 						VerticalAlignment="Top"
 						HorizontalAlignment="Center"/>
 
-						<Canvas	
+						<Canvas
 								VerticalAlignment="Bottom"
 								HorizontalAlignment="Center"
 								Height="150"
@@ -167,7 +167,7 @@ ClipToBounds="True">
 		</Style>
 
 	</UserControl.Styles>
-	
+
 	<Grid HorizontalAlignment="Left"
 		VerticalAlignment="Stretch"
 		ClipToBounds="True">
@@ -180,13 +180,13 @@ ClipToBounds="True">
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<StackPanel 
+		<StackPanel
 			Orientation="Horizontal"
 			VerticalAlignment="Top"
 			HorizontalAlignment="Left"
 			Margin="5,2.5,0,0">
-		
-			<Button 
+
+			<Button
 				FontSize="15"
 				FontFamily="/UI/MVVM/Fonts/#Minecraft"
 				FontWeight="Bold"
@@ -201,7 +201,7 @@ ClipToBounds="True">
 					HorizontalAlignment="Center"
 					Text="Import Myth"
 					Margin="0,4,0,0"/>
-				
+
 			</Button>
 
 			<Button
@@ -222,16 +222,34 @@ ClipToBounds="True">
 					Margin="0,4,0,0"/>
 
 			</Button>
-			
+
+			<Border
+				Margin="10,0,0,0"
+				Background="#555147"
+				CornerRadius="5">
+				
+				<TextBlock
+					Text="{Binding NumberOfMods}"
+					Margin="10,4,10,0"
+					Foreground="White"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					FontSize="25"
+					FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+					/>
+
+			</Border>
+
+
 		</StackPanel>
-		
+
 		<ScrollViewer
 				Margin="0,45,0,0"
 				VerticalScrollBarVisibility="Visible"
 				Height="{Binding Path=$parent.Height}"
 				Grid.Column="0" Grid.Row="0"
 				VerticalAlignment="Top">
-			
+
 			<ItemsRepeater
 				ItemsSource="{Binding Mods}"
 				HorizontalAlignment="Left"

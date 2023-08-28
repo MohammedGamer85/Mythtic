@@ -20,11 +20,11 @@ namespace mythos.Models
 
         public static Action OnPropertyChangeOfIsLoaded;
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int? WebId { get; set; }
 
-        public string Uuid { get; set; }
-        public string Name
+        public string? Uuid { get; set; }
+        public string? Name
         {
             get { return _name; }
             set { _name = value; SetTitle(); }

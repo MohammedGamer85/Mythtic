@@ -48,12 +48,12 @@ namespace mythos.Features.ImportMod
 
                 ZipFile.ExtractToDirectory(_FilePath, _extractedFolderPath, true);
 
-                Dictionary<string, object> _modInfo;
+                Dictionary<string, object?> _modInfo;
 
                 if (File.Exists(Path.Combine(_extractedFolderPath, "manifest.json")))
-                    _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "manifest.json"), true);
+                    _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object?>>(Path.Combine(_extractedFolderPath, "manifest.json"), true);
                 else if (File.Exists(Path.Combine(_extractedFolderPath, "modInfo.json")))
-                    _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
+                    _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object?>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
                 else
                 {
                     return false;
@@ -63,23 +63,93 @@ namespace mythos.Features.ImportMod
                 {
                     Id = MiddleMan.ImportedMods.Count,
                     WebId = null,
-                    Uuid = _modInfo["uuid"].ToString(),
-                    Name = (_modInfo["name"] != null) ? _modInfo["name"].ToString() : "Imported Mod",
-                    DefaultImage = (_modInfo["defaultImage"] != null) ? _modInfo["defaultImage"].ToString() : "https://mythos.umbrielstudios.com/favicon.ico",
                     Images = new string[0],
-                    Creator = (_modInfo["creator"] != null) ? _modInfo["creator"].ToString() : "Dev",
-                    GameMode = (_modInfo["gameMode"] != null) ? _modInfo["gameMode"].ToString() : "Unkown",
-                    ShotDescription = (_modInfo["shotDescription"] != null) ? _modInfo["shotDescription"].ToString() : "There is no Description",
-                    LongDescription = (_modInfo["longDescription"] != null) ? _modInfo["longDescription"].ToString() : "There is no Information",
-                    YoutubeLink = (_modInfo["youtubeLink"] != null) ? _modInfo["youtubeLink"].ToString() : "Unkown",
-                    DiscordLink = (_modInfo["discordLink"] != null) ? _modInfo["discordLink"].ToString() : "Unkown",
-                    TwitterLink = (_modInfo["twitterLink"] != null) ? _modInfo["twitterLink"].ToString() : "Unkown",
-                    GithubLink = (_modInfo["githubLink"] != null) ? _modInfo["githubLink"].ToString() : "Unkown",
+
+                    Uuid = (!_modInfo.ContainsKey("uuid"))
+                        ? null /// In the AddMod Funcation if uuid is null it is gotten from the RP file.
+                        : (_modInfo["uuid"] != null)
+                            ? _modInfo["uuid"].ToString()
+                            : null,
+
+                    Name = (!_modInfo.ContainsKey("name"))
+                        ? "Imported Mod"
+                        : (_modInfo["name"] != null)
+                            ? _modInfo["name"].ToString()
+                            : "Imported Mod",
+
+                    DefaultImage = (!_modInfo.ContainsKey("defaultImage"))
+                        ? "https://mythos.umbrielstudios.com/favicon.ico"
+                        : (_modInfo["defaultImage"] != null)
+                            ? _modInfo["defaultImage"].ToString()
+                            : "https://mythos.umbrielstudios.com/favicon.ico",
+
+                    Creator = (!_modInfo.ContainsKey("creator"))
+                        ? "Dev"
+                        : (_modInfo["creator"] != null)
+                            ? _modInfo["creator"].ToString()
+                            : "Dev",
+
+                    GameMode = (!_modInfo.ContainsKey("gameMode"))
+                        ? "Unkown"
+                        : (_modInfo["gameMode"] != null)
+                            ? _modInfo["gameMode"].ToString()
+                            : "Unkown",
+
+                    ShotDescription = (!_modInfo.ContainsKey("shotDescription"))
+                        ? "There is no Description"
+                        : (_modInfo["shotDescription"] != null)
+                            ? _modInfo["shotDescription"].ToString()
+                            : "There is no Description",
+
+                    LongDescription = (!_modInfo.ContainsKey("longDescription"))
+                        ? "There is no Information"
+                        : (_modInfo["longDescription"] != null)
+                            ? _modInfo["longDescription"].ToString()
+                            : "There is no Information",
+
+                    YoutubeLink = (!_modInfo.ContainsKey("youtubeLink"))
+                        ? "Unkown"
+                        : (_modInfo["youtubeLink"] != null)
+                            ? _modInfo["youtubeLink"].ToString() : "Unkown",
+
+                    DiscordLink = (!_modInfo.ContainsKey("discordLink"))
+                        ? "Unkown"
+                        : (_modInfo["discordLink"] != null)
+                            ? _modInfo["discordLink"].ToString()
+                            : "Unkown",
+
+                    TwitterLink = (!_modInfo.ContainsKey("twitterLink"))
+                        ? "Unkown"
+                        : (_modInfo["twitterLink"] != null)
+                            ? _modInfo["twitterLink"].ToString()
+                            : "Unkown",
+
+                    GithubLink = (!_modInfo.ContainsKey("githubLink"))
+                        ? "Unkown"
+                        : (_modInfo["githubLink"] != null)
+                            ? _modInfo["githubLink"].ToString()
+                            : "Unkown",
+
+                    LastUpdated = (!_modInfo.ContainsKey("lastUpdated"))
+                        ? DateTime.Now
+                        : (_modInfo["lastUpdated"] != null) 
+                            ? Convert.ToDateTime(_modInfo["lastUpdated"]) 
+                            : DateTime.Now,
+
+                    Version = (!_modInfo.ContainsKey("version")) 
+                        ? new Version("0.0.0.0") 
+                        : (_modInfo["version"] != null) 
+                            ? new Version(_modInfo["version"].ToString()) 
+                            : new Version("0.0.0.0"),
+
+                    Category = (Category)((!_modInfo.ContainsKey("category")) 
+                        ? new Category { Id = 0, Name = "Uncategorized" } 
+                        : (_modInfo["category"] != null)
+                            ? _modInfo["category"]
+                            : new Category { Id = 0, Name = "Uncategorized" }),
+
                     IsLoaded = false,
-                    LastUpdated = (_modInfo["lastUpdated"] != null) ? Convert.ToDateTime(_modInfo["lastUpdated"]) : DateTime.Now,
-                    Version = (_modInfo["version"] != null) ? new Version(_modInfo["version"].ToString()) : new Version("0.0.0.0"),
-                    Category = (Category)((_modInfo["category"] != null) ? _modInfo["category"] : new Category { Id = 0, Name = "Uncategorized" }),
-                    IsDevMod = true
+                    IsDevMod = false,
                 }, _extractedFolderPath, false);
 
                 return true;

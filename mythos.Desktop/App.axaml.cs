@@ -13,6 +13,7 @@ using System.IO;
 
 namespace mythos;
 
+
 public partial class App : Application
 {
 
@@ -30,19 +31,22 @@ public partial class App : Application
 
     public void CreateMainWindow()
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime App)
         {
-            desktop.MainWindow = new MainWindow
+            App.MainWindow = new MainWindow
             {
                 DataContext = this.CreateInstance<MainViewModel>(),
             };
+
+            App.ShutdownMode = ShutdownMode.OnMainWindowClose;
         }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime)
+        else if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime _app)
         {
             // TODO: implement
             // ReSharper disable once CommentTypo
             // https://docs.avaloniaui.net/docs/getting-started/application-lifetimes#isingleviewapplicationlifetime
-            throw new NotImplementedException();
+            
+            _app.Shutdown();
 
             // singleView.MainView = new MainView();
         }

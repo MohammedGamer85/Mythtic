@@ -7,49 +7,30 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 {
     public class ExportModWindowViewModel : ObservableObject
     {
-        private bool ExportedVersion
+        private bool ModExporteVersion
         {
-            get => MiddleMan.ExportedVersion;
+            get => MiddleMan.ModExporteVersion;
             set => OnPropertyChanged();
         }
 
         public ObservableCollection<ImportedModsItemModel> Mods
         {
-            get
-            {
-                return filterMods();
-            }
+            get =>MiddleMan.ImportedMods;
             set => OnPropertyChanged();
         }
 
         public ExportModWindowViewModel()
         {
-            Mods = filterMods();
-        }
-
-        private ObservableCollection<ImportedModsItemModel> filterMods()
-        {
-            ObservableCollection<ImportedModsItemModel> nonFilteredMods = MiddleMan.ImportedMods;
-            ObservableCollection<ImportedModsItemModel> filteredMods = new();
-
-            for (int i = 0; i < nonFilteredMods.Count; i++)
-            {
-                if(nonFilteredMods[i].IsDevMod == true)
-                {
-                    filteredMods.Add(nonFilteredMods[i]);
-                }
-            }
-
-            return filteredMods;
+            Mods = MiddleMan.ImportedMods;
         }
 
         public void SwitchExportMode()
         {
-            MiddleMan.ExportedVersion = (MiddleMan.ExportedVersion == true)
+            MiddleMan.ModExporteVersion = (MiddleMan.ModExporteVersion == true)
                 ? false
                 : true;
 
-            ExportedVersion = MiddleMan.ExportedVersion;
+            ModExporteVersion = MiddleMan.ModExporteVersion;
         }
     }
 }

@@ -20,17 +20,34 @@ using Avalonia.Dialogs;
 using Avalonia.Dialogs.Internal;
 using Avalonia.Platform.Storage;
 using System.Threading.Tasks;
+using System.Runtime;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
-    public class HomePageViewModel : ObservableObject
+    public class HomePageViewModel : ReactiveObject
     {
-        //! This part of the coding only jobe is to display the mods,
+        //! _Window part of the coding only jobe is to display the mods,
         //! all the mod related functions/actions are done in the ImportedModsItemModel.
+        private string _numberOfMods;
+
+        private ObservableCollection<ImportedModsItemModel> _mods;
+
         public ObservableCollection<ImportedModsItemModel> Mods
         {
-            get { return MiddleMan.ImportedMods; }
-            set { OnPropertyChanged(); }
+            get => MiddleMan.ImportedMods;
+            set => this.RaiseAndSetIfChanged(ref _mods, value);
+        }
+
+        public string NumberOfMods
+        {
+            get
+            {
+                if (MiddleMan.ImportedMods.Count() == 1)
+                    return $"{MiddleMan.ImportedMods.Count()} Mod Installed";
+                else
+                    return $"{MiddleMan.ImportedMods.Count()} Mods Installed";
+            }
+            set => this.RaiseAndSetIfChanged(ref _numberOfMods, value);
         }
 
         public HomePageViewModel()
@@ -43,6 +60,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             MiddleMan.OnPropertyChangeOfImportedMods = () =>
             {
                 Mods = MiddleMan.ImportedMods;
+                if (MiddleMan.ImportedMods.Count() == 1)
+                    NumberOfMods = $"{MiddleMan.ImportedMods.Count()} Mod Installed";
+                else
+                    NumberOfMods = $"{MiddleMan.ImportedMods.Count()} Mods Installed";
             };
 
             MiddleMan.OnPropertyChangeOfImportedModsModPage = () =>
@@ -51,10 +72,13 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             };
         }
 
-        public void importMod()
+        public async Task importMod()
         {
             var i = new ImportMod();
-            i.ImportAsync();
+            if (await i.ImportAsync())
+                new MessageWindow("Mod was imported succesfully.");
+            else
+                new MessageWindow("Failed to import mod.");
         }
 
         public void exportMod()

@@ -32,6 +32,8 @@ public static class MiddleMan
     public static Action? OnPropertyChangeOfImportedMods;
     public static Action? OnPropertyChangeOfDiscoverMods;
 
+    public static Action<string> OpenMessageWindowFromMythos;
+
     public static object View
     {
         get => _currentView;
@@ -98,7 +100,7 @@ public static class MiddleMan
         }
     }
 
-    public static bool ExportedVersion
+    public static bool ModExporteVersion
     {
         get => _exportedVersion;
         set

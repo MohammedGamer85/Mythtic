@@ -19,7 +19,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 {
     public class ModPageViewModel : ObservableObject
     {
-        private int _id;
+        private int? _id;
         private string _name;
         private string _imageSource;
         private string _author;
@@ -35,7 +35,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public EnableDisableMods EnableDisableModsCommand { get; set; }
 
-        public int Id
+        public int? Id
         {
             get { return _id; }
             set { _id = value; OnPropertyChanged(); }

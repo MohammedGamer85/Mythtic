@@ -5,7 +5,7 @@ using mythos.Services;
 using ReactiveUI;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
-{   //! This displays the search bar.
+{   //! _Window displays the search bar.
 	public class SearchBarViewModel : ObservableObject
 	{
 	}

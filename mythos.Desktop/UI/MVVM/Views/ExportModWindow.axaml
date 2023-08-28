@@ -40,7 +40,7 @@
 			</Setter>
 			<Setter Property="Height" Value="30"/>
 			<Setter Property="Width" Value="300"/>
-			<Setter Property="Margin" Value="0,10,0,10"/>
+			<Setter Property="Margin" Value="0,10,0,0"/>
 			<Setter Property="VerticalAlignment" Value="Bottom"/>
 			<Setter Property="HorizontalAlignment" Value="Center"/>
 			<Setter Property="BorderThickness" Value="0"/>
@@ -82,11 +82,16 @@
 
 				<Button Classes="m1"
 						IsVisible="True"
-						Classes.IsUpdated="{Binding ExportedVersion}"
-						Classes.NotUpdated="{Binding ExportedVersion}"
+						Classes.IsUpdated="{Binding ModExporteVersion}"
+						Classes.NotUpdated="{Binding ModExporteVersion}"
 						Command="{Binding SwitchExportMode}"
 						VerticalAlignment="Bottom"/>
 
+				<Label Content="^^ This is a button ^^"
+					   HorizontalAlignment="Center"
+					   Foreground="White"
+					   Margin="0,0,0,10"/>
+				
 				<ScrollViewer
 							Margin="0,0,0,0"
 							VerticalScrollBarVisibility="Visible"

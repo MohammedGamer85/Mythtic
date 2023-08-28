@@ -62,8 +62,6 @@ namespace mythos.Features.Mod
                     Directory.Move(Path.Combine(_mythFolderPath, pack), Path.Combine(_mythFolderPath, (pack + "-" + modInfo.Uuid)));
                 }
 
-                MiddleMan.ImportedMods = new();
-
                 MiddleMan.ImportedMods.Add(new ImportedModsItemModel
                 {
                     Id = MiddleMan.ImportedMods.Count(),

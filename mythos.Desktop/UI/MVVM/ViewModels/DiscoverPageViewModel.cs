@@ -19,7 +19,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 {
 	public class DiscoverPageViewModel : ObservableObject
     {
-        //! This part of the coding only jobe is to display the mods,
+        //! _Window part of the coding only jobe is to display the mods,
         //! all the mod related functions/actions are done in the ImportedModsItemModel.
         ObservableCollection<ListOfDiscoverModsModel> _mods;
         public ObservableCollection<ListOfDiscoverModsModel> Mods

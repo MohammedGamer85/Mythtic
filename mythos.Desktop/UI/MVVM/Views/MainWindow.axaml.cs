@@ -5,6 +5,7 @@ using mythos.Desktop;
 using mythos.Desktop.UI.MVVM.Views;
 using mythos.Services;
 using mythos.UI.Services;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -18,5 +19,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        MiddleMan.OpenMessageWindowFromMythos = (Text) =>
+        {
+            new MessageWindow(Text);
+        };
     }
 }
