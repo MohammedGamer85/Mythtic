@@ -14,7 +14,7 @@ namespace mythos.Features.Mod
 {
     public static class AddMod
     {
-        public static async Task Add(ImportedModsItemModel modInfo, string _folderPath, bool isZiped)
+        public static async Task<bool> Add(ImportedModsItemModel modInfo, string _folderPath, bool isZiped)
         {
             try
             {
@@ -62,6 +62,11 @@ namespace mythos.Features.Mod
                     Directory.Move(Path.Combine(_mythFolderPath, pack), Path.Combine(_mythFolderPath, (pack + "-" + modInfo.Uuid)));
                 }
 
+                if(MiddleMan.ImportedMods == null)
+                {
+                    MiddleMan.ImportedMods = new();
+                }
+
                 MiddleMan.ImportedMods.Add(new ImportedModsItemModel
                 {
                     Id = MiddleMan.ImportedMods.Count(),
@@ -89,12 +94,14 @@ namespace mythos.Features.Mod
 
                 Directory.Delete(_folderPath, true);
                 File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
+                return true;
             }
             catch (Exception ex)
             {
                 Logger.Log(ex.ToString());
                 Directory.Delete(_folderPath, true);
                 File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
+                return false;
             }
         }
     }

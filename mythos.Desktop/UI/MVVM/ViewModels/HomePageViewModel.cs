@@ -41,8 +41,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         public string NumberOfMods
         {
             get
-            {
-                if (MiddleMan.ImportedMods.Count() == 1)
+            {   
+                if(MiddleMan.ImportedMods == null)
+                    return $"0 Mods Installed";
+                else if (MiddleMan.ImportedMods.Count() == 1)
                     return $"{MiddleMan.ImportedMods.Count()} Mod Installed";
                 else
                     return $"{MiddleMan.ImportedMods.Count()} Mods Installed";
@@ -75,10 +77,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         public async Task importMod()
         {
             var i = new ImportMod();
-            if (await i.ImportAsync())
-                new MessageWindow("Mod was imported succesfully.");
-            else
-                new MessageWindow("Failed to import mod.");
+            await i.ImportAsync();
         }
 
         public void exportMod()

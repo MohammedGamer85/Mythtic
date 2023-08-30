@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using mythos.Data;
 using mythos.DataRequesting_Loading_Unloading;
+using mythos.Desktop.UI.MVVM.Views;
 using mythos.Features.Mod;
 using mythos.Models;
 using mythos.Services;
@@ -121,7 +122,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         {
             await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myths/" + DiscoverModInfo.Versions[0].FileHash + ".zip",
                 FilePaths.GetMythosTempFolder, "\\Mod.zip");
-            await AddMod.Add(new ImportedModsItemModel
+            if(await AddMod.Add(new ImportedModsItemModel
             {
                 WebId = DiscoverModInfo.Id ,
                 Name = DiscoverModInfo.Name,
@@ -139,7 +140,14 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
                 LastUpdated = DateTime.Now,
                 IsDevMod = false,
-            }, Path.Combine(FilePaths.GetMythosTempFolder, "ModFolder"), true); 
+            }, Path.Combine(FilePaths.GetMythosTempFolder, "ModFolder"), true))
+            {
+                new MessageWindow("Successfully installed mod");
+            }
+            else
+            {
+                new MessageWindow("Failed to installe mod");
+            }
         }
 
         public void OpenModDirectory()

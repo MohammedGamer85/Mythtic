@@ -8,7 +8,7 @@
 		xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
 		x:DataType="vm:ExportModWindowViewModel"
         x:Class="mythos.Desktop.UI.MVVM.Views.ExportModWindow"
-		Background="#836953"
+		Background="#555147"
 		MaxHeight="600"
 		MaxWidth="400"
 		MinHeight="600"
@@ -110,8 +110,9 @@
 						<ItemsRepeater.ItemTemplate>
 							<DataTemplate>
 
-								<Border Background="#ba8759"
+								<Border Background="#33302A"
 										Margin="0,0,0,5"
+										CornerRadius="5"
 										BorderBrush="Black"
 										Width="300"
 										BorderThickness="3"

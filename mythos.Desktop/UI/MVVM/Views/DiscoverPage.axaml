@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="450"
              x:Class="mythos.Desktop.UI.MVVM.Views.DiscoverPage"
 			 xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
 			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
@@ -65,9 +65,9 @@
 								TextWrapping="Wrap"
 								HorizontalAlignment="Left"/>
 
-							<StackPanel>
+							<StackPanel Margin="180,0,55,0">
 								<Label Content="Description:"
-									Margin="180,0,0,0"
+									Margin="-5,0,0,0"
 									Foreground="Black"
 									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 									Width="{Binding Path=$parent.Bounds.Width}"/>
@@ -79,24 +79,24 @@
 										FontWeight="Regular"
 										Foreground="Black"
 										VerticalAlignment="Top"
-										Margin="180,0,0,0"
+										Margin="1,0,0,0"
 										HorizontalAlignment="Left"
 										Text="{Binding Description}"
 										TextWrapping="WrapWithOverflow"
 										ClipToBounds="False"/>
-							</StackPanel>
 
-							<TextBlock
-									Background="Transparent"
-									FontSize="15"
-									FontFamily="/UI/MVVM/Fonts/#Minecraft"
-									FontWeight="Bold"
-									Foreground="Black"
-									Margin="180,0,0,0"
-									VerticalAlignment="Bottom"
-									HorizontalAlignment="Left"
-									Text="{Binding InformationPanel}"
-									TextWrapping="WrapWithOverflow"/>
+								<TextBlock
+										Background="Transparent"
+										FontSize="15"
+										FontFamily="/UI/MVVM/Fonts/#Minecraft"
+										FontWeight="Bold"
+										Foreground="Black"
+										Margin="1,0,0,0"
+										VerticalAlignment="Bottom"
+										HorizontalAlignment="Left"
+										Text="{Binding InformationPanel}"
+										TextWrapping="WrapWithOverflow"/>
+							</StackPanel>
 						</StackPanel>
 
 						<StackPanel.Background>

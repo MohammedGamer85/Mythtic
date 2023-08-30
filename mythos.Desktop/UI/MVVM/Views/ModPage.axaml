@@ -324,39 +324,42 @@
 						FontWeight="Regular"
 						VerticalAlignment="Top" HorizontalAlignment="Left"/>
 				
-				<StackPanel Width="{Binding Path=$parent.Bounds.Width}"
-							Margin="25,185,0,0"
+				<Grid Margin="25,185,25,0">
+					<StackPanel Width="{Binding Path=$parent.Bounds.Width}"
 							VerticalAlignment="Top" HorizontalAlignment="Left">
-					<TextBlock Text="Description:"
-							Padding="0,0,0,0"
-							Margin="0,0,0,0"
-							Foreground="Black"
-							FontSize="18"
-							FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
-							VerticalAlignment="Center" HorizontalAlignment="Left"/>
-					<TextBlock Text="{Binding SubDescription}"
+
+						<TextBlock Text="Description:"
 								Padding="0,0,0,0"
-								TextWrapping="WrapWithOverflow"
-								Margin="0,5,0,0"
+								Margin="0,0,0,0"
 								Foreground="Black"
 								FontSize="18"
-								FontFamily="/UI/MVVM/Fonts/#Minecraft"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 								VerticalAlignment="Center" HorizontalAlignment="Left"/>
-				</StackPanel>
+
+						<TextBlock Text="{Binding SubDescription}"
+									Padding="0,0,0,0"
+									TextWrapping="WrapWithOverflow"
+									Margin="0,5,0,0"
+									Foreground="Black"
+									FontSize="18"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft"
+									VerticalAlignment="Center" HorizontalAlignment="Left"/>
+					</StackPanel>
+
+					<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
+								Margin="0,0,0,50" Orientation="Horizontal">
+						<TextBlock Text="{Binding InformationPanel}"
+									Foreground="Black"
+									FontSize="24"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
+
+						<RadioButton Classes="h6"
+							Classes.IsUpdated="{Binding Installed}"/>
+
+
+					</StackPanel>
+				</Grid>
 				
-				<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
-							Margin="25,0,0,50" Orientation="Horizontal">
-					<TextBlock Text="{Binding InformationPanel}"
-								Foreground="Black"
-								FontSize="24"
-								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
-
-					<RadioButton Classes="h6"
-						Classes.IsUpdated="{Binding Installed}"/>
-					
-					
-				</StackPanel>
-
 			</Grid>
 		</ScrollViewer>
 	</Grid>

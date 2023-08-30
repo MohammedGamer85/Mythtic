@@ -11,6 +11,7 @@ using mythos.UI.Services;
 using mythos.Data;
 using mythos.Models;
 using System.Windows.Input;
+using ReactiveUI;
 
 namespace mythos.Features.ImportMod
 {
@@ -20,7 +21,23 @@ namespace mythos.Features.ImportMod
 
         public bool CanExecute(object? parameter)
         {
-            return true;
+            // Add your code to determine whether the command can execute or not
+            int id = Convert.ToInt32(parameter);
+
+            if (MiddleMan.ImportedMods[id] == null || MiddleMan.ImportedMods[id] == new ImportedModsItemModel())
+            {
+                Logger.Log($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
+                $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
+
+                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
+                    $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public void Execute(object? parameter)
@@ -40,17 +57,36 @@ namespace mythos.Features.ImportMod
             try
             {
                 //Gets teh export directory.
-                IReadOnlyList<IStorageFolder> _exprotFolder = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
+                IStorageFile _exprotFile = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
                 {
                     Title = "Choose Export folder",
-                    AllowMultiple = false,
+                    DefaultExtension = "*.mclmod",
                     SuggestedStartLocation = await StorageProvider.TryGetFolderFromPathAsync(FilePaths.GetMythosExportFolder)
                 });
 
-                string _compressedFilePath = (_exprotFolder[0].Path != null)
-                    ? Path.Combine(_exprotFolder[0].Path.ToString().Replace("file:///", ""), Mod.Name + ".mclmod")
-                    : Path.Combine(FilePaths.GetMythosExportFolder, Mod.Name + ".mclmod");
+                string _compressedFilePath = getCompressedFilePath();
 
+                string? getCompressedFilePath()
+                {
+                    if (_exprotFile == null)
+                        return Path.Combine(FilePaths.GetMythosExportFolder, Mod.Name + ".mclmod");
+                    else if (_exprotFile.Name == null)
+                        return Path.Combine(_exprotFile.Path.LocalPath, Mod.Name + ".mclmod");
+                    else if (_exprotFile.Name.Contains('.') == false)
+                        return Path.Combine(_exprotFile.Path.LocalPath + ".mclmod");
+                    else
+                    {
+                        string fileExtention = _exprotFile.Name.Substring(_exprotFile.Name.IndexOf('.') );
+
+                        if (fileExtention is ".mclmod" or ".mclmyth" or ".mod" or ".myth" or ".zip")
+                            return _exprotFile.Path.LocalPath;
+                        else
+                        {
+                            return Path.Combine(_exprotFile.Path.LocalPath.Remove(_exprotFile.Path.LocalPath.IndexOf('.')) + ".mclmod");
+                        }
+                    }
+                }
+                int x = _exprotFile.Name.IndexOf('.');
                 Logger.Log($"Exported file location [{_compressedFilePath}]");
 
                 Directory.CreateDirectory(_tempFolderPath);
@@ -60,21 +96,25 @@ namespace mythos.Features.ImportMod
                 if (gameVersion)
                 {
                     if (Mod.IsLoaded == false)
-                        return false;
+                        throw new Exception("Can't export game version if mod is disabled");
+
+                    DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsRPFolder, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
+
+                    if (!Directory.Exists(Path.Combine(FilePaths.GetMythsRPFolder, _packs["RP"])))
+                        throw new Exception("Could not find RP");
 
                     if (Directory.Exists(Path.Combine(FilePaths.GetMythsBPFolder, _packs["BP"])))
                         DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsBPFolder, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
-                    if (!Directory.Exists(Path.Combine(FilePaths.GetMythsRPFolder, _packs["RP"])))
-                        return false;
-                    DirectoryUtilities.Copy(Path.Combine(FilePaths.GetMythsRPFolder, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
                 }
                 else
                 {
+                    if (!Directory.Exists(Path.Combine(_mythFolderPath, _packs["RP"])))
+                        throw new Exception("Could not find RP");
+
+                    DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
+
                     if (Directory.Exists(Path.Combine(_mythFolderPath, _packs["BP"])))
                         DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
-                    if (!Directory.Exists(Path.Combine(_mythFolderPath, _packs["RP"])))
-                        return false;
-                    DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["RP"]), Path.Combine(_tempFolderPath, _packs["RP"]), true);
                 }
 
                 File.Create(Path.Combine(_tempFolderPath, "modInfo.json")).Close();
@@ -95,6 +135,11 @@ namespace mythos.Features.ImportMod
 
                 JsonWriterHelper.WriteJsonFile(Path.Combine(_tempFolderPath, "modInfo.json"), _modInfo, true);
 
+                if (File.Exists(_compressedFilePath))
+                {
+                    throw new Exception("File already exists [Can't overwrite file]");
+                }
+
                 ZipFile.CreateFromDirectory(_tempFolderPath, _compressedFilePath);
 
                 Directory.Delete(_tempFolderPath, true);
@@ -105,9 +150,9 @@ namespace mythos.Features.ImportMod
             }
             catch (Exception ex)
             {
-                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed to export {Mod.Name}, Exception is {ex}");
-
-                Logger.Log(ex.ToString());
+                Directory.Delete(_tempFolderPath, true);
+                Logger.Log($"Failed to export {Mod.Name}, Exception is {ex.ToString()}");
+                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed to export {Mod.Name}, Exception is {ex.Message}");
                 return false;
             }
         }

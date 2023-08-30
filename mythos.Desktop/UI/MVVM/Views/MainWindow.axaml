@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         x:Class="mythos.Views.MainWindow"
         Icon="\UI\MVVM\Assets\Icons\MCLDiscordLogo.ico"
-		MinHeight="820"
+		MinHeight="720"
 		MinWidth="1000"
-		Height="750"
-		Width="1110"
+		Height="820"
+		Width="1195"
         Title="mythos"
 		WindowState="Normal"
 		RequestedThemeVariant="Default">

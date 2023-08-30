@@ -33,6 +33,10 @@ namespace mythos.Features.ImportMod
                     AllowMultiple = false
                 });
 
+                if (_file.Count == 0)
+                {
+                    return false;
+                }
 
                 if (_file[0].Name != null && _file[0].Path != null)
                 {
@@ -132,18 +136,18 @@ namespace mythos.Features.ImportMod
 
                     LastUpdated = (!_modInfo.ContainsKey("lastUpdated"))
                         ? DateTime.Now
-                        : (_modInfo["lastUpdated"] != null) 
-                            ? Convert.ToDateTime(_modInfo["lastUpdated"]) 
+                        : (_modInfo["lastUpdated"] != null)
+                            ? Convert.ToDateTime(_modInfo["lastUpdated"])
                             : DateTime.Now,
 
-                    Version = (!_modInfo.ContainsKey("version")) 
-                        ? new Version("0.0.0.0") 
-                        : (_modInfo["version"] != null) 
-                            ? new Version(_modInfo["version"].ToString()) 
+                    Version = (!_modInfo.ContainsKey("version"))
+                        ? new Version("0.0.0.0")
+                        : (_modInfo["version"] != null)
+                            ? new Version(_modInfo["version"].ToString())
                             : new Version("0.0.0.0"),
 
-                    Category = (Category)((!_modInfo.ContainsKey("category")) 
-                        ? new Category { Id = 0, Name = "Uncategorized" } 
+                    Category = (Category)((!_modInfo.ContainsKey("category"))
+                        ? new Category { Id = 0, Name = "Uncategorized" }
                         : (_modInfo["category"] != null)
                             ? _modInfo["category"]
                             : new Category { Id = 0, Name = "Uncategorized" }),
@@ -152,11 +156,14 @@ namespace mythos.Features.ImportMod
                     IsDevMod = false,
                 }, _extractedFolderPath, false);
 
+                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Mod:[{_modInfo["name"]} was imported successfully]");
+
                 return true;
             }
             catch (Exception ex)
             {
                 Logger.Log(ex.ToString());
+                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed to import mod, Exception is {ex.Message}");
                 return false;
             }
         }
