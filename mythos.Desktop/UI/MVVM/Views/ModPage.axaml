@@ -10,23 +10,128 @@
 			 Background="#33302A">
 
 	<UserControl.Styles>
-		<Style Selector="Button.hyperlink">
+		<!-- HyperLink Button -->
+		<!-- YouTube -->
+		<Style Selector="Button.hyperlinkYT">
 			<Setter Property="Template">
 				<ControlTemplate>
-					<Image Source="{TemplateBinding Content}" Stretch="Uniform"
-						   Height="40" Width="40"/>
+					<Border BorderBrush="Transparent">
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\Youtube.png"
+										Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
 				</ControlTemplate>
-			</Setter>
-			<Setter Property="Background">
-				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_neutral.png"
-										Stretch="Fill"/>
 			</Setter>
 			<Setter Property="HorizontalAlignment" Value="Left"/>
 			<Setter Property="VerticalAlignment" Value="Top"/>
-			<Setter Property="FontFamily" Value="/UI/MVVM/Fonts/#Minecraft"/>
-			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Height" Value="90"/>
+			<Setter Property="Width" Value="90"/>
 			<Setter Property="BorderThickness" Value="0"/>
 		</Style>
+		<Style Selector="Button.hyperlinkYT:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\YoutubePointerOver.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.hyperlinkYT:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\YoutubePressed.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<!-- Github -->
+		<Style Selector="Button.hyperlinkGH">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border BorderBrush="Transparent">
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\Github.png"
+										Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="Height" Value="90"/>
+			<Setter Property="Width" Value="90"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.hyperlinkGH:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\GithubPointerOver.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.hyperlinkGH:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\GithubPressed.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<!-- Discord -->
+		<Style Selector="Button.hyperlinkD">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border BorderBrush="Transparent">
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\Discord.png"
+										Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="Height" Value="90"/>
+			<Setter Property="Width" Value="90"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.hyperlinkD:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\DiscordPointerOver.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.hyperlinkD:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\DiscordPressed.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<!-- X-Tiwtter -->
+		<Style Selector="Button.hyperlinkX">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border BorderBrush="Transparent">
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\Twitter-X.png"
+										Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="Height" Value="90"/>
+			<Setter Property="Width" Value="90"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.hyperlinkX:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\Twitter-XPointerOver.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.hyperlinkX:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Icons\Socials\Twitter-XPressed.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<!-- Disabled button -->
 		<Style Selector="Button.h2">
 			<Setter Property="Template">
 				<ControlTemplate>
@@ -378,28 +483,30 @@
 						Margin="175,30,0,0"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 						VerticalAlignment="Top" HorizontalAlignment="Left"/>
-				
+
 				<Label FontSize="34" Content="{Binding Author}"
 						Foreground="Black"
 						Margin="180,75,0,0"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft"
 						FontWeight="Bold"/>
 
+				<!-- HyperLinks -->
+				<!-- Youtube -->
 				<Button Command="{Binding HandleLinkClickedYT}"
-						Classes="hyperlink" Content="asd"
-						Margin="183,115,0,0"/>
-
+						Classes="hyperlinkYT"
+						Margin="188,100,0,0"/>
+				<!-- Github -->
 				<Button Command="{Binding HandleLinkClickedGH}"
-						Classes="hyperlink" Content="asd"
-						Margin="223,115,0,0"/>
-
+						Classes="hyperlinkGH"
+						Margin="303,100,0,0"/>
+				<!-- Discord -->
 				<Button Command="{Binding HandleLinkClickedD}"
-						Classes="hyperlink" Content="asd"
-						Margin="268,115,0,0"/>
-
+						Classes="hyperlinkD"
+						Margin="417,100,0,0"/>
+				<!-- X-Tiwtter -->
 				<Button Command="{Binding HandleLinkClickedX}"
-						Classes="hyperlink" Content="asd"
-						Margin="308,115,0,0"/>
+						Classes="hyperlinkX"
+						Margin="533,100,0,0"/>
 
 				<Grid Margin="25,185,25,0">
 					<StackPanel Width="{Binding Path=$parent.Bounds.Width}"

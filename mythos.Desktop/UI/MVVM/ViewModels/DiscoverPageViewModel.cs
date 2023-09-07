@@ -58,20 +58,24 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 if (MiddleMan.View != Program.ServiceProvider.GetService<DiscoverPage>())
                     return;
 
-                DisplayedMods = new();
+                var i = DisplayedMods;
+
+                i = new();
 
                 foreach (var mod in Mods.ToArray<ListOfDiscoverModsItem>())
                 {
                     if (mod.Name.Contains(Text, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        DisplayedMods.Add(mod);
+                        i.Add(mod);
                     }
                 }
 
-                if (DisplayedMods.Count() == 0)
+                if (i.Count() == 0)
                 {
-                    DisplayedMods = Mods;
+                    i = Mods;
                 }
+
+                DisplayedMods = i;
             };
         }
 

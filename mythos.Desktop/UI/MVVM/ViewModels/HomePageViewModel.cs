@@ -22,6 +22,8 @@ using Avalonia.Platform.Storage;
 using System.Threading.Tasks;
 using System.Runtime;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading;
+using Tmds.DBus.Protocol;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -30,6 +32,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         //! _Window part of the coding only jobe is to display the mods,
         //! all the mod related functions/actions are done in the ImportedModsItem.
         private string _numberOfMods;
+        private string _lastSearch;
 
         private ObservableCollection<ImportedModsItem> _displayedMods;
         private ObservableCollection<ImportedModsItem> _mods;
@@ -40,7 +43,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             set => this.RaiseAndSetIfChanged(ref _displayedMods, value);
         }
 
-        public ObservableCollection<ImportedModsItem> Mods
+        private ObservableCollection<ImportedModsItem> Mods
         {
             get => _mods;
             set => this.RaiseAndSetIfChanged(ref _mods, value);
@@ -75,25 +78,36 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 NumberOfMods = $"{MiddleMan.ImportedMods.Count()} Mod Installed";
             };
 
-            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender, Text) =>
+            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender, search) =>
             {
                 if (MiddleMan.View != Program.ServiceProvider.GetService<HomePage>())
                     return;
 
-                DisplayedMods = new();
+                _lastSearch = search;
+
+                Thread.Sleep(10);
+
+                if (_lastSearch != search)
+                    return;
+
+                var i = DisplayedMods;
+
+                i = new();
 
                 foreach (var mod in Mods.ToArray<ImportedModsItem>())
                 {
-                    if (mod.Name.Contains(Text, StringComparison.InvariantCultureIgnoreCase))
+                    if (mod.Name.Contains(search, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        DisplayedMods.Add(mod);
+                        i.Add(mod);
                     }
                 }
 
-                if (DisplayedMods.Count() == 0)
+                if (i.Count() == 0)
                 {
-                    DisplayedMods = Mods;
+                    i = Mods;
                 }
+
+                DisplayedMods = i;
             };
 
             MiddleMan.OnPropertyChangeOfImportedModsModPage = () =>
