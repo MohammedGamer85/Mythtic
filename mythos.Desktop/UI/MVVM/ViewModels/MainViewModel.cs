@@ -75,7 +75,7 @@ public class MainViewModel : ObservableObject
     {
         MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;
-        SearchBarVM = new SearchBar();
+        SearchBarVM = Program.ServiceProvider.GetService<SearchBar>();
         TopBar = SearchBarVM;
         ProfileDisplayVM = new ProfileDisplay(userInformationLoader);
         CornerDisplay = ProfileDisplayVM;
@@ -91,6 +91,7 @@ public class MainViewModel : ObservableObject
         {
             Content = MiddleMan.Content;
         };
+
         //! Ether DebugMode or normal Mode aka CheckForAreadyExistingAccuntInfo
         //DebugMode();
         CheckForAreadyExistingAccountInfo();
@@ -101,7 +102,7 @@ public class MainViewModel : ObservableObject
     {   
         if(MiddleMan.UserDataStatus == false)
         {
-            if (await userInformationLoader.InitializeUserFromSavedUser())
+            if (await userInformationLoader.InitializeUserFromSavedData())
             {
                 Logger.Log("Login Infromation Aready Autherizied");
                 MiddleMan.Content = new MainView();
@@ -118,7 +119,7 @@ public class MainViewModel : ObservableObject
 
     async Task DebugMode()
     {
-        await userInformationLoader.InitializeUserFromSavedUser();
+        await userInformationLoader.InitializeUserFromSavedData();
         Logger.Log("Activating Debug Mode");
         MiddleMan.Content = new DebugView();
     }

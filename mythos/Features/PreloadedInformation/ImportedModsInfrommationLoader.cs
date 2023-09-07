@@ -18,7 +18,7 @@ namespace mythos.Features.PreloadedInformation
         public ImportedModsInfrommationLoader()
         {
 
-            MiddleMan.ImportedMods = JsonReaderHelper.ReadJsonFile<ObservableCollection<ImportedModsItemModel>>("importedMods.json", false);
+            MiddleMan.ImportedMods = JsonReaderHelper.ReadJsonFile<ObservableCollection<ImportedModsItem>>("importedMods.json", false);
             Logger.Log("\nLoaded imported mods");
             if (MiddleMan.ImportedMods != null)
                 foreach (var item in MiddleMan.ImportedMods)

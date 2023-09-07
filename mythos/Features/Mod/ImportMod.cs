@@ -63,7 +63,7 @@ namespace mythos.Features.ImportMod
                     return false;
                 }
 
-                await AddMod.Add(new ImportedModsItemModel
+                await AddMod.Add(new ImportedModsItem
                 {
                     Id = MiddleMan.ImportedMods.Count,
                     WebId = null,

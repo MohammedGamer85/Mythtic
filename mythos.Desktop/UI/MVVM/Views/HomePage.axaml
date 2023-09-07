@@ -251,7 +251,7 @@ ClipToBounds="True">
 				VerticalAlignment="Top">
 
 			<ItemsRepeater
-				ItemsSource="{Binding Mods}"
+				ItemsSource="{Binding DisplayedMods}"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Bottom"
 				Background="Transparent">

@@ -46,6 +46,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             {
                 MiddleMan.Content = new MainView();
             }
+            else
+            {
+                new MessageWindow("Login Failed");
+            }
         }
     }
 }

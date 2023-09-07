@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 using mythos.Services;
 
 namespace mythos.Features.PreloadedInformation
-{   //! is ran on lunch and see if the user data has been retived before, if yes it will read it, if not it will requests it.
-    //todo: make it ask the user for account infromation if data has not been returved before.
+{   //! Dealth with the user and accunt classes.
     public class UserInformationLoader
     {
         private readonly AuthenticationRequests _authenticationRequests = new();
@@ -28,16 +27,11 @@ namespace mythos.Features.PreloadedInformation
             return true;
         }
 
-        public async Task<bool> InitializeUserFromSavedUser()
+        public async Task<bool> InitializeUserFromSavedData()
         {
             Logger.Log("Importing account infromation");
-            bool isAccountDataExists = JsonCheckHelper.CheckJsonFileForData(fileName);
 
-            // get userInfoFrom json
-
-            //get json infromation;
-            //! To Mohammed do things like this and learn.
-            if (isAccountDataExists)
+            if (JsonCheckHelper.CheckJsonFileForData(fileName))
             {
                 importedAccount = JsonReaderHelper.ReadJsonFile<Account>(fileName);
                 await InitializeUser();

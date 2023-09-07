@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace mythos.Models
 {
-    public class ListOfDiscoverModsModel : ObservableObject
+    public class ListOfDiscoverModsItem : ObservableObject
     {
         public int Id { get; set; }
         public int Downloads { get; set; }
@@ -19,11 +19,11 @@ namespace mythos.Models
         public string InformationPanel { get; set; }
 
         public string ReleaseDate { get; set; }
-        public CreatorItemModel Creator { get; set; }
+        public Creator Creator { get; set; }
 
         private SwitchToModView ModPageCommand { get; set; }
 
-        public ListOfDiscoverModsModel()
+        public ListOfDiscoverModsItem()
         {
             ModPageCommand = new SwitchToModView(false);
         }
@@ -32,6 +32,6 @@ namespace mythos.Models
     internal class ListOfDiscoverModsModelRecived : ObservableObject
     {
         public bool Success { get; set; }
-        public ListOfDiscoverModsModel[] Data { get; set; }
+        public ListOfDiscoverModsItem[] Data { get; set; }
     }
 }

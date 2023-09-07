@@ -24,7 +24,7 @@ public class EnableDisableMods : ICommand
         // Add your code to determine whether the command can execute or not
         int id = Convert.ToInt32(parameter);
 
-        if (MiddleMan.ImportedMods[id] == null || MiddleMan.ImportedMods[id] == new ImportedModsItemModel())
+        if (MiddleMan.ImportedMods[id] == null || MiddleMan.ImportedMods[id] == new ImportedModsItem())
         {
             Logger.Log($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
                 $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
@@ -65,7 +65,7 @@ public class EnableDisableMods : ICommand
         }
     }
 
-    private void Enable(int id)
+    public void Enable(int id)
     {
         Logger.Log($"Enabling {MiddleMan.ImportedMods[id].Uuid}");
         try
@@ -87,7 +87,7 @@ public class EnableDisableMods : ICommand
         }
     }
 
-    private void Disable(int id)
+    public void Disable(int id)
     {
         Logger.Log($"Disabling {MiddleMan.ImportedMods[id].Uuid}");
         try

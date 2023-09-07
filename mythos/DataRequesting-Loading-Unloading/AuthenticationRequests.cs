@@ -30,7 +30,7 @@ namespace mythos.Data
     {
         private readonly HttpClientHelper _httpClientHelper = new HttpClientHelper();
 
-        public async Task<ObservableCollection<ListOfDiscoverModsModel>> DiscoverModList()
+        public async Task<ObservableCollection<ListOfDiscoverModsItem>> DiscoverModList()
         {
             string url = "https://mythos-api.umbrielstudios.com/api/myths?";
 
@@ -38,7 +38,7 @@ namespace mythos.Data
 
             if (result.Success == true)
             {
-                ObservableCollection<ListOfDiscoverModsModel> formatedResult = new();
+                ObservableCollection<ListOfDiscoverModsItem> formatedResult = new();
                 var i = result.Data;
                 foreach (var x in i)
                 {

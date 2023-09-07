@@ -24,7 +24,7 @@ namespace mythos.Features.ImportMod
             // Add your code to determine whether the command can execute or not
             int id = Convert.ToInt32(parameter);
 
-            if (MiddleMan.ImportedMods[id] == null || MiddleMan.ImportedMods[id] == new ImportedModsItemModel())
+            if (MiddleMan.ImportedMods[id] == null || MiddleMan.ImportedMods[id] == new ImportedModsItem())
             {
                 Logger.Log($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
                 $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
@@ -49,7 +49,7 @@ namespace mythos.Features.ImportMod
         {
             Logger.Log($"Exporting mod gameVersion [{gameVersion}]");
 
-            ImportedModsItemModel Mod = MiddleMan.ImportedMods[modId];
+            ImportedModsItem Mod = MiddleMan.ImportedMods[modId];
 
             string _mythFolderPath = Path.Combine(FilePaths.GetMythosDownloadsFolder, Mod.Uuid);
             string _tempFolderPath = Path.Combine(FilePaths.GetMythosTempFolder, Mod.Name);

@@ -6,10 +6,7 @@
              xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
              x:Class="mythos.Desktop.UI.MVVM.Views.SearchBar"
 			 x:DataType="vm:SearchBarViewModel">
-	<UserControl.DataContext>
-		<vm:SearchBarViewModel/>
-	</UserControl.DataContext>
-	
+
 	<!-- is used to display the search bar -->
 	
 	<Grid HorizontalAlignment="Stretch"
@@ -29,7 +26,8 @@
 					Height="100" Stretch="Fill"/>
 			</Canvas>
 
-			<TextBox Watermark="Search Here (Does not work Currently)"
+			<TextBox Watermark="Search Here"
+					 Text="{Binding SearchText}"
 					 Grid.Column="0" Grid.Row="0"
 					 FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 						MaxWidth="{Binding Path=$parent.Bounds.Width}"

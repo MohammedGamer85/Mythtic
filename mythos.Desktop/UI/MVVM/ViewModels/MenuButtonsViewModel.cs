@@ -20,8 +20,8 @@ namespace mythos.Desktop.UI.MVVM.ViewModels;
 
 public class MenuButtonsViewModel : ObservableObject
 {   //There objects are linked to there related pages.
-    public HomePage HomePageVM = new HomePage();
-    public DiscoverPage DiscoverPageVM = new DiscoverPage();
+    public HomePage HomePageVM = Program.ServiceProvider.GetService<HomePage>();
+    public DiscoverPage DiscoverPageVM = Program.ServiceProvider.GetService<DiscoverPage>();
     public SettingsPage SettingsPageVM = new SettingsPage();
 
     public MenuButtonsViewModel()

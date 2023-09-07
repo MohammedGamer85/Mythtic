@@ -10,6 +10,23 @@
 			 Background="#33302A">
 
 	<UserControl.Styles>
+		<Style Selector="Button.hyperlink">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Image Source="{TemplateBinding Content}" Stretch="Uniform"
+						   Height="40" Width="40"/>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_neutral.png"
+										Stretch="Fill"/>
+			</Setter>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="FontFamily" Value="/UI/MVVM/Fonts/#Minecraft"/>
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
 		<Style Selector="Button.h2">
 			<Setter Property="Template">
 				<ControlTemplate>
@@ -70,17 +87,20 @@
 							Stretch="Uniform"/>
 			</Setter>
 		</Style>
-		<!-- SmallButton -->
+		<!-- Left SmallButton -->
 		<Style Selector="Button.h3">
 			<Setter Property="Template">
 				<ControlTemplate>
 					<Border>
+
 						<TextBlock Text="⭮"
-								   FontSize="34"
-								   FontWeight="Bold"
-								   Foreground="White"
-								   HorizontalAlignment="Center"
-								   VerticalAlignment="Center"/>
+						   FontSize="34"
+						   FontWeight="Bold"
+						   Foreground="White"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"/>
+
+
 
 						<Border.Background>
 							<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\left_chat_button_neutral.png"
@@ -146,20 +166,58 @@
 							Stretch="Fill"/>
 			</Setter>
 		</Style>
+		<!-- middle Smaill Button 2-->
+		<Style Selector="Button.h8">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border>
+						<Image Source="\UI\MVVM\Assets\Icons\delete.png"
+								Height="35" Width="38"
+								Margin="0,0,0,5"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"/>
+
+
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_neutral.png"
+										Stretch="Fill"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+			<Setter Property="Height" Value="52"/>
+			<Setter Property="Width" Value="60"/>
+			<Setter Property="Margin" Value="0,0,0,20"/>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="0"/>
+		</Style>
+		<Style Selector="Button.h8:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_hover.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h8:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\middle_chat_button_press.png"
+							Stretch="Fill"/>
+			</Setter>
+		</Style>
 		<!-- Right Smaill Button -->
 		<Style Selector="Button.h4">
 			<Setter Property="Template">
 				<ControlTemplate>
 					<Border>
-							<TextBlock Text="↑"
-								Margin="-5,-2.5,0,0"
-							   FontSize="40"
-							   FontWeight="Bold"
-							   Foreground="White"
-							   HorizontalAlignment="Center"
-							   VerticalAlignment="Center"/>
-						
-						
+						<TextBlock Text="↑"
+							Margin="-5,-2.5,0,0"
+						   FontSize="40"
+						   FontWeight="Bold"
+						   Foreground="White"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"/>
+
+
 						<Border.Background>
 							<ImageBrush Source="\UI\MVVM\Assets\Buttons\SmallButtonsVar1\right_chat_button_neutral.png"
 										Stretch="Fill"/>
@@ -186,7 +244,7 @@
 							Stretch="Fill"/>
 			</Setter>
 		</Style>
-		
+
 		<!-- DownLoad Button -->
 		<Style Selector="Button.h5">
 			<Setter Property="Template">
@@ -230,7 +288,7 @@
 
 
 		<!-- RadioButton -->
-		
+
 		<Style Selector="RadioButton.h6">
 			<Setter Property="Template">
 				<ControlTemplate>
@@ -243,9 +301,9 @@
 				</ControlTemplate>
 			</Setter>
 		</Style>
-		
+
 		<!-- DownLoaded -->
-		
+
 		<Style Selector="RadioButton.h6.IsUpdated">
 			<Setter Property="Template">
 				<ControlTemplate>
@@ -259,17 +317,20 @@
 						Classes.NotUpdated="{Binding IsLoaded}"
 						VerticalAlignment="Top"/>
 
-						<Button Classes="h3"/>
+						<Button Classes="h3"
+								Command="{Binding ReDownloadMod}"/>
 						<Button Classes="h7"
 								Command="{Binding OpenModDirectory}"/>
+						<Button Classes="h8"
+								Command="{Binding DeleteMod}"/>
 						<Button Classes="h4"/>
 
 					</StackPanel>
 				</ControlTemplate>
 			</Setter>
 		</Style>
-		
-		
+
+
 	</UserControl.Styles>
 
 	<Grid>
@@ -311,19 +372,35 @@
 						Width="150"
 						Stretch="Fill"/>
 				</Canvas>
-				
+
 				<Label FontSize="48" Content="{Binding Name}"
 						Foreground="Black"
 						Margin="175,30,0,0"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 						VerticalAlignment="Top" HorizontalAlignment="Left"/>
+				
 				<Label FontSize="34" Content="{Binding Author}"
 						Foreground="Black"
 						Margin="180,75,0,0"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft"
-						FontWeight="Regular"
-						VerticalAlignment="Top" HorizontalAlignment="Left"/>
-				
+						FontWeight="Bold"/>
+
+				<Button Command="{Binding HandleLinkClickedYT}"
+						Classes="hyperlink" Content="asd"
+						Margin="183,115,0,0"/>
+
+				<Button Command="{Binding HandleLinkClickedGH}"
+						Classes="hyperlink" Content="asd"
+						Margin="223,115,0,0"/>
+
+				<Button Command="{Binding HandleLinkClickedD}"
+						Classes="hyperlink" Content="asd"
+						Margin="268,115,0,0"/>
+
+				<Button Command="{Binding HandleLinkClickedX}"
+						Classes="hyperlink" Content="asd"
+						Margin="308,115,0,0"/>
+
 				<Grid Margin="25,185,25,0">
 					<StackPanel Width="{Binding Path=$parent.Bounds.Width}"
 							VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -359,7 +436,7 @@
 
 					</StackPanel>
 				</Grid>
-				
+
 			</Grid>
 		</ScrollViewer>
 	</Grid>

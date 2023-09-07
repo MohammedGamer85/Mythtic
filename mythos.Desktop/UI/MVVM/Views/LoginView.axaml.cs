@@ -9,7 +9,6 @@ namespace mythos.Desktop.UI.MVVM.Views
 {
     public partial class LoginView : UserControl
     {
-
         public LoginView()
         {
             InitializeComponent();

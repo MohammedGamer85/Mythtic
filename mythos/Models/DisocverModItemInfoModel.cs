@@ -9,8 +9,7 @@ namespace mythos.Models
     public class DisocverModItemInfoModel : ObservableObject
     {
         //Private
-        private string? _name;
-        private Version? _version;
+        private VersionInfo[]? _version;
 
         //Public
         public int Id { get; set; }
@@ -27,11 +26,15 @@ namespace mythos.Models
         public string? TwitterLink { get; set; }
         public string? GithubLink { get; set; }
         public string[]? Images { get; set; }
-        public VersionInfo[]? Versions { get; set; }
+        public VersionInfo[]? Versions
+        {
+            get => _version;
+            set { _version = value; SetValues(); } 
+        }
 
+        public Creator? Creator { get; set; }
         public DateTime? ReleaseDate { get; set; } = DateTime.Now;
         public Category? Category { get; set; }
-        public CreatorItemModel Creator { get; set; }
 
         public string? InformationPanel { get; set; } = string.Empty;
 

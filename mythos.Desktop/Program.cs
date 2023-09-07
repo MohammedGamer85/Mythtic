@@ -74,6 +74,10 @@ public class Program
     {
         var builder = new ServiceCollection()
             .AddSingleton<MainWindow>()
+            .AddSingleton<SearchBar>()
+            .AddSingleton<SearchBarViewModel>()
+            .AddSingleton<HomePage>()
+            .AddSingleton<DiscoverPage>()
             .AddSingleton<ProfileDisplay>();
 
         var services = builder.BuildServiceProvider();

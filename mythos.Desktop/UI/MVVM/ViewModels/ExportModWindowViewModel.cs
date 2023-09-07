@@ -13,7 +13,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             set => OnPropertyChanged();
         }
 
-        public ObservableCollection<ImportedModsItemModel> Mods
+        public ObservableCollection<ImportedModsItem> Mods
         {
             get =>MiddleMan.ImportedMods;
             set => OnPropertyChanged();

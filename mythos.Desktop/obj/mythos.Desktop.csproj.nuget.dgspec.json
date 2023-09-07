@@ -48,6 +48,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AsyncImageLoader.Avalonia": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
             "Avalonia.Controls.ColorPicker": {
               "target": "Package",
               "version": "[11.0.4, )"

@@ -14,34 +14,64 @@ using mythos.Desktop.UI.MVVM.Views;
 using DynamicData;
 using mythos.Data;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
 	public class DiscoverPageViewModel : ObservableObject
     {
         //! This part of the coding only jobe is to display the mods,
-        //! all the mod related functions/actions are done in the ImportedModsItemModel.
-        ObservableCollection<ListOfDiscoverModsModel> _mods;
-        public ObservableCollection<ListOfDiscoverModsModel> Mods
+        //! all the mod related functions/actions are done in the ImportedModsItem.
+        ObservableCollection<ListOfDiscoverModsItem> _mods;
+
+        public ObservableCollection<ListOfDiscoverModsItem> Mods
         {
             get => _mods;
             set { _mods = value; OnPropertyChanged(); }
+        }
+
+        ObservableCollection<ListOfDiscoverModsItem> _displayedMods;
+
+        public ObservableCollection<ListOfDiscoverModsItem> DisplayedMods
+        {
+            get => _displayedMods;
+            set { _displayedMods = value; OnPropertyChanged(); }
         }
 
         public DiscoverPageViewModel()
         {
             getModlist();
 
-            //! Is done like this to allow multiple parts of the code to change
-            //! the value ofImportedmods.
             MiddleMan.OnPropertyChangeOfDiscoverMods = () =>
             {
                 Mods = MiddleMan.DiscoverMods;
+                DisplayedMods = Mods;
             };
 
             MiddleMan.OnPropertyChangeOfDiscoverModsModPage = () =>
             {
                 MiddleMan.View = new ModPage(MiddleMan.DiscoverModPage, false);
+            };
+
+            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender ,Text) =>
+            {
+                if (MiddleMan.View != Program.ServiceProvider.GetService<DiscoverPage>())
+                    return;
+
+                DisplayedMods = new();
+
+                foreach (var mod in Mods.ToArray<ListOfDiscoverModsItem>())
+                {
+                    if (mod.Name.Contains(Text, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        DisplayedMods.Add(mod);
+                    }
+                }
+
+                if (DisplayedMods.Count() == 0)
+                {
+                    DisplayedMods = Mods;
+                }
             };
         }
 
@@ -49,6 +79,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         {
             AuthenticationRequests authenticationRequests = new();
             Mods = await authenticationRequests.DiscoverModList();
+            DisplayedMods = Mods;
         }
     }
 }

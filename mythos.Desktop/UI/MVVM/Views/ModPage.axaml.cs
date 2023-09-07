@@ -15,6 +15,8 @@ namespace mythos.Desktop.UI.MVVM.Views
         public ModPage()
         {
             Logger.Log("ERROR: MODPAGE NULLABLE CONTRUCTOR");
+            new MessageWindow("This is a text Mod Page you are not meant to see this if you do please report it");
+            this.DataContext = new ModPageViewModel(0, true);
         }
     }
 }

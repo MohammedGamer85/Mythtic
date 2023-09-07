@@ -6329,6 +6329,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "AsyncImageLoader.Avalonia >= 3.2.0",
       "Avalonia.Controls.ColorPicker >= 11.0.4",
       "Avalonia.Controls.DataGrid >= 11.0.4",
       "Avalonia.Desktop >= 11.0.4",
@@ -6384,6 +6385,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "AsyncImageLoader.Avalonia": {
+            "target": "Package",
+            "version": "[3.2.0, )"
+          },
           "Avalonia.Controls.ColorPicker": {
             "target": "Package",
             "version": "[11.0.4, )"

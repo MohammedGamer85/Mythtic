@@ -19,8 +19,8 @@ public static class MiddleMan
     private static object _currentContent;
     private static int _impotredModPage;
     private static int _discoverModPage;
-    private static ObservableCollection<ImportedModsItemModel> _importedMods = new();
-    private static ObservableCollection<ListOfDiscoverModsModel> _discoverMods = new();
+    private static ObservableCollection<ImportedModsItem> _importedMods = new();
+    private static ObservableCollection<ListOfDiscoverModsItem> _discoverMods = new();
 
     public static bool UserDataStatus = false;
     private static bool _exportedVersion = false;
@@ -77,7 +77,7 @@ public static class MiddleMan
 
     //! Is done like this to allow multiple parts of the code to change
     //! the value ofImportedmods.
-    public static ObservableCollection<ImportedModsItemModel> ImportedMods
+    public static ObservableCollection<ImportedModsItem> ImportedMods
     {
         get => _importedMods;
         set
@@ -90,7 +90,7 @@ public static class MiddleMan
 
     //! Is done like this to allow multiple parts of the code to change
     //! the value ofImportedmods.
-    public static ObservableCollection<ListOfDiscoverModsModel> DiscoverMods
+    public static ObservableCollection<ListOfDiscoverModsItem> DiscoverMods
     {
         get => _discoverMods;
         set

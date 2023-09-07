@@ -14,7 +14,7 @@ namespace mythos.Features.Mod
 {
     public static class AddMod
     {
-        public static async Task<bool> Add(ImportedModsItemModel modInfo, string _folderPath, bool isZiped)
+        public static async Task<bool> Add(ImportedModsItem modInfo, string _folderPath, bool isZiped)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace mythos.Features.Mod
                     MiddleMan.ImportedMods = new();
                 }
 
-                MiddleMan.ImportedMods.Add(new ImportedModsItemModel
+                MiddleMan.ImportedMods.Add(new ImportedModsItem
                 {
                     Id = MiddleMan.ImportedMods.Count(),
                     Uuid = modInfo.Uuid,

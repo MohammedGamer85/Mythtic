@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mythos.Models
 {
-    public class CreatorItemModel
+    public class Creator
     {
         public int Id { get; set; } = 11;
         public string Username { get; set; } = "Mythos";

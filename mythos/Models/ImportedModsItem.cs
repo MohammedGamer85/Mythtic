@@ -3,10 +3,11 @@ using System;
 using System.Runtime.InteropServices;
 using mythos.Features.Mod;
 using mythos.Features.ImportMod;
+using mythos.UI.Services;
 
 namespace mythos.Models
 {
-    public class ImportedModsItemModel : ObservableObject
+    public class ImportedModsItem : ObservableObject
     {
         //! Privte
         private string? _name;
@@ -51,7 +52,7 @@ namespace mythos.Models
                 _isloaded = value; OnPropertyChanged();
                 if (OnPropertyChangeOfIsLoaded != null) //? As this part of the code is ran before the OnPropertyChangedOFisloaded is declared.
                 {
-                    ImportedModsItemModel.OnPropertyChangeOfIsLoaded.Invoke();
+                    ImportedModsItem.OnPropertyChangeOfIsLoaded.Invoke();
                 }
             }
         }
@@ -66,7 +67,7 @@ namespace mythos.Models
             }
         }
         
-        public ImportedModsItemModel()
+        public ImportedModsItem()
         {
             EnableDisableModCommand = new EnableDisableMods();
             ModPageCommand = new SwitchToModView(true);

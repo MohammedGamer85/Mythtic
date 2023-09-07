@@ -21,28 +21,36 @@ using Avalonia.Dialogs.Internal;
 using Avalonia.Platform.Storage;
 using System.Threading.Tasks;
 using System.Runtime;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
     public class HomePageViewModel : ReactiveObject
     {
         //! _Window part of the coding only jobe is to display the mods,
-        //! all the mod related functions/actions are done in the ImportedModsItemModel.
+        //! all the mod related functions/actions are done in the ImportedModsItem.
         private string _numberOfMods;
 
-        private ObservableCollection<ImportedModsItemModel> _mods;
+        private ObservableCollection<ImportedModsItem> _displayedMods;
+        private ObservableCollection<ImportedModsItem> _mods;
 
-        public ObservableCollection<ImportedModsItemModel> Mods
+        public ObservableCollection<ImportedModsItem> DisplayedMods
         {
-            get => MiddleMan.ImportedMods;
+            get => _displayedMods;
+            set => this.RaiseAndSetIfChanged(ref _displayedMods, value);
+        }
+
+        public ObservableCollection<ImportedModsItem> Mods
+        {
+            get => _mods;
             set => this.RaiseAndSetIfChanged(ref _mods, value);
         }
 
         public string NumberOfMods
         {
             get
-            {   
-                if(MiddleMan.ImportedMods == null)
+            {
+                if (MiddleMan.ImportedMods == null)
                     return $"0 Mods Installed";
                 else if (MiddleMan.ImportedMods.Count() == 1)
                     return $"{MiddleMan.ImportedMods.Count()} Mod Installed";
@@ -57,15 +65,35 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             //get the info from json file.
             new ImportedModsInfrommationLoader();
 
-            /*! Is done like this to allow multiple parts of the code to change
-                the value ofImportedmods. */
+            Mods = MiddleMan.ImportedMods;
+            DisplayedMods = Mods;
+
             MiddleMan.OnPropertyChangeOfImportedMods = () =>
             {
                 Mods = MiddleMan.ImportedMods;
-                if (MiddleMan.ImportedMods.Count() == 1)
-                    NumberOfMods = $"{MiddleMan.ImportedMods.Count()} Mod Installed";
-                else
-                    NumberOfMods = $"{MiddleMan.ImportedMods.Count()} Mods Installed";
+                DisplayedMods = Mods;
+                NumberOfMods = $"{MiddleMan.ImportedMods.Count()} Mod Installed";
+            };
+
+            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender, Text) =>
+            {
+                if (MiddleMan.View != Program.ServiceProvider.GetService<HomePage>())
+                    return;
+
+                DisplayedMods = new();
+
+                foreach (var mod in Mods.ToArray<ImportedModsItem>())
+                {
+                    if (mod.Name.Contains(Text, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        DisplayedMods.Add(mod);
+                    }
+                }
+
+                if (DisplayedMods.Count() == 0)
+                {
+                    DisplayedMods = Mods;
+                }
             };
 
             MiddleMan.OnPropertyChangeOfImportedModsModPage = () =>

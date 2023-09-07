@@ -11,19 +11,20 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
     //todo: Need to make it so if clicked the page is switched to the ProfilePage.
     public class ProfileDisplayViewModel : ReactiveObject
     {
-        private string _imageData;
-        private string _name;
+        private string _imageData = string.Empty;
+        private string _name = string.Empty;
 
         public string ImageData
         {
             get => _imageData;
             set => this.RaiseAndSetIfChanged(ref _imageData, value);
         }
+
         public string Name
         {
             get => _name;
             set => this.RaiseAndSetIfChanged(ref _name, value);
-            }
+        }
 
         public ProfileDisplayViewModel(UserInformationLoader userInformationLoader)
         {
@@ -34,12 +35,12 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         //Rename it when you got more brain power
         public async Task LoadUserInfromationAsync(UserInformationLoader userInformationLoader)
         {
-            await userInformationLoader.InitializeUserFromSavedUser();
+            await userInformationLoader.InitializeUserFromSavedData();
             Name = (User.Name != null)
             ? User.Name
             : "Unkown";
-            
-            DownloadImage();
+
+            await DownloadImage();
         }
 
         public async Task DownloadImage()
