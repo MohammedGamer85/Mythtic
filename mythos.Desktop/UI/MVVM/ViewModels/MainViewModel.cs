@@ -98,14 +98,14 @@ public class MainViewModel : ObservableObject
 
     }
 
-    async Task CheckForAreadyExistingAccountInfo()
+    void CheckForAreadyExistingAccountInfo()
     {   
-        if(MiddleMan.UserDataStatus == false)
+        if(UserInformationLoader.UserDataStatus == false)
         {
-            if (await userInformationLoader.InitializeUserFromSavedData())
+            if (userInformationLoader.InitializeUserFromSavedData())
             {
                 Logger.Log("Login Infromation Aready Autherizied");
-                MiddleMan.Content = new MainView();
+                MiddleMan.Content = Program.ServiceProvider.GetService<MainView>();
             }
             else
                 Content = new LoginView();
@@ -113,13 +113,13 @@ public class MainViewModel : ObservableObject
         else
         {
             Logger.Log("Login Infromation Aready Autherizied");
-            MiddleMan.Content = new MainView();
+            MiddleMan.Content = Program.ServiceProvider.GetService<MainView>();
         }
     }
 
-    async Task DebugMode()
+    void DebugMode()
     {
-        await userInformationLoader.InitializeUserFromSavedData();
+        userInformationLoader.InitializeUserFromSavedData();
         Logger.Log("Activating Debug Mode");
         MiddleMan.Content = new DebugView();
     }

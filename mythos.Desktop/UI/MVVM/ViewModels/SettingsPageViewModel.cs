@@ -1,42 +1,28 @@
-using mythos.Desktop.UI.MVVM.Views;
+using Microsoft.Extensions.DependencyInjection;
 using mythos.Features.PreloadedInformation;
 using ReactiveUI;
-using System;
-using System.Diagnostics.Contracts;
-using Tmds.DBus.Protocol;
+using System.Collections.ObjectModel;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {   //todo Not needed right now just a place holder
     public class SettingsPageViewModel : ReactiveObject
-    {   
-        Action? OnPropertyChangeOfSettings;
-
-        Settings _settings = new();
-        Settings settings
+    {
+        public ObservableCollection<Setting> _settings;
+        public ObservableCollection<Setting> Settings
         {
             get => _settings;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _settings, value);
-                OnPropertyChangeOfSettings.Invoke();
-            }
+            set => this.RaiseAndSetIfChanged(ref _settings, value);
         }
 
-        bool _FullScreenOnStartUp = false;
-
-        public SettingsPageViewModel() {
-            OnPropertyChangeOfSettings = () =>
-            {
-                _FullScreenOnStartUp = settings.FullScreenOnStartUP;
-            };
-        }
-
-        public void FullScreenOnStartUp()
+        public SettingsPageViewModel()
         {
-            new MessageWindow("The app will open in Full Screen Next time you open it");
-            settings.FullScreenOnStartUP = (settings.FullScreenOnStartUP == true)
-            ? false
-            : true;
+            SettingsInfo.OnPropertyChangedOfSettings += (sender, x) =>
+            {
+                Settings = SettingsInfo.Settings;
+            };
+
+            SettingsInfo.Load();
+            Settings = SettingsInfo.Settings;
         }
     }
 }

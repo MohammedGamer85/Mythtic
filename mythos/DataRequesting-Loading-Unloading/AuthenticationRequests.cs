@@ -22,7 +22,7 @@ namespace mythos.Data
 
     /*! 
         This is Used to validate the data that is gotten by the user before making a request to the
-        Api to avoid the code that is dealing with the requests to crach or have errors.
+        Api to avoid the code that is dealing with the requests to crach or have errors. + it converts the recived info into other formats.
      */
 
 
@@ -81,7 +81,7 @@ namespace mythos.Data
                 {
                     x.ReleaseDate = DateTime.Now;
                 }
-                x.InformationPanel = "LatestVersion: " + x.ReleaseDate + "\nVersion: " + "NOT DISLAYED" + "  GameMode: " + x.GameMode;
+                x.InformationPanel = "LatestVersion: " + x.ReleaseDate + "\nVersion: " + x.Versions[0].Version + "  GameMode: " + x.GameMode;
                 return x;
             }
 
@@ -89,7 +89,7 @@ namespace mythos.Data
         }
 
         //! Deals With login requests.
-        internal async Task<Account> LoginRequest(string email, string password)
+        internal async Task<Account?> LoginRequest(string email, string password)
         {
             string url = "https://mythos-api.umbrielstudios.com/api/authenticate";
 
@@ -103,14 +103,13 @@ namespace mythos.Data
 
             if (result.Success == true)
             {
-                Account userData = result;
-                Logger.Log("LoginRequest Success");
-                return userData;
+                Logger.Log("LoginRequest Successed API Success Status:True (AuthenticationRequests/LoginRequest)\n");
+                return result;
             }
             else
             {
-                Logger.Log("loginRequst Falled");
-                return null;
+                Logger.Log("loginRequst Falled API Success Status:False (AuthenticationRequests/LoginRequest)\n");
+                return default;
             }
         }
     }

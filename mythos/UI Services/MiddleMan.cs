@@ -19,18 +19,14 @@ public static class MiddleMan
     private static object _currentContent;
     private static int _impotredModPage;
     private static int _discoverModPage;
-    private static ObservableCollection<ImportedModsItem> _importedMods = new();
     private static ObservableCollection<ListOfDiscoverModsItem> _discoverMods = new();
 
-    public static bool UserDataStatus = false;
     private static bool _exportedVersion = false;
 
     public static Action? OnPropertyChangeOfCurrentView;
     public static Action? OnPropertyChangeOfCurrentContent;
     public static Action? OnPropertyChangeOfImportedModsModPage;
     public static Action? OnPropertyChangeOfDiscoverModsModPage;
-    public static Action? OnPropertyChangeOfImportedMods;
-    public static Action? OnPropertyChangeOfDiscoverMods;
 
     public static Action<string> OpenMessageWindowFromMythos;
 
@@ -72,31 +68,6 @@ public static class MiddleMan
         {
             _discoverModPage = value;
             OnPropertyChangeOfDiscoverModsModPage.Invoke();
-        }
-    }
-
-    //! Is done like this to allow multiple parts of the code to change
-    //! the value ofImportedmods.
-    public static ObservableCollection<ImportedModsItem> ImportedMods
-    {
-        get => _importedMods;
-        set
-        {
-            _importedMods = value;
-            if (OnPropertyChangeOfImportedMods != null)
-                OnPropertyChangeOfImportedMods.Invoke();
-        }
-    }
-
-    //! Is done like this to allow multiple parts of the code to change
-    //! the value ofImportedmods.
-    public static ObservableCollection<ListOfDiscoverModsItem> DiscoverMods
-    {
-        get => _discoverMods;
-        set
-        {
-            _discoverMods = value;
-            OnPropertyChangeOfDiscoverMods.Invoke();
         }
     }
 

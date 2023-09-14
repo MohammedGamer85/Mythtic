@@ -1,4 +1,5 @@
-﻿using mythos.Models;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using mythos.Models;
 using mythos.Services;
 using System;
 using System.Collections.Generic;
@@ -18,20 +19,34 @@ namespace mythos.Data
         public static TReturn ReadJsonFile<TReturn>(string file, bool isRootPath = false)
         {
             TReturn deserilizedContent = default;
+
+            string CallerName = new StackTrace().GetFrame(1).GetMethod().Name;
+            if (CallerName == ".ctor")
+                CallerName = "Unkown class";
+
             try
             {
-                Trace.Write("JsonReaderHelper Reading: " + file + " Result: ");
+                Logger.Log($"(JsonReaderHelper) '{CallerName}' Reading: {file} Result: ");
 
                 string jsonString = (isRootPath)
                 ? File.ReadAllText(file)
-                : File.ReadAllText(Path.Combine(FilePaths.GetMythosDocFolder,  file));
+                : File.ReadAllText(Path.Combine(FilePaths.GetMythosDocFolder, file));
+
+                if (jsonString == string.Empty)
+                {
+                    Logger.Log($"'{deserilizedContent}'");
+                    return deserilizedContent;
+                }
 
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
                 deserilizedContent = JsonSerializer.Deserialize<TReturn>(jsonString, options);
 
-                Trace.Write(deserilizedContent + "\n");
+                Logger.Log($"'{deserilizedContent}'");
             }
-            catch (Exception ex) { Logger.Log(ex + "\n"); }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.ToString());
+            }
 
             return deserilizedContent;
         }

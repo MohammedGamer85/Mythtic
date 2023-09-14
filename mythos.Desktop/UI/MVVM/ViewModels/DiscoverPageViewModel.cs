@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using Avalonia.Controls;
-using Avalonia.Controls.Chrome;
-using Avalonia.OpenGL;
 using mythos.UI.Services;
 using mythos.Models;
 using mythos.Services;
@@ -15,13 +11,17 @@ using DynamicData;
 using mythos.Data;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
 	public class DiscoverPageViewModel : ObservableObject
     {
         //! This part of the coding only jobe is to display the mods,
-        //! all the mod related functions/actions are done in the ImportedModsItem.
+        //! all the mod related functions/actions are done in the DiscoverModitem.
+        private string _lastSearch;
+
+
         ObservableCollection<ListOfDiscoverModsItem> _mods;
 
         public ObservableCollection<ListOfDiscoverModsItem> Mods
@@ -42,29 +42,30 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         {
             getModlist();
 
-            MiddleMan.OnPropertyChangeOfDiscoverMods = () =>
-            {
-                Mods = MiddleMan.DiscoverMods;
-                DisplayedMods = Mods;
-            };
-
             MiddleMan.OnPropertyChangeOfDiscoverModsModPage = () =>
             {
                 MiddleMan.View = new ModPage(MiddleMan.DiscoverModPage, false);
             };
 
-            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender ,Text) =>
+            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender ,search) =>
             {
                 if (MiddleMan.View != Program.ServiceProvider.GetService<DiscoverPage>())
                     return;
 
+                _lastSearch = search;
+
+                Thread.Sleep(25);
+
+                if (_lastSearch != search)
+                    return;
+                
                 var i = DisplayedMods;
 
                 i = new();
 
                 foreach (var mod in Mods.ToArray<ListOfDiscoverModsItem>())
                 {
-                    if (mod.Name.Contains(Text, StringComparison.InvariantCultureIgnoreCase))
+                    if (mod.Name.Contains(search, StringComparison.InvariantCultureIgnoreCase))
                     {
                         i.Add(mod);
                     }

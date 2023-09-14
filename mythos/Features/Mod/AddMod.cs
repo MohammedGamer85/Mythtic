@@ -39,7 +39,7 @@ namespace mythos.Features.Mod
                 MovePack("RP");
 
                 if (!Directory.Exists(_mythFolderPath))
-                    File.Create(Path.Combine(_mythFolderPath, "modInfo.json")).Close();
+                    System.IO.File.Create(Path.Combine(_mythFolderPath, "modInfo.json")).Close();
 
                 Dictionary<string, string> _packs = new();
                 _packs.Add("BP", "BP-" + modInfo.Uuid);
@@ -62,14 +62,14 @@ namespace mythos.Features.Mod
                     Directory.Move(Path.Combine(_mythFolderPath, pack), Path.Combine(_mythFolderPath, (pack + "-" + modInfo.Uuid)));
                 }
 
-                if(MiddleMan.ImportedMods == null)
+                if(ImportedModsInfo.Mods == null)
                 {
-                    MiddleMan.ImportedMods = new();
+                    ImportedModsInfo.Mods = new();
                 }
 
-                MiddleMan.ImportedMods.Add(new ImportedModsItem
+                ImportedModsInfo.Mods.Add(new ImportedModsItem
                 {
-                    Id = MiddleMan.ImportedMods.Count(),
+                    Id = ImportedModsInfo.Mods.Count(),
                     Uuid = modInfo.Uuid,
                     Name = modInfo.Name,
                     WebId = modInfo.WebId,
@@ -90,17 +90,17 @@ namespace mythos.Features.Mod
                     IsDevMod = modInfo.IsDevMod
                 });
 
-                JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
+                JsonWriterHelper.WriteJsonFile("importedMods.json", ImportedModsInfo.Mods);
 
                 Directory.Delete(_folderPath, true);
-                File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
+                System.IO.File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
                 return true;
             }
             catch (Exception ex)
             {
                 Logger.Log(ex.ToString());
                 Directory.Delete(_folderPath, true);
-                File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
+                System.IO.File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
                 return false;
             }
         }

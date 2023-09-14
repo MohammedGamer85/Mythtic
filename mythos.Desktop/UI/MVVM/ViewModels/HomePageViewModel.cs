@@ -1,29 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using Avalonia.Controls;
-using Avalonia.Controls.Chrome;
-using Avalonia.OpenGL;
 using mythos.UI.Services;
 using mythos.Models;
-using mythos.Services;
 using ReactiveUI;
 using mythos.Desktop.UI.MVVM.Views;
-using mythos.Data;
 using mythos.Features.PreloadedInformation;
-using DynamicData;
 using mythos.Features.ImportMod;
-using mythos.Views;
-using Avalonia.Dialogs;
-using Avalonia.Dialogs.Internal;
-using Avalonia.Platform.Storage;
-using System.Threading.Tasks;
-using System.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
-using Tmds.DBus.Protocol;
+using System.Threading.Tasks;
+using mythos.Features.Mod;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -53,29 +40,28 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         {
             get
             {
-                if (MiddleMan.ImportedMods == null)
+                if (ImportedModsInfo.Mods == null)
                     return $"0 Mods Installed";
-                else if (MiddleMan.ImportedMods.Count() == 1)
-                    return $"{MiddleMan.ImportedMods.Count()} Mod Installed";
+                else if (ImportedModsInfo.Mods.Count() == 1)
+                    return $"{ImportedModsInfo.Mods.Count()} Mod Installed";
                 else
-                    return $"{MiddleMan.ImportedMods.Count()} Mods Installed";
+                    return $"{ImportedModsInfo.Mods.Count()} Mods Installed";
             }
             set => this.RaiseAndSetIfChanged(ref _numberOfMods, value);
         }
 
         public HomePageViewModel()
         {
-            //get the info from json file.
-            new ImportedModsInfrommationLoader();
+            ImportedModsInfo.LoadMods();
 
-            Mods = MiddleMan.ImportedMods;
+            Mods = ImportedModsInfo.Mods;
             DisplayedMods = Mods;
 
-            MiddleMan.OnPropertyChangeOfImportedMods = () =>
+            ImportedModsInfo.OnPropertyChangeOfMods = () =>
             {
-                Mods = MiddleMan.ImportedMods;
+                Mods = ImportedModsInfo.Mods;
                 DisplayedMods = Mods;
-                NumberOfMods = $"{MiddleMan.ImportedMods.Count()} Mod Installed";
+                NumberOfMods = $"{ImportedModsInfo.Mods.Count()} Mod Installed";
             };
 
             SearchBarViewModel.OnPropertyChangeOfSearchText += (sender, search) =>
@@ -85,7 +71,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
                 _lastSearch = search;
 
-                Thread.Sleep(10);
+                Thread.Sleep(25);
 
                 if (_lastSearch != search)
                     return;
@@ -124,7 +110,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public void exportMod()
         {
-            if (MiddleMan.ImportedMods != null)
+            if (ImportedModsInfo.Mods != null)
             {
                 new ExportModWindow();
             }

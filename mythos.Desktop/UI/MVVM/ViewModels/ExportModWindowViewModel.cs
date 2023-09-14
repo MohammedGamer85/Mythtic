@@ -2,6 +2,7 @@ using mythos.Models;
 using mythos.UI.Services;
 using System.Collections.ObjectModel;
 using mythos.Services;
+using mythos.Features.Mod;
 
 namespace mythos.Desktop.UI.MVVM.ViewModels
 {
@@ -15,13 +16,13 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public ObservableCollection<ImportedModsItem> Mods
         {
-            get =>MiddleMan.ImportedMods;
+            get =>ImportedModsInfo.Mods;
             set => OnPropertyChanged();
         }
 
         public ExportModWindowViewModel()
         {
-            Mods = MiddleMan.ImportedMods;
+            Mods = ImportedModsInfo.Mods;
         }
 
         public void SwitchExportMode()

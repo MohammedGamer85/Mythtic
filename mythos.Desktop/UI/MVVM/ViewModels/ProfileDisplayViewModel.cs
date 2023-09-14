@@ -28,26 +28,26 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public ProfileDisplayViewModel(UserInformationLoader userInformationLoader)
         {
-            LoadUserInfromationAsync(userInformationLoader);
+            LoadUserInfoAsync(userInformationLoader);
         }
 
 
         //Rename it when you got more brain power
-        public async Task LoadUserInfromationAsync(UserInformationLoader userInformationLoader)
+        public void LoadUserInfoAsync(UserInformationLoader userInformationLoader)
         {
-            await userInformationLoader.InitializeUserFromSavedData();
+            if (UserInformationLoader.UserDataStatus == false)
+            {
+                userInformationLoader.InitializeUserFromSavedData();
+            }
             Name = (User.Name != null)
             ? User.Name
             : "Unkown";
 
-            await DownloadImage();
+            DownloadImage();
         }
 
         public async Task DownloadImage()
         {
-            if (User.ImageSource == null)
-                return;
-
             await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetMythosDownloadsFolder, User.Name + ".png");
 
             ImageData = (User.ImagePath != null)

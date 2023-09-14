@@ -54,9 +54,9 @@ namespace mythos.Features.ImportMod
 
                 Dictionary<string, object?> _modInfo;
 
-                if (File.Exists(Path.Combine(_extractedFolderPath, "manifest.json")))
+                if (System.IO.File.Exists(Path.Combine(_extractedFolderPath, "manifest.json")))
                     _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object?>>(Path.Combine(_extractedFolderPath, "manifest.json"), true);
-                else if (File.Exists(Path.Combine(_extractedFolderPath, "modInfo.json")))
+                else if (System.IO.File.Exists(Path.Combine(_extractedFolderPath, "modInfo.json")))
                     _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object?>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
                 else
                 {
@@ -65,9 +65,9 @@ namespace mythos.Features.ImportMod
 
                 await AddMod.Add(new ImportedModsItem
                 {
-                    Id = MiddleMan.ImportedMods.Count,
+                    Id = ImportedModsInfo.Mods.Count,
                     WebId = null,
-                    Images = new string[0],
+                    Images = new string[10],
 
                     Uuid = (!_modInfo.ContainsKey("uuid"))
                         ? null /// In the AddMod Funcation if uuid is null it is gotten from the RP file.

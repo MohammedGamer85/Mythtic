@@ -24,13 +24,13 @@ public class EnableDisableMods : ICommand
         // Add your code to determine whether the command can execute or not
         int id = Convert.ToInt32(parameter);
 
-        if (MiddleMan.ImportedMods[id] == null || MiddleMan.ImportedMods[id] == new ImportedModsItem())
+        if (ImportedModsInfo.Mods[id] == null || ImportedModsInfo.Mods[id] == new ImportedModsItem())
         {
-            Logger.Log($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
-                $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
+            Logger.Log($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
+                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
-            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
-                $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
+            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
+                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
             return false;
         }
@@ -47,16 +47,16 @@ public class EnableDisableMods : ICommand
         {
             int id = Convert.ToInt32(parameter);
 
-            _path = Path.Combine(FilePaths.GetMythosDownloadsFolder, MiddleMan.ImportedMods[Convert.ToInt32(parameter)].Uuid);
+            _path = Path.Combine(FilePaths.GetMythosDownloadsFolder, ImportedModsInfo.Mods[Convert.ToInt32(parameter)].Uuid);
 
             fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "modInfo.json"));
 
-            if (MiddleMan.ImportedMods[id].IsLoaded == true)
+            if (ImportedModsInfo.Mods[id].IsLoaded == true)
                 Disable(id);
             else
                 Enable(id);
 
-            JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
+            JsonWriterHelper.WriteJsonFile("importedMods.json", ImportedModsInfo.Mods);
         }
         catch (Exception ex)
         {
@@ -67,7 +67,7 @@ public class EnableDisableMods : ICommand
 
     public void Enable(int id)
     {
-        Logger.Log($"Enabling {MiddleMan.ImportedMods[id].Uuid}");
+        Logger.Log($"Enabling {ImportedModsInfo.Mods[id].Uuid}");
         try
         {
             if (!Directory.Exists(Path.Combine(_path, fileNames["RP"])))
@@ -78,18 +78,18 @@ public class EnableDisableMods : ICommand
             if (Directory.Exists(Path.Combine(_path, fileNames["BP"])))
                 DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
 
-            MiddleMan.ImportedMods[id].IsLoaded = true;
+            ImportedModsInfo.Mods[id].IsLoaded = true;
         }
         catch (Exception ex)
         {
-            Logger.Log($"Failed To enable {MiddleMan.ImportedMods[id].Name}, Exception is [{ex.ToString()}].");
-            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To enable {MiddleMan.ImportedMods[id].Name}, Exception is [{ex.Message}].");
+            Logger.Log($"Failed To enable {ImportedModsInfo.Mods[id].Name}, Exception is [{ex.ToString()}].");
+            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To enable {ImportedModsInfo.Mods[id].Name}, Exception is [{ex.Message}].");
         }
     }
 
     public void Disable(int id)
     {
-        Logger.Log($"Disabling {MiddleMan.ImportedMods[id].Uuid}");
+        Logger.Log($"Disabling {ImportedModsInfo.Mods[id].Uuid}");
         try
         {
             if (!Directory.Exists(Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"])))
@@ -100,12 +100,12 @@ public class EnableDisableMods : ICommand
             if (Directory.Exists(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"])))
                 Directory.Delete(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
 
-            MiddleMan.ImportedMods[id].IsLoaded = false;
+            ImportedModsInfo.Mods[id].IsLoaded = false;
         }
         catch (Exception ex)
         {
-            Logger.Log($"Failed To disable {MiddleMan.ImportedMods[id].Name} Exception is [{ex.ToString()}]");
-            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Disable {MiddleMan.ImportedMods[id].Name} Exception is [{ex.Message}]");
+            Logger.Log($"Failed To disable {ImportedModsInfo.Mods[id].Name} Exception is [{ex.ToString()}]");
+            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Disable {ImportedModsInfo.Mods[id].Name} Exception is [{ex.Message}]");
         }
     }
 }

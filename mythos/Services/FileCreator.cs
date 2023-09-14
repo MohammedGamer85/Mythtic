@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace mythos.Services
 {   //! Creates all the files that are needed for the app to run.
     public static class FileCreator
     {
-
-        public static void InitializeFileDirectories()
+        public static bool InitializeFileDirectories()
         {
             CheckAndCreateDirectory(FilePaths.GetMythosDocFolder);
             CheckAndCreateDirectory(FilePaths.GetMythsBPFolder);
@@ -21,11 +14,13 @@ namespace mythos.Services
             CheckAndCreateDirectory(FilePaths.GetMythosExportFolder);
             CheckAndCreateDirectory(FilePaths.GetMythosLogsFolder);
 
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "Setting.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "accuntInfo.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "importedMods.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "jsonChecked.json"));
-            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "Settings.json"));
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "Setting.json"));
             Logger.Log("Created nesseary files");
+            return true;
         }
 
         private static void CheckAndCreateDirectory(string directory)

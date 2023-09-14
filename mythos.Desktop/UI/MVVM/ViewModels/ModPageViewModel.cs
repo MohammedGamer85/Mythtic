@@ -1,15 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
-using System.Formats.Asn1;
 using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Avalonia.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using mythos.Data;
 using mythos.DataRequesting_Loading_Unloading;
@@ -33,6 +25,10 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         private bool? _isLoaded;
         private string _informationPanel;
         private bool _installed;
+        private string _ytLink;
+        private string _ghLink;
+        private string _xLink;
+        private string _dLink;
 
         public DisocverModItemInfoModel DiscoverModInfo = new();
         public ImportedModsItem ImportedModInfo;
@@ -64,12 +60,12 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             get { return _title; }
             set { _title = value; OnPropertyChanged(); }
         }
-        public string Description
+        public string ShortDescription
         {
             get { return _description; }
             set { _description = value; OnPropertyChanged(); }
         }
-        public string SubDescription
+        public string LongDescription
         {
             get { return _subDescription; }
             set { _subDescription = value; OnPropertyChanged(); }
@@ -110,7 +106,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         {
             if (Installed)
             {
-                ImportedModInfo = MiddleMan.ImportedMods[id];
+                ImportedModInfo = ImportedModsInfo.Mods[id];
                 OnLoadedImportedMod();
             }
             else
@@ -190,7 +186,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                     }, Path.Combine(FilePaths.GetMythosTempFolder, "ModFolder"), true))
                     {
                         await deleteMod("errors");
-                        MiddleMan.ImportedModPage = MiddleMan.ImportedMods.Count - 1;
+                        MiddleMan.ImportedModPage = ImportedModsInfo.Mods.Count - 1;
                     }
                     else
                     {
@@ -284,13 +280,13 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 if (ImportedModInfo.IsLoaded == true)
                     EnableDisableModsCommand.Execute((int)ImportedModInfo.Id);
 
-                MiddleMan.ImportedMods.RemoveAt((int)ImportedModInfo.Id);
+                ImportedModsInfo.Mods.RemoveAt((int)ImportedModInfo.Id);
 
                 Directory.Delete(Path.Combine(FilePaths.GetMythosDownloadsFolder, ImportedModInfo.Uuid), true);
 
                 Logger.Log($"Successfully deleted Mod:[{ImportedModInfo.Name}]");
 
-                JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
+                JsonWriterHelper.WriteJsonFile("importedMods.json", ImportedModsInfo.Mods);
 
                 if (feedBackMode is "full" or "success")
                 {
@@ -307,7 +303,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 if (feedBackMode is "full" or "errors")
                     new MessageWindow($"Failed to delete Mod:[{ImportedModInfo.Name}]. Error:[{ex.Message}]");
 
-                JsonWriterHelper.WriteJsonFile("importedMods.json", MiddleMan.ImportedMods);
+                JsonWriterHelper.WriteJsonFile("importedMods.json", ImportedModsInfo.Mods);
 
                 MiddleMan.View = Program.ServiceProvider.GetService<HomePage>();
 
@@ -322,9 +318,13 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             ImageSource = DiscoverModInfo.DefaultImage;
             Author = "By " + DiscoverModInfo.Creator.Username;
             Title = Name + " | " + Author;
-            Description = DiscoverModInfo.ShortDescription;
-            SubDescription = DiscoverModInfo.LongDescription;
+            ShortDescription = DiscoverModInfo.ShortDescription;
+            LongDescription = DiscoverModInfo.LongDescription;
             InformationPanel = DiscoverModInfo.InformationPanel;
+            _dLink = DiscoverModInfo.DiscordLink;
+            _xLink = DiscoverModInfo.TwitterLink;
+            _ghLink = DiscoverModInfo.GithubLink;
+            _ytLink = DiscoverModInfo.YoutubeLink;
         }
 
         void OnLoadedImportedMod()
@@ -334,20 +334,24 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             ImageSource = ImportedModInfo.DefaultImage;
             Author = "By " + ImportedModInfo.Creator;
             Title = Name + " | " + Author;
-            Description = ImportedModInfo.ShotDescription;
-            SubDescription = ImportedModInfo.LongDescription;
+            ShortDescription = ImportedModInfo.ShotDescription;
+            LongDescription = ImportedModInfo.LongDescription;
             IsLoaded = ImportedModInfo.IsLoaded;
             InformationPanel = ImportedModInfo.InformationPanel;
+            _dLink = ImportedModInfo.DiscordLink;
+            _xLink = ImportedModInfo.TwitterLink;
+            _ghLink = ImportedModInfo.GithubLink;
+            _ytLink = ImportedModInfo.YoutubeLink;
         }
 
         // Social links
-        public async Task HandleLinkClickedD() => OpenBrowserTab("https://"+ImportedModInfo.DiscordLink);
-        public async Task HandleLinkClickedX() => OpenBrowserTab("https://"+ImportedModInfo.TwitterLink);
-        public async Task HandleLinkClickedGH() => OpenBrowserTab("https://"+ImportedModInfo.GithubLink);
-        public async Task HandleLinkClickedYT() => OpenBrowserTab("https://"+ImportedModInfo.YoutubeLink);
+        public async Task HandleLinkClickedD() => OpenBrowserTab("https://"+_dLink);
+        public async Task HandleLinkClickedX() => OpenBrowserTab("https://"+_xLink);
+        public async Task HandleLinkClickedGH() => OpenBrowserTab("https://"+_ghLink);
+        public async Task HandleLinkClickedYT() => OpenBrowserTab("https://"+_ytLink);
         
         //todo: Move this to a spreate file as a service
-        static void OpenBrowserTab(string url)
+        private static void OpenBrowserTab(string url)
         {
             try
             {

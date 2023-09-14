@@ -11,22 +11,28 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using mythos.Services;
+using System.Threading;
 
 namespace mythos.Data
 {   //! is used to check if a json file contains valid information.
     //todo: make it accully check if the infromatio is vaild.
     //! the way it works right now is when another part of the code stores vaild data it sets data is vaild to true
     //! but if that other part of the code missed something up the full app will just stop working.
-    public class JsonCheckHelper
+    public class JsonCheckerHelper
     {
         public static bool CheckJsonFileForData(string fileName)
         {
             string readableJson = string.Empty;
             try
             {
-                Trace.Write("JsonCheckHelper Checking: " + fileName + "\n");
+                Trace.Write("JsonCheckerHelper Checking: " + fileName + "\n");
 
-                var deserializedContent = JsonReaderHelper.ReadJsonFile<Dictionary<string, bool>>("jsonChecked.json");
+                if (!FileUtilites.IsInUseReadRights("jsonChecked.json"))
+                {
+                    return false;
+                }
+
+                Dictionary<string, bool> deserializedContent = JsonReaderHelper.ReadJsonFile<Dictionary<string, bool>>("jsonChecked.json");
 
                 if (deserializedContent is null)
                 {
@@ -51,8 +57,16 @@ namespace mythos.Data
             return false;
         }
 
-        public static void JsonCheckFileForData(string fileName)
+        public static async Task JsonCheckFileForData(string fileName)
         {
+            if (!FileUtilites.IsInUseReadRights("jsonChecked.json"))
+            {
+                Thread.Sleep(1000);
+                
+                if (!FileUtilites.IsInUseReadRights("jsonChecked.json"))
+                    return;
+            }
+
             Dictionary<string, bool> deserializedContent = JsonReaderHelper.ReadJsonFile<Dictionary<string, bool>>("jsonChecked.json");
 
             if (deserializedContent == null)
@@ -65,7 +79,7 @@ namespace mythos.Data
 
             JsonWriterHelper.WriteJsonFile<Dictionary<string, bool>>("jsonChecked.json", deserializedContent);
 
-            Logger.Log("JsonCheckHelper Checked : " + fileName + "\n");
+            Logger.Log("JsonCheckerHelper Checked : " + fileName + "\n");
         }
     }
 }

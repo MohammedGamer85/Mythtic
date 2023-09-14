@@ -49,7 +49,8 @@ namespace mythos.Models
             get { return _isloaded; }
             set
             {
-                _isloaded = value; OnPropertyChanged();
+                _isloaded = value; 
+                OnPropertyChanged();
                 if (OnPropertyChangeOfIsLoaded != null) //? As this part of the code is ran before the OnPropertyChangedOFisloaded is declared.
                 {
                     ImportedModsItem.OnPropertyChangeOfIsLoaded.Invoke();

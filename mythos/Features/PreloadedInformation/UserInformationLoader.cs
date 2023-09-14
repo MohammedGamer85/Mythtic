@@ -1,8 +1,6 @@
 ﻿using mythos.Data;
 using mythos.Models;
-using mythos.UI.Services;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using mythos.Services;
@@ -13,28 +11,34 @@ namespace mythos.Features.PreloadedInformation
     {
         private readonly AuthenticationRequests _authenticationRequests = new();
         private readonly static string fileName = "accuntInfo.json";
-        Account importedAccount = null;
+        private Account? Account;
+
+        public static bool UserDataStatus;
 
         public async Task<bool> InitializeUserFromAPI(string email, string password)
         {
-            Logger.Log("Importing account infromation");
-            importedAccount = await _authenticationRequests.LoginRequest(email, password);
+            Logger.Log("Getting account infromation from API (UserInformationLoader/InitializeUserFromAPI)");
+
+            Account = await _authenticationRequests.LoginRequest(email, password);
             
-            if (importedAccount == null)
+            if (Account == null)
                 return false;
             
-            InitializeUser();
+            InitializeUserDataFromAccunt();
+
             return true;
         }
 
-        public async Task<bool> InitializeUserFromSavedData()
-        {
-            Logger.Log("Importing account infromation");
+        public bool InitializeUserFromSavedData()
+        {   
+            Logger.Log("Importing account infromation from file (UserInformationLoader/InitializeUserFromSavedData)");
 
-            if (JsonCheckHelper.CheckJsonFileForData(fileName))
+            if (JsonCheckerHelper.CheckJsonFileForData(fileName))
             {
-                importedAccount = JsonReaderHelper.ReadJsonFile<Account>(fileName);
-                await InitializeUser();
+                Account = JsonReaderHelper.ReadJsonFile<Account>(fileName);
+
+                InitializeUserDataFromAccunt();
+
                 return true;
             }
             else
@@ -43,22 +47,23 @@ namespace mythos.Features.PreloadedInformation
             }
         }
 
-        public async Task InitializeUser()
+        public void InitializeUserDataFromAccunt()
         {
-            User.id = importedAccount.Data.Id;
-            User.RoleNames = importedAccount.Data.Roles
+            User.id = Account.Data.Id;
+            User.RoleNames = Account.Data.Roles
             .Select(x => x.Name).ToList();
-            User.Name = importedAccount.Data.Username;
+            User.Name = Account.Data.Username;
             User.ImageSource = "https://mythos-static.umbrielstudios.com/users/" + User.Name + ".jpg";
 
             //Writes it to json in for next time.
 
-            JsonWriterHelper.WriteJsonFile<Account>(fileName, importedAccount);
+            JsonWriterHelper.WriteJsonFile<Account>(fileName, Account);
 
-            JsonCheckHelper.JsonCheckFileForData(fileName);
+            JsonCheckerHelper.JsonCheckFileForData(fileName);
 
-            Logger.Log("Imported account information Result: " + User.Name + " , " + User.ImageSource + " , " + User.RoleNames.ToString() +","+ User.id.ToString() + "\n");
-            MiddleMan.UserDataStatus = true;
+            Logger.Log($"Imported account information Result: {User.Name}, {User.ImageSource}, {User.RoleNames}, " +
+                $"{User.id} (By UserInformationLoader/InitializeUserDataFromAccunt) \n");
+            UserDataStatus = true;
         }
     }
 

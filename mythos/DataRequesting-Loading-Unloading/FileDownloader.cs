@@ -27,14 +27,13 @@ namespace mythos.DataRequesting_Loading_Unloading
                 response.EnsureSuccessStatusCode();
 
                 Stream contentStream = await response.Content.ReadAsStreamAsync();
-                        
-                FileStream fileStream = File.Create(Path.Combine(folderPath + fileName));
 
-                await contentStream.CopyToAsync(fileStream);
-
-                fileStream.Close();
-
-                contentStream.Close();
+                using (FileStream fileStream = File.Create(Path.Combine(folderPath + fileName)))
+                {
+                    await contentStream.CopyToAsync(fileStream);
+                    fileStream.Close();
+                    contentStream.Close();
+                }
 
                 Logger.Log("Download complete!" + "\n");
             }

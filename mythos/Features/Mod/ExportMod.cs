@@ -12,6 +12,7 @@ using mythos.Data;
 using mythos.Models;
 using System.Windows.Input;
 using ReactiveUI;
+using mythos.Features.Mod;
 
 namespace mythos.Features.ImportMod
 {
@@ -24,13 +25,13 @@ namespace mythos.Features.ImportMod
             // Add your code to determine whether the command can execute or not
             int id = Convert.ToInt32(parameter);
 
-            if (MiddleMan.ImportedMods[id] == null || MiddleMan.ImportedMods[id] == new ImportedModsItem())
+            if (ImportedModsInfo.Mods[id] == null || ImportedModsInfo.Mods[id] == new ImportedModsItem())
             {
-                Logger.Log($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
-                $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
+                Logger.Log($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
+                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
-                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Enable/Disable {MiddleMan.ImportedMods[id].Name}, " +
-                    $"Error: Mod[Name:{MiddleMan.ImportedMods[id].Name} Id:{MiddleMan.ImportedMods[id].Id}] Does not contain data or contain invaild data");
+                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
+                    $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
                 return false;
             }
@@ -49,7 +50,7 @@ namespace mythos.Features.ImportMod
         {
             Logger.Log($"Exporting mod gameVersion [{gameVersion}]");
 
-            ImportedModsItem Mod = MiddleMan.ImportedMods[modId];
+            ImportedModsItem Mod = ImportedModsInfo.Mods[modId];
 
             string _mythFolderPath = Path.Combine(FilePaths.GetMythosDownloadsFolder, Mod.Uuid);
             string _tempFolderPath = Path.Combine(FilePaths.GetMythosTempFolder, Mod.Name);
@@ -117,7 +118,7 @@ namespace mythos.Features.ImportMod
                         DirectoryUtilities.Copy(Path.Combine(_mythFolderPath, _packs["BP"]), Path.Combine(_tempFolderPath, _packs["BP"]), true);
                 }
 
-                File.Create(Path.Combine(_tempFolderPath, "modInfo.json")).Close();
+                System.IO.File.Create(Path.Combine(_tempFolderPath, "modInfo.json")).Close();
 
                 Dictionary<string, string> _modInfo = new();
 
@@ -135,7 +136,7 @@ namespace mythos.Features.ImportMod
 
                 JsonWriterHelper.WriteJsonFile(Path.Combine(_tempFolderPath, "modInfo.json"), _modInfo, true);
 
-                if (File.Exists(_compressedFilePath))
+                if (System.IO.File.Exists(_compressedFilePath))
                 {
                     throw new Exception("File already exists [Can't overwrite file]");
                 }

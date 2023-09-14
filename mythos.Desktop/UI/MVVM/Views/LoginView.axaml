@@ -34,7 +34,7 @@
 					 FontFamily="/UI/MVVM/Fonts/#Minecraft"/>
 		</StackPanel>
 
-		<Button Content="Submit" Command="{Binding LoginButton_Click}"
+		<Button Content="Submit" Command="{Binding LoginButtonClick}"
 				FontFamily="/UI/MVVM/Fonts/#Minecraft"
 				FontSize="50" Foreground="Cyan" 
 				Background="Transparent" Margin="0,0,0,10"
