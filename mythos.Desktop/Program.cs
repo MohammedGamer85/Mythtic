@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using mythos.Desktop.UI.MVVM.Views;
 using mythos.Desktop.UI.MVVM.ViewModels;
 using mythos.Features.PreloadedInformation;
+using mythos.UI.Services;
+using mythos.Features.Settings;
 
 namespace mythos.Desktop
 {
@@ -30,6 +32,8 @@ namespace mythos.Desktop
         [STAThread]
         public static async Task Main(string[] args)
         {
+            SettingsManger.Load();
+
             // cannot access dependency injection here
             ServiceProvider = BuildLauncherServices();
 

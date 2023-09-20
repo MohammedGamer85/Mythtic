@@ -13,13 +13,24 @@
 	</UserControl.DataContext>
 
 	<UserControl.Styles>
+		<!-- Name -->
+		<Style Selector="TextBlock.A3">
+			<Setter Property="Width" Value="487"/>
+			<Setter Property="Height" Value="79"/>
+			<Setter Property="FontSize" Value="35"/>
+			<Setter Property="FontFamily" Value="/UI/MVVM/Fonts/#Minecraft Ten"/>
+			<Setter Property="Padding" Value="0,20,0,0"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+		</Style>
 		<!-- Button -->
 		<Style Selector="Button.A2">
 			<Setter Property="Template">
 				<ControlTemplate>
 					<Border>
 						<TextBlock Text="OFF"
-								   FontSize="35"
+								   FontSize="50"
 								   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 								   FontWeight="Regular"
 								   Foreground="Black"
@@ -33,11 +44,11 @@
 					</Border>
 				</ControlTemplate>
 			</Setter>
-			<Setter Property="Height" Value="70"/>
-			<Setter Property="Width" Value="160"/>
-			<Setter Property="Margin" Value="0,0,0,0"/>
+			<Setter Property="Height" Value="100"/>
+			<Setter Property="Width" Value="260"/>
+			<Setter Property="Margin" Value="0,0,-10,0"/>
 			<Setter Property="VerticalAlignment" Value="Center"/>
-			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
 			<Setter Property="BorderThickness" Value="0"/>
 		</Style>
 		<Style Selector="Button.A2:pointerover /template/ Border">
@@ -137,60 +148,90 @@
 		<!-- Page -->
 
 		<Grid Grid.Column="0"
-			Grid.Row="0" Margin="20" Width="{Binding Path=$parent.Width}">
+			  Grid.Row="0"
+			  Width="{Binding Path=$parent.Width}">
 
-			<!-- Title -->
-			<Border
-				Background="#4C4638"
-				BorderBrush="#2C2924"
-				BorderThickness="5"
-				CornerRadius="10"
-				Margin="0,30,0,0"
-				HorizontalAlignment="Center"
-				VerticalAlignment="Top"
-				Width="240"
-				Height="70">
-				<Label
-					Foreground="White"
-					FontSize="40"
-					Margin="0,6,0,0"
-					Content="Settings"
+			<StackPanel Orientation="Vertical"
+						HorizontalAlignment="Center">
+				<!-- Title -->
+				<Border
+					Background="#4C4638"
+					BorderBrush="#2C2924"
+					BorderThickness="5"
+					CornerRadius="10"
+					Margin="0,30,0,0"
 					HorizontalAlignment="Center"
-					VerticalAlignment="Center"
-					FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
-			</Border>
+					VerticalAlignment="Top"
+					Width="240"
+					Height="70">
+					<Label
+						Foreground="White"
+						FontSize="40"
+						Margin="0,6,0,0"
+						Content="Settings"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
+				</Border>
 
-			<ScrollViewer Width="{Binding Path=$parent.Width}">
+				<ScrollViewer Width="{Binding Path=$parent.Width}"
+							  HorizontalAlignment="Center">
 
-				<ItemsRepeater
-				ItemsSource="{Binding Settings}"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Background="Transparent">
+					<ItemsRepeater
+					Margin="0,25,0,0"
+					ItemsSource="{Binding Settings}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Top"
+					Background="Transparent">
 
-					<ItemsRepeater.Layout>
-						<WrapLayout Orientation="Horizontal"/>
-					</ItemsRepeater.Layout>
+						<ItemsRepeater.Layout>
+							<StackLayout Orientation="Vertical"/>
+						</ItemsRepeater.Layout>
 
-					<ItemsRepeater.ItemTemplate>
-						<DataTemplate>
+						<ItemsRepeater.ItemTemplate>
+							<DataTemplate>
 
-							<StackPanel>
-								<TextBlock Text="{Binding Name}"
-										   HorizontalAlignment="Left"/>
-								<Button Classes="A2"
-										HorizontalAlignment="Right"
-										Classes.IsUpdated="{Binding State}"
-										Classes.NotUpdated="{Binding State}"
-										Command="{Binding ChangeState}"
-										CommandParameter="{Binding Id}"/>
-							</StackPanel>
+								<Grid>
 
-						</DataTemplate>
-					</ItemsRepeater.ItemTemplate>
-				</ItemsRepeater>
+									<StackPanel Height="79" Width="500" 
+												Orientation="Horizontal"
+												HorizontalAlignment="Left"
+												Margin="15,-3,0,0">
+										
+										<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0004.png"
+											   Stretch="Uniform"
+											   Width="79"/>
 
-			</ScrollViewer>
+										<StackPanel Margin="-21,0,-20,0">
+											<Canvas>
+												<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0002.png"
+													   Stretch="Fill"
+													   Height="79"
+													   Width="489"/>
+											</Canvas>
+											
+											<TextBlock Text="{Binding Name}"
+													   Classes="A3">
+											</TextBlock>
+										</StackPanel>
+										
+										<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0003.png"
+											   Stretch="Uniform"
+											   Width="79"/>
+									</StackPanel>
+
+									<Button Classes="A2"
+											Classes.IsUpdated="{Binding State}"
+											Classes.NotUpdated="{Binding State}"
+											Command="{Binding ChangeStateCommmand}"/>
+								</Grid>
+
+							</DataTemplate>
+						</ItemsRepeater.ItemTemplate>
+					</ItemsRepeater>
+
+				</ScrollViewer>
+			</StackPanel>
 		</Grid>
 	</Grid>
 </UserControl>

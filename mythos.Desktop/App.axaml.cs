@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using AvaloniaApplication1.Desktop;
 using Microsoft.Extensions.DependencyInjection;
 using mythos.Desktop.UI.MVVM.Views;
+using mythos.Features.Settings;
 using mythos.Services;
 using mythos.ViewModels;
 using mythos.Views;
@@ -38,6 +39,8 @@ public partial class App : Application
                 DataContext = this.CreateInstance<MainViewModel>(),
             };
 
+            applyAppSettings(App);
+
             App.ShutdownMode = ShutdownMode.OnMainWindowClose;
         }
         else if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime _app)
@@ -50,6 +53,13 @@ public partial class App : Application
 
             // singleView.MainView = new MainView();
         }
+    }
+
+    private void applyAppSettings(IClassicDesktopStyleApplicationLifetime app)
+    {
+        app.MainWindow.WindowState = (SettingsManger.Settings[0].State)
+            ? WindowState.Maximized
+            : WindowState.Normal;
     }
 
     public override void OnFrameworkInitializationCompleted()

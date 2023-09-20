@@ -14,11 +14,10 @@ namespace mythos.Services
             CheckAndCreateDirectory(FilePaths.GetMythosExportFolder);
             CheckAndCreateDirectory(FilePaths.GetMythosLogsFolder);
 
-            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "Setting.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "accuntInfo.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "importedMods.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "jsonChecked.json"));
-            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "Setting.json"));
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythosDocFolder, "Settings.json"));
             Logger.Log("Created nesseary files");
             return true;
         }

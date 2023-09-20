@@ -18,16 +18,14 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Xml;
 using System.ComponentModel;
+using mythos.Features.Settings;
 
 namespace mythos.ViewModels;
 
 //! _Window class is bound to MainView as mainWindow is not used for anything at the moment;
-public class MainViewModel : ObservableObject
+public class MainViewModel : ReactiveObject
 {
     public ObservableObject ObservableObject;
-
-    //MainView _mainView = new();
-    //LoginView _loginView = new();
 
     public MenuButtons MenuButtonsVM;
     public SearchBar SearchBarVM;
@@ -41,35 +39,35 @@ public class MainViewModel : ObservableObject
 
     public object TopBar
     {
-        get { return _topBar; }
-        set { _topBar = value; OnPropertyChanged(); }
+        get => _topBar;
+        set => this.RaiseAndSetIfChanged(ref _topBar, value);
     }
 
     public object SideBar
     {
-        get { return _sideBar; }
-        set { _sideBar = value; OnPropertyChanged(); }
+        get => _sideBar;
+        set => this.RaiseAndSetIfChanged(ref _sideBar, value);
     }
 
     public object CornerDisplay
     {
-        get { return _cornerDisplay; }
-        set { _cornerDisplay = value; OnPropertyChanged(); }
+        get => _cornerDisplay;
+        set => this.RaiseAndSetIfChanged(ref _cornerDisplay, value);
     }
 
     public object CurrentView
     {
-        get { return MiddleMan.View; }
-        set { OnPropertyChanged(); }
+        get => MiddleMan.View;
+        set => this.RaisePropertyChanged();
     }
 
     private object _content;
     public object Content
     {
-        get { return _content; }
-        set { _content = value; OnPropertyChanged(); }
+        get => _content;
+        set => this.RaiseAndSetIfChanged(ref _content, value);
     }
-    
+
     //! _Window constructer is responsible for deciding what is displayed were in the MainView.
     public MainViewModel()
     {
@@ -81,26 +79,19 @@ public class MainViewModel : ObservableObject
         CornerDisplay = ProfileDisplayVM;
 
         MiddleMan.OnPropertyChangeOfCurrentView = () =>
-        {
             CurrentView = MiddleMan.View;
-        };
 
-        //! Is done to switch between loginView and MainView
-        
         MiddleMan.OnPropertyChangeOfCurrentContent = () =>
-        {
             Content = MiddleMan.Content;
-        };
 
         //! Ether DebugMode or normal Mode aka CheckForAreadyExistingAccuntInfo
         //DebugMode();
-        CheckForAreadyExistingAccountInfo();
-
+        checkForAreadyExistingAccountInfo();
     }
 
-    void CheckForAreadyExistingAccountInfo()
-    {   
-        if(UserInformationLoader.UserDataStatus == false)
+    private void checkForAreadyExistingAccountInfo()
+    {
+        if (UserInformationLoader.UserDataStatus == false)
         {
             if (userInformationLoader.InitializeUserFromSavedData())
             {
@@ -117,7 +108,7 @@ public class MainViewModel : ObservableObject
         }
     }
 
-    void DebugMode()
+    private void debugMode()
     {
         userInformationLoader.InitializeUserFromSavedData();
         Logger.Log("Activating Debug Mode");

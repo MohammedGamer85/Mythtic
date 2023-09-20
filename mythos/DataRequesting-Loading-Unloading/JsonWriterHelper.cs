@@ -32,7 +32,7 @@ namespace mythos.Data
                     File.WriteAllText(Path.Combine(FilePaths.GetMythosDocFolder, file), serializedContent);
                 }
             }
-            catch (Exception ex) { Logger.Log(ex.ToString()); throw ex; }
+            catch (Exception ex) { Logger.Log(ex.ToString());}
         }
     }
 }

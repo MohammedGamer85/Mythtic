@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Features.PreloadedInformation;
+using mythos.Features.Settings;
 using ReactiveUI;
 using System.Collections.ObjectModel;
 
@@ -16,13 +16,11 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public SettingsPageViewModel()
         {
-            SettingsInfo.OnPropertyChangedOfSettings += (sender, x) =>
+            SettingsManger.OnPropertyChangedOfSettings += (sender, x) =>
             {
-                Settings = SettingsInfo.Settings;
+                Settings = Features.Settings.SettingsManger.Settings;
             };
-
-            SettingsInfo.Load();
-            Settings = SettingsInfo.Settings;
+            Settings = SettingsManger.Settings;
         }
     }
 }

@@ -124,13 +124,13 @@ namespace mythos.Features.ImportMod
 
                 _modInfo["uuid"] = Mod.Uuid.ToString();
                 _modInfo["name"] = Mod.Name.ToString();
-                _modInfo["imageSource"] = (Mod.DefaultImage != null)
+                _modInfo["defaultImage"] = (Mod.DefaultImage != null)
                     ? Mod.DefaultImage.ToString()
                     : "https://mythos.umbrielstudios.com/favicon.ico";
                 _modInfo["author"] = Mod.Creator.ToString();
-                _modInfo["GameMode"] = Mod.GameMode.ToString();
-                _modInfo["description"] = Mod.ShotDescription.ToString();
-                _modInfo["subDescription"] = Mod.LongDescription.ToString();
+                _modInfo["gameMode"] = Mod.GameMode.ToString();
+                _modInfo["shotDescription"] = Mod.ShotDescription.ToString();
+                _modInfo["longDescription"] = Mod.LongDescription.ToString();
                 _modInfo["lastUpdated"] = Mod.LastUpdated.ToString();
                 _modInfo["version"] = Mod.Version.ToString();
 

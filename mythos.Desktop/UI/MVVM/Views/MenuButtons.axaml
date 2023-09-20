@@ -90,8 +90,8 @@
 							Foreground="#646260"
 							TextWrapping="WrapWithOverflow"/>
 
-				<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png"
-						VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+				<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png" Stretch="Fill"
+					   Width="500"/>
 		</StackPanel>
 
 	</Grid>

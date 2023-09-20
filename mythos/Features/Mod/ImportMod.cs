@@ -54,9 +54,9 @@ namespace mythos.Features.ImportMod
 
                 Dictionary<string, object?> _modInfo;
 
-                if (System.IO.File.Exists(Path.Combine(_extractedFolderPath, "manifest.json")))
+                if (File.Exists(Path.Combine(_extractedFolderPath, "manifest.json")))
                     _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object?>>(Path.Combine(_extractedFolderPath, "manifest.json"), true);
-                else if (System.IO.File.Exists(Path.Combine(_extractedFolderPath, "modInfo.json")))
+                else if (File.Exists(Path.Combine(_extractedFolderPath, "modInfo.json")))
                     _modInfo = JsonReaderHelper.ReadJsonFile<Dictionary<string, object?>>(Path.Combine(_extractedFolderPath, "modInfo.json"), true);
                 else
                 {
@@ -65,96 +65,43 @@ namespace mythos.Features.ImportMod
 
                 await AddMod.Add(new ImportedModsItem
                 {
-                    Id = ImportedModsInfo.Mods.Count,
-                    WebId = null,
-                    Images = new string[10],
+                    WebId = (_modInfo.ContainsKey("webId"))
+                    ? Convert.ToInt32(_modInfo["webId"])
+                    : null,
 
-                    Uuid = (!_modInfo.ContainsKey("uuid"))
-                        ? null /// In the AddMod Funcation if uuid is null it is gotten from the RP file.
-                        : (_modInfo["uuid"] != null)
-                            ? _modInfo["uuid"].ToString()
-                            : null,
+                    //Images = (_modInfo.ContainsKey("images")) ? (string[])_modInfo["images"] : null,
 
-                    Name = (!_modInfo.ContainsKey("name"))
-                        ? "Imported Mod"
-                        : (_modInfo["name"] != null)
-                            ? _modInfo["name"].ToString()
-                            : "Imported Mod",
+                    Uuid = (_modInfo.ContainsKey("uuid")) ? _modInfo["uuid"].ToString() : null,
 
-                    DefaultImage = (!_modInfo.ContainsKey("defaultImage"))
-                        ? "https://mythos.umbrielstudios.com/favicon.ico"
-                        : (_modInfo["defaultImage"] != null)
-                            ? _modInfo["defaultImage"].ToString()
-                            : "https://mythos.umbrielstudios.com/favicon.ico",
+                    Name = (_modInfo.ContainsKey("name")) ? _modInfo["name"].ToString() : null,
 
-                    Creator = (!_modInfo.ContainsKey("creator"))
-                        ? "Dev"
-                        : (_modInfo["creator"] != null)
-                            ? _modInfo["creator"].ToString()
-                            : "Dev",
+                    DefaultImage = (_modInfo.ContainsKey("defaultImage")) ? _modInfo["defaultImage"].ToString() : null,
 
-                    GameMode = (!_modInfo.ContainsKey("gameMode"))
-                        ? "Unkown"
-                        : (_modInfo["gameMode"] != null)
-                            ? _modInfo["gameMode"].ToString()
-                            : "Unkown",
+                    Creator = (_modInfo.ContainsKey("creator")) ? _modInfo["creator"].ToString() : null,
 
-                    ShotDescription = (!_modInfo.ContainsKey("shotDescription"))
-                        ? "There is no Description"
-                        : (_modInfo["shotDescription"] != null)
-                            ? _modInfo["shotDescription"].ToString()
-                            : "There is no Description",
+                    GameMode = (_modInfo.ContainsKey("gameMode")) ? _modInfo["gameMode"].ToString() : null,
 
-                    LongDescription = (!_modInfo.ContainsKey("longDescription"))
-                        ? "There is no Information"
-                        : (_modInfo["longDescription"] != null)
-                            ? _modInfo["longDescription"].ToString()
-                            : "There is no Information",
+                    ShotDescription = (_modInfo.ContainsKey("shotDescription")) ? _modInfo["shotDescription"].ToString() : null,
 
-                    YoutubeLink = (!_modInfo.ContainsKey("youtubeLink"))
-                        ? "Unkown"
-                        : (_modInfo["youtubeLink"] != null)
-                            ? _modInfo["youtubeLink"].ToString() : "Unkown",
+                    LongDescription = (_modInfo.ContainsKey("longDescription")) ? _modInfo["longDescription"].ToString() : null,
 
-                    DiscordLink = (!_modInfo.ContainsKey("discordLink"))
-                        ? "Unkown"
-                        : (_modInfo["discordLink"] != null)
-                            ? _modInfo["discordLink"].ToString()
-                            : "Unkown",
+                    YoutubeLink = (_modInfo.ContainsKey("youtubeLink")) ? _modInfo["youtubeLink"].ToString() : null,
 
-                    TwitterLink = (!_modInfo.ContainsKey("twitterLink"))
-                        ? "Unkown"
-                        : (_modInfo["twitterLink"] != null)
-                            ? _modInfo["twitterLink"].ToString()
-                            : "Unkown",
+                    DiscordLink = (_modInfo.ContainsKey("discordLink")) ? _modInfo["discordLink"].ToString() : null,
 
-                    GithubLink = (!_modInfo.ContainsKey("githubLink"))
-                        ? "Unkown"
-                        : (_modInfo["githubLink"] != null)
-                            ? _modInfo["githubLink"].ToString()
-                            : "Unkown",
+                    TwitterLink = (_modInfo.ContainsKey("twitterLink")) ? _modInfo["twitterLink"].ToString() : null,
 
-                    LastUpdated = (!_modInfo.ContainsKey("lastUpdated"))
-                        ? DateTime.Now
-                        : (_modInfo["lastUpdated"] != null)
-                            ? Convert.ToDateTime(_modInfo["lastUpdated"])
-                            : DateTime.Now,
+                    GithubLink = (_modInfo.ContainsKey("githubLink")) ? _modInfo["githubLink"].ToString() : null,
 
-                    Version = (!_modInfo.ContainsKey("version"))
-                        ? new Version("0.0.0.0")
-                        : (_modInfo["version"] != null)
-                            ? new Version(_modInfo["version"].ToString())
-                            : new Version("0.0.0.0"),
+                    LastUpdated = (_modInfo.ContainsKey("lastUpdated")) ? Convert.ToDateTime(_modInfo["lastUpdated"].ToString()) : null,
 
-                    Category = (Category)((!_modInfo.ContainsKey("category"))
-                        ? new Category { Id = 0, Name = "Uncategorized" }
-                        : (_modInfo["category"] != null)
-                            ? _modInfo["category"]
-                            : new Category { Id = 0, Name = "Uncategorized" }),
+                    Version = (_modInfo.ContainsKey("version")) ? new Version(_modInfo["version"].ToString()) : null,
+
+                    Category = (_modInfo.ContainsKey("category")) ? (Category)_modInfo["category"] : null,
 
                     IsLoaded = false,
                     IsDevMod = false,
-                }, _extractedFolderPath, false);
+                }, _extractedFolderPath, false); ;
 
                 MiddleMan.OpenMessageWindowFromMythos.Invoke($"Mod:[{_modInfo["name"]} was imported successfully]");
 
