@@ -23,6 +23,8 @@ namespace mythtic.Data
 
         public async Task<TReturn> GetRequest<TReturn>(string url)
         {
+            Logger.Log("[GetRequest] making request to " + url);
+
             var httpResponse = await _client.GetAsync(url);
 
             httpResponse.EnsureSuccessStatusCode();
@@ -33,18 +35,22 @@ namespace mythtic.Data
 
             try
             {
-                if (url == "https://mythos-api.umbrielstudios.com/api/myths?" || url == "https://mythos-api.umbrielstudios.com/api/myth/" + url.Substring(47, 5))
+                if (url == "https://mythos.legendsmodding.com/api/myths?" || url == "https://mythos.legendsmodding.com/api/myth/" + url.Substring(43))
                     responseContent = responseContent.Replace('_'.ToString(), "");
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
                 deserilizedContent = JsonSerializer.Deserialize<TReturn>(responseContent, options);
             }
-            catch (Exception ex) { Console.WriteLine(ex); throw ex; }
+            catch (Exception ex) { Logger.Log($"[GetRequest] Faile to make request to `{url}`. Error:' {ex} '"); throw ex; }
+
+            Logger.Log($"[GetRequest] made successfull request to `{url}`. json:' {responseContent} '");
 
             return deserilizedContent;
         }
 
         public async Task<TReturn> PostRequest<TReturn, TContent>(string url, TContent content)
         {
+            Logger.Log("[PostRequest] making request to " + url);
+
             try
             {
                 var serilizationOptions = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
@@ -61,7 +67,7 @@ namespace mythtic.Data
                 string responseContent = await httpResponse.Content.ReadAsStringAsync();
 
                 ///Debugging
-                if (url == "https://mythtic-api.umbrielstudios.com/api/authenticate")
+                if (url == "https://mythos.legendsmodding.com/api/authenticate")
                     Logger.Log("Making 'Userdata' request result: " + responseContent.Split("accessToken")[0]);
                 else
                     Logger.Log("Making a request to '" + url + "' result: " + responseContent + "\n");
@@ -72,10 +78,12 @@ namespace mythtic.Data
                 responseContent = responseContent.Replace('_'.ToString(), "");
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
                 deserilizedContent = JsonSerializer.Deserialize<TReturn>(responseContent, options);
-                
+
+                Logger.Log($"[PostRequest] made successfull request to `{url}`. json:' {responseContent} '");
+
                 return deserilizedContent;
             }
-            catch (Exception ex) { Logger.Log(ex.ToString()); throw ex; }
+            catch (Exception ex) { Logger.Log($"[GetRequest] Faile to make request to `{url}`. Error:' {ex} '"); throw ex; }
         }
 
         public void Dispose()

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace mythtic.Models
 {
-    public class DisocverModItemInfoModel : ObservableObject
+    public class DisocverModItem : ObservableObject
     {
         //Private
         private VersionInfo[]? _version;
@@ -74,6 +74,6 @@ namespace mythtic.Models
     public class DisocverModItemInfoModelRecived
     {
         public bool Success { get; set; }
-        public DisocverModItemInfoModel Data { get; set; }
+        public DisocverModItem Data { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace mythtic.Data
 
         public async Task<ObservableCollection<ListOfDiscoverModsItem>> DiscoverModList()
         {
-            string url = "https://mythos-api.umbrielstudios.com/api/myths?";
+            string url = "https://mythos.legendsmodding.com/api/myths?";
 
             ListOfDiscoverModsModelRecived result = await _httpClientHelper.GetRequest<ListOfDiscoverModsModelRecived>(url);
 
@@ -46,7 +46,7 @@ namespace mythtic.Data
                     x.GameMode ??= "None";
                     x.Description ??= "There is no ShotDescription";
                     x.Category ??= "Uncategorized";
-                    x.DefaultImage ??= "https://mythos.umbrielstudios.com/favicon.ico";
+                    x.DefaultImage ??= "https://mythos.legendsmodding.com/favicon.ico";
                     x.LatestVersion ??= "0,0,0";
                     if (x.ReleaseDate == null)
                     {
@@ -63,9 +63,9 @@ namespace mythtic.Data
             }
         }
 
-        public async Task<DisocverModItemInfoModel> DiscoverModDetials(int webId)
+        public async Task<DisocverModItem> DiscoverModDetials(int webId)
         {
-            string url = "https://mythos-api.umbrielstudios.com/api/myth/" + webId;
+            string url = "https://mythos.legendsmodding.com/api/myth/" + webId;
 
             DisocverModItemInfoModelRecived result = await _httpClientHelper.GetRequest<DisocverModItemInfoModelRecived>(url);
 
@@ -76,7 +76,7 @@ namespace mythtic.Data
                 x.GameMode ??= "None";
                 x.ShortDescription ??= "There is no ShotDescription";
                 x.LongDescription ??= "There is no LongDescription";
-                x.DefaultImage ??= "https://mythos.umbrielstudios.com/favicon.ico";
+                x.DefaultImage ??= "https://mythos.legendsmodding.com/favicon.ico";
                 if (x.ReleaseDate == null)
                 {
                     x.ReleaseDate = DateTime.Now;
@@ -91,7 +91,7 @@ namespace mythtic.Data
         //! Deals With login requests.
         internal async Task<Account?> LoginRequest(string email, string password)
         {
-            string url = "https://mythos-api.umbrielstudios.com/api/authenticate";
+            string url = "https://mythos.legendsmodding.com/api/authenticate";
 
             var loginRequest = new LoginRequest()
             {

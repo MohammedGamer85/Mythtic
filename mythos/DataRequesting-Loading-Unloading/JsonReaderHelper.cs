@@ -2,15 +2,9 @@
 using mythtic.Models;
 using mythtic.Services;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace mythtic.Data
 {   //! takes in a genaric and returns the data from a json file in the genaric type inputed.

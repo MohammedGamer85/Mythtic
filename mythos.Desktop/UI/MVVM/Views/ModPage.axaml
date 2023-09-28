@@ -349,7 +349,6 @@
 							Stretch="Fill"/>
 			</Setter>
 		</Style>
-
 		<!-- DownLoad Button -->
 		<Style Selector="Button.h5">
 			<Setter Property="Template">
@@ -399,7 +398,7 @@
 					<StackPanel Orientation="Horizontal">
 
 						<Button Classes="h5"
-								Command="{Binding DownloadMod}"/>
+								Command="{Binding DownloadModButton}"/>
 
 					</StackPanel>
 				</ControlTemplate>
@@ -422,13 +421,13 @@
 						VerticalAlignment="Top"/>
 
 						<Button Classes="h3"
-								Command="{Binding ReDownloadMod}"/>
+								Command="{Binding ReDownloadModButton}"/>
 						<Button Classes="h7"
-								Command="{Binding OpenModDirectory}"/>
+								Command="{Binding OpenModDirectoryButton}"/>
 						<Button Classes="h8"
-								Command="{Binding DeleteMod}"/>
+								Command="{Binding DeleteModButton}"/>
 						<Button Classes="h4"
-								Command="{Binding CheckForUpdates}"/>
+								Command="{Binding CheckForUpdatesButton}"/>
 
 					</StackPanel>
 				</ControlTemplate>
@@ -437,133 +436,228 @@
 
 	</UserControl.Styles>
 
-		<ScrollViewer VerticalScrollBarVisibility="Visible">
-			<Grid ShowGridLines="False">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
+	<ScrollViewer VerticalScrollBarVisibility="Visible">
+		<Grid ShowGridLines="False">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
 
-				<Grid.RowDefinitions>
-					<RowDefinition Height="185"/>
-					<RowDefinition Height="320"/>
-					<RowDefinition Height="*"/>
-				</Grid.RowDefinitions>
-				<Canvas Grid.Column="0" Grid.Row="0" Grid.RowSpan="1">
-					<Image Source="\UI\MVVM\Assets\ModCard\card_joingame_large.png"
-						   Height="504" Width="{Binding Path=$parent.Bounds.Width}" Stretch="Fill"/>
-				</Canvas>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="250"/>
+				<RowDefinition Height="330"/>
+				<RowDefinition Height="100"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
 
-				<StackPanel>
-					<!-- Top Part -->
-					<StackPanel Orientation="Horizontal" Grid.Row="0" Margin="25,25,25,0">
-						<!-- Title -->
-						<Canvas
-						VerticalAlignment="Top"
-						Margin="0,0,0,0"
-						HorizontalAlignment="Left"
-						Height="150"
-						Width="150">
+			<Canvas Grid.Column="0" Grid.Row="0" Grid.RowSpan="1">
+				<Grid Height="550" Width="{Binding Path=$parent.Bounds.Width}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="90"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="135"/>
+					</Grid.RowDefinitions>
+					<!-- BackGround -->
+					<Canvas Grid.Column="0"
+							Grid.Row="0" ZIndex="6">
+						<Canvas.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\ModCard\ModCardTopLeft.png"
+										AlignmentX="Left"
+										AlignmentY="Top"
+										Stretch="None"/>
+						</Canvas.Background>
+					</Canvas>
+					<Canvas Grid.Column="0"
+							Grid.Row="1" ZIndex="1">
+						<Canvas.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\ModCard\ModCardBottomLeft.png"
+										AlignmentX="Left"
+										AlignmentY="Bottom"
+										Stretch="None"/>
+						</Canvas.Background>
+					</Canvas>
+					<Canvas Grid.Column="1"
+							Grid.Row="1" ZIndex="0">
+						<Canvas.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\ModCard\ModCardBottomRight.png"
+										AlignmentX="Right"
+										AlignmentY="Bottom"
+										Stretch="None"/>
+						</Canvas.Background>
+					</Canvas>
+					<Canvas Grid.Column="1"
+							Grid.Row="0" ZIndex="4">
+						<Canvas.Background>
 
-							<Image
-								Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
-								ZIndex="3"
-								HorizontalAlignment="Center"
-								Height="150"
-								Width="150"
-								Stretch="Fill"/>
+							<ImageBrush Source="\UI\MVVM\Assets\ModCard\ModCardTopRight.png"
+										AlignmentX="Right"
+										AlignmentY="Top"
+										Stretch="None"/>
+						</Canvas.Background>
+					</Canvas>
+				</Grid>
+			</Canvas>
 
-							<Image
-								asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
-								HorizontalAlignment="Center"
-								ZIndex="2"
-								Height="150"
-								Width="150"
-								Stretch="Fill"/>
-						</Canvas>
+			<!-- Mod Card -->
+			<StackPanel Grid.Row="0" Grid.Column="0">
 
-						<!-- Right Side of Top (Vertical) -->
-						<StackPanel Margin="10,0,0,0">
-							<StackPanel Margin="0,0,0,0">
+				<!-- Mod Card Top Part-->
+				<StackPanel Orientation="Horizontal" Margin="25,85,25,0">
+					<!-- Title -->
+					<Canvas
+					VerticalAlignment="Top"
+					Margin="0,0,0,0"
+					HorizontalAlignment="Left"
+					Height="150"
+					Width="150">
 
-								<Label FontSize="48" Content="{Binding Name}"
-										Foreground="Black"
-										Margin="0,0,0,0"
-										FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
-										VerticalAlignment="Top" HorizontalAlignment="Left"/>
+						<Image
+							Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
+							ZIndex="3"
+							HorizontalAlignment="Center"
+							Height="150"
+							Width="150"
+							Stretch="Fill"/>
 
-								<Label FontSize="34" Content="{Binding Author}"
-										Foreground="Black"
-										Margin="5,-10,0,0"
-										FontFamily="/UI/MVVM/Fonts/#Minecraft"
-										FontWeight="Bold"/>
+						<Image
+							asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
+							HorizontalAlignment="Center"
+							ZIndex="2"
+							Height="150"
+							Width="150"
+							Stretch="Fill"/>
+					</Canvas>
 
-							</StackPanel>
+					<!-- Right Side of Top (Vertical) -->
+					<StackPanel Margin="10,0,0,0" Grid.Row="0">
+						<StackPanel Margin="0,0,0,0">
 
-							<!-- HyperLinks -->
-							<StackPanel Margin="5,-15,0,0" Orientation="Horizontal"
-										Height="90">
-								<!-- Youtube -->
-								<Button Command="{Binding HandleLinkClickedYT}"
-										Classes="hyperlinkYT"
-										Margin="0,0,0,0"/>
-								<!-- Github -->
-								<Button Command="{Binding HandleLinkClickedGH}"
-										Classes="hyperlinkGH"
-										Margin="25,0,0,0"/>
-								<!-- Discord -->
-								<Button Command="{Binding HandleLinkClickedD}"
-										Classes="hyperlinkD"
-										Margin="25,0,0,0"/>
-								<!-- X-Tiwtter -->
-								<Button Command="{Binding HandleLinkClickedX}"
-										Classes="hyperlinkX"
-										Margin="25,0,0,0"/>
-							</StackPanel>
+							<Label FontSize="48" Content="{Binding Name}"
+									Foreground="Black"
+									Margin="0,0,0,0"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+									VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+							<Label FontSize="34" Content="{Binding Author}"
+									Foreground="Black"
+									Margin="5,-10,0,0"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft"
+									FontWeight="Bold"/>
+
+						</StackPanel>
+
+						<!-- HyperLinks -->
+						<StackPanel Margin="5,-15,0,0" Orientation="Horizontal"
+									Height="90">
+							<!-- Youtube -->
+							<Button Command="{Binding HandleLinkClickedYT}"
+									Classes="hyperlinkYT"
+									Margin="0,0,0,0"/>
+							<!-- Github -->
+							<Button Command="{Binding HandleLinkClickedGH}"
+									Classes="hyperlinkGH"
+									Margin="25,0,0,0"/>
+							<!-- Discord -->
+							<Button Command="{Binding HandleLinkClickedD}"
+									Classes="hyperlinkD"
+									Margin="25,0,0,0"/>
+							<!-- X-Tiwtter -->
+							<Button Command="{Binding HandleLinkClickedX}"
+									Classes="hyperlinkX"
+									Margin="25,0,0,0"/>
 						</StackPanel>
 					</StackPanel>
+				</StackPanel>
 
-					<!-- Bottom Part -->
-					<Grid Margin="25,0,25,0" Grid.Row="1" ShowGridLines="False">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="185"/>
-							<RowDefinition Height="*"/>
-						</Grid.RowDefinitions>
-						<StackPanel Width="{Binding Path=$parent.Bounds.Width}"
-							VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0">
+				<!-- Mod Card Bottom Part-->
+				<Grid Margin="25,0,25,0" Grid.Row="1" ShowGridLines="False">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="165"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<StackPanel Width="{Binding Path=$parent.Bounds.Width}"
+						VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0"
+						Grid.Column="0">
 
-							<TextBlock Text="Description:"
+						<TextBlock Text="Description:"
+								Padding="0,0,0,0"
+								Margin="0,0,0,0"
+								Foreground="Black"
+								FontSize="18"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+								VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+						<TextBlock Text="{Binding LongDescription}"
 									Padding="0,0,0,0"
-									Margin="0,0,0,0"
+									TextWrapping="WrapWithOverflow"
+									Margin="0,5,0,0"
 									Foreground="Black"
 									FontSize="18"
-									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft"
 									VerticalAlignment="Center" HorizontalAlignment="Left"/>
+					</StackPanel>
 
-							<TextBlock Text="{Binding LongDescription}"
-										Padding="0,0,0,0"
-										TextWrapping="WrapWithOverflow"
-										Margin="0,5,0,0"
-										Foreground="Black"
-										FontSize="18"
-										FontFamily="/UI/MVVM/Fonts/#Minecraft"
-										VerticalAlignment="Center" HorizontalAlignment="Left"/>
-						</StackPanel>
-
-						<!-- Information Panel and Button[h6] -->
-						<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
-									Margin="0,0,0,50" Orientation="Horizontal" Grid.Row="1">
+					<!-- Information Panel and Button[h6] -->
+					<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
+								Orientation="Horizontal" Grid.Row="1"
+								Margin="25,0,0,0">
 							<TextBlock Text="{Binding InformationPanel}"
-										Foreground="Black"
-										FontSize="24"
-										FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
-
+									Foreground="Black"
+									FontSize="24"
+									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
 							<RadioButton Classes="h6"
-								Classes.IsUpdated="{Binding Installed}"/>
-							
-						</StackPanel>
-					</Grid>
-					
-				</StackPanel>
-			</Grid>
-		</ScrollViewer>
+										 Classes.IsUpdated="{Binding Installed}"/>
+					</StackPanel>
+				</Grid>
+			</StackPanel>
+
+			<!-- Loading Bar -->
+			<Border IsVisible="{Binding IsLoadingBarVisible}"
+					Grid.Row="2"
+					HorizontalAlignment="Stretch"
+					VerticalAlignment="Center"
+					MaxHeight="80"
+					Margin="20,0,20,0">
+				<Grid ShowGridLines="False"
+					  Width="{Binding Path=$parent.Bounds.Width}">
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="12"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="12"/>
+					</Grid.ColumnDefinitions>
+
+					<Image Source="\UI\MVVM\Assets\Background\StateBarLeft.png"
+								Grid.Column="0"
+								HorizontalAlignment="Left"
+								Stretch="Fill"/>
+
+					<Image Source="\UI\MVVM\Assets\Background\StateBarCenter.png"
+								Grid.Column="1"
+								HorizontalAlignment="Center"
+								Stretch="Fill"/>
+
+					<Image Source="\UI\MVVM\Assets\Background\StateBarRight.png"
+								Grid.Column="2"
+								HorizontalAlignment="Right"
+								Stretch="Fill"/>
+
+					<TextBlock Text="{Binding LoadingBarText}"
+							   Grid.Column="1"
+							   FontSize="30"
+							   ZIndex="1"
+							   Classes="B1"
+							   VerticalAlignment="Center"
+							   HorizontalAlignment="Center"
+							   FontFamily="\UI\MVVM\Fonts\#Minecraft Ten"/>
+
+				</Grid>
+			</Border>
+
+			<TextBlock Grid.Row="3"/>
+
+		</Grid>
+	</ScrollViewer>
 </UserControl>

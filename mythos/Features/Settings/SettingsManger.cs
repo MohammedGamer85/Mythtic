@@ -5,13 +5,8 @@ using mythtic.Services;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace mythtic.Features.Settings
 {

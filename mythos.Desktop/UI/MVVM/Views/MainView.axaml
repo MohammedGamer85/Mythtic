@@ -27,14 +27,13 @@
 				<RowDefinition Height="100"/>
 			</Grid.RowDefinitions>
 
-			<Image Source="/UI/MVVM/Assets/Icons/default_mainmenu_banner_focus.png"
-					HorizontalAlignment="Left"
+			<Image Source="/UI/MVVM/Assets/Icons/MITHTIC_V2.png"
+					HorizontalAlignment="Center"
 					VerticalAlignment="Center"
-					Width="400"
+					Width="300"
 					Height="100"
 					Grid.Column="0"
-					Grid.Row="0"
-					Grid.ColumnSpan="1"/>
+					Grid.Row="0"/>
 
 				<ContentControl HorizontalAlignment="Stretch"
 								Content="{Binding TopBar}"

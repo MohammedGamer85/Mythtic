@@ -18,6 +18,8 @@ namespace mythtic.DataRequesting_Loading_Unloading
     {
         public static async Task DownloadFile(string url, string folderPath, string fileName)
         {
+            Logger.Log($"[DownloadFile] downloading file from '{url}' to '{folderPath}' with name `{fileName}`.");
+
             try
             {
                 HttpClient client = new HttpClient();
@@ -35,11 +37,11 @@ namespace mythtic.DataRequesting_Loading_Unloading
                     contentStream.Close();
                 }
 
-                Logger.Log("Download complete!" + "\n");
+                Logger.Log("[DownloadFile] Download completed successfuly!" + "\n");
             }
             catch (Exception ex)
             {
-                Logger.Log($"An error occurred: {ex.Message}");
+                Logger.Log($"[DownloadFile] An error occurred while downloading: {ex}");
             }
         }
     }
