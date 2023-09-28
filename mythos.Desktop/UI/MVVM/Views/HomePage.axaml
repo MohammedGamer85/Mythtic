@@ -3,8 +3,8 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="620"
-x:Class="mythos.Desktop.UI.MVVM.Views.HomePage"
-xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+x:Class="mythtic.Desktop.UI.MVVM.Views.HomePage"
+xmlns:vm="clr-namespace:mythtic.Desktop.UI.MVVM.ViewModels"
 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 x:DataType="vm:HomePageViewModel"
 xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -12,10 +12,6 @@ Background="Transparent"
 VerticalAlignment="Stretch"
 HorizontalAlignment="Stretch"
 ClipToBounds="True">
-
-	<UserControl.DataContext>
-		<vm:HomePageViewModel/>
-	</UserControl.DataContext>
 
 	<!-- Is used to display the mods the user has downloaded and running -->
 
@@ -227,7 +223,7 @@ ClipToBounds="True">
 				Margin="10,0,0,0"
 				Background="#555147"
 				CornerRadius="5">
-				
+
 				<TextBlock
 					Text="{Binding NumberOfMods}"
 					Margin="10,4,10,0"

@@ -1,11 +1,11 @@
-﻿using mythos.Services;
+﻿using mythtic.Services;
 using System;
 using System.Runtime.InteropServices;
-using mythos.Features.Mod;
-using mythos.Features.ImportMod;
-using mythos.UI.Services;
+using mythtic.Features.Mod;
+using mythtic.Features.ImportMod;
+using mythtic.UI.Services;
 
-namespace mythos.Models
+namespace mythtic.Models
 {
     public class ImportedModsItem : ObservableObject
     {
@@ -32,7 +32,7 @@ namespace mythos.Models
         }
         public string? Title { get; set; } = string.Empty;
         public string? DefaultImage { get; set; } = string.Empty;
-        public string[]? Images { get; set; }
+        public Image[]? Images { get; set; }
         public string? Creator { get; set; } = string.Empty;
         public string? GameMode { get; set; } = string.Empty;
         public string? ShotDescription { get; set; } = string.Empty;
@@ -70,6 +70,8 @@ namespace mythos.Models
         
         public ImportedModsItem()
         {
+            IsLoaded = false;
+
             EnableDisableModCommand = new EnableDisableMods();
             ModPageCommand = new SwitchToModView(true);
             ExportModCommand = new ExportMod();

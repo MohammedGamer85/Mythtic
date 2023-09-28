@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
-using mythos;
+using mythtic;
 
-namespace mythos.Views;
+namespace mythtic.Views;
 
 public partial class MainView : UserControl
 {

@@ -2,17 +2,15 @@
 using Avalonia;
 using Avalonia.ReactiveUI;
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Views;
-using mythos.Services;
-using mythos.Data;
+using mythtic.Views;
+using mythtic.Services;
+using mythtic.Data;
 using System.Threading.Tasks;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Desktop.UI.MVVM.ViewModels;
-using mythos.Features.PreloadedInformation;
-using mythos.UI.Services;
-using mythos.Features.Settings;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Desktop.UI.MVVM.ViewModels;
+using mythtic.Features.Settings;
 
-namespace mythos.Desktop
+namespace mythtic.Desktop
 {
     public class Program
     {
@@ -69,6 +67,7 @@ namespace mythos.Desktop
                 .AddSingleton<SearchBar>()
                 .AddSingleton<SearchBarViewModel>()
                 .AddSingleton<HomePage>()
+                .AddSingleton<HomePageViewModel>()
                 .AddSingleton<DiscoverPage>()
                 .AddSingleton<ProfileDisplay>()
                 .AddSingleton<AuthenticationRequests>();

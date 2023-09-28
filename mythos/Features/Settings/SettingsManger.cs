@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls.Documents;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using mythos.Data;
-using mythos.Services;
+using mythtic.Data;
+using mythtic.Services;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Xml.Linq;
 
-namespace mythos.Features.Settings
+namespace mythtic.Features.Settings
 {
     public static class SettingsManger
     {
-        private static readonly string filePath = Path.Combine(FilePaths.GetMythosDocFolder, "Settings.json");
+        private static readonly string filePath = Path.Combine(FilePaths.GetMythticDocFolder, "Settings.json");
         private static readonly ObservableCollection<Setting> DefultSettings = GetDefultSettings();
         public static ObservableCollection<Setting> _settings;
 

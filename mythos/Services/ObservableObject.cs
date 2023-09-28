@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mythos.Services
+namespace mythtic.Services
 {   //! This Class is a base class for other classes to very easly integrate OnpropertyChanged.
     public class ObservableObject : INotifyPropertyChanged
     {

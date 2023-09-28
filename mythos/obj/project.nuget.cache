@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YvM6wMYTOCzIprM8rgGRyJuvL5Ryx8gEF6CAUvbl92JXJvmFz/sJzU4O93dAZp8o+fsdLHUOkxdeG2hOmR72LQ==",
+  "dgSpecHash": "BARiVhQfumHKyT5YJ/N9X3vZ3XdLrPnwbuWskevl4ZxwvaHScks4yD6lq5MhjxX9ZH8OxJzdrLlpRfYSJVmgxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
+  "projectFilePath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythtic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moham\\.nuget\\packages\\asyncimageloader.avalonia\\3.2.0\\asyncimageloader.avalonia.3.2.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\avalonia\\11.0.4\\avalonia.11.0.4.nupkg.sha512",

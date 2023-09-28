@@ -1,9 +1,9 @@
-﻿using mythos.Services;
+﻿using mythtic.Services;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace mythos.Models;
+namespace mythtic.Models;
 
 public static class User
 {
@@ -37,6 +37,6 @@ public static class User
 
     static void setValue()
     {
-        ImagePath = Path.Combine(FilePaths.GetMythosDownloadsFolder, (User.Name + ".png"));
+        ImagePath = Path.Combine(FilePaths.GetmythticDownloadsFolder, (User.Name + ".png"));
     }
 }

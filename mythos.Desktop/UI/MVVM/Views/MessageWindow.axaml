@@ -9,7 +9,7 @@
 		IsVisible="True"
 		Background="#33302A"
 		
-        x:Class="mythos.Desktop.UI.MVVM.Views.MessageWindow"
+        x:Class="mythtic.Desktop.UI.MVVM.Views.MessageWindow"
         Title="MessageWindow">
 
 	<ScrollViewer>

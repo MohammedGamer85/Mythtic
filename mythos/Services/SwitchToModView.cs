@@ -6,9 +6,9 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using mythos.UI.Services;
+using mythtic.UI.Services;
 
-namespace mythos.Services;
+namespace mythtic.Services;
 
 public class SwitchToModView : ICommand
 {

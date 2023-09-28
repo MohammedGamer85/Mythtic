@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100"
 			 MaxHeight="100" MaxWidth="310"
-             x:Class="mythos.Desktop.UI.MVVM.Views.ProfileDisplay"
-			 xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+             x:Class="mythtic.Desktop.UI.MVVM.Views.ProfileDisplay"
+			 xmlns:vm="clr-namespace:mythtic.Desktop.UI.MVVM.ViewModels"
 			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 			 x:DataType="vm:ProfileDisplayViewModel"
 			 Background="Transparent">

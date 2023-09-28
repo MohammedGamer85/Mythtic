@@ -4,15 +4,15 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using AvaloniaApplication1.Desktop;
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Features.Settings;
-using mythos.Services;
-using mythos.ViewModels;
-using mythos.Views;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Features.Settings;
+using mythtic.Services;
+using mythtic.ViewModels;
+using mythtic.Views;
 using System;
 using System.IO;
 
-namespace mythos;
+namespace mythtic;
 
 
 public partial class App : Application

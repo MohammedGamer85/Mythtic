@@ -1,11 +1,11 @@
-﻿using mythos.Data;
-using mythos.Models;
+﻿using mythtic.Data;
+using mythtic.Models;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using mythos.Services;
+using mythtic.Services;
 
-namespace mythos.Features.PreloadedInformation
+namespace mythtic.Features.PreloadedInformation
 {   //! Dealth with the user and accunt classes.
     public class UserInformationLoader
     {
@@ -35,7 +35,7 @@ namespace mythos.Features.PreloadedInformation
 
             if (JsonCheckerHelper.CheckJsonFileForData(fileName))
             {
-                Account = JsonReaderHelper.ReadJsonFile<Account>(fileName);
+                Account = JsonReaderHelper.ReadJsonFile<Account>(fileName, dencrypt: true);
 
                 InitializeUserDataFromAccunt();
 
@@ -57,7 +57,7 @@ namespace mythos.Features.PreloadedInformation
 
             //Writes it to json in for next time.
 
-            JsonWriterHelper.WriteJsonFile<Account>(fileName, Account);
+            JsonWriterHelper.WriteJsonFile<Account>(fileName, Account, encrypt: true);
 
             JsonCheckerHelper.JsonCheckFileForData(fileName);
 

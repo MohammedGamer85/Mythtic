@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Avalonia.Controls;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Services;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Services;
 using ReactiveUI;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
     public class MessageWindowViewModel : ObservableObject
     {

@@ -2105,7 +2105,7 @@
           "lib/net6.0/Tmds.DBus.Protocol.dll": {}
         }
       },
-      "mythos/1.0.0": {
+      "mythtic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -2123,10 +2123,10 @@
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "bin/placeholder/mythos.dll": {}
+          "bin/placeholder/mythtic.dll": {}
         },
         "runtime": {
-          "bin/placeholder/mythos.dll": {}
+          "bin/placeholder/mythtic.dll": {}
         }
       }
     }
@@ -6321,10 +6321,10 @@
         "tmds.dbus.protocol.nuspec"
       ]
     },
-    "mythos/1.0.0": {
+    "mythtic/1.0.0": {
       "type": "project",
-      "path": "../mythos/mythos.csproj",
-      "msbuildProject": "../mythos/mythos.csproj"
+      "path": "../mythos/mythtic.csproj",
+      "msbuildProject": "../mythos/mythtic.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6334,7 +6334,7 @@
       "Avalonia.Controls.DataGrid >= 11.0.4",
       "Avalonia.Desktop >= 11.0.4",
       "Newtonsoft.Json >= 13.0.3",
-      "mythos >= 1.0.0"
+      "mythtic >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6344,9 +6344,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
-      "projectName": "mythos.Desktop",
-      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythos.Desktop.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythtic.Desktop.csproj",
+      "projectName": "mythtic.Desktop",
+      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\mythtic.Desktop.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos.Desktop\\obj\\",
       "projectStyle": "PackageReference",
@@ -6369,8 +6369,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj": {
-              "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj"
+            "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythtic.csproj": {
+              "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythtic.csproj"
             }
           }
         }

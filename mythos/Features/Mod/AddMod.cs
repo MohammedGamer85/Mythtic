@@ -1,26 +1,26 @@
-﻿using mythos.Models;
+﻿using mythtic.Models;
 using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using mythos.UI.Services;
-using mythos.Services;
-using mythos.Data;
+using mythtic.UI.Services;
+using mythtic.Services;
+using mythtic.Data;
 using System.IO.Compression;
 
-namespace mythos.Features.Mod
+namespace mythtic.Features.Mod
 {
     public static class AddMod
     {
-        public static async Task<bool> Add(ImportedModsItem modInfo, string folderPath, bool isZiped)
+        public static bool Add(ImportedModsItem modInfo, string folderPath, bool isZiped)
         {
             try
             {
                 if (isZiped)
                 {
-                    ZipFile.ExtractToDirectory(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"), folderPath, false /* No overridding files */);
+                    ZipFile.ExtractToDirectory(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"), folderPath, false /* No overridding files */);
                 }
 
                 if (modInfo.Uuid == null)
@@ -29,7 +29,7 @@ namespace mythos.Features.Mod
                     modInfo.Uuid = modInfoJson.header.uuid;
                 }
 
-                string mythFolderPath = Path.Combine(FilePaths.GetMythosDownloadsFolder, modInfo.Uuid);
+                string mythFolderPath = Path.Combine(FilePaths.GetmythticDownloadsFolder, modInfo.Uuid);
 
                 if (!Directory.Exists(Path.Combine(mythFolderPath)))
                     Directory.CreateDirectory(Path.Combine(mythFolderPath));
@@ -43,7 +43,9 @@ namespace mythos.Features.Mod
                 _packs.Add("RP", "RP-" + modInfo.Uuid);
 
                 if (!File.Exists(Path.Combine(mythFolderPath, "modInfo.json")))
-                    File.Create(Path.Combine(mythFolderPath, "modInfo.json"));
+                {
+                    File.Create(Path.Combine(mythFolderPath, "modInfo.json")).Close();
+                }
 
                 JsonWriterHelper.WriteJsonFile(Path.Combine(mythFolderPath, "modInfo.json"), _packs, true);
 
@@ -78,15 +80,15 @@ namespace mythos.Features.Mod
                 JsonWriterHelper.WriteJsonFile("importedMods.json", ImportedModsInfo.Mods);
 
                 Directory.Delete(folderPath, true);
-                File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
+                File.Delete(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"));
                 return true;
             }
             catch (Exception ex)
             {
                 Logger.Log(ex.ToString());
                 Directory.Delete(folderPath, true);
-                File.Delete(Path.Combine(FilePaths.GetMythosTempFolder, "Mod.zip"));
-                MiddleMan.OpenMessageWindowFromMythos?.Invoke($"Failed to add mod. Error:[{ex.Message}]");
+                File.Delete(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"));
+                MiddleMan.OpenMessageWindowFromMythtic?.Invoke($"Failed to add mod. Error:[{ex.Message}]");
                 return false;
             }
 
@@ -104,7 +106,7 @@ namespace mythos.Features.Mod
 
                     //Deletes the aready existing pack
                     if (!Directory.Exists(Path.Combine(mythFolderPath, (pack + "-" + modInfo.Uuid))))
-                        Directory.Delete(Path.Combine(mythFolderPath, (pack + "-" + modInfo.Uuid)), true);
+                        Directory.CreateDirectory(Path.Combine(mythFolderPath, pack));
 
                     //copys the file
                     DirectoryUtilities.Copy(Path.Combine(folderPath, pack), Path.Combine(mythFolderPath, pack), true);

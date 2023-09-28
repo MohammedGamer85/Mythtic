@@ -6,12 +6,13 @@ using System.Linq;
 using System.IO;
 using System.Reflection.Metadata;
 using System.Windows.Input;
-using mythos.Data;
-using mythos.Services;
-using mythos.UI.Services;
-using mythos.Models;
+using mythtic.Data;
+using mythtic.Services;
+using mythtic.UI.Services;
+using mythtic.Models;
+using System.Runtime.Intrinsics.X86;
 
-namespace mythos.Features.Mod;
+namespace mythtic.Features.Mod;
 
 public class EnableDisableMods : ICommand
 {
@@ -20,24 +21,44 @@ public class EnableDisableMods : ICommand
     private Dictionary<string, string> fileNames;
 
     public bool CanExecute(object parameter)
-    {
+    {   
         // Add your code to determine whether the command can execute or not
         int id = Convert.ToInt32(parameter);
 
-        if (ImportedModsInfo.Mods[id] == null || ImportedModsInfo.Mods[id] == new ImportedModsItem())
+        try
         {
-            Logger.Log($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
-                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
-
-            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
-                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
-
+            if (ImportedModsInfo.Mods[id] == null || ImportedModsInfo.Mods[id] == new ImportedModsItem())
+            {
+                errormessage();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        catch (Exception ex)
+        {
+            errormessage($"Failed To Enable/Disable Mod[unknown]. Error[{ex.Message}]");
             return false;
         }
-        else
-        {
-            return true;
+
+        void errormessage(string i = "")
+        {   
+            if(i != "")
+            {
+                Logger.Log(i);
+                MiddleMan.OpenMessageWindowFromMythtic?.Invoke(i);
+                return;
+            }
+
+            Logger.Log($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
+                    $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
+
+            MiddleMan.OpenMessageWindowFromMythtic?.Invoke($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
+                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
         }
+
     }
 
     public void Execute(object parameter)
@@ -47,7 +68,7 @@ public class EnableDisableMods : ICommand
         {
             int id = Convert.ToInt32(parameter);
 
-            _path = Path.Combine(FilePaths.GetMythosDownloadsFolder, ImportedModsInfo.Mods[Convert.ToInt32(parameter)].Uuid);
+            _path = Path.Combine(FilePaths.GetmythticDownloadsFolder, ImportedModsInfo.Mods[Convert.ToInt32(parameter)].Uuid);
 
             fileNames = JsonReaderHelper.ReadJsonFile<Dictionary<string, string>>(Path.Combine(_path, "modInfo.json"));
 
@@ -61,7 +82,7 @@ public class EnableDisableMods : ICommand
         catch (Exception ex)
         {
             Logger.Log($"Failed to Excute, Exception is [{ex.ToString()}].");
-            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed to Excute, Exception is [{ex.Message}].");
+            MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed to Excute, Exception is [{ex.Message}].");
         }
     }
 
@@ -83,7 +104,7 @@ public class EnableDisableMods : ICommand
         catch (Exception ex)
         {
             Logger.Log($"Failed To enable {ImportedModsInfo.Mods[id].Name}, Exception is [{ex.ToString()}].");
-            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To enable {ImportedModsInfo.Mods[id].Name}, Exception is [{ex.Message}].");
+            MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed To enable {ImportedModsInfo.Mods[id].Name}, Exception is [{ex.Message}].");
         }
     }
 
@@ -105,7 +126,7 @@ public class EnableDisableMods : ICommand
         catch (Exception ex)
         {
             Logger.Log($"Failed To disable {ImportedModsInfo.Mods[id].Name} Exception is [{ex.ToString()}]");
-            MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Disable {ImportedModsInfo.Mods[id].Name} Exception is [{ex.Message}]");
+            MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed To Disable {ImportedModsInfo.Mods[id].Name} Exception is [{ex.Message}]");
         }
     }
 }

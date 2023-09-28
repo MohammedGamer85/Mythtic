@@ -1,10 +1,10 @@
-using mythos.Models;
-using mythos.UI.Services;
+using mythtic.Models;
+using mythtic.UI.Services;
 using System.Collections.ObjectModel;
-using mythos.Services;
-using mythos.Features.Mod;
+using mythtic.Services;
+using mythtic.Features.Mod;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
     public class ExportModWindowViewModel : ObservableObject
     {

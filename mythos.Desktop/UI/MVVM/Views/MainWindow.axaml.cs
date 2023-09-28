@@ -1,10 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using mythos;
-using mythos.Desktop;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Services;
-using mythos.UI.Services;
+using mythtic;
+using mythtic.Desktop;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Services;
+using mythtic.UI.Services;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace mythos.Views;
+namespace mythtic.Views;
 
 public partial class MainWindow : Window
 {
@@ -20,7 +20,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        MiddleMan.OpenMessageWindowFromMythos = (Text) =>
+        MiddleMan.OpenMessageWindowFromMythtic = (Text) =>
         {
             new MessageWindow(Text);
         };

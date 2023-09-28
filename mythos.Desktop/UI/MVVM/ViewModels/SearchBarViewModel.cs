@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using mythos.UI.Services;
-using mythos.Services;
+using mythtic.UI.Services;
+using mythtic.Services;
 using ReactiveUI;
 using System.Drawing.Printing;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {   //! _Window displays the search bar.
     public class SearchBarViewModel : ReactiveObject
     {

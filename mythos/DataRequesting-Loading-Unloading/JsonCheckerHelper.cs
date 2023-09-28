@@ -1,4 +1,4 @@
-﻿using mythos.Services;
+﻿using mythtic.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,10 +10,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using mythos.Services;
+using mythtic.Services;
 using System.Threading;
 
-namespace mythos.Data
+namespace mythtic.Data
 {   //! is used to check if a json file contains valid information.
     //todo: make it accully check if the infromatio is vaild.
     //! the way it works right now is when another part of the code stores vaild data it sets data is vaild to true

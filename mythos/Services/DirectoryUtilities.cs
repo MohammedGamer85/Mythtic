@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace mythos.Services
+namespace mythtic.Services
 {
     public static class DirectoryUtilities
     {   

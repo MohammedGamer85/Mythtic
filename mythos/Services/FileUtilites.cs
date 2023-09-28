@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mythos.Services
+namespace mythtic.Services
 {
     public static class FileUtilites
     {
         public static bool IsInUseReadRights(string path)
         {
-            path = Path.Combine(FilePaths.GetMythosDocFolder, path);
+            path = Path.Combine(FilePaths.GetMythticDocFolder, path);
             bool IsFree = true;
             try
             {

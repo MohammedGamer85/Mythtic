@@ -1,17 +1,17 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:mythos.ViewModels"
+        xmlns:vm="using:mythtic.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:mythos.Views"
+        xmlns:views="clr-namespace:mythtic.Views"
         mc:Ignorable="d"
-        x:Class="mythos.Views.MainWindow"
+        x:Class="mythtic.Views.MainWindow"
         Icon="\UI\MVVM\Assets\Icons\MCLDiscordLogo.ico"
 		MinHeight="720"
 		MinWidth="1000"
 		Height="820"
 		Width="1195"
-        Title="mythos"
+        Title="mythtic"
 		RequestedThemeVariant="Default">
 
 	<!-- use this if you want to learn

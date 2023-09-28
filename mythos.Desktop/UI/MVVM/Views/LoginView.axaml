@@ -3,10 +3,10 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-		x:Class="mythos.Desktop.UI.MVVM.Views.LoginView"
+		x:Class="mythtic.Desktop.UI.MVVM.Views.LoginView"
 		xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
-		xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+		xmlns:vm="clr-namespace:mythtic.Desktop.UI.MVVM.ViewModels"
 		x:DataType="vm:LoginViewModel"
 		Background="#33302A">
 	<UserControl.DataContext>

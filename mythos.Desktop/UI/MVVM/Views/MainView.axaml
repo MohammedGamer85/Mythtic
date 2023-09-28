@@ -2,10 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:mythos.ViewModels"
+             xmlns:vm="clr-namespace:mythtic.ViewModels"
              mc:Ignorable="d" d:DesignWidth="1110" d:DesignHeight="750"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-			 x:Class="mythos.Views.MainView"
+			 x:Class="mythtic.Views.MainView"
              x:DataType="vm:MainViewModel"
 			 Background="#33302A">
 	<Design.DataContext>

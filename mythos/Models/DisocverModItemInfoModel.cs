@@ -1,10 +1,10 @@
 ﻿using Avalonia;
-using mythos.Services;
+using mythtic.Services;
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace mythos.Models
+namespace mythtic.Models
 {
     public class DisocverModItemInfoModel : ObservableObject
     {
@@ -25,7 +25,7 @@ namespace mythos.Models
         public string? DiscordLink { get; set; }
         public string? TwitterLink { get; set; }
         public string? GithubLink { get; set; }
-        public string[]? Images { get; set; }
+        public Image[]? Images { get; set; }
         public VersionInfo[]? Versions
         {
             get => _version;
@@ -63,6 +63,12 @@ namespace mythos.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+    }
+
+    public class Image
+    {
+        public int Id { get; set; }
+        public string ImageHash { get; set; }
     }
 
     public class DisocverModItemInfoModelRecived

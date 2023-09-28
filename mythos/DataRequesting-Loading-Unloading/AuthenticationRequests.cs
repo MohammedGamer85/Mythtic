@@ -2,7 +2,7 @@
 using DynamicData;
 using DynamicData.Binding;
 using Microsoft.Win32.SafeHandles;
-using mythos.Models;
+using mythtic.Models;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -14,10 +14,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using mythos.Services;
-using mythos.Features.PreloadedInformation;
+using mythtic.Services;
+using mythtic.Features.PreloadedInformation;
 
-namespace mythos.Data
+namespace mythtic.Data
 {
 
     /*! 

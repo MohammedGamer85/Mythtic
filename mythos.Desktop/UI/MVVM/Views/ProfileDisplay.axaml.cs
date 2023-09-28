@@ -1,10 +1,10 @@
 using Avalonia.Controls;
-using mythos.Services;
-using mythos.Desktop.UI.MVVM.ViewModels;
-using mythos.Features.PreloadedInformation;
+using mythtic.Services;
+using mythtic.Desktop.UI.MVVM.ViewModels;
+using mythtic.Features.PreloadedInformation;
 using System;
 
-namespace mythos.Desktop.UI.MVVM.Views
+namespace mythtic.Desktop.UI.MVVM.Views
 {
     public partial class ProfileDisplay : UserControl
     {

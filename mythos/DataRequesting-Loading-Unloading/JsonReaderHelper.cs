@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using mythos.Models;
-using mythos.Services;
+using mythtic.Models;
+using mythtic.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,11 +12,11 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace mythos.Data
+namespace mythtic.Data
 {   //! takes in a genaric and returns the data from a json file in the genaric type inputed.
     public static class JsonReaderHelper
     {
-        public static TReturn ReadJsonFile<TReturn>(string file, bool isRootPath = false)
+        public static TReturn ReadJsonFile<TReturn>(string file, bool isRootPath = false, bool dencrypt = false)
         {
             TReturn deserilizedContent = default;
 
@@ -28,9 +28,27 @@ namespace mythos.Data
             {
                 Logger.Log($"(JsonReaderHelper) '{CallerName}' Reading: {file} Result: ");
 
-                string jsonString = (isRootPath)
-                ? File.ReadAllText(file)
-                : File.ReadAllText(Path.Combine(FilePaths.GetMythosDocFolder, file));
+                string jsonString;
+                if (isRootPath)
+                {
+                    if (dencrypt)
+                        File.Decrypt(file);
+
+                    jsonString = File.ReadAllText(file);
+
+                    if (dencrypt)
+                        File.Encrypt(file);
+                }
+                else
+                {
+                    if (dencrypt)
+                        File.Decrypt(Path.Combine(FilePaths.GetMythticDocFolder, file));
+
+                    jsonString = File.ReadAllText(Path.Combine(FilePaths.GetMythticDocFolder, file));
+
+                    if (dencrypt)
+                        File.Encrypt(Path.Combine(FilePaths.GetMythticDocFolder, file));
+                }
 
                 if (jsonString == string.Empty)
                 {

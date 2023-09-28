@@ -5298,9 +5298,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
-      "projectName": "mythos",
-      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythos.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythtic.csproj",
+      "projectName": "mythtic",
+      "projectPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\mythtic.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\moham\\source\\repos\\Avlonia\\mythosApp\\mythos\\obj\\",
       "projectStyle": "PackageReference",

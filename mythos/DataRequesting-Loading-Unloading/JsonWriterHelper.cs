@@ -1,4 +1,4 @@
-﻿using mythos.Services;
+﻿using mythtic.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,14 +8,14 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using mythos.Services;
+using mythtic.Services;
 using System.Threading.Channels;
 
-namespace mythos.Data
-{ //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetMythosDocFolder.
+namespace mythtic.Data
+{ //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetmythticDocFolder.
     public static class JsonWriterHelper
     {
-        public static void WriteJsonFile<TContent>(string file, TContent content, bool IsRootPath = false)
+        public static void WriteJsonFile<TContent>(string file, TContent content, bool IsRootPath = false, bool encrypt = false)
         {
             try
             {
@@ -26,10 +26,16 @@ namespace mythos.Data
                 if (IsRootPath)
                 {
                     File.WriteAllText(file, serializedContent);
+
+                    if (encrypt)
+                        File.Encrypt(file);
                 }
                 else
                 {
-                    File.WriteAllText(Path.Combine(FilePaths.GetMythosDocFolder, file), serializedContent);
+                    File.WriteAllText(Path.Combine(FilePaths.GetMythticDocFolder, file), serializedContent);
+
+                    if (encrypt)
+                        File.Encrypt(Path.Combine(FilePaths.GetMythticDocFolder, file));
                 }
             }
             catch (Exception ex) { Logger.Log(ex.ToString());}

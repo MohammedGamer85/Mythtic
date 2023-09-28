@@ -2,16 +2,18 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Avalonia;
+using Avalonia.Controls.Platform;
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Data;
-using mythos.DataRequesting_Loading_Unloading;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Features.Mod;
-using mythos.Models;
-using mythos.Services;
-using mythos.UI.Services;
+using mythtic.Data;
+using mythtic.DataRequesting_Loading_Unloading;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Features.Mod;
+using mythtic.Models;
+using mythtic.Services;
+using mythtic.UI.Services;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
     public class ModPageViewModel : ObservableObject
     {
@@ -92,41 +94,57 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
             this.Installed = Installed;
 
-            getModInfo(id);
+            if (Installed)
+            {
+                getInstalledModInfo(id);
+            }
+            else if (!Installed)
+            {
+                getNonInstalledModInfo(id);
+            }
+            else
+            {
+                Logger.Log("NULL MOD STATE (ModPageViewModel)");
+                Environment.Exit(0);
+            }
 
             ImportedModsItem.OnPropertyChangeOfIsLoaded = () =>
             {
-                this.IsLoaded = (Installed == true)
+                IsLoaded = (this.Installed == true)
                 ? ImportedModInfo.IsLoaded
                 : false;
             };
         }
 
-        async Task getModInfo(int id)
+        private void getInstalledModInfo(int id)
         {
-            if (Installed)
-            {
-                ImportedModInfo = ImportedModsInfo.Mods[id];
-                OnLoadedImportedMod();
-            }
-            else
-            {
-                AuthenticationRequests authenticationRequests = new();
-                DiscoverModInfo = await authenticationRequests.DiscoverModDetials(id);
-                OnLoadedDiscoverMod();
-            }
+            ImportedModInfo = ImportedModsInfo.Mods[id];
+            OnLoadedImportedMod();
         }
 
-        public void DownloadMod()
+        private async Task getNonInstalledModInfo(int id)
         {
-            downloadMod();
+            AuthenticationRequests authenticationRequests = new();
+            DiscoverModInfo = await authenticationRequests.DiscoverModDetials(id);
+            OnLoadedDiscoverMod();
         }
 
-        public void DeleteMod()
-        {
-            deleteMod();
-        }
+        // Social links
+        public async Task HandleLinkClickedD() => OpenBrowserTab("https://" + _dLink);
+        public async Task HandleLinkClickedX() => OpenBrowserTab("https://" + _xLink);
+        public async Task HandleLinkClickedGH() => OpenBrowserTab("https://" + _ghLink);
+        public async Task HandleLinkClickedYT() => OpenBrowserTab("https://" + _ytLink);
 
+        //Buttons
+        public void OpenModDirectory() => Process.Start("explorer.exe", Path.Combine(FilePaths.GetmythticDownloadsFolder, ImportedModInfo.Uuid));
+
+        public void DownloadMod() => downloadMod();
+
+        public void DeleteMod() => deleteMod();
+
+        public void CheckForUpdates() => checkForUpdates();
+
+        //Funcations
         public async Task ReDownloadMod()
         {
             try
@@ -135,7 +153,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 {
                     throw new Exception("Mod does not have a WebId");
                 }
-                await deleteMod("none");
+                deleteMod("erros");
                 await downloadMod("erros");
 
                 Logger.Log($"{ImportedModInfo.Name} was Redownloaded successfully");
@@ -148,7 +166,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             }
         }
 
-        public async Task CheckForUpdates(string feedBackMode = "full")
+        public async Task checkForUpdates(string feedBackMode = "full")
         {
             try
             {
@@ -163,9 +181,9 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 if (DiscoverModInfo.Versions[0].Version != ImportedModInfo.Version.ToString())
                 {
                     await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myths/" + DiscoverModInfo.Versions[0].FileHash + ".zip",
-                        FilePaths.GetMythosTempFolder, "\\Mod.zip");
+                        FilePaths.GetmythticTempFolder, "\\Mod.zip");
 
-                    if (await AddMod.Add(new ImportedModsItem
+                    if (AddMod.Add(new ImportedModsItem
                     {
                         WebId = DiscoverModInfo.Id,
                         Name = DiscoverModInfo.Name,
@@ -183,20 +201,27 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                         Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
                         LastUpdated = DateTime.Now,
                         IsDevMod = false,
-                    }, Path.Combine(FilePaths.GetMythosTempFolder, "ModFolder"), true))
+                    }, Path.Combine(FilePaths.GetmythticTempFolder, "ModFolder"), true))
                     {
-                        await deleteMod("errors");
-                        MiddleMan.ImportedModPage = ImportedModsInfo.Mods.Count - 1;
+                        deleteMod("errors");
+                        MiddleMan.ImportedModPage = ImportedModsInfo.Mods.Count;
                     }
                     else
                     {
                         throw new Exception($"Failed to Download and import new Mod:[WebId:{ImportedModInfo.WebId}] version");
                     }
 
-                    Logger.Log("Successfully updated mod");
+                    Logger.Log("Successfully updated mod (checkForUpdates)");
 
                     if (feedBackMode is "full" or "success")
                         new MessageWindow("Successfully updated mod");
+                }
+                else
+                {
+                    Logger.Log("Successfully checked for mod updates [Found Non] (checkForUpdates)");
+
+                    if (feedBackMode is "full" or "success")
+                        new MessageWindow("Mod has no updates");
                 }
             }
             catch (Exception ex)
@@ -208,12 +233,6 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             }
         }
 
-        public void OpenModDirectory()
-        {
-            Process.Start("explorer.exe", Path.Combine(FilePaths.GetMythosDownloadsFolder, ImportedModInfo.Uuid));
-        }
-
-
         //todo MOVE THIS into it's own file TOO MOHAMMED BEFORE 1.0;
         //? NO PAST MOHAMMED. it is way to much work.
 
@@ -222,7 +241,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         /// </summary>
         /// <param name="feedBackMode"> [full, none, erros, success] </param>
         /// <returns>null</returns>
-        private async Task downloadMod(string feedBackMode = "full")
+        private async Task<bool> downloadMod(string feedBackMode = "full")
         {
             AuthenticationRequests authenticationRequests = new();
 
@@ -230,9 +249,9 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 DiscoverModInfo = await authenticationRequests.DiscoverModDetials((int)ImportedModInfo.WebId);
 
             await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myths/" + DiscoverModInfo.Versions[0].FileHash + ".zip",
-                FilePaths.GetMythosTempFolder, "\\Mod.zip");
+                FilePaths.GetmythticTempFolder, "\\Mod.zip");
 
-            if (await AddMod.Add(new ImportedModsItem
+            var modItem = new ImportedModsItem
             {
                 WebId = DiscoverModInfo.Id,
                 Name = DiscoverModInfo.Name,
@@ -250,12 +269,27 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
                 LastUpdated = DateTime.Now,
                 IsDevMod = false,
-            }, Path.Combine(FilePaths.GetMythosTempFolder, "ModFolder"), true))
+            };
+
+            foreach (var mod in ImportedModsInfo.Mods)
+            {
+                if (mod.WebId == modItem.WebId)
+                {
+                    if (feedBackMode is "full" or "errors")
+                        new MessageWindow("Already Downloaded");
+
+                    return false;
+                }
+            }
+
+            if (AddMod.Add(modItem, Path.Combine(FilePaths.GetmythticTempFolder, "ModFolder"), true))
             {
                 Logger.Log("Successfully installed mod");
 
                 if (feedBackMode is "full" or "success")
                     new MessageWindow("Successfully installed mod");
+
+                return true;
             }
             else
             {
@@ -263,6 +297,8 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
                 if (feedBackMode is "full" or "errors")
                     new MessageWindow("Failed to installed mod");
+                
+                return false;
             }
         }
 
@@ -273,7 +309,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         /// </summary>
         /// <param name="feedBackMode"> [full, none, erros, success] </param>
         /// <returns></returns>
-        private async Task<bool> deleteMod(string feedBackMode = "full")
+        private bool deleteMod(string feedBackMode = "full")
         {
             try
             {
@@ -282,7 +318,12 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
                 ImportedModsInfo.Mods.RemoveAt((int)ImportedModInfo.Id);
 
-                Directory.Delete(Path.Combine(FilePaths.GetMythosDownloadsFolder, ImportedModInfo.Uuid), true);
+                for (int i = (int)ImportedModInfo.Id; i < ImportedModsInfo.Mods.Count; i++)
+                {
+                    ImportedModsInfo.Mods[i].Id = ImportedModsInfo.Mods[i].Id - 1;
+                }
+
+                Directory.Delete(Path.Combine(FilePaths.GetmythticDownloadsFolder, ImportedModInfo.Uuid), true);
 
                 Logger.Log($"Successfully deleted Mod:[{ImportedModInfo.Name}]");
 
@@ -291,6 +332,8 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
                 if (feedBackMode is "full" or "success")
                 {
                     new MessageWindow($"Successfully deleted Mod:[{ImportedModInfo.Name}]");
+
+                    Program.ServiceProvider.GetService<HomePage>().Rest();
                     MiddleMan.View = Program.ServiceProvider.GetService<HomePage>();
                 }
 
@@ -344,12 +387,6 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             _ytLink = ImportedModInfo.YoutubeLink;
         }
 
-        // Social links
-        public async Task HandleLinkClickedD() => OpenBrowserTab("https://"+_dLink);
-        public async Task HandleLinkClickedX() => OpenBrowserTab("https://"+_xLink);
-        public async Task HandleLinkClickedGH() => OpenBrowserTab("https://"+_ghLink);
-        public async Task HandleLinkClickedYT() => OpenBrowserTab("https://"+_ytLink);
-        
         //todo: Move this to a spreate file as a service
         private static void OpenBrowserTab(string url)
         {

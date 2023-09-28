@@ -1,7 +1,7 @@
-﻿using mythos.Services;
+﻿using mythtic.Services;
 using ReactiveUI;
 
-namespace mythos.ViewModels;
+namespace mythtic.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {

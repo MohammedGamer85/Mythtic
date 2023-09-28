@@ -6,15 +6,15 @@ using Avalonia.Controls;
 using System.Diagnostics;
 using Avalonia.Platform.Storage;
 using System.IO.Compression;
-using mythos.Services;
-using mythos.UI.Services;
-using mythos.Data;
-using mythos.Models;
+using mythtic.Services;
+using mythtic.UI.Services;
+using mythtic.Data;
+using mythtic.Models;
 using System.Windows.Input;
 using ReactiveUI;
-using mythos.Features.Mod;
+using mythtic.Features.Mod;
 
-namespace mythos.Features.ImportMod
+namespace mythtic.Features.ImportMod
 {
     public class ExportMod : Window, ICommand //! allows the ImportMod to access the OpenFilePickerAsynic function
     {
@@ -30,7 +30,7 @@ namespace mythos.Features.ImportMod
                 Logger.Log($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
                 $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
-                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
+                MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
                     $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
                 return false;
@@ -52,8 +52,8 @@ namespace mythos.Features.ImportMod
 
             ImportedModsItem Mod = ImportedModsInfo.Mods[modId];
 
-            string _mythFolderPath = Path.Combine(FilePaths.GetMythosDownloadsFolder, Mod.Uuid);
-            string _tempFolderPath = Path.Combine(FilePaths.GetMythosTempFolder, Mod.Name);
+            string _mythFolderPath = Path.Combine(FilePaths.GetmythticDownloadsFolder, Mod.Uuid);
+            string _tempFolderPath = Path.Combine(FilePaths.GetmythticTempFolder, Mod.Name);
 
             try
             {
@@ -62,7 +62,7 @@ namespace mythos.Features.ImportMod
                 {
                     Title = "Choose Export folder",
                     DefaultExtension = "*.mclmod",
-                    SuggestedStartLocation = await StorageProvider.TryGetFolderFromPathAsync(FilePaths.GetMythosExportFolder)
+                    SuggestedStartLocation = await StorageProvider.TryGetFolderFromPathAsync(FilePaths.GetmythticExportFolder)
                 });
 
                 string _compressedFilePath = getCompressedFilePath();
@@ -70,7 +70,7 @@ namespace mythos.Features.ImportMod
                 string? getCompressedFilePath()
                 {
                     if (_exprotFile == null)
-                        return Path.Combine(FilePaths.GetMythosExportFolder, Mod.Name + ".mclmod");
+                        return Path.Combine(FilePaths.GetmythticExportFolder, Mod.Name + ".mclmod");
                     else if (_exprotFile.Name == null)
                         return Path.Combine(_exprotFile.Path.LocalPath, Mod.Name + ".mclmod");
                     else if (_exprotFile.Name.Contains('.') == false)
@@ -126,7 +126,7 @@ namespace mythos.Features.ImportMod
                 _modInfo["name"] = Mod.Name.ToString();
                 _modInfo["defaultImage"] = (Mod.DefaultImage != null)
                     ? Mod.DefaultImage.ToString()
-                    : "https://mythos.umbrielstudios.com/favicon.ico";
+                    : "https://mythtic.umbrielstudios.com/favicon.ico";
                 _modInfo["author"] = Mod.Creator.ToString();
                 _modInfo["gameMode"] = Mod.GameMode.ToString();
                 _modInfo["shotDescription"] = Mod.ShotDescription.ToString();
@@ -145,7 +145,7 @@ namespace mythos.Features.ImportMod
 
                 Directory.Delete(_tempFolderPath, true);
 
-                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Successfully exported {Mod.Name} to {_compressedFilePath}");
+                MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Successfully exported {Mod.Name} to {_compressedFilePath}");
 
                 return true;
             }
@@ -153,7 +153,7 @@ namespace mythos.Features.ImportMod
             {
                 Directory.Delete(_tempFolderPath, true);
                 Logger.Log($"Failed to export {Mod.Name}, Exception is {ex.ToString()}");
-                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed to export {Mod.Name}, Exception is {ex.Message}");
+                MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed to export {Mod.Name}, Exception is {ex.Message}");
                 return false;
             }
         }

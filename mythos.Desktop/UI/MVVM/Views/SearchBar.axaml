@@ -3,8 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="100"
-             xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
-             x:Class="mythos.Desktop.UI.MVVM.Views.SearchBar"
+             xmlns:vm="clr-namespace:mythtic.Desktop.UI.MVVM.ViewModels"
+             x:Class="mythtic.Desktop.UI.MVVM.Views.SearchBar"
 			 x:DataType="vm:SearchBarViewModel">
 
 	<!-- is used to display the search bar -->

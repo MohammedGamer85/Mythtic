@@ -1,8 +1,8 @@
 ﻿using Avalonia.Input;
-using mythos.Data;
-using mythos.Models;
-using mythos.Services;
-using mythos.UI.Services;
+using mythtic.Data;
+using mythtic.Models;
+using mythtic.Services;
+using mythtic.UI.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mythos.Features.Mod
+namespace mythtic.Features.Mod
 {
     public static class ImportedModsInfo
     {

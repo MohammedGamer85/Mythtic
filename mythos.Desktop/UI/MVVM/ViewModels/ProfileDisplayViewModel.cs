@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
-using mythos.DataRequesting_Loading_Unloading;
-using mythos.Features.PreloadedInformation;
-using mythos.Models;
+using mythtic.DataRequesting_Loading_Unloading;
+using mythtic.Features.PreloadedInformation;
+using mythtic.Models;
 using System.IO;
-using mythos.Services;
+using mythtic.Services;
 using ReactiveUI;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {   //! _Window displayes the user's profile pic and username.
     //todo: Need to make it so if clicked the page is switched to the ProfilePage.
     public class ProfileDisplayViewModel : ReactiveObject
@@ -48,7 +48,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
 
         public async Task DownloadImage()
         {
-            await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetMythosDownloadsFolder, User.Name + ".png");
+            await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetmythticDownloadsFolder, User.Name + ".png");
 
             ImageData = (User.ImagePath != null)
                 ? User.ImagePath

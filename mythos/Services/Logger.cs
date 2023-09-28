@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Diagnostics;
 
-namespace mythos.Services;
+namespace mythtic.Services;
 
 public static class Logger
 {
@@ -18,7 +18,7 @@ public static class Logger
     {
         if (logFile == null)
         {
-            logFile = Path.Combine(FilePaths.GetMythosLogsFolder, DateTime.Now.ToString().Replace("/", "-").Replace(":", ";")+".txt");
+            logFile = Path.Combine(FilePaths.GetmythticLogsFolder, DateTime.Now.ToString().Replace("/", "-").Replace(":", ";")+".txt");
         }
 
         text = text + Line + "\n";
@@ -31,7 +31,12 @@ public static class Logger
                 Trace.WriteLine(Line);
                 break;
             }
-            catch { }
+            catch {
+                if (!File.Exists(logFile))
+                {
+                    break;
+                }
+            }
         }
     }
 }

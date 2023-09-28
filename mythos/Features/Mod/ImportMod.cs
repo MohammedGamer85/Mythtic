@@ -6,13 +6,13 @@ using Avalonia.Controls;
 using System.Diagnostics;
 using Avalonia.Platform.Storage;
 using System.IO.Compression;
-using mythos.Services;
-using mythos.Data;
-using mythos.UI.Services;
-using mythos.Models;
-using mythos.Features.Mod;
+using mythtic.Services;
+using mythtic.Data;
+using mythtic.UI.Services;
+using mythtic.Models;
+using mythtic.Features.Mod;
 
-namespace mythos.Features.ImportMod
+namespace mythtic.Features.ImportMod
 {
     public class ImportMod : Window //! allows the ImportMod to access the OpenFilePickerAsynic function
     {
@@ -42,7 +42,7 @@ namespace mythos.Features.ImportMod
                 {
                     _fileName = _file[0].Name;
                     _FilePath = Convert.ToString(_file[0].Path).Replace("file:///", "");
-                    _extractedFolderPath = Path.Combine(FilePaths.GetMythosTempFolder, _fileName);
+                    _extractedFolderPath = Path.Combine(FilePaths.GetmythticTempFolder, _fileName);
                 }
                 else
                     return false;
@@ -63,7 +63,7 @@ namespace mythos.Features.ImportMod
                     return false;
                 }
 
-                await AddMod.Add(new ImportedModsItem
+                AddMod.Add(new ImportedModsItem
                 {
                     WebId = (_modInfo.ContainsKey("webId"))
                     ? Convert.ToInt32(_modInfo["webId"])
@@ -103,14 +103,14 @@ namespace mythos.Features.ImportMod
                     IsDevMod = false,
                 }, _extractedFolderPath, false); ;
 
-                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Mod:[{_modInfo["name"]} was imported successfully]");
+                MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Mod:[{_modInfo["name"]} was imported successfully]");
 
                 return true;
             }
             catch (Exception ex)
             {
                 Logger.Log(ex.ToString());
-                MiddleMan.OpenMessageWindowFromMythos.Invoke($"Failed to import mod, Exception is {ex.Message}");
+                MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed to import mod, Exception is {ex.Message}");
                 return false;
             }
         }

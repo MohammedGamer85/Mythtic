@@ -6,19 +6,19 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
 using Avalonia.OpenGL;
-using mythos.UI.Services;
-using mythos.Models;
-using mythos.Services;
+using mythtic.UI.Services;
+using mythtic.Models;
+using mythtic.Services;
 using ReactiveUI;
 using Avalonia.Interactivity;
 using Tmds.DBus.Protocol;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Views;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Views;
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Features.PreloadedInformation;
+using mythtic.Features.PreloadedInformation;
 using System.Threading.Tasks;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
 	public class LoginViewModel : ReactiveObject
 	{

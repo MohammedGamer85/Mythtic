@@ -3,10 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             xmlns:vm="clr-namespace:mythos.Desktop.UI.MVVM.ViewModels"
+             xmlns:vm="clr-namespace:mythtic.Desktop.UI.MVVM.ViewModels"
 			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 			 x:DataType="vm:ModPageViewModel"
-			 x:Class="mythos.Desktop.UI.MVVM.Views.ModPage"
+			 x:Class="mythtic.Desktop.UI.MVVM.Views.ModPage"
 			 Background="#33302A">
 
 	<UserControl.Styles>
@@ -427,7 +427,8 @@
 								Command="{Binding OpenModDirectory}"/>
 						<Button Classes="h8"
 								Command="{Binding DeleteMod}"/>
-						<Button Classes="h4"/>
+						<Button Classes="h4"
+								Command="{Binding CheckForUpdates}"/>
 
 					</StackPanel>
 				</ControlTemplate>

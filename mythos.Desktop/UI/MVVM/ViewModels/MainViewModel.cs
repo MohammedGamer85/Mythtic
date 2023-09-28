@@ -5,22 +5,22 @@ using Avalonia.Diagnostics;
 using Avalonia.Platform;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
-using mythos.Desktop;
-using mythos.UI.Services;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Features.PreloadedInformation;
-using mythos.Models;
-using mythos.Services;
-using mythos.Views;
+using mythtic.Desktop;
+using mythtic.UI.Services;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Features.PreloadedInformation;
+using mythtic.Models;
+using mythtic.Services;
+using mythtic.Views;
 using ReactiveUI;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Xml;
 using System.ComponentModel;
-using mythos.Features.Settings;
+using mythtic.Features.Settings;
 
-namespace mythos.ViewModels;
+namespace mythtic.ViewModels;
 
 //! _Window class is bound to MainView as mainWindow is not used for anything at the moment;
 public class MainViewModel : ReactiveObject

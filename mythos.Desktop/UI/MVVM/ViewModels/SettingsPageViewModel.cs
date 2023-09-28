@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Features.Settings;
+using mythtic.Features.Settings;
 using ReactiveUI;
 using System.Collections.ObjectModel;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {   //todo Not needed right now just a place holder
     public class SettingsPageViewModel : ReactiveObject
     {

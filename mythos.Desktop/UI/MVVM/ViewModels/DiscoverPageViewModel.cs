@@ -2,18 +2,18 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using mythos.UI.Services;
-using mythos.Models;
-using mythos.Services;
+using mythtic.UI.Services;
+using mythtic.Models;
+using mythtic.Services;
 using ReactiveUI;
-using mythos.Desktop.UI.MVVM.Views;
+using mythtic.Desktop.UI.MVVM.Views;
 using DynamicData;
-using mythos.Data;
+using mythtic.Data;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
 	public class DiscoverPageViewModel : ObservableObject
     {

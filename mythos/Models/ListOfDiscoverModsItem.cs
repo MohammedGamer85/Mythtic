@@ -1,9 +1,9 @@
 ﻿using Avalonia.Styling;
-using mythos.Services;
+using mythtic.Services;
 using System;
 using System.Runtime.InteropServices;
 
-namespace mythos.Models
+namespace mythtic.Models
 {
     public class ListOfDiscoverModsItem : ObservableObject
     {

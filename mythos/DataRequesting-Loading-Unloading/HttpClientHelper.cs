@@ -9,9 +9,9 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
-using mythos.Services;
+using mythtic.Services;
 
-namespace mythos.Data
+namespace mythtic.Data
 {       //! Is Used to make Only Post Requests.
         //todo: Should add other types of requests too.
     public class HttpClientHelper : IDisposable
@@ -45,37 +45,37 @@ namespace mythos.Data
 
         public async Task<TReturn> PostRequest<TReturn, TContent>(string url, TContent content)
         {
-            var serilizationOptions = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
-            string serilizedContent = JsonSerializer.Serialize(content, serilizationOptions);
-
-            using var stringContent = new StringContent(serilizedContent, Encoding.UTF8, "application/json");
-
-            _client.DefaultRequestHeaders.Add("X-Api-Key", "cVYPxR1wkzbOeHaxDGZL20QcWf7iL4LVktB6PDXBPu5wmdPFpjAx4vjHNqBjUoTSmF6u9EFonY2HNTE4CGpxZSDuDpoOcnrPSHcwdclDrFiKqtPJrIinWLcoe2b3GWqz");
-
-            using var httpResponse = await _client.PostAsync(url, stringContent);
-
-            httpResponse.EnsureSuccessStatusCode();
-
-            string responseContent = await httpResponse.Content.ReadAsStringAsync();
-
-            ///Debugging
-            if (url == "https://mythos-api.umbrielstudios.com/api/authenticate")
-                Logger.Log("Making 'Userdata' request result: " + responseContent.Split("accessToken")[0]);
-            else
-                Logger.Log("Making a request to '" + url + "' result: " + responseContent + "\n");
-            ///---------
-
-            TReturn deserilizedContent = default;
-
             try
             {
+                var serilizationOptions = new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
+                string serilizedContent = JsonSerializer.Serialize(content, serilizationOptions);
+
+                using var stringContent = new StringContent(serilizedContent, Encoding.UTF8, "application/json");
+
+                _client.DefaultRequestHeaders.Add("X-Api-Key", "cVYPxR1wkzbOeHaxDGZL20QcWf7iL4LVktB6PDXBPu5wmdPFpjAx4vjHNqBjUoTSmF6u9EFonY2HNTE4CGpxZSDuDpoOcnrPSHcwdclDrFiKqtPJrIinWLcoe2b3GWqz");
+
+                using var httpResponse = await _client.PostAsync(url, stringContent);
+
+                httpResponse.EnsureSuccessStatusCode();
+
+                string responseContent = await httpResponse.Content.ReadAsStringAsync();
+
+                ///Debugging
+                if (url == "https://mythtic-api.umbrielstudios.com/api/authenticate")
+                    Logger.Log("Making 'Userdata' request result: " + responseContent.Split("accessToken")[0]);
+                else
+                    Logger.Log("Making a request to '" + url + "' result: " + responseContent + "\n");
+                ///---------
+
+                TReturn deserilizedContent = default;
+
                 responseContent = responseContent.Replace('_'.ToString(), "");
                 var options = new JsonSerializerOptions { WriteIndented = true, PropertyNameCaseInsensitive = true };
                 deserilizedContent = JsonSerializer.Deserialize<TReturn>(responseContent, options);
+                
+                return deserilizedContent;
             }
             catch (Exception ex) { Logger.Log(ex.ToString()); throw ex; }
-
-            return deserilizedContent;
         }
 
         public void Dispose()

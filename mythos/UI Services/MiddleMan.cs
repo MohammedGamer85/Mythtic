@@ -1,5 +1,5 @@
-﻿using mythos.Data;
-using mythos.Models;
+﻿using mythtic.Data;
+using mythtic.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 //! THIS IS USED TO TRANSFER INFROMATION BETWEEN THE WORK LAYER AND THE UI LAYER.
 
-namespace mythos.UI.Services;
+namespace mythtic.UI.Services;
 
 public static class MiddleMan
 {   // Is used to comuncate vars between classes without refrencing them
@@ -28,7 +28,7 @@ public static class MiddleMan
     public static Action? OnPropertyChangeOfImportedModsModPage;
     public static Action? OnPropertyChangeOfDiscoverModsModPage;
 
-    public static Action<string> OpenMessageWindowFromMythos;
+    public static Action<string> OpenMessageWindowFromMythtic;
 
     public static object View
     {

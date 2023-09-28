@@ -3,20 +3,20 @@ using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Features.PreloadedInformation;
-using mythos.Models;
-using mythos.Services;
-using mythos.ViewModels;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Features.PreloadedInformation;
+using mythtic.Models;
+using mythtic.Services;
+using mythtic.ViewModels;
 using ReactiveUI;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Xml;
-using mythos.Desktop;
-using mythos.UI.Services;
+using mythtic.Desktop;
+using mythtic.UI.Services;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels;
+namespace mythtic.Desktop.UI.MVVM.ViewModels;
 
 public class MenuButtonsViewModel : ObservableObject
 {   //There objects are linked to there related pages.
@@ -29,7 +29,18 @@ public class MenuButtonsViewModel : ObservableObject
         MiddleMan.View = HomePageVM;
     }
     //Eatch funcation is linked to it's respictive button in the MenuButtons.axml file.
-    public void SetHomeView() => MiddleMan.View = HomePageVM;
-    public void SetDiscoverView() => MiddleMan.View = DiscoverPageVM;
-    public void SetSettingsView() => MiddleMan.View = SettingsPageVM;
+    public void SetHomeView()
+    {
+        MiddleMan.View = HomePageVM;
+    }
+
+    public void SetDiscoverView()
+    {
+        MiddleMan.View = DiscoverPageVM;
+    }
+
+    public void SetSettingsView()
+    {
+        MiddleMan.View = SettingsPageVM;
+    }
 }

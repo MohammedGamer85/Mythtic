@@ -1,9 +1,9 @@
 using Avalonia.Controls;
-using mythos.Desktop.UI.MVVM.ViewModels;
-using mythos.Services;
-using mythos.UI.Services;
+using mythtic.Desktop.UI.MVVM.ViewModels;
+using mythtic.Services;
+using mythtic.UI.Services;
 
-namespace mythos.Desktop.UI.MVVM.Views
+namespace mythtic.Desktop.UI.MVVM.Views
 {
     public partial class MessageWindow : Window
     {   

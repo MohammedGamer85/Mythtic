@@ -6,12 +6,12 @@ using System.Text.Json;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using mythos.Data;
-using mythos.Features.PreloadedInformation;
+using mythtic.Data;
+using mythtic.Features.PreloadedInformation;
 using ReactiveUI;
-using mythos.Services;
+using mythtic.Services;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
 	public class DebugViewViewModel : ReactiveObject
 	{   

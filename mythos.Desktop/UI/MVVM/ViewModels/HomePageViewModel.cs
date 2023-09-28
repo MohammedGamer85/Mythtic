@@ -1,18 +1,19 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using mythos.UI.Services;
-using mythos.Models;
+using mythtic.UI.Services;
+using mythtic.Models;
 using ReactiveUI;
-using mythos.Desktop.UI.MVVM.Views;
-using mythos.Features.PreloadedInformation;
-using mythos.Features.ImportMod;
+using mythtic.Desktop.UI.MVVM.Views;
+using mythtic.Features.PreloadedInformation;
+using mythtic.Features.ImportMod;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
 using System.Threading.Tasks;
-using mythos.Features.Mod;
+using mythtic.Features.Mod;
+using Avalonia.Controls.Documents;
 
-namespace mythos.Desktop.UI.MVVM.ViewModels
+namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
     public class HomePageViewModel : ReactiveObject
     {
@@ -54,8 +55,7 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
         {
             ImportedModsInfo.LoadMods();
 
-            Mods = ImportedModsInfo.Mods;
-            DisplayedMods = Mods;
+            UpdateAllData();
 
             ImportedModsInfo.OnPropertyChangeOfMods = () =>
             {
@@ -102,10 +102,15 @@ namespace mythos.Desktop.UI.MVVM.ViewModels
             };
         }
 
-        public async Task importMod()
+        public void UpdateAllData()
         {
-            var i = new ImportMod();
-            await i.ImportAsync();
+            Mods = ImportedModsInfo.Mods;
+            DisplayedMods = Mods;
+        }
+
+        public void importMod()
+        {
+            object i = new ImportMod().ImportAsync();
         }
 
         public void exportMod()

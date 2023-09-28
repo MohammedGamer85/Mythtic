@@ -1,9 +1,9 @@
 using Avalonia.Controls;
-using mythos.Desktop.UI.MVVM.ViewModels;
+using mythtic.Desktop.UI.MVVM.ViewModels;
 using System.Diagnostics;
-using mythos.Services;
+using mythtic.Services;
 
-namespace mythos.Desktop.UI.MVVM.Views
+namespace mythtic.Desktop.UI.MVVM.Views
 {
     public partial class ModPage : UserControl
     {
