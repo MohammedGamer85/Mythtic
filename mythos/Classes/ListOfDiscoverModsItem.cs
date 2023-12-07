@@ -3,7 +3,7 @@ using mythtic.Services;
 using System;
 using System.Runtime.InteropServices;
 
-namespace mythtic.Models
+namespace mythtic.Classes
 {
     public class ListOfDiscoverModsItem : ObservableObject
     {
@@ -19,7 +19,7 @@ namespace mythtic.Models
         public string InformationPanel { get; set; }
 
         public string ReleaseDate { get; set; }
-        public Creator Creator { get; set; }
+        public MythosModCreator Creator { get; set; }
 
         private SwitchToModView ModPageCommand { get; set; }
 
@@ -29,7 +29,7 @@ namespace mythtic.Models
         }
     }
 
-    internal class ListOfDiscoverModsModelRecived : ObservableObject
+    internal class ListOfDiscoverModClassRecived : ObservableObject
     {
         public bool Success { get; set; }
         public ListOfDiscoverModsItem[] Data { get; set; }

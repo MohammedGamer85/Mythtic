@@ -8,8 +8,7 @@ using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 using mythtic.Desktop;
 using mythtic.UI.Services;
 using mythtic.Desktop.UI.MVVM.Views;
-using mythtic.Features.PreloadedInformation;
-using mythtic.Models;
+using mythtic.Classes;
 using mythtic.Services;
 using mythtic.Views;
 using ReactiveUI;
@@ -19,6 +18,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.ComponentModel;
 using mythtic.Features.Settings;
+using mythtic.Services.PreloadedInformation;
 
 namespace mythtic.ViewModels;
 

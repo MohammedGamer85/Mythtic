@@ -4,12 +4,12 @@ using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace mythtic.Models
+namespace mythtic.Classes
 {
     public class DisocverModItem : ObservableObject
     {
         //Private
-        private VersionInfo[]? _version;
+        private ModVersionInfo[]? _version;
 
         //Public
         public int Id { get; set; }
@@ -25,16 +25,16 @@ namespace mythtic.Models
         public string? DiscordLink { get; set; }
         public string? TwitterLink { get; set; }
         public string? GithubLink { get; set; }
-        public Image[]? Images { get; set; }
-        public VersionInfo[]? Versions
+        public MythosModImage[]? Images { get; set; }
+        public ModVersionInfo[]? Versions
         {
             get => _version;
             set { _version = value; SetValues(); } 
         }
 
-        public Creator? Creator { get; set; }
+        public MythosModCreator? Creator { get; set; }
         public DateTime? ReleaseDate { get; set; } = DateTime.Now;
-        public Category? Category { get; set; }
+        public MythosModCategory? Category { get; set; }
 
         public string? InformationPanel { get; set; } = string.Empty;
 
@@ -51,27 +51,7 @@ namespace mythtic.Models
         }
     }
 
-    public class VersionInfo
-    {
-        public int Id { get; set; }
-        public string Version { get; set; }
-        public string FileHash { get; set; }
-        public DateTime UploadDate { get; set; }
-    }
-
-    public class Category
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class Image
-    {
-        public int Id { get; set; }
-        public string ImageHash { get; set; }
-    }
-
-    public class DisocverModItemInfoModelRecived
+    public class DisocverModItemInfoClassRecived
     {
         public bool Success { get; set; }
         public DisocverModItem Data { get; set; }

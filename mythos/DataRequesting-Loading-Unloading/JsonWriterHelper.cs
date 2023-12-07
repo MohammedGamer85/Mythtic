@@ -1,18 +1,9 @@
 ﻿using mythtic.Services;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using mythtic.Services;
-using System.Threading.Channels;
 
-namespace mythtic.Data
-{ //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetmythticDocFolder.
+namespace mythtic.Data { //! takes in a genaric and Writes the data from a Serialized json object of the genaric type inputed to side Filename in the GetmythticDocFolder.
     public static class JsonWriterHelper
     {
         public static void WriteJsonFile<TContent>(string file, TContent content, bool IsRootPath = false, bool encrypt = false)

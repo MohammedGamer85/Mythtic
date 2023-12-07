@@ -8,9 +8,9 @@
         x:Class="mythtic.Views.MainWindow"
         Icon="\UI\MVVM\Assets\Icons\MCLDiscordLogo.ico"
 		MinHeight="720"
-		MinWidth="1000"
+		MinWidth="720"
 		Height="820"
-		Width="1195"
+		Width="1300"
         Title="mythtic"
 		RequestedThemeVariant="Default">
 

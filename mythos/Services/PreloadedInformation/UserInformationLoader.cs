@@ -1,16 +1,16 @@
 ﻿using mythtic.Data;
-using mythtic.Models;
+using mythtic.Classes;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using mythtic.Services;
 
-namespace mythtic.Features.PreloadedInformation
+namespace mythtic.Services.PreloadedInformation
 {   //! Dealth with the user and accunt classes.
     public class UserInformationLoader
     {
         private readonly AuthenticationRequests _authenticationRequests = new();
-        private readonly static string fileName = "accuntInfo.json";
+        private readonly static string fileName = "accountInfo.json";
         private Account? Account;
 
         public static bool UserDataStatus;
@@ -20,17 +20,17 @@ namespace mythtic.Features.PreloadedInformation
             Logger.Log("Getting account infromation from API (UserInformationLoader/InitializeUserFromAPI)");
 
             Account = await _authenticationRequests.LoginRequest(email, password);
-            
+
             if (Account == null)
                 return false;
-            
+
             InitializeUserDataFromAccunt();
 
             return true;
         }
 
         public bool InitializeUserFromSavedData()
-        {   
+        {
             Logger.Log("Importing account infromation from file (UserInformationLoader/InitializeUserFromSavedData)");
 
             if (JsonCheckerHelper.CheckJsonFileForData(fileName))
@@ -49,20 +49,20 @@ namespace mythtic.Features.PreloadedInformation
 
         public void InitializeUserDataFromAccunt()
         {
-            User.id = Account.Data.Id;
-            User.RoleNames = Account.Data.Roles
+            MythosUser.id = Account.Data.Id;
+            MythosUser.RoleNames = Account.Data.Roles
             .Select(x => x.Name).ToList();
-            User.Name = Account.Data.Username;
-            User.ImageSource = "https://mythos-static.umbrielstudios.com/users/" + User.Name + ".jpg";
+            MythosUser.Name = Account.Data.Username;
+            MythosUser.ImageSource = "https://static.legendsmodding.com/users/" + MythosUser.Name + ".jpg";
 
             //Writes it to json in for next time.
 
-            JsonWriterHelper.WriteJsonFile<Account>(fileName, Account, encrypt: true);
+            JsonWriterHelper.WriteJsonFile(fileName, Account, encrypt: true);
 
             JsonCheckerHelper.JsonCheckFileForData(fileName);
 
-            Logger.Log($"Imported account information Result: {User.Name}, {User.ImageSource}, {User.RoleNames}, " +
-                $"{User.id} (By UserInformationLoader/InitializeUserDataFromAccunt) \n");
+            Logger.Log($"Imported account information Result: {MythosUser.Name}, {MythosUser.ImageSource}, {MythosUser.RoleNames}, " +
+                $"{MythosUser.id} (By UserInformationLoader/InitializeUserDataFromAccunt) \n");
             UserDataStatus = true;
         }
     }

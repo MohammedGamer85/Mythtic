@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using mythtic.DataRequesting_Loading_Unloading;
-using mythtic.Features.PreloadedInformation;
-using mythtic.Models;
+using mythtic.Classes;
 using System.IO;
 using mythtic.Services;
 using ReactiveUI;
+using mythtic.Services.PreloadedInformation;
 
 namespace mythtic.Desktop.UI.MVVM.ViewModels
 {   //! _Window displayes the user's profile pic and username.
@@ -39,8 +39,8 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels
             {
                 userInformationLoader.InitializeUserFromSavedData();
             }
-            Name = (User.Name != null)
-            ? User.Name
+            Name = (MythosUser.Name != null)
+            ? MythosUser.Name
             : "Unkown";
 
             DownloadImage();
@@ -48,10 +48,10 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels
 
         public async Task DownloadImage()
         {
-            await FileDownloader.DownloadFile(User.ImageSource, FilePaths.GetmythticDownloadsFolder, User.Name + ".png");
+            await FileDownloader.DownloadFile(MythosUser.ImageSource, FilePaths.GetmythticDownloadsFolder, MythosUser.Name + ".png");
 
-            ImageData = (User.ImagePath != null)
-                ? User.ImagePath
+            ImageData = (MythosUser.ImagePath != null)
+                ? MythosUser.ImagePath
                 : "https://th.bing.com/th/id/OIP.R74QPbBfiypMbnmAMOzoTgHaHa?w=180&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7";
         }
     }

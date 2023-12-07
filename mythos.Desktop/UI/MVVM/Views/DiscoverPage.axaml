@@ -11,7 +11,7 @@
 	<UserControl.DataContext>
 		<vm:DiscoverPageViewModel/>
 	</UserControl.DataContext>
-	
+
 	<!-- Is used to used to display mods for the user to discover and download-->
 
 	<!-- vv Buttons vv -->
@@ -22,93 +22,194 @@
 		<Style Selector="Button.c4">
 			<Setter Property="Template">
 				<ControlTemplate>
-					<StackPanel Orientation="Horizontal"
-						Margin="0,5,0,0"
-						Width="{Binding Path=$parent.Width}"
-						Height="225"
-						Background="#2a2a2a">
+					<Grid Width="{Binding Path=$parent.Width}"
+						  Height="320"
+						  Background="Transparent">
 
-						<Canvas	
-								Margin="40,17,0,15"
+						<Panel Height="320" VerticalAlignment="Top"
+								HorizontalAlignment="Center" Width="{Binding Path=$parent.Width}">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="115"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="60"/>
+								</Grid.RowDefinitions>
+								<Canvas Grid.Column="0"
+										Grid.Row="0" ZIndex="6">
+									<Canvas.Background>
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardTopLeftHover.png"
+													AlignmentX="Left"
+													AlignmentY="Top"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+								<Canvas Grid.Column="0"
+										Grid.Row="1" ZIndex="4">
+									<Canvas.Background>
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardBottomLeftHover.png"
+													AlignmentX="Left"
+													AlignmentY="Bottom"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+								<Canvas Grid.Column="1"
+										Grid.Row="1" ZIndex="3">
+									<Canvas.Background>
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardBottomRightHover.png"
+													AlignmentX="Right"
+													AlignmentY="Bottom"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+								<Canvas Grid.Column="1"
+										Grid.Row="0" ZIndex="5">
+									<Canvas.Background>
+
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardTopRightHover.png"
+													AlignmentX="Right"
+													AlignmentY="Top"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+							</Grid>
+						</Panel>
+
+						<Border Height="320" VerticalAlignment="Top"
+								HorizontalAlignment="Center" Width="{Binding Path=$parent.Width}">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="115"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="60"/>
+								</Grid.RowDefinitions>
+								<Canvas Grid.Column="0"
+										Grid.Row="0" ZIndex="6">
+									<Canvas.Background>
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardTopLeft.png"
+													AlignmentX="Left"
+													AlignmentY="Top"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+								<Canvas Grid.Column="0"
+										Grid.Row="1" ZIndex="4">
+									<Canvas.Background>
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardBottomLeft.png"
+													AlignmentX="Left"
+													AlignmentY="Bottom"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+								<Canvas Grid.Column="1"
+										Grid.Row="1" ZIndex="3">
+									<Canvas.Background>
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardBottomRight.png"
+													AlignmentX="Right"
+													AlignmentY="Bottom"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+								<Canvas Grid.Column="1"
+										Grid.Row="0" ZIndex="5">
+									<Canvas.Background>
+
+										<ImageBrush Source="\UI\MVVM\Assets\DiscoverModPage\ModCardTopRight.png"
+													AlignmentX="Right"
+													AlignmentY="Top"
+													Stretch="None"/>
+									</Canvas.Background>
+								</Canvas>
+							</Grid>
+						</Border>
+
+						<!--Card-->
+
+						<TextBlock
+							Text="{Binding Name}"
+							FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+							FontSize="40"
+							Margin="0,25,0,0"
+							Foreground="Black"
+							Padding="0,0,0,0"
+							VerticalAlignment="Top"
+							TextWrapping="Wrap"
+							HorizontalAlignment="Center"/>
+
+						<StackPanel Orientation="Horizontal">
+							<Canvas	ZIndex="0"
+								Margin="45,75,0,0"
 								VerticalAlignment="Top"
 								HorizontalAlignment="Left">
 
-							<Image
-								Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
-								ZIndex="2"
-								HorizontalAlignment="Center"
-								Height="175"
-								Width="175"
-								Stretch="Fill"/>
+								<Image
+									Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
+									ZIndex="2"
+									HorizontalAlignment="Center"
+									Height="175"
+									Width="175"
+									Stretch="UniformToFill"/>
 
-							<Image
-								asyncImageLoader:ImageLoader.Source="{Binding DefaultImage}"
-								HorizontalAlignment="Center"
-								Height="175"
-								Width="175"
-								Stretch="Fill"/>
-						</Canvas>
+								<Image
+									asyncImageLoader:ImageLoader.Source="{Binding DefaultImage}"
+									HorizontalAlignment="Center"
+									Height="175"
+									Width="175"
+									Stretch="UniformToFill"/>
+							</Canvas>
 
-						<StackPanel
-								Orientation="Vertical"
-								ClipToBounds="False"
-								Width="{Binding Path=$parent.Bounds.Width}">
+							<StackPanel
+								Margin="0,75,0,0"
+									ZIndex="0"
+									Orientation="Vertical"
+									ClipToBounds="False"
+									Width="{Binding Path=$parent.Bounds.Width}">
 
-							<TextBlock
-								Text="{Binding Name}"
-								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
-								FontSize="30"
-								Margin="180,17,10,10"
-								Foreground="Black"
-								Padding="0,0,0,0"
-								VerticalAlignment="Top"
-								TextWrapping="Wrap"
-								HorizontalAlignment="Left"/>
-
-							<StackPanel Margin="180,0,55,0">
-								<Label Content="Description:"
-									Margin="-5,0,0,0"
-									Foreground="Black"
-									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
-									Width="{Binding Path=$parent.Bounds.Width}"/>
-
-								<TextBlock
-										Background="Transparent"
-										FontSize="14"
-										FontFamily="/UI/MVVM/Fonts/#Minecraft"
-										FontWeight="Regular"
+								<StackPanel Margin="180,0,55,0">
+									<Label Content="Description:"
+										Margin="-5,0,0,0"
 										Foreground="Black"
-										VerticalAlignment="Top"
-										Margin="1,0,0,0"
-										HorizontalAlignment="Left"
-										Text="{Binding Description}"
-										TextWrapping="WrapWithOverflow"
-										ClipToBounds="False"/>
+										FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+										Width="{Binding Path=$parent.Bounds.Width}"/>
 
-								<TextBlock
-										Background="Transparent"
-										FontSize="15"
-										FontFamily="/UI/MVVM/Fonts/#Minecraft"
-										FontWeight="Bold"
-										Foreground="Black"
-										Margin="1,0,0,0"
-										VerticalAlignment="Bottom"
-										HorizontalAlignment="Left"
-										Text="{Binding InformationPanel}"
-										TextWrapping="WrapWithOverflow"/>
+									<TextBlock
+											Background="Transparent"
+											FontSize="14"
+											FontFamily="/UI/MVVM/Fonts/#Minecraft"
+											FontWeight="Regular"
+											Foreground="Black"
+											VerticalAlignment="Top"
+											Margin="1,0,39,0"
+											HorizontalAlignment="Left"
+											Text="{Binding Description}"
+											TextWrapping="WrapWithOverflow"
+											ClipToBounds="False"/>
+
+									<TextBlock
+											Background="Transparent"
+											FontSize="15"
+											FontFamily="/UI/MVVM/Fonts/#Minecraft"
+											FontWeight="Bold"
+											Foreground="Black"
+											Margin="1,0,0,0"
+											VerticalAlignment="Bottom"
+											HorizontalAlignment="Left"
+											Text="{Binding InformationPanel}"
+											TextWrapping="WrapWithOverflow"/>
+								</StackPanel>
 							</StackPanel>
 						</StackPanel>
-
-						<StackPanel.Background>
-							<ImageBrush
-							Source="\UI\MVVM\Assets\DiscoverModCard\card_joingame_large.png"
-							Stretch="Fill"/>
-
-						</StackPanel.Background>
-
-					</StackPanel>
+					</Grid>
 				</ControlTemplate>
 			</Setter>
+		</Style>
+		<Style Selector="Button.c4:pointerover /template/ Border">
+			<Setter Property="IsVisible" Value="False"/>
 		</Style>
 
 	</UserControl.Styles>
@@ -116,11 +217,9 @@
 	<Grid HorizontalAlignment="Left"
 		VerticalAlignment="Stretch"
 		ClipToBounds="True">
-
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
-
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
@@ -132,14 +231,16 @@
 				Grid.Column="0" Grid.Row="0"
 				VerticalAlignment="Top">
 
+			
+			
 			<ItemsRepeater
-				ItemsSource="{Binding DisplayedMods}"
+				ItemsSource="{Binding DiscoverPageDisplayedMods}"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Bottom"
 				Background="Transparent">
 
 				<ItemsRepeater.Layout>
-					<StackLayout Orientation="Vertical" />
+					<StackLayout Orientation="Vertical"/>
 				</ItemsRepeater.Layout>
 
 				<ItemsRepeater.ItemTemplate>

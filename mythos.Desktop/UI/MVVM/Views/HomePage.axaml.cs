@@ -15,7 +15,7 @@ namespace mythtic.Desktop.UI.MVVM.Views
         public void Rest()
         {
             InitializeComponent();
+            Program.ServiceProvider.GetService<HomePageViewModel>().UpdateAllData();
         }
-
     }
 }

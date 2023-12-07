@@ -1,4 +1,4 @@
-﻿using mythtic.Models;
+﻿using mythtic.Classes;
 using System.IO;
 using System;
 using System.Collections.Generic;
@@ -9,22 +9,19 @@ using mythtic.UI.Services;
 using mythtic.Services;
 using mythtic.Data;
 using System.IO.Compression;
+using Avalonia.OpenGL;
 
-namespace mythtic.Features.Mod
-{
-    public static class AddMod
-    {
-        public static bool Add(ImportedModsItem modInfo, string folderPath, bool isZiped)
-        {
-            try
-            {
-                if (isZiped)
-                {
+namespace mythtic.Features.Mod {
+    public static class AddMod {
+        public static bool Add(ImportedModsItem modInfo, bool isZiped, string folderPath) {
+            try {
+
+                if (isZiped) {
+                    folderPath = Path.Combine(FilePaths.GetmythticTempFolder, "Mod");
                     ZipFile.ExtractToDirectory(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"), folderPath, false /* No overridding files */);
                 }
 
-                if (modInfo.Uuid == null)
-                {
+                if (modInfo.Uuid == null) {
                     var modInfoJson = JsonReaderHelper.ReadJsonFile<Rootobject>(Path.Combine(folderPath, "RP", "manifest.json"), true);
                     modInfo.Uuid = modInfoJson.header.uuid;
                 }
@@ -34,28 +31,33 @@ namespace mythtic.Features.Mod
                 if (!Directory.Exists(Path.Combine(mythFolderPath)))
                     Directory.CreateDirectory(Path.Combine(mythFolderPath));
 
-                movePack("BP", mythFolderPath);
-                movePack("RP", mythFolderPath);
+                bool RP = Directory.Exists(Path.Combine(folderPath, "RP"));
+                bool BP = Directory.Exists(Path.Combine(folderPath, "BP"));
+
+                if (RP == false && BP == false)
+                    throw new Exception("Failed to locate mod BP & RP");
+
+                if (BP)
+                    movePack("BP", mythFolderPath);
+                if (RP)
+                    movePack("RP", mythFolderPath);
 
                 //Is made to be written to the modInfo.json file and is not used in the code.
                 Dictionary<string, string> _packs = new();
                 _packs.Add("BP", "BP-" + modInfo.Uuid);
                 _packs.Add("RP", "RP-" + modInfo.Uuid);
 
-                if (!File.Exists(Path.Combine(mythFolderPath, "modInfo.json")))
-                {
+                if (!File.Exists(Path.Combine(mythFolderPath, "modInfo.json"))) {
                     File.Create(Path.Combine(mythFolderPath, "modInfo.json")).Close();
                 }
 
                 JsonWriterHelper.WriteJsonFile(Path.Combine(mythFolderPath, "modInfo.json"), _packs, true);
 
-                if (ImportedModsInfo.Mods == null)
-                {
+                if (ImportedModsInfo.Mods == null) {
                     ImportedModsInfo.Mods = new();
                 }
 
-                ImportedModsInfo.Mods.Add(new ImportedModsItem
-                {
+                var modItem = new ImportedModsItem {
                     Id = ImportedModsInfo.Mods.Count(),
                     Uuid = modInfo.Uuid,
                     Name = modInfo.Name,
@@ -73,9 +75,16 @@ namespace mythtic.Features.Mod
                     TwitterLink = modInfo.TwitterLink,
                     IsLoaded = false,
                     LastUpdated = Convert.ToDateTime(modInfo.LastUpdated.ToString()),
+                    ModTypes = (BP == true && RP == true)
+                    ? Enums.ModTypes.RPBP
+                    : (RP == false)
+                        ? Enums.ModTypes.BP
+                        : Enums.ModTypes.RP,
                     Version = new Version(modInfo.Version.ToString()),
                     IsDevMod = modInfo.IsDevMod
-                });
+                };
+                ImportedModsInfo.Mods.Add(modItem);
+                ImportedModsInfo.Mods = ImportedModsInfo.Mods;
 
                 JsonWriterHelper.WriteJsonFile("importedMods.json", ImportedModsInfo.Mods);
 
@@ -83,8 +92,7 @@ namespace mythtic.Features.Mod
                 File.Delete(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"));
                 return true;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Logger.Log(ex.ToString());
                 Directory.Delete(folderPath, true);
                 File.Delete(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"));
@@ -92,17 +100,9 @@ namespace mythtic.Features.Mod
                 return false;
             }
 
-            void movePack(string pack, string mythFolderPath)
-            {
-                try
-                {
+            void movePack(string pack, string mythFolderPath) {
+                try {
                     //!Move the RP and BP to the right directorys
-
-                    if (!Directory.Exists(Path.Combine(folderPath, pack)))
-                    {
-                        Logger.Log($"(movePack) Couldn't find pack[{pack}] folder");
-                        return;
-                    }
 
                     //Deletes the aready existing pack
                     if (!Directory.Exists(Path.Combine(mythFolderPath, (pack + "-" + modInfo.Uuid))))
@@ -116,23 +116,20 @@ namespace mythtic.Features.Mod
 
                     Logger.Log("(movePack) Moved pack");
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex) {
                     Logger.Log($"(movePack) Failed to moved pack[{pack}]. Error[{ex.Message}]");
                 }
             }
         }
     }
 
-    class Rootobject
-    {
+    class Rootobject {
         public int format_version { get; set; }
         public Header header { get; set; }
         public Module[] modules { get; set; }
     }
 
-    class Header
-    {
+    class Header {
         public string description { get; set; }
         public int[] min_engine_version { get; set; }
         public string name { get; set; }
@@ -140,8 +137,7 @@ namespace mythtic.Features.Mod
         public int[] version { get; set; }
     }
 
-    class Module
-    {
+    class Module {
         public string type { get; set; }
         public string uuid { get; set; }
         public int[] version { get; set; }

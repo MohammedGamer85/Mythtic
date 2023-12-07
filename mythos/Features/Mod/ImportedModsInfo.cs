@@ -1,6 +1,6 @@
 ﻿using Avalonia.Input;
 using mythtic.Data;
-using mythtic.Models;
+using mythtic.Classes;
 using mythtic.Services;
 using mythtic.UI.Services;
 using System;
@@ -10,41 +10,36 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Avalonia.Layout;
 
-namespace mythtic.Features.Mod
-{
-    public static class ImportedModsInfo
-    {
-        private static ObservableCollection<ImportedModsItem> _importedMods = new();
+namespace mythtic.Features.Mod {
+    public static class ImportedModsInfo {
+        private static ObservableCollection<ImportedModsItem> _importedMods;
+        public static event EventHandler<ObservableCollection<ImportedModsItem>> OnPropertyChangeOfMods;
 
-        public static Action? OnPropertyChangeOfMods;
-
-        public static ObservableCollection<ImportedModsItem> Mods
-        {
+        public static ObservableCollection<ImportedModsItem> Mods {
             get => _importedMods;
-            set
-            {
+            set {
                 _importedMods = value;
-                if (OnPropertyChangeOfMods != null)
-                    OnPropertyChangeOfMods.Invoke();
+                OnPropertyChangeOfMods?.Invoke(new object(), value);
             }
         }
 
-        public static void LoadMods()
-        {
+        public static void LoadMods() {
             if (!FileUtilites.IsInUseReadRights("importedMods.json"))
                 return;
             Mods = JsonReaderHelper.ReadJsonFile<ObservableCollection<ImportedModsItem>>("importedMods.json", false);
+            JsonWriterHelper.WriteJsonFile("importedMods.json", Mods);
             Logger.Log("Loaded Mods (ImportedModsInfo/LoadMods)\n");
             if (Mods == null)
-                return;
-            foreach (var item in Mods)
-            {
+                Mods = new ObservableCollection<ImportedModsItem>();
+            foreach (var item in Mods) {
                 Logger.Log($"WebId           {item.Id}");
                 Logger.Log($"WebId        {item.WebId}");
                 Logger.Log($"Uuid         {item.Uuid}");
                 Logger.Log($"Name         {item.Name}");
-                Logger.Log($"Creator       {item.Creator}");
+                Logger.Log($"MythosModCreator       {item.Creator}");
                 Logger.Log($"LastUpdated  {item.LastUpdated}");
                 Logger.Log($"Isloaded     {item.IsLoaded}");
                 Logger.Log($"Version      {item.Version}");

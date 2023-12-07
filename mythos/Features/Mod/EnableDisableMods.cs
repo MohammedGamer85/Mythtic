@@ -9,7 +9,7 @@ using System.Windows.Input;
 using mythtic.Data;
 using mythtic.Services;
 using mythtic.UI.Services;
-using mythtic.Models;
+using mythtic.Classes;
 using System.Runtime.Intrinsics.X86;
 
 namespace mythtic.Features.Mod;

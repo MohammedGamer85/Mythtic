@@ -128,7 +128,7 @@
 													   HorizontalAlignment="Center"
 													   FontFamily="/UI/MVVM/Fonts/#Minecraft"/>
 											
-											<TextBlock Text=""
+											<TextBlock Text=" "
 													   FontSize="35"
 													   HorizontalAlignment="Center"
 													   FontFamily="/UI/MVVM/Fonts/#Minecraft"/>

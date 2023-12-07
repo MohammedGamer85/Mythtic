@@ -1,5 +1,5 @@
 ﻿using mythtic.Data;
-using mythtic.Models;
+using mythtic.Classes;
 using mythtic.Services;
 using mythtic.UI.Services;
 using System;
@@ -13,25 +13,23 @@ namespace mythtic.Features.Mod
 {
     public static class DeleteMod
     {
-        public static EnableDisableMods EnableDisableModsCommand { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="feedBackMode"> [full, none, erros, success] </param>
         /// <returns></returns>
-        public static async Task<bool> deleteMod(object ViewToSwitchToAfter, ImportedModsItem ImportedModInfo = null, DisocverModItem DiscoverModInfo = null, string feedBackMode = "full")
+        public static async Task<bool> deleteMod(object ViewToSwitchToAfter, ImportedModsItem ImportedModInfo = null, string feedBackMode = "full")
         {
             try
             {
                 if (ImportedModInfo.IsLoaded == true)
-                    EnableDisableModsCommand.Execute((int)ImportedModInfo.Id);
+                    ImportedModInfo.EnableDisableModCommand.Execute((int)ImportedModInfo.Id);
 
                 ImportedModsInfo.Mods.RemoveAt((int)ImportedModInfo.Id);
 
                 for (int i = (int)ImportedModInfo.Id; i < ImportedModsInfo.Mods.Count; i++)
                 {
-                    ImportedModsInfo.Mods[i].Id = ImportedModsInfo.Mods[i].Id - 1;
+                    ImportedModsInfo.Mods[i].Id = i;
                 }
 
                 Directory.Delete(Path.Combine(FilePaths.GetmythticDownloadsFolder, ImportedModInfo.Uuid), true);

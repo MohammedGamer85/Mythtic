@@ -1,6 +1,6 @@
 ﻿using mythtic.Data;
 using mythtic.DataRequesting_Loading_Unloading;
-using mythtic.Models;
+using mythtic.Classes;
 using mythtic.Services;
 using mythtic.UI.Services;
 using System;
@@ -37,7 +37,7 @@ namespace mythtic.Features.Mod
                 }
             }
 
-            await FileDownloader.DownloadFile("https://mythos-static.umbrielstudios.com/myths/" + discoverModInfo.Versions[0].FileHash + ".zip",
+            await FileDownloader.DownloadFile("https://static.legendsmodding.com/myths/" + discoverModInfo.Versions[0].FileHash + ".zip",
                 FilePaths.GetmythticTempFolder, "\\Mod.zip");
 
             var modItem = new ImportedModsItem
@@ -60,7 +60,7 @@ namespace mythtic.Features.Mod
                 IsDevMod = false,
             };
 
-            if (AddMod.Add(modItem, Path.Combine(FilePaths.GetmythticTempFolder, "ModFolder"), true))
+            if (AddMod.Add(modItem, true, null))
             {
                 Logger.Log("Successfully installed mod");
 

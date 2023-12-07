@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Collections;
 using System.Text.Json;
 
-namespace mythtic.Models
+namespace mythtic.Classes
 {   //!Stores the users email and passwrod when inputed
     //todo: make it so it disposed as soon as the data is no longer eneded
     public class LoginRequest

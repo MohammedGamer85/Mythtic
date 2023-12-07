@@ -1,8 +1,8 @@
 using Avalonia.Controls;
 using mythtic.Services;
 using mythtic.Desktop.UI.MVVM.ViewModels;
-using mythtic.Features.PreloadedInformation;
 using System;
+using mythtic.Services.PreloadedInformation;
 
 namespace mythtic.Desktop.UI.MVVM.Views
 {

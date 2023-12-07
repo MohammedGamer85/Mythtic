@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using mythtic.Data;
-using mythtic.Features.PreloadedInformation;
+using mythtic.Services.PreloadedInformation;
 using ReactiveUI;
 using mythtic.Services;
 

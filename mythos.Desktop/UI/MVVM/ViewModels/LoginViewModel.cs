@@ -7,7 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
 using Avalonia.OpenGL;
 using mythtic.UI.Services;
-using mythtic.Models;
+using mythtic.Classes;
 using mythtic.Services;
 using ReactiveUI;
 using Avalonia.Interactivity;
@@ -15,12 +15,12 @@ using Tmds.DBus.Protocol;
 using mythtic.Desktop.UI.MVVM.Views;
 using mythtic.Views;
 using Microsoft.Extensions.DependencyInjection;
-using mythtic.Features.PreloadedInformation;
 using System.Threading.Tasks;
+using mythtic.Services.PreloadedInformation;
 
 namespace mythtic.Desktop.UI.MVVM.ViewModels
 {
-	public class LoginViewModel : ReactiveObject
+    public class LoginViewModel : ReactiveObject
 	{
         private string _email;
         private string _password;

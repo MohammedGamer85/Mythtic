@@ -505,7 +505,7 @@
 
 				<!-- Mod Card Top Part-->
 				<StackPanel Orientation="Horizontal" Margin="25,85,25,0">
-					<!-- Title -->
+					<!-- Image -->
 					<Canvas
 					VerticalAlignment="Top"
 					Margin="0,0,0,0"
@@ -519,7 +519,7 @@
 							HorizontalAlignment="Center"
 							Height="150"
 							Width="150"
-							Stretch="Fill"/>
+							Stretch="UniformToFill"/>
 
 						<Image
 							asyncImageLoader:ImageLoader.Source="{Binding ImageSource}"
@@ -527,7 +527,7 @@
 							ZIndex="2"
 							Height="150"
 							Width="150"
-							Stretch="Fill"/>
+							Stretch="UniformToFill"/>
 					</Canvas>
 
 					<!-- Right Side of Top (Vertical) -->
@@ -554,19 +554,23 @@
 							<!-- Youtube -->
 							<Button Command="{Binding HandleLinkClickedYT}"
 									Classes="hyperlinkYT"
-									Margin="0,0,0,0"/>
+									IsVisible="{Binding YTExistsLink}"
+									Margin="0,0,25,0"/>
 							<!-- Github -->
 							<Button Command="{Binding HandleLinkClickedGH}"
 									Classes="hyperlinkGH"
-									Margin="25,0,0,0"/>
+									IsVisible="{Binding GHExistsLink}"
+									Margin="0,0,25,0"/>
 							<!-- Discord -->
 							<Button Command="{Binding HandleLinkClickedD}"
 									Classes="hyperlinkD"
-									Margin="25,0,0,0"/>
+									IsVisible="{Binding DExistsLink}"
+									Margin="0,0,25,0"/>
 							<!-- X-Tiwtter -->
 							<Button Command="{Binding HandleLinkClickedX}"
 									Classes="hyperlinkX"
-									Margin="25,0,0,0"/>
+									IsVisible="{Binding XExistsLink}"
+									Margin="0,0,25,0"/>
 						</StackPanel>
 					</StackPanel>
 				</StackPanel>

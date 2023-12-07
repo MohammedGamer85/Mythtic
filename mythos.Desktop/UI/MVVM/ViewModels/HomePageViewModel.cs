@@ -2,125 +2,116 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using mythtic.UI.Services;
-using mythtic.Models;
+using mythtic.Classes;
 using ReactiveUI;
 using mythtic.Desktop.UI.MVVM.Views;
-using mythtic.Features.PreloadedInformation;
+using mythtic.Services.PreloadedInformation;
 using mythtic.Features.ImportMod;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
 using System.Threading.Tasks;
 using mythtic.Features.Mod;
 using Avalonia.Controls.Documents;
+using System.Reactive.Linq;
+using mythtic.Services;
+using DynamicData;
 
-namespace mythtic.Desktop.UI.MVVM.ViewModels
-{
-    public class HomePageViewModel : ReactiveObject
-    {
+namespace mythtic.Desktop.UI.MVVM.ViewModels {
+    public class HomePageViewModel : ReactiveObject {
         //! _Window part of the coding only jobe is to display the mods,
         //! all the mod related functions/actions are done in the ImportedModsItem.
-        private string _numberOfMods;
-        private string _lastSearch;
+        private string lastSearch;
 
         private ObservableCollection<ImportedModsItem> _displayedMods;
-        private ObservableCollection<ImportedModsItem> _mods;
 
-        public ObservableCollection<ImportedModsItem> DisplayedMods
-        {
+        public ObservableCollection<ImportedModsItem> HomePageDisplayedMods {
             get => _displayedMods;
-            set => this.RaiseAndSetIfChanged(ref _displayedMods, value);
+            set {
+                this.RaiseAndSetIfChanged(ref _displayedMods, value);
+            }
         }
 
-        private ObservableCollection<ImportedModsItem> Mods
-        {
+        private ObservableCollection<ImportedModsItem> _mods;
+        private ObservableCollection<ImportedModsItem> Mods {
             get => _mods;
             set => this.RaiseAndSetIfChanged(ref _mods, value);
         }
 
-        public string NumberOfMods
-        {
-            get
-            {
-                if (ImportedModsInfo.Mods == null)
-                    return $"0 Mods Installed";
-                else if (ImportedModsInfo.Mods.Count() == 1)
-                    return $"{ImportedModsInfo.Mods.Count()} Mod Installed";
-                else
-                    return $"{ImportedModsInfo.Mods.Count()} Mods Installed";
-            }
+        private string _numberOfMods;
+        public string NumberOfMods {
+            get => CountNumberOfMods();
             set => this.RaiseAndSetIfChanged(ref _numberOfMods, value);
         }
 
-        public HomePageViewModel()
-        {
-            ImportedModsInfo.LoadMods();
-
+        public HomePageViewModel() {
             UpdateAllData();
 
-            ImportedModsInfo.OnPropertyChangeOfMods = () =>
-            {
-                Mods = ImportedModsInfo.Mods;
-                DisplayedMods = Mods;
-                NumberOfMods = $"{ImportedModsInfo.Mods.Count()} Mod Installed";
+            ImportedModsInfo.OnPropertyChangeOfMods += (sender, newValue) => {
+                Mods = newValue;
+                HomePageDisplayedMods = Mods;
+                NumberOfMods = CountNumberOfMods();
             };
 
-            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender, search) =>
-            {
+            //no no
+            SearchBarViewModel.OnPropertyChangeOfSearchText += (sender, search) => {
                 if (MiddleMan.View != Program.ServiceProvider.GetService<HomePage>())
                     return;
 
-                _lastSearch = search;
+                lastSearch = search;
 
                 Thread.Sleep(25);
 
-                if (_lastSearch != search)
+                if (lastSearch != search)
                     return;
 
-                var i = DisplayedMods;
+                ObservableCollection<ImportedModsItem> i = new();
 
-                i = new();
-
-                foreach (var mod in Mods.ToArray<ImportedModsItem>())
-                {
-                    if (mod.Name.Contains(search, StringComparison.InvariantCultureIgnoreCase))
-                    {
+                foreach (ImportedModsItem mod in Mods.ToArray()) {
+                    if (mod.Name == null)
+                        MiddleMan.OpenMessageWindowFromMythtic.Invoke("FUCK YOU Mohammed85");
+                    if (mod.Name.Contains(search, StringComparison.InvariantCultureIgnoreCase)) {
                         i.Add(mod);
                     }
                 }
 
-                if (i.Count() == 0)
-                {
+                if (i.Count == 0) {
                     i = Mods;
                 }
 
-                DisplayedMods = i;
+                HomePageDisplayedMods = i;
             };
 
-            MiddleMan.OnPropertyChangeOfImportedModsModPage = () =>
-            {
+            MiddleMan.OnPropertyChangeOfImportedModsModPage = () => {
                 MiddleMan.View = new ModPage(MiddleMan.ImportedModPage, true);
             };
         }
 
-        public void UpdateAllData()
-        {
+        public void UpdateAllData() {
+            ImportedModsInfo.LoadMods();
+
             Mods = ImportedModsInfo.Mods;
-            DisplayedMods = Mods;
+            HomePageDisplayedMods = Mods;
+            NumberOfMods = CountNumberOfMods();
         }
 
-        public void importMod()
-        {
+        public void importMod() {
             object i = new ImportMod().ImportAsync();
         }
 
-        public void exportMod()
-        {
-            if (ImportedModsInfo.Mods != null)
-            {
+        private string CountNumberOfMods() {
+            if (ImportedModsInfo.Mods == null)
+                return $"0 Mods Installed";
+            else if (ImportedModsInfo.Mods.Count() == 1)
+                return $"{ImportedModsInfo.Mods.Count()} Mod Installed";
+            else
+                return $"{ImportedModsInfo.Mods.Count()} Mods Installed";
+        }
+
+        public void exportMod() {
+            if (ImportedModsInfo.Mods != null) {
                 new ExportModWindow();
             }
-            else
-            {
+            else {
                 new MessageWindow("You currently do not have any mods to export");
             }
         }

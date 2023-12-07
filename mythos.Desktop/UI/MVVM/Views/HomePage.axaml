@@ -37,11 +37,10 @@ ClipToBounds="True">
 					</Border>
 				</ControlTemplate>
 			</Setter>
-			<Setter Property="Height" Value="70"/>
+			<Setter Property="Height" Value="60"/>
 			<Setter Property="Width" Value="160"/>
-			<Setter Property="Margin" Value="0,0,0,0"/>
-			<Setter Property="VerticalAlignment" Value="Bottom"/>
-			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="45,-5,0,0"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
 			<Setter Property="BorderThickness" Value="0"/>
 		</Style>
 		<Style Selector="Button.h2:pointerover /template/ Border">
@@ -83,64 +82,144 @@ ClipToBounds="True">
 			<Setter Property="Template">
 				<ControlTemplate>
 					<StackPanel Orientation="Vertical"
-						Margin="5,5,0,0"
-						Height="310"
-						Width="195">
+						Margin="0,5,0,0"
+						Height="300"
+						Width="300">
 
+						<StackPanel.Effect>
+							<DropShadowEffect Opacity="0.2"/>
+						</StackPanel.Effect>
+						
 						<TextBlock
 						Text="{Binding Title}"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft"
 						FontSize="24"
-						Height="50"
+						Height="30"
 						Foreground="Black"
-						Padding="0,20,0,0"
-						VerticalAlignment="Top"
+						Margin="0,20,0,0"
 						HorizontalAlignment="Center"/>
 
 						<Canvas
-								VerticalAlignment="Bottom"
-								HorizontalAlignment="Center"
+								Margin="50,5,0,0"
+								HorizontalAlignment="Left"
 								Height="150"
 								Width="150">
+							<Grid VerticalAlignment="Center">
+								<Canvas HorizontalAlignment="Left" VerticalAlignment="Top">
+									<Image
+									Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
+									ZIndex="2"
+									HorizontalAlignment="Center"
+									Height="150"
+									Width="150"
+									Stretch="UniformToFill"/>
 
-							<Image
-								Source="\UI\MVVM\Assets\Background\failed_lost_legends_reward_frame(3).png"
-								ZIndex="2"
-								HorizontalAlignment="Center"
-								Height="150"
-								Width="150"
-								Stretch="Fill"/>
+									<Image
+										asyncImageLoader:ImageLoader.Source="{Binding DefaultImage}"
+										HorizontalAlignment="Center"
+										Height="150"
+										Width="150"
+										Stretch="UniformToFill"/>
+								</Canvas>
+								<Grid Margin="120,0,0,0" VerticalAlignment="Top" ClipToBounds="False"
+									  HorizontalAlignment="Right" Height="150" Width="80">
 
-							<Image
-								asyncImageLoader:ImageLoader.Source="{Binding DefaultImage}"
-								HorizontalAlignment="Center"
-								Height="150"
-								Width="150"
-								Stretch="Fill"/>
+									<Image asyncImageLoader:ImageLoader.Source="{Binding ModTypeFilePath}"
+										   ZIndex="1"
+										   VerticalAlignment="Top"
+										   HorizontalAlignment="Right"
+										   Width="48" Height="48"
+										   Stretch="UniformToFill"/>
+									<Canvas ZIndex="2" VerticalAlignment="Top" Height="50"
+											HorizontalAlignment="Left" ClipToBounds="False"
+											Classes="L1"> 
+										<Border Background="#313338" BorderBrush="White"
+												BorderThickness="2"
+												CornerRadius="5">
+											<Border.Effect>
+												<DropShadowEffect/>
+											</Border.Effect>
+											<TextBlock Text="{Binding ModTypeString}" Foreground="White"
+												   FontSize="20" Padding="2"/>
+										</Border>
+									</Canvas>
+
+									<Image asyncImageLoader:ImageLoader.Source="{Binding ModGameModeFilePath}"
+										   Width="48" Height="48"
+										   VerticalAlignment="Center"
+										   HorizontalAlignment="Right"
+										   Stretch="UniformToFill"/>
+									<Canvas ZIndex="2" VerticalAlignment="Center" Height="50"
+											HorizontalAlignment="Left" ClipToBounds="False"
+											Classes="L1">
+										<Border Background="#313338" BorderBrush="White"
+												BorderThickness="2"
+												CornerRadius="5">
+											<Border.Effect>
+												<DropShadowEffect/>
+											</Border.Effect>
+											<TextBlock Text="{Binding ModGameModeString}" Foreground="White"
+												   FontSize="20" Padding="2"/>
+										</Border>
+									</Canvas>
+									
+
+									<Image Source="\UI\MVVM\Assets\Icons\Category\hud_icon_no_small.png"
+										   Width="40" Height="50"
+										   Margin="0,0,4,0"
+										   HorizontalAlignment="Right"
+										   VerticalAlignment="Bottom"
+										   Stretch="Uniform"/>
+									<Canvas ZIndex="2" VerticalAlignment="Bottom" Height="50"
+											HorizontalAlignment="Left" ClipToBounds="False"
+											Classes="L1">
+										<Border Background="#313338" BorderBrush="White"
+												BorderThickness="2"
+												CornerRadius="5">
+											<Border.Effect>
+												<DropShadowEffect/>
+											</Border.Effect>
+											<TextBlock Text="{Binding ModCategoryString}" Foreground="White"
+												   FontSize="20" Padding="2"/>
+										</Border>
+									</Canvas>
+
+								</Grid>
+							</Grid>
+
 						</Canvas>
 
-
-						<Button Classes="h2" IsVisible="False"
+						<Grid>
+							<Button Classes="h2" IsVisible="False"
 								Classes.IsUpdated="{Binding IsLoaded}"
 								Classes.NotUpdated="{Binding IsLoaded}"
 								Command="{Binding EnableDisableModCommand}"
-								VerticalAlignment="Bottom"
 								CommandParameter="{Binding Id}"/>
 
-						<TextBox
+							<TextBox
 								BorderBrush="Transparent"
 								Background="Transparent"
 								FontSize="17"
 								Foreground="Black"
-								Padding="30,3,0,0"
+								Padding="50,3,0,0"
 								VerticalAlignment="Bottom"
 								HorizontalAlignment="Left"
 								Text="{Binding ShortendInformationPanel}"
 								TextWrapping="Wrap"/>
 
+							<Grid VerticalAlignment="Top"
+								  HorizontalAlignment="Right" Height="50"
+								  Margin="0,0,52,0">
+								<Image Source="\UI\MVVM\Assets\Icons\ModIsUpToDate.png"
+									   Width="45" Height="45"
+									   VerticalAlignment="Bottom"
+									   Stretch="Uniform"/>
+							</Grid>
+						</Grid>
+
 						<StackPanel.Background>
 							<ImageBrush
-							Source="\UI\MVVM\Assets\Background\card_campaign_normal.png"/>
+							Source="\UI\MVVM\Assets\HomePage\HomePageModCard.png"/>
 
 						</StackPanel.Background>
 
@@ -151,7 +230,7 @@ ClipToBounds="True">
 		<Style Selector="Button.c4:pointerover /template/ StackPanel">
 			<Setter Property="Background">
 				<ImageBrush
-				Source="\UI\MVVM\Assets\Background\card_campaign_normal_highlighted.png"
+				Source="\UI\MVVM\Assets\HomePage\HomePageModCard_PointerOver.png"
 				/>
 			</Setter>
 		</Style>
@@ -161,7 +240,14 @@ ClipToBounds="True">
 		<Style Selector="Button.c4:pointerover /template/ TextBox">
 			<Setter Property="IsVisible" Value="False"/>
 		</Style>
-
+		
+		<!-- Canvus -->
+		<Style Selector="Canvas.L1">
+			<Setter Property="Opacity" Value="0"/>
+		</Style>
+		<Style Selector="Canvas.L1:pointerover">
+			<Setter Property="Opacity" Value="0.75"/>
+		</Style>
 	</UserControl.Styles>
 
 	<Grid HorizontalAlignment="Left"
@@ -183,9 +269,8 @@ ClipToBounds="True">
 			Margin="5,2.5,0,0">
 
 			<Button
-				FontSize="15"
-				FontFamily="/UI/MVVM/Fonts/#Minecraft"
-				FontWeight="Bold"
+				FontSize="23"
+				FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 				BorderBrush="White"
 				BorderThickness="2"
 				Command="{Binding importMod}"
@@ -202,9 +287,8 @@ ClipToBounds="True">
 
 			<Button
 				Margin="10,0,0,0"
-				FontSize="15"
-				FontFamily="/UI/MVVM/Fonts/#Minecraft"
-				FontWeight="Bold"
+				FontSize="23"
+				FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 				BorderBrush="White"
 				BorderThickness="2"
 				Command="{Binding exportMod}"
@@ -214,7 +298,7 @@ ClipToBounds="True">
 				<TextBlock
 					VerticalAlignment="Center"
 					HorizontalAlignment="Center"
-					Text="export Myth"
+					Text="Export Myth"
 					Margin="0,4,0,0"/>
 
 			</Button>
@@ -247,7 +331,29 @@ ClipToBounds="True">
 				VerticalAlignment="Top">
 
 			<ItemsRepeater
-				ItemsSource="{Binding DisplayedMods}"
+				ItemsSource="{Binding HomePageDisplayedMods}"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				Background="Transparent">
+
+				<ItemsRepeater.Layout>
+					<UniformGridLayout />
+				</ItemsRepeater.Layout>
+
+				<ItemsRepeater.ItemTemplate>
+					<DataTemplate>
+
+						<Button Classes="c4" Command="{Binding ModPageCommand}"
+								CommandParameter="{Binding Id}"/>
+
+					</DataTemplate>
+				</ItemsRepeater.ItemTemplate>
+
+			</ItemsRepeater>
+
+			<!--
+			<ItemsRepeater
+				ItemsSource="{Binding HomePageDisplayedMods}"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Bottom"
 				Background="Transparent">
@@ -265,6 +371,7 @@ ClipToBounds="True">
 					</DataTemplate>
 				</ItemsRepeater.ItemTemplate>
 			</ItemsRepeater>
+			-->
 		</ScrollViewer>
 	</Grid>
 </UserControl>

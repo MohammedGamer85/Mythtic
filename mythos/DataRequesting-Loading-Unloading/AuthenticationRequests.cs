@@ -2,7 +2,7 @@
 using DynamicData;
 using DynamicData.Binding;
 using Microsoft.Win32.SafeHandles;
-using mythtic.Models;
+using mythtic.Classes;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using mythtic.Services;
-using mythtic.Features.PreloadedInformation;
+using mythtic.Services.PreloadedInformation;
 
 namespace mythtic.Data
 {
@@ -34,7 +34,7 @@ namespace mythtic.Data
         {
             string url = "https://mythos.legendsmodding.com/api/myths?";
 
-            ListOfDiscoverModsModelRecived result = await _httpClientHelper.GetRequest<ListOfDiscoverModsModelRecived>(url);
+            ListOfDiscoverModClassRecived result = await _httpClientHelper.GetRequest<ListOfDiscoverModClassRecived>(url);
 
             if (result.Success == true)
             {
@@ -46,7 +46,10 @@ namespace mythtic.Data
                     x.GameMode ??= "None";
                     x.Description ??= "There is no ShotDescription";
                     x.Category ??= "Uncategorized";
-                    x.DefaultImage ??= "https://mythos.legendsmodding.com/favicon.ico";
+                    if (x.DefaultImage == null)
+                        x.DefaultImage = "https://mythos.legendsmodding.com/favicon.ico";
+                    else
+                        x.DefaultImage = $"https://static.legendsmodding.com/myths/{x.DefaultImage}.jpg";
                     x.LatestVersion ??= "0,0,0";
                     if (x.ReleaseDate == null)
                     {
@@ -67,7 +70,7 @@ namespace mythtic.Data
         {
             string url = "https://mythos.legendsmodding.com/api/myth/" + webId;
 
-            DisocverModItemInfoModelRecived result = await _httpClientHelper.GetRequest<DisocverModItemInfoModelRecived>(url);
+            DisocverModItemInfoClassRecived result = await _httpClientHelper.GetRequest<DisocverModItemInfoClassRecived>(url);
 
             if (result.Success == true)
             {
@@ -76,7 +79,14 @@ namespace mythtic.Data
                 x.GameMode ??= "None";
                 x.ShortDescription ??= "There is no ShotDescription";
                 x.LongDescription ??= "There is no LongDescription";
-                x.DefaultImage ??= "https://mythos.legendsmodding.com/favicon.ico";
+                if (x.DefaultImage == null)
+                    x.DefaultImage = "https://mythos.legendsmodding.com/favicon.ico";
+                else
+                    x.DefaultImage = $"https://static.legendsmodding.com/myths/{x.DefaultImage}.jpg";
+                for(int i =0; i < x.Images.Length; i++)
+                {
+                    x.Images[i].Url = $"https://static.legendsmodding.com/myths/{x.Images[i].ImageHash}.jpg";
+                }
                 if (x.ReleaseDate == null)
                 {
                     x.ReleaseDate = DateTime.Now;

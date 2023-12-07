@@ -14,7 +14,7 @@ namespace mythtic.Services
             CheckAndCreateDirectory(FilePaths.GetmythticExportFolder);
             CheckAndCreateDirectory(FilePaths.GetmythticLogsFolder);
 
-            CheckAndCreateFile(Path.Combine(FilePaths.GetMythticDocFolder, "accuntInfo.json"));
+            CheckAndCreateFile(Path.Combine(FilePaths.GetMythticDocFolder, "accountInfo.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythticDocFolder, "importedMods.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythticDocFolder, "jsonChecked.json"));
             CheckAndCreateFile(Path.Combine(FilePaths.GetMythticDocFolder, "Settings.json"));

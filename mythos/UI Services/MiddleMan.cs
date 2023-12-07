@@ -1,5 +1,5 @@
 ﻿using mythtic.Data;
-using mythtic.Models;
+using mythtic.Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

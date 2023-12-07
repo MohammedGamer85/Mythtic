@@ -1,5 +1,4 @@
 ﻿using Avalonia.Controls.Documents;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using mythtic.Data;
 using mythtic.Services;
 using ReactiveUI;

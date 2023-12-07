@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace mythtic.Models;
+namespace mythtic.Classes;
 
-public static class User
+public static class MythosUser
 {
     // Sores all the needed user infromation while the app is running and is accessable from any were in the code
     // unlike account which is only used by two funcation.
@@ -37,6 +37,6 @@ public static class User
 
     static void setValue()
     {
-        ImagePath = Path.Combine(FilePaths.GetmythticDownloadsFolder, (User.Name + ".png"));
+        ImagePath = Path.Combine(FilePaths.GetmythticDownloadsFolder, (MythosUser.Name + ".png"));
     }
 }
