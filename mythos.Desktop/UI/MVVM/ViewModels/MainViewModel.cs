@@ -1,23 +1,10 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Documents;
-using Avalonia.Diagnostics;
-using Avalonia.Platform;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
+﻿using Microsoft.Extensions.DependencyInjection;
 using mythtic.Desktop;
 using mythtic.UI.Services;
 using mythtic.Desktop.UI.MVVM.Views;
-using mythtic.Classes;
 using mythtic.Services;
 using mythtic.Views;
 using ReactiveUI;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Xml;
-using System.ComponentModel;
-using mythtic.Features.Settings;
 using mythtic.Services.PreloadedInformation;
 
 namespace mythtic.ViewModels;

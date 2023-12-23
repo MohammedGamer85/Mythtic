@@ -57,8 +57,8 @@ namespace mythtic.Features.ImportMod {
                 }
 
                 foreach (var mod in ImportedModsInfo.Mods) {
-                    if (mod.WebId == modInfo.WebId) {
-                        throw new Exception("Mod already imported.");
+                    if (mod.Uuid == modInfo.Uuid) {
+                        throw new Exception("Mod already imported  [Have same uuid].");
                     }
                 }
 

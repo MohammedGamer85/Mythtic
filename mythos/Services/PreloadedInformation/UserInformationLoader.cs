@@ -5,18 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using mythtic.Services;
 
-namespace mythtic.Services.PreloadedInformation
-{   //! Dealth with the user and accunt classes.
-    public class UserInformationLoader
-    {
+namespace mythtic.Services.PreloadedInformation {   //! Dealth with the user and accunt classes.
+    public class UserInformationLoader {
         private readonly AuthenticationRequests _authenticationRequests = new();
-        private readonly static string fileName = "accountInfo.json";
+        private readonly static string FileName = "accountInfo.json";
+        private readonly static string FileNameBackComaptible = "accuntInfo.json";
         private Account? Account;
 
         public static bool UserDataStatus;
 
-        public async Task<bool> InitializeUserFromAPI(string email, string password)
-        {
+        public async Task<bool> InitializeUserFromAPI(string email, string password) {
             Logger.Log("Getting account infromation from API (UserInformationLoader/InitializeUserFromAPI)");
 
             Account = await _authenticationRequests.LoginRequest(email, password);
@@ -24,31 +22,37 @@ namespace mythtic.Services.PreloadedInformation
             if (Account == null)
                 return false;
 
-            InitializeUserDataFromAccunt();
+            InitializeUserDataFromAccunt(FileName);
 
             return true;
         }
 
-        public bool InitializeUserFromSavedData()
-        {
+        public bool InitializeUserFromSavedData() {
             Logger.Log("Importing account infromation from file (UserInformationLoader/InitializeUserFromSavedData)");
 
-            if (JsonCheckerHelper.CheckJsonFileForData(fileName))
-            {
-                Account = JsonReaderHelper.ReadJsonFile<Account>(fileName, dencrypt: true);
-
-                InitializeUserDataFromAccunt();
-
+            if (CheckAndLoadAccuntinfo(FileName))
                 return true;
-            }
+            else if (CheckAndLoadAccuntinfo(FileNameBackComaptible))
+                return true;
             else
-            {
                 return false;
+
+            bool CheckAndLoadAccuntinfo(string fileName) {
+
+                if (JsonCheckerHelper.CheckJsonFileForData(fileName)) {
+                    Account = JsonReaderHelper.ReadJsonFile<Account>(fileName, dencrypt: true);
+
+                    InitializeUserDataFromAccunt(FileName);
+
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         }
 
-        public void InitializeUserDataFromAccunt()
-        {
+        public void InitializeUserDataFromAccunt(string fileName) {
             MythosUser.id = Account.Data.Id;
             MythosUser.RoleNames = Account.Data.Roles
             .Select(x => x.Name).ToList();
@@ -67,22 +71,19 @@ namespace mythtic.Services.PreloadedInformation
         }
     }
 
-    internal class Account
-    {
+    internal class Account {
         public bool Success { get; set; }
         public Data Data { get; set; }
     }
 
-    class Data
-    {
+    class Data {
         public int Id { get; set; }
         public string Username { get; set; }
         public Roles[] Roles { get; set; }
         public string AccessToken { get; set; }
     }
 
-    class Roles
-    {
+    class Roles {
         public int Id { get; set; }
         public string Name { get; set; }
     }

@@ -1,17 +1,8 @@
-﻿using Avalonia.Input;
-using mythtic.Data;
+﻿using mythtic.Data;
 using mythtic.Classes;
 using mythtic.Services;
-using mythtic.UI.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Avalonia.Layout;
 
 namespace mythtic.Features.Mod {
     public static class ImportedModsInfo {
@@ -35,7 +26,7 @@ namespace mythtic.Features.Mod {
             if (Mods == null)
                 Mods = new ObservableCollection<ImportedModsItem>();
             foreach (var item in Mods) {
-                Logger.Log($"WebId           {item.Id}");
+                Logger.Log($"Id           {item.Id}");
                 Logger.Log($"WebId        {item.WebId}");
                 Logger.Log($"Uuid         {item.Uuid}");
                 Logger.Log($"Name         {item.Name}");

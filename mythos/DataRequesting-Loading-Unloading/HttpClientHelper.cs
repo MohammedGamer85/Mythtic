@@ -16,7 +16,7 @@ namespace mythtic.Data
         //todo: Should add other types of requests too.
     public class HttpClientHelper : IDisposable
     {
-        private static HttpClient _client = new HttpClient()
+        private static HttpClient Client = new HttpClient()
         {
             Timeout = TimeSpan.FromSeconds(5)
         };
@@ -25,13 +25,13 @@ namespace mythtic.Data
         {
             Logger.Log("[GetRequest] making request to " + url);
 
-            var httpResponse = await _client.GetAsync(url);
+            var httpResponse = await Client.GetAsync(url);
 
             httpResponse.EnsureSuccessStatusCode();
 
             string responseContent = await httpResponse.Content.ReadAsStringAsync();
 
-            TReturn deserilizedContent = default;
+            TReturn deserilizedContent ;
 
             try
             {
@@ -58,9 +58,10 @@ namespace mythtic.Data
 
                 using var stringContent = new StringContent(serilizedContent, Encoding.UTF8, "application/json");
 
-                _client.DefaultRequestHeaders.Add("X-Api-Key", "cVYPxR1wkzbOeHaxDGZL20QcWf7iL4LVktB6PDXBPu5wmdPFpjAx4vjHNqBjUoTSmF6u9EFonY2HNTE4CGpxZSDuDpoOcnrPSHcwdclDrFiKqtPJrIinWLcoe2b3GWqz");
+                Client.DefaultRequestHeaders.Clear();
+                Client.DefaultRequestHeaders.Add("X-Api-Key", "cVYPxR1wkzbOeHaxDGZL20QcWf7iL4LVktB6PDXBPu5wmdPFpjAx4vjHNqBjUoTSmF6u9EFonY2HNTE4CGpxZSDuDpoOcnrPSHcwdclDrFiKqtPJrIinWLcoe2b3GWqz");
 
-                using var httpResponse = await _client.PostAsync(url, stringContent);
+                using var httpResponse = await Client.PostAsync(url, stringContent);
 
                 httpResponse.EnsureSuccessStatusCode();
 
@@ -88,7 +89,7 @@ namespace mythtic.Data
 
         public void Dispose()
         {
-            _client.Dispose();
+            Client.Dispose();
         }
     }
 }

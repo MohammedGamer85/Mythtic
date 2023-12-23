@@ -1,14 +1,10 @@
 ﻿using mythtic.Classes;
 using mythtic.UI.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using mythtic.Services;
 
-namespace mythtic.Features.Mod
-{
+namespace mythtic.Features.Mod {
     public static class ReinstallMod
     {   
         public static async Task reinstallMod(ImportedModsItem ImportedModInfo, object ViewToSwitchTo)

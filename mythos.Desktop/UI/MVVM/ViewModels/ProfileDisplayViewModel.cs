@@ -1,13 +1,11 @@
 using System.Threading.Tasks;
 using mythtic.DataRequesting_Loading_Unloading;
 using mythtic.Classes;
-using System.IO;
 using mythtic.Services;
 using ReactiveUI;
 using mythtic.Services.PreloadedInformation;
 
-namespace mythtic.Desktop.UI.MVVM.ViewModels
-{   //! _Window displayes the user's profile pic and username.
+namespace mythtic.Desktop.UI.MVVM.ViewModels {   //! _Window displayes the user's profile pic and username.
     //todo: Need to make it so if clicked the page is switched to the ProfilePage.
     public class ProfileDisplayViewModel : ReactiveObject
     {

@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		Width="500"
-		Height="200"		
+		Height="200"
 		IsEnabled="True"
 		IsVisible="True"
 		Background="#33302A"
@@ -32,18 +32,25 @@
 					   HorizontalAlignment="Center"
 					   VerticalAlignment="Center"
 					   TextWrapping="WrapWithOverflow"/>
-			
-			<Button Content="  OK"
-					FontSize="20"
-					Foreground="White"
-					Width="100"
+
+			<Button Width="100"
 					Height="40"
 					BorderBrush="Black"
 					BorderThickness="3"
 					HorizontalAlignment="Center"
-					Command="{Binding OkButton}"/>
-			
+					Command="{Binding OkButton}">
+				<TextBlock HorizontalAlignment="Center"
+						   VerticalAlignment="Top"
+						   Text="OK"
+							FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+						   FontWeight="Regular"
+							FontSize="30"
+							Foreground="White">
+
+				</TextBlock>
+			</Button>
+
 		</StackPanel>
 	</ScrollViewer>
-	
+
 </Window>
