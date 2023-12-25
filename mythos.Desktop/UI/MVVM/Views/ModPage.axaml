@@ -436,7 +436,8 @@
 
 	</UserControl.Styles>
 
-	<ScrollViewer VerticalScrollBarVisibility="Visible">
+	<ScrollViewer VerticalScrollBarVisibility="Visible"
+				  MaxHeight="{Binding Path=$parent.Bounds.Height}">
 		<Grid ShowGridLines="False">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
@@ -444,7 +445,7 @@
 
 			<Grid.RowDefinitions>
 				<RowDefinition Height="250"/>
-				<RowDefinition Height="330"/>
+				<RowDefinition Height="310"/>
 				<RowDefinition Height="100"/>
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
@@ -593,7 +594,7 @@
 								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 								VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
-						<TextBlock Text="{Binding LongDescription}"
+						<TextBlock Text="{Binding ShortDescription}"
 									Padding="0,0,0,0"
 									TextWrapping="WrapWithOverflow"
 									Margin="0,5,0,0"
@@ -607,61 +608,124 @@
 					<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left"
 								Orientation="Horizontal" Grid.Row="1"
 								Margin="25,0,0,0">
-							<TextBlock Text="{Binding InformationPanel}"
-									Foreground="Black"
-									FontSize="24"
-									FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
-							<RadioButton Classes="h6"
-										 Classes.IsUpdated="{Binding Installed}"/>
+						<TextBlock Text="{Binding InformationPanel}"
+								Foreground="Black"
+								FontSize="24"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
+						<RadioButton Classes="h6"
+									 Classes.IsUpdated="{Binding Installed}"/>
 					</StackPanel>
 				</Grid>
 			</StackPanel>
+			<StackPanel Grid.Column="0" Grid.Row="2" Grid.RowSpan="3" Margin="0,1,0,0">
 
-			<!-- Loading Bar -->
-			<Border IsVisible="{Binding IsLoadingBarVisible}"
-					Grid.Row="2"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Center"
-					MaxHeight="80"
-					Margin="20,0,20,0">
-				<Grid ShowGridLines="False"
-					  Width="{Binding Path=$parent.Bounds.Width}">
+				<!-- Loading Bar -->
+				<Border IsVisible="{Binding IsLoadingBarVisible}"
+						Grid.Row="2"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Center"
+						MaxHeight="80"
+						Margin="20,0,20,1">
+					<Grid ShowGridLines="False"
+						  Width="{Binding Path=$parent.Bounds.Width}">
 
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="12"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="12"/>
-					</Grid.ColumnDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="12"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="12"/>
+						</Grid.ColumnDefinitions>
 
-					<Image Source="\UI\MVVM\Assets\Background\StateBarLeft.png"
-								Grid.Column="0"
-								HorizontalAlignment="Left"
-								Stretch="Fill"/>
+						<Image Source="\UI\MVVM\Assets\Background\StateBarLeft.png"
+									Grid.Column="0"
+									HorizontalAlignment="Left"
+									Stretch="Fill"/>
 
-					<Image Source="\UI\MVVM\Assets\Background\StateBarCenter.png"
-								Grid.Column="1"
-								HorizontalAlignment="Center"
-								Stretch="Fill"/>
+						<Image Source="\UI\MVVM\Assets\Background\StateBarCenter.png"
+									Grid.Column="1"
+									HorizontalAlignment="Center"
+									Stretch="Fill"/>
 
-					<Image Source="\UI\MVVM\Assets\Background\StateBarRight.png"
-								Grid.Column="2"
-								HorizontalAlignment="Right"
-								Stretch="Fill"/>
+						<Image Source="\UI\MVVM\Assets\Background\StateBarRight.png"
+									Grid.Column="2"
+									HorizontalAlignment="Right"
+									Stretch="Fill"/>
 
-					<TextBlock Text="{Binding LoadingBarText}"
-							   Grid.Column="1"
-							   FontSize="30"
-							   ZIndex="1"
-							   Classes="B1"
-							   VerticalAlignment="Center"
-							   HorizontalAlignment="Center"
-							   FontFamily="\UI\MVVM\Fonts\#Minecraft Ten"/>
+						<TextBlock Text="{Binding LoadingBarText}"
+								   Grid.Column="1"
+								   FontSize="30"
+								   ZIndex="1"
+								   Classes="B1"
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   FontFamily="\UI\MVVM\Fonts\#Minecraft Ten"/>
 
+					</Grid>
+				</Border>
+				<!-- Long Description -->
+				<Grid MinHeight="180" Grid.Column="0" Grid.Row="2" Grid.RowSpan="3">
+
+					<Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="90"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="90"/>
+							</Grid.RowDefinitions>
+							<!-- BackGround -->
+							<Canvas Grid.Column="0"
+									Grid.Row="0" ZIndex="6">
+								<Canvas.Background>
+									<ImageBrush Source="\UI\MVVM\Assets\ModCard\LongDescriptionFrameTopLeft-export.png"
+												AlignmentX="Left"
+												AlignmentY="Top"
+												Stretch="None"/>
+								</Canvas.Background>
+							</Canvas>
+							<Canvas Grid.Column="0"
+									Grid.Row="1" ZIndex="2">
+								<Canvas.Background>
+									<ImageBrush Source="\UI\MVVM\Assets\ModCard\LongDescriptionFrameBottomLeft-export.png"
+												AlignmentX="Left"
+												AlignmentY="Bottom"
+												Stretch="None"/>
+								</Canvas.Background>
+							</Canvas>
+							<Canvas Grid.Column="1"
+									Grid.Row="1" ZIndex="1">
+								<Canvas.Background>
+									<ImageBrush Source="\UI\MVVM\Assets\ModCard\LongDescriptionFrameBottomRight-export.png"
+												AlignmentX="Right"
+												AlignmentY="Bottom"
+												Stretch="None"/>
+								</Canvas.Background>
+							</Canvas>
+							<Canvas Grid.Column="1"
+									Grid.Row="0" ZIndex="4">
+								<Canvas.Background>
+
+									<ImageBrush Source="\UI\MVVM\Assets\ModCard\LongDescriptionFrameTopRight-export.png"
+												AlignmentX="Right"
+												AlignmentY="Top"
+												Stretch="None"/>
+								</Canvas.Background>
+							</Canvas>
+						</Grid>
+					</Grid>
+					<TextBlock Grid.Row="2" Grid.RowSpan="3"
+						Margin="80,90,80,90"
+						TextWrapping="Wrap"
+						FontFamily="\UI\MVVM\Fonts\#Minecraft"
+						FontWeight="Bold"
+						ZIndex="10"
+						Text="{Binding LongDescription}">
+
+
+					</TextBlock>
 				</Grid>
-			</Border>
-
-			<TextBlock Grid.Row="3"/>
-
+			</StackPanel>
 		</Grid>
 	</ScrollViewer>
 </UserControl>

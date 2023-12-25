@@ -70,7 +70,7 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {
 
         async Task getModlist() {
             AuthenticationRequests authenticationRequests = new();
-            Mods = await authenticationRequests.DiscoverModList();
+            Mods = await authenticationRequests.MythosDiscoverModList();
             DiscoverPageDisplayedMods = Mods;
         }
     }

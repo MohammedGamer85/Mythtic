@@ -13,45 +13,68 @@ using Avalonia.OpenGL;
 
 namespace mythtic.Features.Mod {
     public static class AddMod {
-        public static bool Add(ImportedModsItem modInfo, bool isZiped, string folderPath) {
+        /// <summary>
+        /// It returns true if success and false is failed but will not return error.
+        /// </summary>
+        /// <param name="modInfo"></param>
+        /// <param name="isZiped"></param>
+        /// <param name="folderPath"></param>
+        /// <returns></returns>
+        public static bool Add(ImportedModsItem modInfo, bool isZiped, string folderPath = null) {
             try {
 
                 if (isZiped) {
                     folderPath = Path.Combine(FilePaths.GetmythticTempFolder, "Mod");
-                    ZipFile.ExtractToDirectory(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"), folderPath, false /* No overridding files */);
+                    ZipFile.ExtractToDirectory(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"), folderPath, true /* In case of problem at least it will not Crash */);
+                }
+
+                string[] manifestFilesFilePaths = Directory.GetFiles(folderPath, "manifest.json", SearchOption.AllDirectories);
+                string RPFolderPath = string.Empty;
+                string BPFolderPath = string.Empty;
+                bool RPExists = false;
+                bool BPExists = false;
+                if (manifestFilesFilePaths.Length == 0) {
+                    throw new Exception("unable to find any manifest files");
+                }
+                else if (manifestFilesFilePaths.Length == 1) {
+                    RPExists = true;
+                    RPFolderPath = Directory.GetParent(manifestFilesFilePaths[0]).ToString();
+                }
+                else {
+                    RPExists = true;
+                    BPExists = true;
+                    var modManifestData = JsonReaderHelper.ReadJsonFile<Rootobject>(manifestFilesFilePaths[0], true);
+                    if (modManifestData.modules[0].type == "data") {
+                        RPFolderPath = Directory.GetParent(manifestFilesFilePaths[1]).ToString();
+                        BPFolderPath = Directory.GetParent(manifestFilesFilePaths[0]).ToString();
+                    }
+                    else {
+                        RPFolderPath = Directory.GetParent(manifestFilesFilePaths[0]).ToString();
+                        BPFolderPath = Directory.GetParent(manifestFilesFilePaths[1]).ToString();
+                    }
                 }
 
                 if (modInfo.Uuid == null) {
-                    var modInfoJson = JsonReaderHelper.ReadJsonFile<Rootobject>(Path.Combine(folderPath, "RP", "manifest.json"), true);
-                    modInfo.Uuid = modInfoJson.header.uuid;
+                    var modManifestData = JsonReaderHelper.ReadJsonFile<Rootobject>(manifestFilesFilePaths[0], true);
+                    modInfo.Uuid = modManifestData.modules[0].uuid;
                 }
 
-                string mythFolderPath = Path.Combine(FilePaths.GetmythticDownloadsFolder, modInfo.Uuid);
+                string modFolderPath = Path.Combine(FilePaths.GetmythticDownloadsFolder, modInfo.Uuid);
 
-                if (!Directory.Exists(Path.Combine(mythFolderPath)))
-                    Directory.CreateDirectory(Path.Combine(mythFolderPath));
+                if (!Directory.Exists(Path.Combine(modFolderPath)))
+                    Directory.CreateDirectory(Path.Combine(modFolderPath));
 
-                bool RP = Directory.Exists(Path.Combine(folderPath, "RP"));
-                bool BP = Directory.Exists(Path.Combine(folderPath, "BP"));
-
-                if (RP == false && BP == false)
-                    throw new Exception("Failed to locate mod BP & RP");
-
-                if (BP)
-                    movePack("BP", mythFolderPath);
-                if (RP)
-                    movePack("RP", mythFolderPath);
+                if (BPExists)
+                    movePack("BP", BPFolderPath, modFolderPath);
+                if (RPExists)
+                    movePack("RP", RPFolderPath,modFolderPath);
 
                 //Is made to be written to the modInfo.json file and is not used in the code.
                 Dictionary<string, string> _packs = new();
                 _packs.Add("BP", "BP-" + modInfo.Uuid);
                 _packs.Add("RP", "RP-" + modInfo.Uuid);
 
-                if (!File.Exists(Path.Combine(mythFolderPath, "modInfo.json"))) {
-                    File.Create(Path.Combine(mythFolderPath, "modInfo.json")).Close();
-                }
-
-                JsonWriterHelper.WriteJsonFile(Path.Combine(mythFolderPath, "modInfo.json"), _packs, true);
+                JsonWriterHelper.WriteJsonFile(Path.Combine(modFolderPath, "modInfo.json"), _packs, true);
 
                 if (ImportedModsInfo.Mods == null) {
                     ImportedModsInfo.Mods = new();
@@ -75,9 +98,9 @@ namespace mythtic.Features.Mod {
                     TwitterLink = modInfo.TwitterLink,
                     IsLoaded = false,
                     LastUpdated = Convert.ToDateTime(modInfo.LastUpdated.ToString()),
-                    ModTypes = (BP == true && RP == true)
+                    ModTypes = (BPExists == true && RPExists == true)
                     ? Enums.ModTypes.RPBP
-                    : (RP == false)
+                    : (RPExists == false)
                         ? Enums.ModTypes.BP
                         : Enums.ModTypes.RP,
                     Version = new Version(modInfo.Version.ToString()),
@@ -100,19 +123,17 @@ namespace mythtic.Features.Mod {
                 return false;
             }
 
-            void movePack(string pack, string mythFolderPath) {
+            ///<summary>
+            ///Is used to move the RP and BP to the right directorys
+            ///</summary>
+            void movePack(string pack, string PackFolderPath, string modFolderPath) {
                 try {
-                    //!Move the RP and BP to the right directorys
-
                     //Deletes the aready existing pack
-                    if (!Directory.Exists(Path.Combine(mythFolderPath, (pack + "-" + modInfo.Uuid))))
-                        Directory.CreateDirectory(Path.Combine(mythFolderPath, pack));
+                    if (Directory.Exists(Path.Combine(modFolderPath, (pack + "-" + modInfo.Uuid))))
+                        Directory.Delete(Path.Combine(modFolderPath, (pack + "-" + modInfo.Uuid)));
 
                     //copys the file
-                    DirectoryUtilities.Copy(Path.Combine(folderPath, pack), Path.Combine(mythFolderPath, pack), true);
-
-                    //Renames the files to the currect _fileName, even if they aready have it
-                    Directory.Move(Path.Combine(mythFolderPath, pack), Path.Combine(mythFolderPath, (pack + "-" + modInfo.Uuid)));
+                    DirectoryUtilities.Copy(PackFolderPath, Path.Combine(modFolderPath, (pack + "-" + modInfo.Uuid)), true);
 
                     Logger.Log("(movePack) Moved pack");
                 }

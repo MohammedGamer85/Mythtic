@@ -26,7 +26,7 @@ namespace mythtic.Features.Mod {
             if (Mods == null)
                 Mods = new ObservableCollection<ImportedModsItem>();
             foreach (var item in Mods) {
-                Logger.Log($"Id           {item.Id}");
+                Logger.Log($"WebId           {item.Id}");
                 Logger.Log($"WebId        {item.WebId}");
                 Logger.Log($"Uuid         {item.Uuid}");
                 Logger.Log($"Name         {item.Name}");

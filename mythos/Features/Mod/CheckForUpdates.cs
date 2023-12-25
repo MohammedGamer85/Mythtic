@@ -9,10 +9,10 @@ using System.IO;
 
 namespace mythtic.Features.Mod {
     public static class UpdateMod {
-        public static async Task checkForUpdates(ImportedModsItem ImportedModInfo = null, DisocverModItem DiscoverModInfo = null, string feedBackMode = "full") {
+        public static async Task CheckForUpdates(ImportedModsItem ImportedModInfo = null, string feedBackMode = "full") {
             try {
                 AuthenticationRequests authenticationRequests = new();
-                DiscoverModInfo = await authenticationRequests.DiscoverModDetials((int)ImportedModInfo.WebId);
+                var DiscoverModInfo = await authenticationRequests.GetMythosModDetials((int)ImportedModInfo.WebId);
 
                 if (DiscoverModInfo == null || DiscoverModInfo.Versions[0].FileHash is null || DiscoverModInfo.Versions[0].FileHash == string.Empty) {
                     throw new Exception($"Could not get new Mod:[WebId:{ImportedModInfo.WebId}] info from site.");

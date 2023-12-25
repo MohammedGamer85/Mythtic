@@ -60,6 +60,7 @@ namespace mythtic.Classes {
         public MythosModCategory? Category { get; set; }
 
         //! Enums/Struct vars.
+        public DateTime? ReleaseDate { get; set; } = DateTime.Now;
         public DateTime? LastUpdated { get; set; } = DateTime.Now;
         public Enums.ModGameModes? ModGamemode { get; set; }
         public Enums.ModCategorys? ModCategories { get; set; }

@@ -139,7 +139,7 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {
 
         private async Task getNonInstalledModInfo(int id) {
             AuthenticationRequests authenticationRequests = new();
-            DiscoverModInfo = await authenticationRequests.DiscoverModDetials(id);
+            DiscoverModInfo = await authenticationRequests.GetMythosModDetials(id);
             OnLoadedDiscoverMod();
         }
 
@@ -153,14 +153,16 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {
         public void OpenModDirectoryButton() => Process.Start("explorer.exe", Path.Combine(FilePaths.GetmythticDownloadsFolder, ImportedModInfo.Uuid));
 
         // you can just not input importedmoditem
-        public void DownloadModButton() => LoadingBar("Downloading", DownloadMod.downloadMod(DiscoverModInfo, ImportedModInfo));
+        //? WHY ME
+        public void DownloadModButton() => LoadingBar("Downloading", DownloadMod.DownloadMythosModZipFile(DiscoverModInfo));
 
+        //todo i bet i will need to redo this
         public void DeleteModButton() {
             LoadingBar("Deleting", DeleteMod.deleteMod(Program.ServiceProvider.GetService<HomePage>(), ImportedModInfo));
             Program.ServiceProvider.GetService<HomePage>().Rest();
         }
 
-        public void CheckForUpdatesButton() => LoadingBar("CheckingForUpdates", UpdateMod.checkForUpdates(ImportedModInfo: ImportedModInfo));
+        public void CheckForUpdatesButton() => LoadingBar("CheckingForUpdates", UpdateMod.CheckForUpdates(ImportedModInfo: ImportedModInfo));
 
         public void ReDownloadModButton() => LoadingBar("ReDownloadingMod", ReinstallMod.reinstallMod(ImportedModInfo, Program.ServiceProvider.GetRequiredService<HomePage>()));
 

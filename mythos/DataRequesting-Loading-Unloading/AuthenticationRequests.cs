@@ -30,7 +30,7 @@ namespace mythtic.Data
     {
         private readonly HttpClientHelper _httpClientHelper = new HttpClientHelper();
 
-        public async Task<ObservableCollection<ListOfDiscoverModsItem>> DiscoverModList()
+        public async Task<ObservableCollection<ListOfDiscoverModsItem>> MythosDiscoverModList()
         {
             string url = "https://mythos.legendsmodding.com/api/myths?";
 
@@ -66,7 +66,7 @@ namespace mythtic.Data
             }
         }
 
-        public async Task<DisocverModItem> DiscoverModDetials(int webId)
+        public async Task<DisocverModItem> GetMythosModDetials(int webId)
         {
             string url = "https://mythos.legendsmodding.com/api/myth/" + webId;
 

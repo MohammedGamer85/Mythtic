@@ -49,6 +49,7 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {
             {
                 Logger.Log($"Login successed attempt:[{_attempt}] (Login View)\n");
                 MiddleMan.Content = Program.ServiceProvider.GetService<MainView>();
+                Program.ServiceProvider.GetService<ProfileDisplay>().InitializeComponent();
             }
             else
             {

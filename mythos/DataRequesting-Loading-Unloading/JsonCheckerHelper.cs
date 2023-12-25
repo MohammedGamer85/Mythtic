@@ -13,64 +13,59 @@ using System.Threading.Tasks;
 using mythtic.Services;
 using System.Threading;
 
-namespace mythtic.Data
-{   //! is used to check if a json file contains valid information.
+namespace mythtic.Data {   //! is used to check if a json file contains valid information.
     //todo: make it accully check if the infromatio is vaild.
     //! the way it works right now is when another part of the code stores vaild data it sets data is vaild to true
     //! but if that other part of the code missed something up the full app will just stop working.
-    public class JsonCheckerHelper
-    {
-        public static bool CheckJsonFileForData(string fileName)
-        {
+    public class JsonCheckerHelper {
+        /// <summary>
+        /// Returns weather a json files has data or not.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static bool CheckJsonFileForData(string fileName) {
             string readableJson = string.Empty;
-            try
-            {
+            try {
                 Trace.Write("JsonCheckerHelper Checking: " + fileName + "\n");
 
-                if (!FileUtilites.IsInUseReadRights("jsonChecked.json"))
-                {
+                if (!FileUtilites.IsInUseReadRights("jsonChecked.json")) {
                     return false;
                 }
 
                 Dictionary<string, bool> deserializedContent = JsonReaderHelper.ReadJsonFile<Dictionary<string, bool>>("jsonChecked.json");
 
-                if (deserializedContent is null)
-                {
+                if (deserializedContent is null) {
                     return false;
                 }
 
                 readableJson = deserializedContent.ToString();
 
 
-                if (deserializedContent[fileName] == true)
-                {
+                if (deserializedContent[fileName] == true) {
                     Trace.Write("true, " + readableJson);
                     Logger.Log("All Results" + readableJson);
                     return true;
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Logger.Log(ex.ToString());
             }
             Trace.Write(" Result: " + "false, " + readableJson + "|" + "\n");
             return false;
         }
-
-        public static async Task JsonCheckFileForData(string fileName)
-        {
-            if (!FileUtilites.IsInUseReadRights("jsonChecked.json"))
-            {
-                Thread.Sleep(1000);
-                
-                if (!FileUtilites.IsInUseReadRights("jsonChecked.json"))
-                    return;
+        /// <summary>
+        /// Marks a json file as containning data
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static async Task JsonCheckFileForData(string fileName) {
+            if (!FileUtilites.IsInUseReadRights("jsonChecked.json")) {
+                return;
             }
 
             Dictionary<string, bool> deserializedContent = JsonReaderHelper.ReadJsonFile<Dictionary<string, bool>>("jsonChecked.json");
 
-            if (deserializedContent == null)
-            {
+            if (deserializedContent == null) {
                 Dictionary<string, bool> temp = new();
                 deserializedContent = temp;
             }

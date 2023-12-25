@@ -4,115 +4,151 @@ using mythtic.Services;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.IO;
 using System.Windows.Input;
 
-namespace mythtic.Features.Settings
-{
-    public static class SettingsManger
-    {
+namespace mythtic.Features.Settings {
+    public static class SettingsManger {
         private static readonly string filePath = Path.Combine(FilePaths.GetMythticDocFolder, "Settings.json");
-        private static readonly ObservableCollection<Setting> DefultSettings = GetDefultSettings();
+        private static readonly SettingsVersion DefultSettingsVersion = GetDefultSettings();
         public static ObservableCollection<Setting> _settings;
 
         public static event EventHandler<object> OnPropertyChangedOfSettings;
 
-        public static ObservableCollection<Setting> Settings
-        {
+        public static ObservableCollection<Setting> Settings {
             get => _settings;
-            set
-            {
+            set {
                 _settings = value;
                 OnPropertyChangedOfSettings?.Invoke(null, value);
             }
         }
 
-        private static ObservableCollection<Setting> GetDefultSettings()
-        {
-            if (DefultSettings != null)
-                return DefultSettings;
+        private static SettingsVersion GetDefultSettings() {
+            if (DefultSettingsVersion != null)
+                return DefultSettingsVersion;
 
-            ObservableCollection<Setting> _settings = new();
+            ObservableCollection<Setting> settings = new();
 
             void addSetting(string name, bool defultState)
-                => _settings.Add(new Setting { Name = name, State = defultState, DefultState = defultState });
+                => settings.Add(new Setting { Name = name, State = defultState, DefultState = defultState });
 
             //List of Settings
             addSetting("Full screen on start up", false);
+            addSetting("Mod developer features", false);
 
-            return _settings;
+            var defultSettingsVersion = new SettingsVersion();
+            defultSettingsVersion.Version = "0";
+            defultSettingsVersion.Settings = settings;
+
+            return defultSettingsVersion;
         }
 
-        public static void Save()
-        {
+        public static void Rest() => Settings = DefultSettingsVersion.Settings;
+
+        public static void Save() {
             if (Settings == null)
                 return;
-            JsonWriterHelper.WriteJsonFile<ObservableCollection<Setting>>(filePath, Settings, true);
+            SettingsVersion temp = new SettingsVersion();
+            temp.Settings = Settings;
+            temp.Version = DefultSettingsVersion.Version;
+            JsonWriterHelper.WriteJsonFile<SettingsVersion>(filePath, temp, true);
         }
 
-        public static void Rest() => Settings = DefultSettings;
+        public static void Load() {
+            SettingsVersion savedSettingsVersion;
+            if (!JsonCheckerHelper.CheckJsonFileForData("Settings.json")) {
+                savedSettingsVersion = null;
+                JsonCheckerHelper.JsonCheckFileForData("Settings.json");
+            }
+            else {
+                savedSettingsVersion = JsonReaderHelper.ReadJsonFile<SettingsVersion>(filePath, true);
+            }
 
-        public static void Load()
-        {
-            ObservableCollection<Setting>? settings = JsonReaderHelper.ReadJsonFile<ObservableCollection<Setting>>(filePath, true);
-            if (settings == null)
-            {
-                settings = DefultSettings;
+            if (savedSettingsVersion == null) {
+                savedSettingsVersion = DefultSettingsVersion;
+                Settings = DefultSettingsVersion.Settings;
                 Save();
             }
-            Settings = settings;
+            if (savedSettingsVersion.Version != DefultSettingsVersion.Version) {
+                //Adds new settings
+                for (int i = 0; i < DefultSettingsVersion.Settings.Count; i++) {
+                    bool exists = false;
+                    for (int index = 0; index < savedSettingsVersion.Settings.Count; index++) {
+                        if (savedSettingsVersion.Settings[index].Name == DefultSettingsVersion.Settings[i].Name) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        savedSettingsVersion.Settings.Insert(i, DefultSettingsVersion.Settings[i]);
+                    }
+                }
+                //Removes old settings
+                for (int i = 0; i < savedSettingsVersion.Settings.Count; i++) {
+                    bool exists = false;
+                    for (int index = 0; index < DefultSettingsVersion.Settings.Count; index++) {
+                        if (DefultSettingsVersion.Settings[index].Name == savedSettingsVersion.Settings[i].Name) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        savedSettingsVersion.Settings.RemoveAt(i);
+                    }
+                }
+            }
+            Settings = savedSettingsVersion.Settings;
         }
-    }
 
-    public class Setting : ReactiveObject
-    {
-        private bool _state;
+        public class SettingsVersion {
+            public string Version { get; set; }
+            public ObservableCollection<Setting> Settings { get; set; }
+        }
 
-        private ChangeSettingState ChangeStateCommmand { get; set; }
 
-        public string Name { get; set; }
-        public bool State
-        {
-            get => _state;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _state, value);
-                SettingsManger.Save();
+        public class Setting : ReactiveObject {
+            private bool _state;
+
+            private ChangeSettingState ChangeStateCommmand { get; set; }
+
+            public string Name { get; set; }
+            public bool State {
+                get => _state;
+                set {
+                    this.RaiseAndSetIfChanged(ref _state, value);
+                    SettingsManger.Save();
+                }
+            }
+
+            public bool DefultState { get; set; }
+
+            public Setting() {
+                ChangeStateCommmand = new ChangeSettingState(this);
             }
         }
 
-        public bool DefultState { get; set; }
+        public class ChangeSettingState : ICommand {
+            private Setting setting;
 
-        public Setting()
-        {
-            ChangeStateCommmand = new ChangeSettingState(this);
-        }
-    }
+            public ChangeSettingState(Setting setting) {
+                this.setting = setting;
+            }
 
-    public class ChangeSettingState : ICommand
-    {
-        private Setting setting;
+            public event EventHandler? CanExecuteChanged;
 
-        public ChangeSettingState(Setting setting)
-        {
-            this.setting = setting;
-        }
+            public bool CanExecute(object? parameter) {
+                return true;
+            }
 
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? parameter)
-        {
-            if (setting.State == true)
-                setting.State = false;
-            else if (setting.State == false)
-                setting.State = true;
-            else
-                setting.State = false;
+            public void Execute(object? parameter) {
+                if (setting.State == true)
+                    setting.State = false;
+                else if (setting.State == false)
+                    setting.State = true;
+                else
+                    setting.State = false;
+            }
         }
     }
 }

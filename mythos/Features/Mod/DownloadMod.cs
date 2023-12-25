@@ -9,59 +9,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml.Linq;
 
-namespace mythtic.Features.Mod
-{
-    public static class DownloadMod
-    {
+namespace mythtic.Features.Mod {
+    public static class DownloadMod {
         /// <summary>
-        /// Downloads a mod
+        /// Downloads a mod's zip file and passes the webModInfo to the next funcation.
         /// </summary>
+        /// <param name="targetWebModInfo"> All web mod infromation gathered by Mythos</param>
         /// <param name="feedBackMode"> [full, none, erros, success] </param>
         /// <returns>null</returns>
-        public static async Task<bool> downloadMod(DisocverModItem discoverModInfo = null, ImportedModsItem importedModInfo = null, string feedBackMode = "full")
-        {   
-            AuthenticationRequests authenticationRequests = new();
+        public static async Task<bool> DownloadMythosModZipFile(DisocverModItem targetWebModInfo, string feedBackMode = "full") {
 
-            if (importedModInfo != null)
-                discoverModInfo = await authenticationRequests.DiscoverModDetials((int)importedModInfo.WebId);
-
-            foreach (var mod in ImportedModsInfo.Mods)
-            {
-                if (mod.WebId == discoverModInfo.Id)
-                {
+            foreach (var mod in ImportedModsInfo.Mods) {
+                if (mod.WebId == targetWebModInfo.Id) {
                     if (feedBackMode is "full" or "errors")
-                        MiddleMan.OpenMessageWindowFromMythtic?.Invoke("Already Downloaded");
+                        MiddleMan.OpenMessageWindowFromMythtic?.Invoke("Already Downloaded [Share Same WebId]");
 
                     return false;
                 }
             }
 
-            await FileDownloader.DownloadFile("https://static.legendsmodding.com/myths/" + discoverModInfo.Versions[0].FileHash + ".zip",
-                FilePaths.GetmythticTempFolder, "\\Mod.zip");
+            await FileDownloader.DownloadFile("https://static.legendsmodding.com/myths/" + targetWebModInfo.Versions[0].FileHash + ".zip", FilePaths.GetmythticTempFolder, "\\Mod.zip");
 
-            var modItem = new ImportedModsItem
-            {
-                WebId = discoverModInfo.Id,
-                Name = discoverModInfo.Name,
-                DefaultImage = discoverModInfo.DefaultImage,
-                Images = discoverModInfo.Images,
-                Creator = discoverModInfo.Creator.Username,
-                ShotDescription = discoverModInfo.ShortDescription,
-                LongDescription = discoverModInfo.LongDescription,
-                Category = discoverModInfo.Category,
-                DiscordLink = discoverModInfo.DiscordLink,
-                GithubLink = discoverModInfo.GithubLink,
-                TwitterLink = discoverModInfo.TwitterLink,
-                YoutubeLink = discoverModInfo.YoutubeLink,
-                GameMode = discoverModInfo.GameMode,
-                Version = new Version(discoverModInfo.Versions[discoverModInfo.Versions.Length - 1].Version),
+            ImportedModsItem newlyMadeModItem;
+            newlyMadeModItem = new ImportedModsItem() {
+                WebId = targetWebModInfo.Id,
+                Name = targetWebModInfo.Name,
+                DefaultImage = targetWebModInfo.DefaultImage,
+                Images = targetWebModInfo.Images,
+                Creator = targetWebModInfo.Creator.Username,
+                ShotDescription = targetWebModInfo.ShortDescription,
+                LongDescription = targetWebModInfo.LongDescription,
+                Category = targetWebModInfo.Category,
+                DiscordLink = targetWebModInfo.DiscordLink,
+                GithubLink = targetWebModInfo.GithubLink,
+                TwitterLink = targetWebModInfo.TwitterLink,
+                YoutubeLink = targetWebModInfo.YoutubeLink,
+                GameMode = targetWebModInfo.GameMode,
+                ReleaseDate = targetWebModInfo.ReleaseDate,
+                Version = new Version(targetWebModInfo.Versions[targetWebModInfo.Versions.Length - 1].Version),
                 LastUpdated = DateTime.Now,
                 IsDevMod = false,
             };
 
-            if (AddMod.Add(modItem, true, null))
-            {
+            if (AddMod.Add(newlyMadeModItem, true)) {
                 Logger.Log("Successfully installed mod");
 
                 if (feedBackMode is "full" or "success")
@@ -69,8 +61,7 @@ namespace mythtic.Features.Mod
 
                 return true;
             }
-            else
-            {
+            else {
                 Logger.Log("Failed to installed mod");
 
                 if (feedBackMode is "full" or "errors")

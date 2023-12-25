@@ -42,7 +42,7 @@ namespace mythtic.Services.PreloadedInformation {   //! Dealth with the user and
                 if (JsonCheckerHelper.CheckJsonFileForData(fileName)) {
                     Account = JsonReaderHelper.ReadJsonFile<Account>(fileName, dencrypt: true);
 
-                    InitializeUserDataFromAccunt(FileName);
+                    InitializeUserDataFromAccunt(fileName);
 
                     return true;
                 }

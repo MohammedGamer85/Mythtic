@@ -26,10 +26,10 @@ namespace mythtic.Features.ImportMod {
 
             if (ImportedModsInfo.Mods[id] == null || ImportedModsInfo.Mods[id] == new ImportedModsItem()) {
                 Logger.Log($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
-                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
+                $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} WebId:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
                 MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed To Enable/Disable {ImportedModsInfo.Mods[id].Name}, " +
-                    $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} Id:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
+                    $"Error: Mod[Name:{ImportedModsInfo.Mods[id].Name} WebId:{ImportedModsInfo.Mods[id].Id}] Does not contain data or contain invaild data");
 
                 return false;
             }

@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using mythtic.Features.Settings;
 using ReactiveUI;
 using System.Collections.ObjectModel;
+using static mythtic.Features.Settings.SettingsManger;
 
 namespace mythtic.Desktop.UI.MVVM.ViewModels
 {   //todo Not needed right now just a place holder

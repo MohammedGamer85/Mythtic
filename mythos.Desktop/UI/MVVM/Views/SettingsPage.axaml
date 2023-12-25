@@ -95,12 +95,14 @@
 
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="150"/>
 			<RowDefinition Height="34"/>
 		</Grid.RowDefinitions>
 
 		<!-- BackGround -->
 		<Canvas Grid.Column="0"
-				Grid.Row="0">
+				Grid.Row="0"
+				Grid.RowSpan="2">
 			<Canvas.Background>
 				<ImageBrush Source="\UI\MVVM\Assets\Background\slot_focus_gold.png"
 							AlignmentX="Left"
@@ -110,7 +112,7 @@
 		</Canvas>
 
 		<Canvas Grid.Column="0"
-				Grid.Row="1">
+				Grid.Row="2">
 			<Canvas.Background>
 
 				<ImageBrush Source="\UI\MVVM\Assets\Background\slot_focus_gold_bottom.png"
@@ -122,7 +124,7 @@
 		</Canvas>
 
 		<Canvas Grid.Column="1"
-				Grid.Row="1">
+				Grid.Row="2">
 			<Canvas.Background>
 
 				<ImageBrush Source="\UI\MVVM\Assets\Background\slot_focus_gold_bottom_right_corner.png"
@@ -134,7 +136,8 @@
 		</Canvas>
 
 		<Canvas Grid.Column="1"
-				Grid.Row="0">
+				Grid.Row="0"
+				Grid.RowSpan="2">
 			<Canvas.Background>
 
 				<ImageBrush Source="\UI\MVVM\Assets\Background\slot_focus_gold_right.png"
@@ -152,6 +155,8 @@
 			  Width="{Binding Path=$parent.Width}">
 
 			<StackPanel Orientation="Vertical"
+						Margin="0,20,0,0"
+						VerticalAlignment="Top"
 						HorizontalAlignment="Center">
 				<!-- Title -->
 				<Border
@@ -173,65 +178,73 @@
 						VerticalAlignment="Center"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
 				</Border>
+					<ScrollViewer Width="{Binding Path=$parent.Width}"
+							Height="{Binding Path=$parent.Bounds.Height}"
+							HorizontalAlignment="Center"
+							ClipToBounds="True">
 
-				<ScrollViewer Width="{Binding Path=$parent.Width}"
-							  HorizontalAlignment="Center">
+						<ItemsRepeater
+							ClipToBounds="True"
+						Margin="0,25,0,0"
+						ItemsSource="{Binding Settings}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Top"
+						Background="Transparent">
 
-					<ItemsRepeater
-					Margin="0,25,0,0"
-					ItemsSource="{Binding Settings}"
-					HorizontalAlignment="Center"
-					VerticalAlignment="Top"
-					Background="Transparent">
+							<ItemsRepeater.Layout>
+								<StackLayout Orientation="Vertical"/>
+							</ItemsRepeater.Layout>
 
-						<ItemsRepeater.Layout>
-							<StackLayout Orientation="Vertical"/>
-						</ItemsRepeater.Layout>
+							<ItemsRepeater.ItemTemplate>
+								<DataTemplate>
 
-						<ItemsRepeater.ItemTemplate>
-							<DataTemplate>
+									<Grid>
 
-								<Grid>
+										<StackPanel Height="79" Width="500"
+													Orientation="Horizontal"
+													HorizontalAlignment="Left"
+													Margin="15,-3,0,0">
 
-									<StackPanel Height="79" Width="500" 
-												Orientation="Horizontal"
-												HorizontalAlignment="Left"
-												Margin="15,-3,0,0">
-										
-										<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0004.png"
-											   Stretch="Uniform"
-											   Width="79"/>
+											<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0004.png"
+												   Stretch="Uniform"
+												   Width="79"/>
 
-										<StackPanel Margin="-21,0,-20,0">
-											<Canvas>
-												<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0002.png"
-													   Stretch="Fill"
-													   Height="79"
-													   Width="489"/>
-											</Canvas>
-											
-											<TextBlock Text="{Binding Name}"
-													   Classes="A3">
-											</TextBlock>
+											<StackPanel Margin="-21,0,-20,0">
+												<Canvas>
+													<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0002.png"
+														   Stretch="Fill"
+														   Height="79"
+														   Width="489"/>
+												</Canvas>
+
+												<TextBlock Text="{Binding Name}"
+														   Classes="A3">
+												</TextBlock>
+											</StackPanel>
+
+											<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0003.png"
+												   Stretch="Uniform"
+												   Width="79"/>
 										</StackPanel>
-										
-										<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0003.png"
-											   Stretch="Uniform"
-											   Width="79"/>
-									</StackPanel>
 
-									<Button Classes="A2"
-											Classes.IsUpdated="{Binding State}"
-											Classes.NotUpdated="{Binding State}"
-											Command="{Binding ChangeStateCommmand}"/>
-								</Grid>
-
-							</DataTemplate>
-						</ItemsRepeater.ItemTemplate>
-					</ItemsRepeater>
-
-				</ScrollViewer>
-			</StackPanel>
+										<Button Classes="A2"
+												Classes.IsUpdated="{Binding State}"
+												Classes.NotUpdated="{Binding State}"
+												Command="{Binding ChangeStateCommmand}"/>
+									</Grid>
+								</DataTemplate>
+							</ItemsRepeater.ItemTemplate>
+						</ItemsRepeater>
+					</ScrollViewer>
+				</StackPanel>
 		</Grid>
+		<StackPanel Grid.Row="1"
+					VerticalAlignment="Bottom" HorizontalAlignment="Center"
+					Margin="0,0,5,-8">
+			<TextBlock Text="V1.2"
+					   Foreground="Black"
+					   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+					   FontSize="35"/>
+		</StackPanel>
 	</Grid>
 </UserControl>
