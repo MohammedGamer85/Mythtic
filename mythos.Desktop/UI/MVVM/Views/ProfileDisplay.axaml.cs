@@ -3,21 +3,14 @@ using mythtic.Services;
 using mythtic.Desktop.UI.MVVM.ViewModels;
 using System;
 using mythtic.Services.PreloadedInformation;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace mythtic.Desktop.UI.MVVM.Views
-{
-    public partial class ProfileDisplay : UserControl
-    {
-        public ProfileDisplay(UserInformationLoader userInformationLoader)
-        {
+namespace mythtic.Desktop.UI.MVVM.Views {
+    public partial class ProfileDisplay : UserControl {
+        public ProfileDisplay() {
             InitializeComponent();
 
-            this.DataContext = new ProfileDisplayViewModel(userInformationLoader);
-        }
-        public ProfileDisplay()
-        {
-            Logger.Log("Wrong ProfileDisplay Constructor");
-            throw new InvalidCastException("Wrong ProfileDisplay Constructor [userInformationLoader Not given]");
+            this.DataContext = Program.ServiceProvider.GetService<ProfileDisplayViewModel>();
         }
     }
 }

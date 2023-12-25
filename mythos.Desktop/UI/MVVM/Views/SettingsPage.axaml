@@ -239,11 +239,12 @@
 				</StackPanel>
 		</Grid>
 		<StackPanel Grid.Row="1"
-					VerticalAlignment="Bottom" HorizontalAlignment="Center"
-					Margin="0,0,5,-8">
+					VerticalAlignment="Bottom" HorizontalAlignment="Left"
+					Margin="35,0,5,-18">
 			<TextBlock Text="V1.2"
 					   Foreground="Black"
 					   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+					   FontWeight="Bold"
 					   FontSize="35"/>
 		</StackPanel>
 	</Grid>

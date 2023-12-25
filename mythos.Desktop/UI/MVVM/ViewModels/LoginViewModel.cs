@@ -7,6 +7,7 @@ using mythtic.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using mythtic.Services.PreloadedInformation;
+using mythtic.ViewModels;
 
 namespace mythtic.Desktop.UI.MVVM.ViewModels {
     public class LoginViewModel : ReactiveObject
@@ -48,8 +49,8 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {
             if (await userInformationLoader.InitializeUserFromAPI(Email, Password))
             {
                 Logger.Log($"Login successed attempt:[{_attempt}] (Login View)\n");
-                MiddleMan.Content = Program.ServiceProvider.GetService<MainView>();
-                Program.ServiceProvider.GetService<ProfileDisplay>().InitializeComponent();
+                Program.ServiceProvider.GetService<ProfileDisplayViewModel>().SetDisplayedUserInfo();
+                MiddleMan.Content = Program.ServiceProvider.GetService<MainView>();                
             }
             else
             {

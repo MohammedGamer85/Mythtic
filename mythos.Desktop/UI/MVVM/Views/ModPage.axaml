@@ -715,15 +715,13 @@
 						</Grid>
 					</Grid>
 					<TextBlock Grid.Row="2" Grid.RowSpan="3"
-						Margin="80,90,80,90"
+						Margin="95,50,95,50"
 						TextWrapping="Wrap"
 						FontFamily="\UI\MVVM\Fonts\#Minecraft"
-						FontWeight="Bold"
+						FontWeight="Regular"
+							   Foreground="Black"
 						ZIndex="10"
-						Text="{Binding LongDescription}">
-
-
-					</TextBlock>
+						Text="{Binding LongDescription}"/>
 				</Grid>
 			</StackPanel>
 		</Grid>

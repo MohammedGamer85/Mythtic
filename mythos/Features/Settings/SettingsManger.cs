@@ -35,10 +35,10 @@ namespace mythtic.Features.Settings {
 
             //List of Settings
             addSetting("Full screen on start up", false);
-            addSetting("Mod developer features", false);
+            //addSetting("Mod developer features", false);
 
             var defultSettingsVersion = new SettingsVersion();
-            defultSettingsVersion.Version = "0";
+            defultSettingsVersion.Version = "Removed Mod developer features settings";
             defultSettingsVersion.Settings = settings;
 
             return defultSettingsVersion;

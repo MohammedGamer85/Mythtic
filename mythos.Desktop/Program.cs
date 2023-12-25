@@ -69,7 +69,7 @@ namespace mythtic.Desktop
                 .AddSingleton<HomePage>()
                 .AddSingleton<HomePageViewModel>()
                 .AddSingleton<DiscoverPage>()
-                .AddSingleton<ProfileDisplay>()
+                .AddSingleton<ProfileDisplayViewModel>()
                 .AddSingleton<AuthenticationRequests>();
 
             var services = builder.BuildServiceProvider();
