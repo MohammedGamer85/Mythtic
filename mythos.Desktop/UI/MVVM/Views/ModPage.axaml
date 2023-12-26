@@ -476,7 +476,7 @@
 							<ImageBrush Source="\UI\MVVM\Assets\ModCard\ModCardBottomLeft.png"
 										AlignmentX="Left"
 										AlignmentY="Bottom"
-										Stretch="None"/>
+										Stretch="UniformToFill"/>
 						</Canvas.Background>
 					</Canvas>
 					<Canvas Grid.Column="1"
@@ -485,7 +485,7 @@
 							<ImageBrush Source="\UI\MVVM\Assets\ModCard\ModCardBottomRight.png"
 										AlignmentX="Right"
 										AlignmentY="Bottom"
-										Stretch="None"/>
+										Stretch="UniformToFill"/>
 						</Canvas.Background>
 					</Canvas>
 					<Canvas Grid.Column="1"
@@ -495,7 +495,7 @@
 							<ImageBrush Source="\UI\MVVM\Assets\ModCard\ModCardTopRight.png"
 										AlignmentX="Right"
 										AlignmentY="Top"
-										Stretch="None"/>
+										Stretch="UniformToFill"/>
 						</Canvas.Background>
 					</Canvas>
 				</Grid>
@@ -528,7 +528,7 @@
 							ZIndex="2"
 							Height="150"
 							Width="150"
-							Stretch="UniformToFill"/>
+							Stretch="Fill"/>
 					</Canvas>
 
 					<!-- Right Side of Top (Vertical) -->
@@ -638,17 +638,17 @@
 						<Image Source="\UI\MVVM\Assets\Background\StateBarLeft.png"
 									Grid.Column="0"
 									HorizontalAlignment="Left"
-									Stretch="Fill"/>
+									Stretch="UniformToFill"/>
 
 						<Image Source="\UI\MVVM\Assets\Background\StateBarCenter.png"
 									Grid.Column="1"
 									HorizontalAlignment="Center"
-									Stretch="Fill"/>
+									Stretch="UniformToFill"/>
 
 						<Image Source="\UI\MVVM\Assets\Background\StateBarRight.png"
 									Grid.Column="2"
 									HorizontalAlignment="Right"
-									Stretch="Fill"/>
+									Stretch="UniformToFill"/>
 
 						<TextBlock Text="{Binding LoadingBarText}"
 								   Grid.Column="1"
@@ -690,7 +690,7 @@
 									<ImageBrush Source="\UI\MVVM\Assets\ModCard\LongDescriptionFrameBottomLeft-export.png"
 												AlignmentX="Left"
 												AlignmentY="Bottom"
-												Stretch="None"/>
+												Stretch="UniformToFill"/>
 								</Canvas.Background>
 							</Canvas>
 							<Canvas Grid.Column="1"
@@ -699,7 +699,7 @@
 									<ImageBrush Source="\UI\MVVM\Assets\ModCard\LongDescriptionFrameBottomRight-export.png"
 												AlignmentX="Right"
 												AlignmentY="Bottom"
-												Stretch="None"/>
+												Stretch="UniformToFill"/>
 								</Canvas.Background>
 							</Canvas>
 							<Canvas Grid.Column="1"
@@ -709,7 +709,7 @@
 									<ImageBrush Source="\UI\MVVM\Assets\ModCard\LongDescriptionFrameTopRight-export.png"
 												AlignmentX="Right"
 												AlignmentY="Top"
-												Stretch="None"/>
+												Stretch="UniformToFill"/>
 								</Canvas.Background>
 							</Canvas>
 						</Grid>

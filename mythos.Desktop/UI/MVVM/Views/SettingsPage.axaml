@@ -118,7 +118,7 @@
 				<ImageBrush Source="\UI\MVVM\Assets\Background\slot_focus_gold_bottom.png"
 							AlignmentX="Left"
 							AlignmentY="Bottom"
-							Stretch="None"/>
+							Stretch="UniformToFill"/>
 
 			</Canvas.Background>
 		</Canvas>
@@ -130,7 +130,7 @@
 				<ImageBrush Source="\UI\MVVM\Assets\Background\slot_focus_gold_bottom_right_corner.png"
 							AlignmentX="Right"
 							AlignmentY="Bottom"
-							Stretch="None"/>
+							Stretch="UniformToFill"/>
 
 			</Canvas.Background>
 		</Canvas>
@@ -143,7 +143,7 @@
 				<ImageBrush Source="\UI\MVVM\Assets\Background\slot_focus_gold_right.png"
 							AlignmentX="Right"
 							AlignmentY="Top"
-							Stretch="None"/>
+							Stretch="UniformToFill"/>
 
 			</Canvas.Background>
 		</Canvas>
@@ -241,7 +241,7 @@
 		<StackPanel Grid.Row="1"
 					VerticalAlignment="Bottom" HorizontalAlignment="Left"
 					Margin="35,0,5,-18">
-			<TextBlock Text="V1.2"
+			<TextBlock Text="V1.2.1"
 					   Foreground="Black"
 					   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 					   FontWeight="Bold"
