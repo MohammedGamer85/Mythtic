@@ -10,6 +10,7 @@ using mythtic.Services;
 using mythtic.Data;
 using System.IO.Compression;
 using Avalonia.OpenGL;
+using mythtic.Features.Settings;
 
 namespace mythtic.Features.Mod {
     public static class AddMod {
@@ -67,7 +68,7 @@ namespace mythtic.Features.Mod {
                 if (BPExists)
                     movePack("BP", BPFolderPath, modFolderPath);
                 if (RPExists)
-                    movePack("RP", RPFolderPath,modFolderPath);
+                    movePack("RP", RPFolderPath, modFolderPath);
 
                 //Is made to be written to the modInfo.json file and is not used in the code.
                 Dictionary<string, string> _packs = new();
@@ -113,6 +114,11 @@ namespace mythtic.Features.Mod {
 
                 Directory.Delete(folderPath, true);
                 File.Delete(Path.Combine(FilePaths.GetmythticTempFolder, "Mod.zip"));
+
+                if (SettingsManger.Settings[1].State) {
+                    ImportedModsInfo.Mods[modItem.Id].EnableDisableModCommand.Execute(modItem.Id);
+                }
+
                 return true;
             }
             catch (Exception ex) {

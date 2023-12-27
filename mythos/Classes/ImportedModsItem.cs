@@ -29,7 +29,7 @@ namespace mythtic.Classes {
         //! Ints
         public bool DisplayPopUpInformation = true;
 
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public int? WebId { get; set; }
 
         public string? Uuid { get; set; }
