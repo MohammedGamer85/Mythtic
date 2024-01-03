@@ -42,9 +42,6 @@
 		<Compile Update="App.axaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>
-		<Compile Update="UI\MVVM\Views\MainView.axaml.cs">
-			<DependentUpon>%(Filename)</DependentUpon>
-		</Compile>
 		<Compile Update="UI\MVVM\Views\MainWindow.axaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>

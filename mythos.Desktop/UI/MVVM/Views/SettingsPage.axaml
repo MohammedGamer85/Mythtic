@@ -185,11 +185,11 @@
 
 						<ItemsRepeater
 							ClipToBounds="True"
-						Margin="0,25,0,0"
-						ItemsSource="{Binding Settings}"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Top"
-						Background="Transparent">
+							Margin="0,25,0,0"
+							ItemsSource="{Binding Settings}"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Top"
+							Background="Transparent">
 
 							<ItemsRepeater.Layout>
 								<StackLayout Orientation="Vertical"/>

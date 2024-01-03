@@ -11,56 +11,67 @@
 			 Background="Transparent">
 
 	<!-- Is used to display the profile button -->
-	
 	<Border VerticalAlignment="Stretch">
 		<Border.Background>
 			<ImageBrush Source="\UI\MVVM\Assets\Profile\marketplace_reward_frame.png" Stretch="Fill"/>
 		</Border.Background>
-		<StackPanel>
+		<Button Background="Transparent" BorderBrush="Transparent" Padding="0,0,0,0"
+				VerticalAlignment="Center" HorizontalAlignment="Center"
+				Command="{Binding SwitchToProfileView}">
+			<Button.Styles>
+				<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+					<Setter Property="Background" Value="Transparent" />
+					<Setter Property="BorderBrush" Value="Transparent" />
+				</Style>
+				<Style Selector="Button:pressed">
+					<Setter Property="RenderTransform" Value="scale(1)" />
+				</Style>
+			</Button.Styles>
+			<StackPanel>
 
-			<StackPanel Orientation="Horizontal">
-				<Canvas>
+				<StackPanel Orientation="Horizontal">
+					<Canvas>
+						<Image
+						asyncImageLoader:ImageLoader.Source="{Binding ImageData}"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Left"
+						Margin="35,19,5,0"
+						Height="61"
+						Width="61"/>
+					</Canvas>
+
 					<Image
-					asyncImageLoader:ImageLoader.Source="{Binding ImageData}"
-					VerticalAlignment="Center"
-					HorizontalAlignment="Left"
-					Margin="35,19,5,0"
-					Height="61"
-					Width="61"/>
-				</Canvas>
+						Source="\UI\MVVM\Assets\Profile\hud_notif_subtitle2312.png"
+						ZIndex="2"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Left"
+						Margin="35,19,5,0"
+						Height="61"
+						Width="61"/>
 
-				<Image
-					Source="\UI\MVVM\Assets\Profile\hud_notif_subtitle2312.png"
-					ZIndex="2"
-	 			    VerticalAlignment="Center"
-				    HorizontalAlignment="Left"
-					Margin="35,19,5,0"
-					Height="61"
-					Width="61"/>
+					<StackPanel Orientation="Vertical" Margin="0,10,0,0" >
 
-				<StackPanel Orientation="Vertical" Margin="0,10,0,0" >
+						<TextBlock FontSize="44"
+								Margin="0,10,0,0"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+								Text="Profile"/>
 
-					<TextBlock FontSize="44"
-							Margin="0,10,0,0"
-							HorizontalAlignment="Center"
-							VerticalAlignment="Center"
-							FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
-							Text="Profile"/>
+						<TextBlock
+								FontSize="15"
+								Margin="5,0,0,0"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+								Text="{Binding Name}"/>
 
-					<TextBlock 
-							FontSize="15"
-							Margin="5,0,0,0"
-							HorizontalAlignment="Left"
-							VerticalAlignment="Top"
-							FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
-							Text="{Binding Name}"/>
+					</StackPanel>
 
 				</StackPanel>
 
+				<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png"/>
 			</StackPanel>
-
-			<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png"/>
-		</StackPanel>
+		</Button>
 	</Border>
-
 </UserControl>

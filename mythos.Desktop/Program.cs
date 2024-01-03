@@ -62,14 +62,13 @@ namespace mythtic.Desktop
         public static ServiceProvider BuildLauncherServices()
         {
             var builder = new ServiceCollection()
-                .AddSingleton<MainWindow>()
-                .AddSingleton<MainView>()
                 .AddSingleton<SearchBar>()
                 .AddSingleton<SearchBarViewModel>()
                 .AddSingleton<HomePage>()
                 .AddSingleton<HomePageViewModel>()
                 .AddSingleton<DiscoverPage>()
                 .AddSingleton<ProfileDisplayViewModel>()
+                .AddSingleton<ProfilePage>()
                 .AddSingleton<AuthenticationRequests>();
 
             var services = builder.BuildServiceProvider();

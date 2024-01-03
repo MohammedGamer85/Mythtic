@@ -99,7 +99,7 @@ namespace mythtic.Data
         }
 
         //! Deals With login requests.
-        internal async Task<Account?> LoginRequest(string email, string password)
+        internal async Task<MythosAccount?> LoginRequest(string email, string password)
         {
             string url = "https://mythos.legendsmodding.com/api/authenticate";
 
@@ -109,7 +109,7 @@ namespace mythtic.Data
                 Password = password,
             };
 
-            var result = await _httpClientHelper.PostRequest<Account, LoginRequest>(url, loginRequest);
+            var result = await _httpClientHelper.PostRequest<MythosAccount, LoginRequest>(url, loginRequest);
 
             if (result.Success == true)
             {

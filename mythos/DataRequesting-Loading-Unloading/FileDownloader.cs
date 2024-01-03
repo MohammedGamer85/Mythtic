@@ -36,6 +36,8 @@ namespace mythtic.DataRequesting_Loading_Unloading
                     fileStream.Close();
                     contentStream.Close();
                 }
+                contentStream.Close();
+                client.Dispose();
 
                 Logger.Log("[DownloadFile] Download completed successfuly!" + "\n");
             }

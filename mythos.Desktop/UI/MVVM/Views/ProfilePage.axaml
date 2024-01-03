@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="mythtic.Desktop.UI.MVVM.Views.ProfilePage"
+			 Background="Transparent"
+			 Margin="15">
+
+	<UserControl.Styles>
+		<Style Selector="Button.c2">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border BorderBrush="Transparent">
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\RedDisabledButton.png"
+										Stretch="Uniform"/>
+						</Border.Background>
+						<TextBlock Text="{TemplateBinding Content}" Padding="100,94,94,100"
+								   FontSize="72" FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+								   Foreground="Black"/>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		<Style Selector="Button.c2:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\RedPointerOverButton.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.c2:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\Var1Pur - Copy\RedButton.png"
+							Stretch="Uniform"/>
+			</Setter>
+		</Style>
+	</UserControl.Styles>
+
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+		<TextBlock Text="Profile Page" FontSize="72"/>
+		<Button Content="Log out" Classes="c2" VerticalAlignment="Center" HorizontalContentAlignment="Center"
+				Command=""/>
+	</StackPanel>
+
+
+</UserControl>

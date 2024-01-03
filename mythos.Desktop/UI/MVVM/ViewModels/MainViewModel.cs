@@ -6,6 +6,7 @@ using mythtic.Services;
 using mythtic.Views;
 using ReactiveUI;
 using mythtic.Services.PreloadedInformation;
+using mythtic.Desktop.UI.MVVM.ViewModels;
 
 namespace mythtic.ViewModels;
 
@@ -13,6 +14,8 @@ namespace mythtic.ViewModels;
 public class MainViewModel : ReactiveObject {
     public ObservableObject ObservableObject;
 
+    //Not Used.
+    public static MainWindow mainWindow;
     public static MenuButtons MenuButtonsVM;
     public static SearchBar SearchBarVM;
     public static ProfileDisplay ProfileDisplayVM;
@@ -20,8 +23,6 @@ public class MainViewModel : ReactiveObject {
     private object _sideBar;
     private object _topBar;
     private object _cornerDisplay;
-
-    UserInformationLoader userInformationLoader = new();
 
     public object TopBar {
         get => _topBar;
@@ -43,23 +44,12 @@ public class MainViewModel : ReactiveObject {
         set => this.RaisePropertyChanged();
     }
 
-    private object _content;
-    public object Content {
-        get => _content;
-        set => this.RaiseAndSetIfChanged(ref _content, value);
-    }
-
     //! The order of this code matter so do not go around playing with it
-    public MainViewModel() {
+    public MainViewModel(MainWindow _mainWindow) {
+        mainWindow = _mainWindow;
+
         MiddleMan.OnPropertyChangeOfCurrentView = () =>
             CurrentView = MiddleMan.View;
-
-        MiddleMan.OnPropertyChangeOfCurrentContent = () =>
-            Content = MiddleMan.Content;
-
-        //! Ether DebugMode or normal Mode aka CheckForAreadyExistingAccuntInfo
-        //DebugMode();
-        checkForAreadyExistingAccountInfo();
 
         MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;
@@ -67,26 +57,5 @@ public class MainViewModel : ReactiveObject {
         TopBar = SearchBarVM;
         ProfileDisplayVM = new ProfileDisplay();
         CornerDisplay = ProfileDisplayVM;
-    }
-
-    private void checkForAreadyExistingAccountInfo() {
-        if (UserInformationLoader.UserDataStatus == false) {
-            if (userInformationLoader.InitializeUserFromSavedData()) {
-                Logger.Log("Login Infromation Aready Autherizied");
-                MiddleMan.Content = Program.ServiceProvider.GetService<MainView>();
-            }
-            else
-                Content = new LoginView();
-        }
-        else {
-            Logger.Log("Login Infromation Aready Autherizied");
-            MiddleMan.Content = Program.ServiceProvider.GetService<MainView>();
-        }
-    }
-
-    private void debugMode() {
-        userInformationLoader.InitializeUserFromSavedData();
-        Logger.Log("Activating Debug Mode");
-        MiddleMan.Content = new DebugView();
     }
 }

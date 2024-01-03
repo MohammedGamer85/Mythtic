@@ -7,6 +7,26 @@
              x:Class="mythtic.Desktop.UI.MVVM.Views.SearchBar"
 			 x:DataType="vm:SearchBarViewModel">
 
+	<UserControl.Styles>
+		<Style Selector="TextBox.h2:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="TextBox.h2:pointerover /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="TextBox.h2:focus /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+		<Style Selector="TextBox.h2:pointerover /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+		<Style Selector="TextBox.h2 /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+	</UserControl.Styles>
+	
 	<!-- is used to display the search bar -->
 	
 	<Grid HorizontalAlignment="Stretch"
@@ -39,7 +59,7 @@
 						BorderThickness="0"
 						Background="Transparent"
 						AcceptsTab="False"
-						Classes="TextBox.C1"/>
+						Classes="h2"/>
 
 
 			<Image Grid.Column="1" Grid.Row="0"

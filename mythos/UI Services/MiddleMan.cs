@@ -16,7 +16,6 @@ public static class MiddleMan
 
     //! Private
     private static object _currentView;
-    private static object _currentContent;
     private static int _impotredModPage;
     private static int _discoverModPage;
     private static ObservableCollection<ListOfDiscoverModsItem> _discoverMods = new();
@@ -24,7 +23,6 @@ public static class MiddleMan
     private static bool _exportedVersion = false;
 
     public static Action? OnPropertyChangeOfCurrentView;
-    public static Action? OnPropertyChangeOfCurrentContent;
     public static Action? OnPropertyChangeOfImportedModsModPage;
     public static Action? OnPropertyChangeOfDiscoverModsModPage;
 
@@ -38,16 +36,6 @@ public static class MiddleMan
             _currentView = value;
             if (OnPropertyChangeOfCurrentView != null)
                 OnPropertyChangeOfCurrentView.Invoke();
-        }
-    }
-
-    public static object Content
-    {
-        get => _currentContent;
-        set
-        {
-            _currentContent = value;
-            OnPropertyChangeOfCurrentContent.Invoke();
         }
     }
 

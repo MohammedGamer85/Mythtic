@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace mythtic.Features.Mod {
     public static class ImportedModsInfo {
-        private static ObservableCollection<ImportedModsItem> _importedMods;
+        private static ObservableCollection<ImportedModsItem> _importedMods = new();
         public static event EventHandler<ObservableCollection<ImportedModsItem>> OnPropertyChangeOfMods;
 
         public static ObservableCollection<ImportedModsItem> Mods {
@@ -21,7 +21,8 @@ namespace mythtic.Features.Mod {
             if (!FileUtilites.IsInUseReadRights("importedMods.json"))
                 return;
             Mods = JsonReaderHelper.ReadJsonFile<ObservableCollection<ImportedModsItem>>("importedMods.json", false);
-            JsonWriterHelper.WriteJsonFile("importedMods.json", Mods);
+            if (Mods != null)
+                JsonWriterHelper.WriteJsonFile("importedMods.json", Mods);
             Logger.Log("Loaded Mods (ImportedModsInfo/LoadMods)\n");
             if (Mods == null)
                 Mods = new ObservableCollection<ImportedModsItem>();

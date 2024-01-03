@@ -1,0 +1,144 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="mythtic.Desktop.UI.MVVM.Views.LoginWindow"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:vm="clr-namespace:mythtic.Desktop.UI.MVVM.ViewModels"
+		x:DataType="vm:LoginWindowViewModel"
+		Title="Mythtic Login"
+		Icon="\UI\MVVM\Assets\Icons\MCLDiscordLogo.ico"
+		Background="#555147"
+		MaxWidth="400"
+		MaxHeight="600"
+		CanResize="False"
+		ShowActivated="True"
+	    TransparencyBackgroundFallback="Black"
+		SystemDecorations="Full"
+		BorderThickness="2"
+	    WindowStartupLocation="CenterOwner"
+		BorderBrush="Black"
+		WindowState="Normal"
+		IsEnabled="True"
+		IsVisible="True">
+
+	<!--  -->
+
+	<Window.Background>
+		<ImageBrush Source="/UI/MVVM/Assets/LoginWindow/LoginWindowBackGround-export.png"/>
+	</Window.Background>
+
+	<Window.Styles>
+		<Style Selector="Button.h1">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border BorderBrush="Transparent">
+						<TextBlock Text="{TemplateBinding Content}"
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center">
+						</TextBlock>
+						<Border.Background>
+							<ImageBrush Source="\UI\MVVM\Assets\Buttons\LoginWindow\button_primary_disabled_new.png"
+								Stretch="Uniform"/>
+						</Border.Background>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h1:pointerover /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\LoginWindow\button_primary_normal_hover.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="Button.h1:pressed /template/ Border">
+			<Setter Property="Background">
+				<ImageBrush Source="\UI\MVVM\Assets\Buttons\LoginWindow\button_primary_disabled_press.png"
+					Stretch="Uniform"/>
+			</Setter>
+		</Style>
+		<Style Selector="TextBox.h2:focus /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="Black"/>
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="TextBox.h2:pointerover /template/ Border#PART_BorderElement">
+			<Setter Property="BorderBrush" Value="Black"/>
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="TextBox.h2:focus /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+		<Style Selector="TextBox.h2:pointerover /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+		<Style Selector="TextBox.h2 /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+	</Window.Styles>
+
+	<Grid>
+		<TextBox Text="{Binding Email}" Width="272"
+				 Foreground="#554438"
+				 FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+				 FontSize="35" Margin="0,144,0,0"
+				 VerticalAlignment="Top"
+				 BorderBrush="Transparent"
+				 Background="Transparent"
+				 Watermark="Email"
+				 Classes="h2"/>
+
+		<TextBox Text="{Binding Password}" PasswordChar="*" Watermark="Password"
+				 FontSize="35" Margin="0,261,0,0" Width="272"
+				 Foreground="#554438"
+				 BorderBrush="Transparent"
+				 Background="Transparent"
+				 VerticalAlignment="Top"
+				 FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+				 Classes="h2"/>
+
+		<TextBlock Text="You will need a Mythos account to login. If you do not have one already, you will need to register one at               or "
+				   TextWrapping="Wrap" FontSize="12" Foreground="Black"
+				   Margin="60,320,60,0"/>
+
+		<Button Content="Mythos" Margin="65,121,0,0"
+				BorderBrush="Transparent" Background="Transparent"
+				FontSize="12" Foreground="Blue" FontWeight="Bold"
+				Command="{Binding OpenAMythosBrowserTab}">
+			<Button.Styles>
+				<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+					<Setter Property="Background" Value="Transparent" />
+					<Setter Property="BorderBrush" Value="Transparent" />
+				</Style>
+			</Button.Styles>
+		</Button>
+
+		<TextBlock Text="{Binding ErrorText}"
+				   TextWrapping="Wrap" FontSize="15" Foreground="Red"
+				   HorizontalAlignment="Center"
+				   Margin="60,402,60,0"/>
+
+		<Button Content="Login" Command="{Binding LoginButtonClick}"
+				FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+				FontSize="50" Foreground="#332f1f"
+				Width="286"
+				Height="146"
+				Margin="0,0,0,30" Classes="h1"
+				VerticalAlignment="Bottom" HorizontalAlignment="Center">
+		</Button>
+
+		<Button Content="Contine as Guest =)" Margin="126,121,0,0"
+				BorderBrush="Transparent" FontSize="20"
+				VerticalAlignment="Bottom" HorizontalAlignment="Right"
+				Foreground="#998b43" FontWeight="Normal" Background="Transparent"
+				FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
+				Command="{Binding ContinueAsGuest}">
+			<Button.Styles>
+				<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+					<Setter Property="Background" Value="Transparent" />
+					<Setter Property="BorderBrush" Value="Transparent" />
+				</Style>
+			</Button.Styles>
+		</Button>
+	</Grid>
+</Window>

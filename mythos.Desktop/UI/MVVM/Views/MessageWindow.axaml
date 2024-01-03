@@ -8,7 +8,6 @@
 		IsEnabled="True"
 		IsVisible="True"
 		Background="#33302A"
-		
         x:Class="mythtic.Desktop.UI.MVVM.Views.MessageWindow"
         Title="MessageWindow">
 
