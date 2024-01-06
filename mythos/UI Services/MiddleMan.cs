@@ -15,7 +15,7 @@ public static class MiddleMan
 {   // Is used to comuncate vars between classes without refrencing them
 
     //! Private
-    private static object _currentView;
+    private static object? _currentView;
     private static int _impotredModPage;
     private static int _discoverModPage;
     private static ObservableCollection<ListOfDiscoverModsItem> _discoverMods = new();
@@ -28,7 +28,7 @@ public static class MiddleMan
 
     public static Action<string> OpenMessageWindowFromMythtic;
 
-    public static object View
+    public static object? View
     {
         get => _currentView;
         set

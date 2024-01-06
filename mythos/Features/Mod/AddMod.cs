@@ -104,7 +104,7 @@ namespace mythtic.Features.Mod {
                     : (RPExists == false)
                         ? Enums.ModTypes.BP
                         : Enums.ModTypes.RP,
-                    Version = new Version(modInfo.Version.ToString()),
+                    Version = modInfo.Version,
                     IsDevMod = modInfo.IsDevMod
                 };
                 ImportedModsInfo.Mods.Add(modItem);

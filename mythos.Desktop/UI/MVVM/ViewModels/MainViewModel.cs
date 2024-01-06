@@ -48,8 +48,13 @@ public class MainViewModel : ReactiveObject {
     public MainViewModel(MainWindow _mainWindow) {
         mainWindow = _mainWindow;
 
-        MiddleMan.OnPropertyChangeOfCurrentView = () =>
-            CurrentView = MiddleMan.View;
+        MiddleMan.OnPropertyChangeOfCurrentView = () => {
+            if (MiddleMan.View == null)
+                CurrentView = Program.ServiceProvider.GetService<HomePage>();
+            else
+                CurrentView = MiddleMan.View;
+
+        };
 
         MenuButtonsVM = new MenuButtons();
         SideBar = MenuButtonsVM;

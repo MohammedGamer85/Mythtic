@@ -53,8 +53,6 @@ public partial class App : Application {
                 // https://docs.avaloniaui.net/docs/getting-started/application-lifetimes#isingleviewapplicationlifetime
 
                 _app.Shutdown();
-
-                // singleView.MainView = new MainView();
             }
         }
     }

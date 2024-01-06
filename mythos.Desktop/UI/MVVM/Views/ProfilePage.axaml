@@ -38,9 +38,11 @@
 	</UserControl.Styles>
 
 	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-		<TextBlock Text="Profile Page" FontSize="72"/>
+		<Border BorderBrush="Black" Background="Gray" BorderThickness="7 " CornerRadius="15">
+			<TextBlock Text="Profile Page" FontSize="72" HorizontalAlignment="Center"/>
+		</Border>
 		<Button Content="Log out" Classes="c2" VerticalAlignment="Center" HorizontalContentAlignment="Center"
-				Command=""/>
+				Command="{Binding Logout}"/>
 	</StackPanel>
 
 

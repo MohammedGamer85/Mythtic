@@ -130,6 +130,8 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {
 
             LoadingBarText = string.Empty;
             IsLoadingBarVisible = false;
+
+            Logger.Log($"Switching to Modpage View displaying Installed[{Installed} with Id[{id}] \n");
         }
 
         private void getInstalledModInfo(int id) {

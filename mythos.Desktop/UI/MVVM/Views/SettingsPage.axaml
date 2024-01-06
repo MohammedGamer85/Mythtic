@@ -178,70 +178,78 @@
 						VerticalAlignment="Center"
 						FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"/>
 				</Border>
-					<ScrollViewer Width="{Binding Path=$parent.Width}"
-							Height="{Binding Path=$parent.Bounds.Height}"
-							HorizontalAlignment="Center"
-							ClipToBounds="True">
+				<ScrollViewer Width="{Binding Path=$parent.Width}"
+						Height="{Binding Path=$parent.Bounds.Height}"
+						HorizontalAlignment="Center"
+						ClipToBounds="True">
 
-						<ItemsRepeater
-							ClipToBounds="True"
-							Margin="0,25,0,0"
-							ItemsSource="{Binding Settings}"
-							HorizontalAlignment="Center"
-							VerticalAlignment="Top"
-							Background="Transparent">
+					<ItemsRepeater
+						ClipToBounds="True"
+						Margin="0,25,0,0"
+						ItemsSource="{Binding Settings}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Top"
+						Background="Transparent">
 
-							<ItemsRepeater.Layout>
-								<StackLayout Orientation="Vertical"/>
-							</ItemsRepeater.Layout>
+						<ItemsRepeater.Layout>
+							<StackLayout Orientation="Vertical"/>
+						</ItemsRepeater.Layout>
 
-							<ItemsRepeater.ItemTemplate>
-								<DataTemplate>
+						<ItemsRepeater.ItemTemplate>
+							<DataTemplate>
 
-									<Grid>
+								<Grid>
 
-										<StackPanel Height="79" Width="500"
-													Orientation="Horizontal"
-													HorizontalAlignment="Left"
-													Margin="15,-3,0,0">
+									<StackPanel Height="79" Width="500"
+												Orientation="Horizontal"
+												HorizontalAlignment="Left"
+												Margin="15,-3,0,0">
 
-											<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0004.png"
-												   Stretch="Uniform"
-												   Width="79"/>
+										<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0004.png"
+											   Stretch="Uniform"
+											   Width="79"/>
 
-											<StackPanel Margin="-21,0,-20,0">
-												<Canvas>
-													<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0002.png"
-														   Stretch="Fill"
-														   Height="79"
-														   Width="489"/>
-												</Canvas>
+										<StackPanel Margin="-21,0,-20,0">
+											<Canvas>
+												<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0002.png"
+													   Stretch="Fill"
+													   Height="79"
+													   Width="489"/>
+											</Canvas>
 
-												<TextBlock Text="{Binding Name}"
-														   Classes="A3">
-												</TextBlock>
-											</StackPanel>
-
-											<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0003.png"
-												   Stretch="Uniform"
-												   Width="79"/>
+											<TextBlock Text="{Binding Name}"
+													   Classes="A3">
+											</TextBlock>
 										</StackPanel>
 
-										<Button Classes="A2"
-												Classes.IsUpdated="{Binding State}"
-												Classes.NotUpdated="{Binding State}"
-												Command="{Binding ChangeStateCommmand}"/>
-									</Grid>
-								</DataTemplate>
-							</ItemsRepeater.ItemTemplate>
-						</ItemsRepeater>
-					</ScrollViewer>
-				</StackPanel>
+										<Image Source="\UI\MVVM\Assets\SettingsPage\Sprite-0003.png"
+											   Stretch="Uniform"
+											   Width="79"/>
+									</StackPanel>
+
+									<Button Classes="A2"
+											Classes.IsUpdated="{Binding State}"
+											Classes.NotUpdated="{Binding State}"
+											Command="{Binding ChangeStateCommmand}"/>
+								</Grid>
+							</DataTemplate>
+						</ItemsRepeater.ItemTemplate>
+					</ItemsRepeater>
+				</ScrollViewer>
+			</StackPanel>
 		</Grid>
-		<StackPanel Grid.Row="1"
+		<TextBlock Text="This App is Not affiliated with Minecraft, Mojang, or Microsoft. Minecraft is a trademark of Mojang Synergies AB. Microsoft is a trademark of Microsoft Corporation."
+	   Grid.Row="1" Grid.Column="0"
+	   Foreground="Black"
+	   VerticalAlignment="Bottom"
+	   FontWeight="Bold"
+	   Margin="135,0,0,-8"
+	   TextWrapping="Wrap"
+	   FontSize="9"/>
+		<StackPanel Grid.Row="1" Grid.Column="0"
 					VerticalAlignment="Bottom" HorizontalAlignment="Left"
-					Margin="35,0,5,-18">
-			<TextBlock Text="V1.2.1"
+					Margin="35,0,0,-18">
+			<TextBlock Text="V1.3.0"
 					   Foreground="Black"
 					   FontFamily="/UI/MVVM/Fonts/#Minecraft Ten"
 					   FontWeight="Bold"

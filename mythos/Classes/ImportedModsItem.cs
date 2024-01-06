@@ -6,6 +6,7 @@ using ReactiveUI;
 using Avalonia.Controls.Shapes;
 using System.IO;
 using Avalonia.ReactiveUI;
+using System.Text.Json.Serialization;
 
 namespace mythtic.Classes {
     public class ImportedModsItem : ReactiveObject {
@@ -21,10 +22,10 @@ namespace mythtic.Classes {
         private string _modCategoryString;
 
         //! Actions/Function
-        public EnableDisableMods EnableDisableModCommand { get; set; }
-        private SwitchToModView ModPageCommand { get; set; }
+        [JsonIgnore]  public EnableDisableMods EnableDisableModCommand { get; set; }
+        [JsonIgnore] public SwitchToModView ModPageCommand { get; set; }
         private ExportMod ExportModCommand { get; set; }
-        public static Action OnPropertyChangeOfIsLoaded;
+        [JsonIgnore]  public static Action OnPropertyChangeOfIsLoaded;
 
         //! Ints
         public bool DisplayPopUpInformation = true;
@@ -38,7 +39,7 @@ namespace mythtic.Classes {
             set { _name = value; }
         }
         public string? Title { get; set; } = string.Empty;
-        public string? DefaultImage { get; set; } = string.Empty;
+        public string? DefaultImage { get; set; } = "https://mythos.legendsmodding.com/favicon.ico";
         public string? Creator { get; set; } = string.Empty;
         public string? GameMode { get; set; }
         public string? ShotDescription { get; set; } = string.Empty;
@@ -107,8 +108,10 @@ namespace mythtic.Classes {
                 this.LongDescription = ShotDescription;
             }
             this.InformationPanel = $"LastUpdated: {this.LastUpdated} \nVersion: {this.Version}";
-            this.ShortendInformationPanel = $"{this.Version}. {this.LastUpdated.Value.ToShortDateString()}\nBy {this.Creator}";
+            this.ShortendInformationPanel = $"{this.Version} {this.LastUpdated.Value.ToShortDateString()}\nBy {this.Creator}";
 
+            if (Name == null)
+                Name = "NULL XD";
             if (Name.Length > 11)
                 Title = $"{Name.Substring(0, 11)}...";
             else

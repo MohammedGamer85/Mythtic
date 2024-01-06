@@ -18,7 +18,7 @@ namespace mythtic.Features.Mod
         /// </summary>
         /// <param name="feedBackMode"> [full, none, erros, success] </param>
         /// <returns></returns>
-        public static async Task<bool> deleteMod(object ViewToSwitchToAfter, ImportedModsItem ImportedModInfo = null, string feedBackMode = "full")
+        public static async Task<bool> deleteMod(object ViewToSwitchToAfter, ImportedModsItem ImportedModInfo, string feedBackMode = "full")
         {
             try
             {
@@ -43,7 +43,7 @@ namespace mythtic.Features.Mod
                 if (feedBackMode is "full" or "success")
                 {
                     MiddleMan.OpenMessageWindowFromMythtic?.Invoke($"Successfully deleted Mod:[{ImportedModInfo.Name}]");
-
+                    
                     MiddleMan.View = ViewToSwitchToAfter;
                 }
 

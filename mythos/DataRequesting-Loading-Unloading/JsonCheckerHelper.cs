@@ -58,7 +58,7 @@ namespace mythtic.Data {   //! is used to check if a json file contains valid in
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static async Task JsonCheckFileForData(string fileName) {
+        public static async Task JsonCheckFileForData(string fileName, bool switchStateTo = true) {
             if (!FileUtilites.IsInUseReadRights("jsonChecked.json")) {
                 return;
             }
@@ -70,7 +70,7 @@ namespace mythtic.Data {   //! is used to check if a json file contains valid in
                 deserializedContent = temp;
             }
 
-            deserializedContent[fileName] = true;
+            deserializedContent[fileName] = switchStateTo;
 
             JsonWriterHelper.WriteJsonFile<Dictionary<string, bool>>("jsonChecked.json", deserializedContent);
 

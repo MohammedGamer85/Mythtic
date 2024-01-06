@@ -14,39 +14,32 @@ using System.Runtime.Intrinsics.X86;
 
 namespace mythtic.Features.Mod;
 
-public class EnableDisableMods : ICommand
-{
+public class EnableDisableMods : ICommand {
     public event EventHandler CanExecuteChanged;
     private string _path;
     private Dictionary<string, string> fileNames;
 
-    public bool CanExecute(object parameter)
-    {   
+    public bool CanExecute(object parameter) {
         // Add your code to determine whether the command can execute or not
         int id = Convert.ToInt32(parameter);
 
-        try
-        {
-            if (ImportedModsInfo.Mods[id] == null || ImportedModsInfo.Mods[id] == new ImportedModsItem())
-            {
-                errormessage();
+        try {
+            if (ImportedModsInfo.Mods.Count == 0)
+                return false;
+            else if (ImportedModsInfo.Mods[id] == null || ImportedModsInfo.Mods[id] == new ImportedModsItem()) {
                 return false;
             }
-            else
-            {
+            else {
                 return true;
             }
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             errormessage($"Failed To Enable/Disable Mod[unknown]. Error[{ex.Message}]");
             return false;
         }
 
-        void errormessage(string i = "")
-        {   
-            if(i != "")
-            {
+        void errormessage(string i = "") {
+            if (i != "") {
                 Logger.Log(i);
                 MiddleMan.OpenMessageWindowFromMythtic?.Invoke(i);
                 return;
@@ -61,11 +54,9 @@ public class EnableDisableMods : ICommand
 
     }
 
-    public void Execute(object parameter)
-    {
+    public void Execute(object parameter) {
         // Add your code that will be executed when the command is invoked
-        try
-        {
+        try {
             int id = Convert.ToInt32(parameter);
 
             _path = Path.Combine(FilePaths.GetmythticDownloadsFolder, ImportedModsInfo.Mods[Convert.ToInt32(parameter)].Uuid);
@@ -79,40 +70,36 @@ public class EnableDisableMods : ICommand
 
             JsonWriterHelper.WriteJsonFile("importedMods.json", ImportedModsInfo.Mods);
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             Logger.Log($"Failed to Excute, Exception is [{ex.ToString()}].");
             MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed to Excute, Exception is [{ex.Message}].");
         }
     }
 
-    public void Enable(int id)
-    {
+    public void Enable(int id) {
         Logger.Log($"Enabling {ImportedModsInfo.Mods[id].Uuid}");
-        try
-        {
+        try {
             if (!Directory.Exists(Path.Combine(_path, fileNames["RP"])))
                 throw new Exception("Could not find RP");
 
-            DirectoryUtilities.Copy(Path.Combine(_path, fileNames["RP"]), Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
+            if (!Directory.Exists(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["RP"])))
+                DirectoryUtilities.Copy(Path.Combine(_path, fileNames["RP"]), Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"]), true);
 
-            if (Directory.Exists(Path.Combine(_path, fileNames["BP"])))
-                DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
+            if (!Directory.Exists(Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"])))
+                if (Directory.Exists(Path.Combine(_path, fileNames["BP"])))
+                    DirectoryUtilities.Copy(Path.Combine(_path, fileNames["BP"]), Path.Combine(FilePaths.GetMythsBPFolder, fileNames["BP"]), true);
 
             ImportedModsInfo.Mods[id].IsLoaded = true;
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             Logger.Log($"Failed To enable {ImportedModsInfo.Mods[id].Name}, Exception is [{ex.ToString()}].");
             MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed To enable {ImportedModsInfo.Mods[id].Name}, Exception is [{ex.Message}].");
         }
     }
 
-    public void Disable(int id)
-    {
+    public void Disable(int id) {
         Logger.Log($"Disabling {ImportedModsInfo.Mods[id].Uuid}");
-        try
-        {
+        try {
             if (!Directory.Exists(Path.Combine(FilePaths.GetMythsRPFolder, fileNames["RP"])))
                 throw new Exception("Could not find RP");
 
@@ -123,8 +110,7 @@ public class EnableDisableMods : ICommand
 
             ImportedModsInfo.Mods[id].IsLoaded = false;
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             Logger.Log($"Failed To disable {ImportedModsInfo.Mods[id].Name} Exception is [{ex.ToString()}]");
             MiddleMan.OpenMessageWindowFromMythtic.Invoke($"Failed To Disable {ImportedModsInfo.Mods[id].Name} Exception is [{ex.Message}]");
         }

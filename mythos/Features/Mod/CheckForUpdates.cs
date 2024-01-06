@@ -9,7 +9,7 @@ using System.IO;
 
 namespace mythtic.Features.Mod {
     public static class UpdateMod {
-        public static async Task CheckForUpdates(ImportedModsItem ImportedModInfo = null, string feedBackMode = "full") {
+        public static async Task CheckForUpdates(ImportedModsItem ImportedModInfo, string feedBackMode = "full") {
             try {
                 AuthenticationRequests authenticationRequests = new();
                 var DiscoverModInfo = await authenticationRequests.GetMythosModDetials((int)ImportedModInfo.WebId);
@@ -19,36 +19,10 @@ namespace mythtic.Features.Mod {
                 }
 
                 if (DiscoverModInfo.Versions[0].Version != ImportedModInfo.Version.ToString()) {
-                    await FileDownloader.DownloadFile("https://static.legendsmodding.com/myths/" + DiscoverModInfo.Versions[0].FileHash + ".zip",
-                        FilePaths.GetmythticTempFolder, "\\Mod.zip");
-
-                    if (AddMod.Add(new ImportedModsItem {
-                        WebId = DiscoverModInfo.Id,
-                        Name = DiscoverModInfo.Name,
-                        DefaultImage = DiscoverModInfo.DefaultImage,
-                        Images = DiscoverModInfo.Images,
-                        Creator = DiscoverModInfo.Creator.Username,
-                        ShotDescription = DiscoverModInfo.ShortDescription,
-                        LongDescription = DiscoverModInfo.LongDescription,
-                        Category = DiscoverModInfo.Category,
-                        DiscordLink = DiscoverModInfo.DiscordLink,
-                        GithubLink = DiscoverModInfo.GithubLink,
-                        TwitterLink = DiscoverModInfo.TwitterLink,
-                        YoutubeLink = DiscoverModInfo.YoutubeLink,
-                        GameMode = DiscoverModInfo.GameMode,
-                        Version = new Version(DiscoverModInfo.Versions[DiscoverModInfo.Versions.Length - 1].Version),
-                        LastUpdated = DateTime.Now,
-                        IsDevMod = false,
-                    },true, null)) {
-                        DeleteMod.deleteMod("errors");
-                        MiddleMan.ImportedModPage = ImportedModsInfo.Mods.Count;
-                    }
-                    else {
-                        throw new Exception($"Failed to Download and import new Mod:[WebId:{ImportedModInfo.WebId}] version");
-                    }
+                    await ReinstallMod.reinstallMod(ImportedModInfo, null, "Error");
+                    ImportedModsInfo.Mods[ImportedModsInfo.Mods.Count - 1].ModPageCommand.Execute(ImportedModsInfo.Mods[ImportedModsInfo.Mods.Count - 1].Id);
 
                     Logger.Log("Successfully updated mod (checkForUpdates)");
-
                     if (feedBackMode is "full" or "success")
                         MiddleMan.OpenMessageWindowFromMythtic?.Invoke("Successfully updated mod");
                 }

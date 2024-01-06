@@ -85,11 +85,6 @@
 								FontSize="40"
 								Command="{Binding SetSettingsView}"/>
 
-				<TextBlock Text="This App is Not affiliated with Minecraft, Mojang, or Microsoft. Minecraft is a trademark of Mojang Synergies AB. Microsoft is a trademark of Microsoft Corporation."
-							MaxWidth="280" HorizontalAlignment="Center"
-							Foreground="#646260"
-							TextWrapping="WrapWithOverflow"/>
-
 				<Image Source="\UI\MVVM\Assets\Background\infoPanelTile.png" Stretch="Fill"
 					   Width="500"/>
 		</StackPanel>

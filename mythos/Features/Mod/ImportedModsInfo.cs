@@ -27,7 +27,7 @@ namespace mythtic.Features.Mod {
             if (Mods == null)
                 Mods = new ObservableCollection<ImportedModsItem>();
             foreach (var item in Mods) {
-                Logger.Log($"WebId           {item.Id}");
+                Logger.Log($"Id           {item.Id}");
                 Logger.Log($"WebId        {item.WebId}");
                 Logger.Log($"Uuid         {item.Uuid}");
                 Logger.Log($"Name         {item.Name}");
@@ -35,6 +35,9 @@ namespace mythtic.Features.Mod {
                 Logger.Log($"LastUpdated  {item.LastUpdated}");
                 Logger.Log($"Isloaded     {item.IsLoaded}");
                 Logger.Log($"Version      {item.Version}");
+                Logger.Log($"Category      {item.Category}");
+                Logger.Log($"GameMode      {item.GameMode}");
+                Logger.Log($"Title      {item.Title}");
                 Logger.Log($"LongDescription  {item.LongDescription}");
                 Logger.Log($"ShotDescription  {item.ShotDescription}");
                 Logger.Log($"Dev  {item.IsDevMod}\n");

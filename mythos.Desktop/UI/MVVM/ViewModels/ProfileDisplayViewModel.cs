@@ -26,7 +26,7 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {   //! _Window displayes the user'
         }
 
         public ProfileDisplayViewModel() {
-            SetDisplayedUserInfo();
+            UpdateDisplayedUserInfo();
         }
 
         public void SwitchToProfileView() {
@@ -34,7 +34,7 @@ namespace mythtic.Desktop.UI.MVVM.ViewModels {   //! _Window displayes the user'
         }
 
         //Rename it when you got more brain power
-        public void SetDisplayedUserInfo() {
+        public void UpdateDisplayedUserInfo() {
             Name = (MythticLoadedUser.Name != null)
             ? MythticLoadedUser.Name
             : "Unkown";
